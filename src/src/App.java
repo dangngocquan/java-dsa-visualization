@@ -1,13 +1,15 @@
 package src;
 
 import src.components.base.Frame;
-import src.components.base.Panel;
+import src.components.components.AbstractScreen;
 import src.components.components.MainScreen;
 
-import javax.swing.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App extends Frame {
-    private Panel mainScreen;
+    private AbstractScreen mainScreen;
+    private Map<String, AbstractScreen> screens;
     public App() {
         super(
                 "Java Algorithm Visualizer",
@@ -15,16 +17,22 @@ public class App extends Frame {
                 Config.BACKGROUND_COLOR_APP,
                 Config.ARIAL_BOLD_12
         );
-        addMainScreen();
+        addScreens();
         repaint();
     }
 
-    public void addMainScreen() {
+    public void addScreens() {
         mainScreen = new MainScreen(
                 0, 0, Config.WIDTH, Config.HEIGHT,
                 null, null, ""
         );
         add(mainScreen);
+        screens = new HashMap<>();
+        screens.put(mainScreen.getClass().getSimpleName(), mainScreen);
+    }
+
+    public Map<String, AbstractScreen> getScreens() {
+        return screens;
     }
 
 }

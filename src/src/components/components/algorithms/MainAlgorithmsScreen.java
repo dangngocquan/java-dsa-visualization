@@ -1,15 +1,14 @@
-package src.components.components;
+package src.components.components.algorithms;
 
 import src.Config;
 import src.components.base.Button;
-import src.components.components.algorithms.MainAlgorithmsScreen;
-import src.components.components.datastructures.MainDataStructuresScreen;
+import src.components.components.AbstractScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainScreen extends AbstractScreen {
-    public MainScreen(
+public class MainAlgorithmsScreen extends AbstractScreen {
+    public MainAlgorithmsScreen(
             int x, int y, int width, int height,
             Color backgroundColor,
             ImageIcon backgroundImage,
@@ -32,16 +31,16 @@ public class MainScreen extends AbstractScreen {
 
         buttons = new Button[2];
         buttons[0] = new Button(
-                initialX,
-                initialY,
+                initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
+                initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
                 buttonWidth, buttonHeight,
-                "Data Structures"
+                "Back"
         );
         buttons[1] = new Button(
                 initialX,
-                initialY + (gapHeight + buttonHeight),
+                initialY,
                 buttonWidth, buttonHeight,
-                "Algorithms"
+                "Sorting Algorithms"
         );
 
         add(buttons[0]);
@@ -50,33 +49,17 @@ public class MainScreen extends AbstractScreen {
 
     @Override
     public void createDefaultScreens() {
-        screens = new AbstractScreen[2];
+        screens = new AbstractScreen[5];
     }
 
     @Override
     public void addActionListenerForButtons() {
         buttons[0].addActionListener(e -> {
             if (screens[0] == null) {
-                screens[0] = new MainDataStructuresScreen(
-                        0, 0, Config.WIDTH, Config.HEIGHT,
-                        Config.BACKGROUND_COLOR_APP, null, ""
-                );
-                getApp().add(screens[0]);
+                screens[0] = getApp().getScreens().get("MainScreen");
             }
             setHidden(true);
             screens[0].setVisible(true);
-        });
-
-        buttons[1].addActionListener(e -> {
-            if (screens[1] == null) {
-                screens[1] = new MainAlgorithmsScreen(
-                        0, 0, Config.WIDTH, Config.HEIGHT,
-                        Config.BACKGROUND_COLOR_APP, null, ""
-                );
-                getApp().add(screens[1]);
-            }
-            setHidden(true);
-            screens[1].setVisible(true);
         });
     }
 }
