@@ -1,8 +1,7 @@
-package src.component.base;
-
-import src.Config;
+package src.components.base;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Button extends JButton {
     private int x;
@@ -21,7 +20,7 @@ public class Button extends JButton {
         setSize(width, height);
         setBounds(x, y, width, height);
         setFocusPainted(false);
-        setFont(Config.ARIAL_BOLD_12);
+        setFont(new Font("Arial", Font.BOLD, 18));
 
         setVisible(true);
     }
