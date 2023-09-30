@@ -16,6 +16,7 @@ public class App extends Frame {
                 Config.ARIAL_BOLD_12
         );
         addMainScreen();
+        repaint();
     }
 
     public void addMainScreen() {

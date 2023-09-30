@@ -4,7 +4,7 @@ import src.components.base.Panel;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PanelTransform {
+public class Transform {
     private Timer timer;
     private Panel panel;
     private int translateX;
@@ -17,7 +17,7 @@ public class PanelTransform {
     private double process = 0.0;
 
 
-    public PanelTransform(Panel panel, Location start, int translateX, int translateY, int delay, int duration, int zOrder) {
+    public Transform(Panel panel, Location start, int translateX, int translateY, int delay, int duration, int zOrder) {
         this.panel = panel;
         this.translateX = translateX;
         this.translateY = translateY;
