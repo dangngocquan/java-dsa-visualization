@@ -1,25 +1,29 @@
 package src;
 
+import src.components.base.Frame;
 import src.components.base.Panel;
-import src.services.animation.Animation;
+import src.components.components.MainScreen;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class App extends JFrame {
-    public JPanel panel;
-    public JPanel panel2;
+public class App extends Frame {
+    private Panel mainScreen;
     public App() {
-        super("Java Algorithm Visualizer");
-        setSize(Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT);
-        setResizable(false);
-        setAlwaysOnTop(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
-        getContentPane().setBackground(Config.BACKGROUND_COLOR_APP);
-        setFont(Config.ARIAL_BOLD_12);
+        super(
+                "Java Algorithm Visualizer",
+                0, 0, Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT,
+                Config.BACKGROUND_COLOR_APP,
+                Config.ARIAL_BOLD_12
+        );
+        addMainScreen();
+    }
 
-        setVisible(true);
+    public void addMainScreen() {
+        mainScreen = new MainScreen(
+                0, 0, Config.WIDTH, Config.HEIGHT,
+                null, null, ""
+        );
+        add(mainScreen);
     }
 
 }

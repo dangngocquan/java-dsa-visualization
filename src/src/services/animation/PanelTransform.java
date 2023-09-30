@@ -1,8 +1,6 @@
 package src.services.animation;
 
 import src.components.base.Panel;
-
-import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,8 +41,6 @@ public class PanelTransform {
     }
 
     private class TaskAnimation extends TimerTask {
-
-
         @Override
         public void run() {
             long temp = System.currentTimeMillis() - msStart;

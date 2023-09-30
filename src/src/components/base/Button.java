@@ -1,6 +1,7 @@
 package src.components.base;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
 public class Button extends JButton {
@@ -20,8 +21,9 @@ public class Button extends JButton {
         setSize(width, height);
         setBounds(x, y, width, height);
         setFocusPainted(false);
+//        setBorderPainted(false);
         setFont(new Font("Arial", Font.BOLD, 18));
-
+        setUI(new BasicButtonUI());
         setVisible(true);
     }
 }

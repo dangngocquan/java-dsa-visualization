@@ -13,7 +13,7 @@ public class Config {
 
     // Color
     public static Color COLOR_TEXT = new Color(20, 20, 20);
-    public static Color BACKGROUND_COLOR_APP = new Color(0, 255, 255);
+    public static Color BACKGROUND_COLOR_APP = new Color(222, 224, 236);
 
     // Font
     public static final Font ARIAL_BOLD_12 = new Font("Arial", Font.BOLD, 12);

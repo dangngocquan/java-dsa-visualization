@@ -2,8 +2,6 @@ package src.services.animation;
 
 import src.components.base.Panel;
 
-import javax.swing.*;
-
 public class Animation {
     public static void translate(
             Panel panel, Location locationStart,
