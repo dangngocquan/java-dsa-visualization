@@ -23,7 +23,7 @@ public class Table extends JPanel {
         setBounds(x, y, width, height);
 
         table = new JTable(rowData, columnNames);
-        table.setFont(new Font("Arial", Font.BOLD, 18));
+        table.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         table.setEnabled(false);
         int gapWidth = 10;
         int gapHeight = 4;
@@ -31,7 +31,7 @@ public class Table extends JPanel {
         scrollPane = new JScrollPane(table);
         scrollPane.setBounds(0, 0, width, height);
 
-        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
+        table.getTableHeader().setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         table.getTableHeader().setBounds(0, 0, width, 30);
 
         add(table.getTableHeader());

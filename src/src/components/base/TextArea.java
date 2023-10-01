@@ -31,7 +31,7 @@ public class TextArea extends JTextArea {
         setBorder(new LineBorder(new Color(114, 114, 114), thickness, true));
         setLineWrap(true);
         setWrapStyleWord(true);
-        setFont(new Font("Arial", Font.BOLD, 18));
+        setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         setDisabledTextColor( Color.black);
         setBorder(
                 BorderFactory.createCompoundBorder(

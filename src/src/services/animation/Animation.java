@@ -27,4 +27,14 @@ public class Animation {
                 component, initialColor, targetColor, delay, duration
         )).start();
     }
+
+    public static void delayVisible(
+            Component component,
+            boolean visible,
+            int delay,
+            int duration) {
+        (new DelayVisible(
+                component, visible, delay, duration
+        )).start();
+    }
 }

@@ -5,27 +5,19 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TransitionOpacity {
+public class DelayVisible {
     private Timer timer;
     private Component component;
-    private int initialOpacity;
-    private int targetOpacity;
-    private int absOpacity;
-    private int r, g, b;
+    private boolean visible;
     private int delay;
     private int duration;
     private long msStart;
     private double process = 0.0;
 
 
-    public TransitionOpacity(Component component, int initialOpacity, int targetOpacity, int delay, int duration) {
+    public DelayVisible(Component component, boolean visible, int delay, int duration) {
         this.component = component;
-        this.initialOpacity = initialOpacity;
-        this.targetOpacity = targetOpacity;
-        this.absOpacity = targetOpacity - initialOpacity;
-        this.r = component.getBackground().getRed();
-        this.g = component.getBackground().getGreen();
-        this.b = component.getBackground().getBlue();
+        this.visible = visible;
         this.delay = delay;
         this.duration = duration;
         ((JPanel) component).setOpaque(false);
@@ -38,7 +30,7 @@ public class TransitionOpacity {
     }
 
     public void stop() {
-        component.setBackground(new Color(r, g, b, targetOpacity));
+        component.setVisible(visible);
         timer.cancel();
         timer.purge();
     }
@@ -50,9 +42,7 @@ public class TransitionOpacity {
             process = temp * 1.0 / duration;
             if (process >= 1f) {
                 stop();
-                return;
             }
-            component.setBackground(new Color(r, g, b, initialOpacity + (int) (absOpacity * process)));
         }
     }
 }

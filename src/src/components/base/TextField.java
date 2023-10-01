@@ -28,10 +28,16 @@ public class TextField extends JTextField {
         setSize(width, height);
         setBounds(x, y, width, height);
         setBorder(new LineBorder(new Color(114, 114, 114), thickness, true));
-        setFont(new Font("Arial", Font.BOLD, 12));
+        setFont(new Font(Font.MONOSPACED, Font.BOLD, 14));
         setDisabledTextColor(Color.BLACK);
         setForeground(Color.BLUE);
         setBackground(backgroundColor);
+        setBorder(
+                BorderFactory.createCompoundBorder(
+                        getBorder(),
+                        BorderFactory.createEmptyBorder(1, 5, 1, 5)
+                )
+        );
         setVisible(true);
     }
 

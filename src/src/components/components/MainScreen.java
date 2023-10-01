@@ -61,10 +61,11 @@ public class MainScreen extends AbstractScreen {
                         0, 0, Config.WIDTH, Config.HEIGHT,
                         Config.BACKGROUND_COLOR_APP, null, ""
                 );
-                getApp().add(screens[0]);
+                screens[0].setVisible(false);
+                getApp().addScreen(screens[0]);
             }
             setHidden(true);
-            screens[0].setVisible(true);
+            screens[0].setHidden(false);
         });
 
         buttons[1].addActionListener(e -> {
@@ -73,10 +74,11 @@ public class MainScreen extends AbstractScreen {
                         0, 0, Config.WIDTH, Config.HEIGHT,
                         Config.BACKGROUND_COLOR_APP, null, ""
                 );
-                getApp().add(screens[1]);
+                screens[1].setVisible(false);
+                getApp().addScreen(screens[1]);
             }
             setHidden(true);
-            screens[1].setVisible(true);
+            screens[1].setHidden(false);
         });
     }
 }

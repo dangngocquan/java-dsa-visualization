@@ -1,6 +1,5 @@
 package src.components.base;
 
-import src.services.animation.Animation;
 import src.services.animation.TransitionColor;
 
 import javax.swing.*;
@@ -16,6 +15,10 @@ public class Button extends JButton {
     private int width;
     private int height;
     private TransitionColor tempTransitionColor;
+    private Color backgroundColorEntered;
+    private Color backgroundColor;
+    private int borderWidth;
+    private Color borderColor;
 
     public Button(int x, int y, int width, int height, String text) {
         super(text);
@@ -23,19 +26,45 @@ public class Button extends JButton {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.backgroundColor = new Color(210, 210, 210);
+        this.backgroundColorEntered = new Color(200, 255, 200);
+        this.borderWidth = 1;
+        this.borderColor = Color.BLACK;
 
         setLayout(null);
         setSize(width, height);
         setBounds(x, y, width, height);
         setFocusPainted(false);
-        setFont(new Font("Arial", Font.BOLD, 18));
+        setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         setUI(new BasicButtonUI());
         addMouseListener(new MouseHandler());
         setBackground(new Color(210, 210, 210));
         setBorder(new LineBorder(
-                new Color(0, 0, 0), 1
+                borderColor, borderWidth
         ));
         setVisible(true);
+    }
+
+    public void setBackgroundColorEntered(Color backgroundColorEntered) {
+        this.backgroundColorEntered = backgroundColorEntered;
+    }
+
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public void setBorderWidth(int borderWidth) {
+        this.borderWidth = borderWidth;
+        setBorder(new LineBorder(
+                borderColor, borderWidth
+        ));
+    }
+
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+        setBorder(new LineBorder(
+                borderColor, borderWidth
+        ));
     }
 
     private Component getInstance() {
@@ -65,8 +94,8 @@ public class Button extends JButton {
             }
             tempTransitionColor = new TransitionColor(
                     getInstance(),
-                    new Color(210, 210, 210),
-                    new Color(200, 255, 200),
+                    backgroundColor,
+                    backgroundColorEntered,
                     0, 300
             );
             tempTransitionColor.start();
@@ -84,8 +113,8 @@ public class Button extends JButton {
             }
             tempTransitionColor = new TransitionColor(
                     getInstance(),
-                    new Color(200, 255, 200),
-                    new Color(210, 210, 210),
+                    backgroundColorEntered,
+                    backgroundColor,
                     0, 300
             );
             tempTransitionColor.start();

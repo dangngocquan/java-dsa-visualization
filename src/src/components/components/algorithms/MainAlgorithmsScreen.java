@@ -3,6 +3,8 @@ package src.components.components.algorithms;
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
+import src.components.components.algorithms.sort.SortAlgorithmScreen;
+import src.components.components.datastructures.MainDataStructuresScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,12 +56,27 @@ public class MainAlgorithmsScreen extends AbstractScreen {
 
     @Override
     public void addActionListenerForButtons() {
+        // Back
         buttons[0].addActionListener(e -> {
             if (screens[0] == null) {
                 screens[0] = getApp().getScreens().get("MainScreen");
             }
             setHidden(true);
-            screens[0].setVisible(true);
+            screens[0].setHidden(false);
+        });
+
+        // Sorting Algorithms
+        buttons[1].addActionListener(e -> {
+            if (screens[1] == null) {
+                screens[1] = new SortAlgorithmScreen(
+                        0, 0, Config.WIDTH, Config.HEIGHT,
+                        Config.BACKGROUND_COLOR_APP, null, ""
+                );
+                screens[1].setVisible(false);
+                getApp().addScreen(screens[1]);
+            }
+            setHidden(true);
+            screens[1].setHidden(false);
         });
     }
 }

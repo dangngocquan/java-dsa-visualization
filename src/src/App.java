@@ -22,13 +22,17 @@ public class App extends Frame {
     }
 
     public void addScreens() {
+        screens = new HashMap<>();
         mainScreen = new MainScreen(
                 0, 0, Config.WIDTH, Config.HEIGHT,
                 null, null, ""
         );
-        add(mainScreen);
-        screens = new HashMap<>();
-        screens.put(mainScreen.getClass().getSimpleName(), mainScreen);
+        addScreen(mainScreen);
+    }
+
+    public void addScreen(AbstractScreen screen) {
+        add(screen);
+        screens.put(screen.getClass().getSimpleName(), screen);
     }
 
     public Map<String, AbstractScreen> getScreens() {
