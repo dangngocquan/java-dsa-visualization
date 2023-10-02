@@ -1,9 +1,10 @@
-package src.components.components.algorithms.sort;
+package src.components.components.algorithms.sort.viewsetting;
 
 import src.App;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Panel;
+import src.components.components.algorithms.sort.SortAlgorithmScreen;
 import src.services.animation.Animation;
 import src.services.animation.Location;
 import src.services.services.Service;
@@ -79,8 +80,7 @@ public class ViewSetting extends Panel {
                         -getWidthPanel() + buttons[0].getWidth(),
                         getHeightPanel() - buttons[0].getHeight() + 20,
                         0,
-                        200,
-                        0
+                        200
                 );
                 buttons[0].setText("Show Settings");
                 buttons[0].setBackgroundColorEntered(Config.COLOR_GREEN);
@@ -90,8 +90,7 @@ public class ViewSetting extends Panel {
                         900,
                         0,
                         0,
-                        200,
-                        0
+                        200
                 );
             } else {
                 Animation.translate(
@@ -100,8 +99,7 @@ public class ViewSetting extends Panel {
                         getWidthPanel() - buttons[0].getWidth(),
                         -getHeightPanel() + buttons[0].getHeight() - 20,
                         0,
-                        200,
-                        0
+                        200
                 );
                 buttons[0].setText("Hide Settings");
                 buttons[0].setBackgroundColorEntered(Config.COLOR_RED);
@@ -112,8 +110,7 @@ public class ViewSetting extends Panel {
                         -900,
                         0,
                         0,
-                        200,
-                        0
+                        200
                 );
             }
             // Hide view set elements value if it is appearing
@@ -124,11 +121,14 @@ public class ViewSetting extends Panel {
                         900,
                         0,
                         0,
-                        200,
-                        0
+                        200
                 );
             }
         });
+    }
+
+    public int getSlowerScale() {
+        return ((ViewSettingAnimation) panels[2]).getSlowerScale();
     }
 
     public Panel getInstance() {

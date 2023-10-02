@@ -1,10 +1,16 @@
 package src.components.components.algorithms.sort;
 
+import src.Config;
 import src.components.components.AbstractScreen;
+import src.components.components.algorithms.sort.viewcontroller.ViewController;
+import src.components.components.algorithms.sort.viewsetting.ViewSetElementsValue;
+import src.components.components.algorithms.sort.viewsetting.ViewSetting;
+import src.components.components.algorithms.sort.viewsort.ViewSort;
 import src.services.services.Service;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
 
 public class SortAlgorithmScreen extends AbstractScreen {
     private ViewSort viewSort;
@@ -12,6 +18,7 @@ public class SortAlgorithmScreen extends AbstractScreen {
     private ViewSetting viewSetting;
     private ViewSetElementsValue viewSetElementsValue;
     private int[] array;
+    public static Timer timer;
 
     public SortAlgorithmScreen(
             int x, int y, int width, int height,
@@ -20,7 +27,7 @@ public class SortAlgorithmScreen extends AbstractScreen {
             String text) {
         super(x, y, width, height, backgroundColor, backgroundImage, text);
 
-        array = Service.createRandomArray(20, 1, 251);
+        array = Service.createRandomArray(20, 1, 100);
         addViewSetting();
         addViewController();
         addViewSort();
@@ -71,14 +78,15 @@ public class SortAlgorithmScreen extends AbstractScreen {
     public void setArray(int[] array) {
         this.array = array;
         viewSetElementsValue.setElements(array);
+        viewSort.setElements(array);
         repaint();
     }
 
     public void addViewSort() {
         viewSort = new ViewSort(
                 300, 0, width - 300, height,
-                new Color(244, 244, 248),
-                null, "", 0
+                Config.BACKGROUND_COLOR_APP,
+                null, "", 0, array
         );
         add(viewSort);
     }
@@ -111,4 +119,6 @@ public class SortAlgorithmScreen extends AbstractScreen {
         );
         add(viewSetElementsValue);
     }
+
+
 }

@@ -11,19 +11,17 @@ public class Transform {
     private int translateY;
     private int delay;
     private int duration;
-    private int zOrder;
     private Location locationStart;
     private long msStart;
     private double process = 0.0;
 
 
-    public Transform(Panel panel, Location start, int translateX, int translateY, int delay, int duration, int zOrder) {
+    public Transform(Panel panel, Location start, int translateX, int translateY, int delay, int duration) {
         this.panel = panel;
         this.translateX = translateX;
         this.translateY = translateY;
         this.delay = delay;
         this.duration = duration;
-        this.zOrder = zOrder;
         this.locationStart = start;
     }
 
@@ -34,7 +32,6 @@ public class Transform {
     }
 
     public void stop() {
-        panel.getParent().setComponentZOrder(panel, zOrder);
         panel.setXY(locationStart.getX() + translateX, locationStart.getY() + translateY);
         timer.cancel();
         timer.purge();

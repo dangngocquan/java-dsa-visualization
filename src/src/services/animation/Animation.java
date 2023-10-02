@@ -8,12 +8,11 @@ public class Animation {
     public static void translate(
             Panel panel, Location locationStart,
             int translateX, int translateY,
-            int delay, int duration,
-            int zOrder) {
+            int delay, int duration) {
         (new Transform(
                 panel, locationStart,
                 translateX, translateY,
-                delay, duration, zOrder)
+                delay, duration)
         ).start();
     }
 

@@ -111,6 +111,10 @@ public class Panel extends JPanel {
         repaint();
     }
 
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 

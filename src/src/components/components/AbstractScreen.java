@@ -37,7 +37,7 @@ public abstract class AbstractScreen extends Panel {
                     this,
                     new Location(0, 0),
                     0, Config.HEIGHT,
-                    delay, duration, 0
+                    delay, duration
             );
             delay += duration0 + 10;
             Animation.delayVisible(this, false, delay, 10);
@@ -49,7 +49,7 @@ public abstract class AbstractScreen extends Panel {
                     this,
                     new Location(0, Config.HEIGHT),
                     0, -Config.HEIGHT,
-                    delay, duration, 0
+                    delay, duration
             );
 
         }

@@ -1,10 +1,11 @@
-package src.components.components.algorithms.sort;
+package src.components.components.algorithms.sort.viewsetting;
 
 import src.App;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Panel;
 import src.components.base.TextField;
+import src.components.components.algorithms.sort.SortAlgorithmScreen;
 import src.services.services.Service;
 
 import javax.swing.*;
@@ -44,7 +45,7 @@ public class ViewSettingArray extends Panel {
         panels[1] = new Panel(
                 80, panels[0].getY() + panels[0].getHeightPanel() + 15, 150, 30,
                 getBackgroundColor(), null,
-                String.format("%-15s:", "Size [ 2 - 20 ]"),
+                String.format("%-15s:", "Size [ 2 - 40 ]"),
                 0
         );
         panels[1].setFont(Config.ARIAL_BOLD_14);
@@ -97,13 +98,13 @@ public class ViewSettingArray extends Panel {
                     (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
             int[] mainArray = sortAlgorithmScreen.getArray();
             Service.shuffleArray(mainArray);
-            sortAlgorithmScreen.getViewSetElementsValue().repaintAfterShuffleArray();
+            sortAlgorithmScreen.setArray(mainArray);
         });
         buttons[1].addActionListener(e -> {
             SortAlgorithmScreen sortAlgorithmScreen =
                     (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
             int[] mainArray = sortAlgorithmScreen.getArray();
-            sortAlgorithmScreen.setArray(Service.createRandomArray(mainArray.length, 1, 251));
+            sortAlgorithmScreen.setArray(Service.createRandomArray(mainArray.length, 1, 100));
         });
     }
 
@@ -121,8 +122,7 @@ public class ViewSettingArray extends Panel {
                         (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
                 int[] mainArray = sortAlgorithmScreen.getArray();
                 if (size != mainArray.length) {
-                    ViewSetElementsValue viewSetElementsValue = sortAlgorithmScreen.getViewSetElementsValue();
-                    sortAlgorithmScreen.setArray(Service.createRandomArray(size, 1, 251));
+                    sortAlgorithmScreen.setArray(Service.createRandomArray(size, 1, 100));
                 }
             }
         });
@@ -133,8 +133,8 @@ public class ViewSettingArray extends Panel {
         String data = textFields[0].getText();
         if (data.matches(regex)) {
             int length = Integer.parseInt(data);
-            if (length > 20) {
-                length = 20;
+            if (length > 40) {
+                length = 40;
                 textFields[0].setText(length + "");
             } else if (length < 2) {
                 length = 2;

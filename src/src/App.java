@@ -38,5 +38,4 @@ public class App extends Frame {
     public Map<String, AbstractScreen> getScreens() {
         return screens;
     }
-
 }

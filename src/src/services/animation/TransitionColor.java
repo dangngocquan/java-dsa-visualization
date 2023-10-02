@@ -1,6 +1,8 @@
 package src.services.animation;
 
 
+import src.components.base.Panel;
+
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,7 +37,11 @@ public class TransitionColor {
     }
 
     public void stop() {
-        component.setBackground(targetColor);
+        if (component instanceof Panel) {
+            ((Panel) component).setBackgroundColor(targetColor);
+        } else {
+            component.setBackground(targetColor);
+        }
         timer.cancel();
         timer.purge();
     }
@@ -49,13 +55,23 @@ public class TransitionColor {
                 stop();
                 return;
             }
-            component.setBackground(
-                    new Color(
-                            initialColor.getRed() + (int) (absR * process),
-                            initialColor.getGreen() + (int) (absG * process),
-                            initialColor.getBlue() + (int) (absB * process)
-                    )
-            );
+            if (component instanceof Panel) {
+                ((Panel) component).setBackgroundColor(
+                        new Color(
+                                initialColor.getRed() + (int) (absR * process),
+                                initialColor.getGreen() + (int) (absG * process),
+                                initialColor.getBlue() + (int) (absB * process)
+                        )
+                );
+            } else {
+                component.setBackground(
+                        new Color(
+                                initialColor.getRed() + (int) (absR * process),
+                                initialColor.getGreen() + (int) (absG * process),
+                                initialColor.getBlue() + (int) (absB * process)
+                        )
+                );
+            }
         }
     }
 }

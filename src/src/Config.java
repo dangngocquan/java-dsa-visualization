@@ -17,9 +17,18 @@ public class Config {
     public static Color COLOR_GREEN = new Color(200, 255, 200);
     public static Color COLOR_GRAY = new Color(210, 210, 210);
     public static Color COLOR_RED = new Color(255, 107, 107);
+
+    public static Color COLOR_BAR_PLAIN = new Color(255, 255, 255);
+    public static Color COLOR_BAR_CHECKING = new Color(255, 255, 0);
+    public static Color COLOR_BAR_DONE = new Color(0, 255, 0);
+    public static Color COLOR_BAR_SORTED = new Color(0, 255, 255);
+
     // Font
     public static final Font ARIAL_BOLD_12 = new Font(Font.MONOSPACED, Font.BOLD, 12);
     public static final Font ARIAL_BOLD_14 = new Font(Font.MONOSPACED, Font.BOLD, 14);
     public static final Font ARIAL_BOLD_16 = new Font(Font.MONOSPACED, Font.BOLD, 16);
     public static final Font ARIAL_BOLD_18 = new Font(Font.MONOSPACED, Font.BOLD, 18);
+
+    // TIME
+    public static final int MILLIS_PER_ACTION = 2;
 }
