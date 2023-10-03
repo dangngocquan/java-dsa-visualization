@@ -1,6 +1,7 @@
 package src.components.components.algorithms.sort.sortanimations;
 
 import src.components.components.algorithms.sort.SortAlgorithmScreen;
+import src.components.components.algorithms.sort.viewcontroller.ViewController;
 import src.components.components.algorithms.sort.viewsort.Bar;
 import src.components.components.algorithms.sort.viewsort.ViewSort;
 
@@ -17,13 +18,13 @@ public abstract class SortAnimation extends TimerTask {
     protected Timer timer;
     protected int period;
     protected int animationStep = 0;
-    protected ViewSort viewSort;
+    protected SortAlgorithmScreen sortAlgorithmScreen;
     protected Bar[] bars;
 
-    public SortAnimation(ViewSort viewSort, Bar[] bars, Timer timer, int period) {
+    public SortAnimation(SortAlgorithmScreen sortAlgorithmScreen, Bar[] bars, Timer timer, int period) {
         this.timer = timer;
         this.period = period;
-        this.viewSort = viewSort;
+        this.sortAlgorithmScreen = sortAlgorithmScreen;
         this.bars = bars;
         this.animationStep = 0;
         this.status = IS_NOT_START;
@@ -47,10 +48,7 @@ public abstract class SortAnimation extends TimerTask {
 
     public void end() {
         status = IS_ENDED;
-        if (timer != null) {
-            timer.cancel();
-            timer.purge();
-        }
+        sortAlgorithmScreen.endSort();
     }
 
     public boolean isNotStart() {

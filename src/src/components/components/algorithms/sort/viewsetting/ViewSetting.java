@@ -5,6 +5,7 @@ import src.Config;
 import src.components.base.Button;
 import src.components.base.Panel;
 import src.components.components.algorithms.sort.SortAlgorithmScreen;
+import src.components.components.algorithms.sort.viewcontroller.ViewController;
 import src.services.animation.Animation;
 import src.services.animation.Location;
 import src.services.services.Service;
@@ -50,14 +51,14 @@ public class ViewSetting extends Panel {
         );
 
         panels[1] = new ViewSettingSortAlgorithm(
-                0, panels[0].getY() + panels[0].getHeightPanel(),
+                0, panels[0].getY() + panels[0].getHeightPanel()-2,
                 getWidthPanel(), getHeightPanel() / 3,
                 getBackgroundColor(), null, "", 0
         );
 
         panels[2] = new ViewSettingAnimation(
-                0, panels[1].getY() + panels[1].getHeightPanel(),
-                getWidthPanel(), getHeightPanel() - getHeightPanel() / 3 * 2,
+                0, panels[1].getY() + panels[1].getHeightPanel()-2,
+                getWidthPanel(), getHeightPanel() - getHeightPanel() / 3 * 2 + 2,
                 getBackgroundColor(), null, "", 0
         );
 
@@ -70,10 +71,16 @@ public class ViewSetting extends Panel {
         // Show/Hide Settings
         buttons[0].addActionListener(e -> {
             // Show/Hide Settings
+            SortAlgorithmScreen sortAlgorithmScreen =
+                    ((SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen"));
             ViewSetElementsValue viewSetElementsValue =
-                    ((SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen"))
-                            .getViewSetElementsValue();
+                    sortAlgorithmScreen.getViewSetElementsValue();
             if (x == 25) {
+                String sortAlgorithmName = getAlgorithmName();
+                if (!sortAlgorithmName.equals(SortAlgorithmScreen.sortAlgorithmName)) {
+                    sortAlgorithmScreen.endSort();
+                    sortAlgorithmScreen.sortAlgorithmName = sortAlgorithmName;
+                }
                 Animation.translate(
                         getInstance(),
                         new Location(x, y),
@@ -93,12 +100,24 @@ public class ViewSetting extends Panel {
                         200
                 );
             } else {
+                viewSetElementsValue.updateValueTextFields();
+                if (SortAlgorithmScreen.sortAnimation != null) {
+                    if (SortAlgorithmScreen.sortAnimation.isRunning()) {
+                        SortAlgorithmScreen.sortAnimation.pause();
+                        ViewController.buttons[1].setText("Continue sort");
+                    }
+                }
+                int delay = 0;
+                if (sortAlgorithmScreen.sortAnimation != null &&
+                        !sortAlgorithmScreen.sortAnimation.isEnded()) {
+                    delay = sortAlgorithmScreen.getMillisPerAction();
+                }
                 Animation.translate(
                         getInstance(),
                         new Location(x, y),
                         getWidthPanel() - buttons[0].getWidth(),
                         -getHeightPanel() + buttons[0].getHeight() - 20,
-                        0,
+                        delay,
                         200
                 );
                 buttons[0].setText("Hide Settings");
@@ -109,7 +128,7 @@ public class ViewSetting extends Panel {
                         new Location(viewSetElementsValue.getX(), viewSetElementsValue.getY()),
                         -900,
                         0,
-                        0,
+                        delay,
                         200
                 );
             }
@@ -129,6 +148,10 @@ public class ViewSetting extends Panel {
 
     public int getSlowerScale() {
         return ((ViewSettingAnimation) panels[2]).getSlowerScale();
+    }
+
+    public String getAlgorithmName() {
+        return ((ViewSettingSortAlgorithm) panels[1]).getAlgorithmName();
     }
 
     public Panel getInstance() {

@@ -44,6 +44,9 @@ public class MainScreen extends AbstractScreen {
                 "Algorithms"
         );
 
+        buttons[0].setEnabled(false);
+        buttons[0].setBorderColor(Config.COLOR_GRAY_2);
+
         add(buttons[0]);
         add(buttons[1]);
     }

@@ -19,10 +19,6 @@ public class ViewSort extends Panel {
     public static int[] xBars;
     public static int[] elements;
     public static Bar[] bars;
-    public static final int IS_PAUSE = 0;
-    public static final int IS_RUNNING = 1;
-    public static final int IS_ENDED = 2;
-    public static int status = IS_ENDED;
 
     public ViewSort(
             int x, int y, int width, int height,
@@ -68,7 +64,7 @@ public class ViewSort extends Panel {
                 bars[i].getBackgroundColor(),
                 Config.COLOR_BAR_CHECKING,
                 1,
-                getMillisPerAction() - 1
+                SortAlgorithmScreen.period - 1
                 );
     }
 
@@ -78,7 +74,7 @@ public class ViewSort extends Panel {
                 bars[i].getBackgroundColor(),
                 Config.COLOR_BAR_PLAIN,
                 1,
-                getMillisPerAction() - 1
+                SortAlgorithmScreen.period - 1
         );
     }
 
@@ -89,7 +85,7 @@ public class ViewSort extends Panel {
                 (i2 - i1) * (barWidth + gapWidth),
                 0,
                 1,
-                getMillisPerAction() - 1
+                SortAlgorithmScreen.period - 1
         );
         Animation.translate(
                 bars[i2],
@@ -97,7 +93,7 @@ public class ViewSort extends Panel {
                 (i1 - i2) * (barWidth + gapWidth),
                 0,
                 1,
-                getMillisPerAction() - 1
+                SortAlgorithmScreen.period - 1
         );
         Bar bar = bars[i1];
         bars[i1] = bars[i2];
@@ -107,10 +103,11 @@ public class ViewSort extends Panel {
         elements[i2] = value;
     }
 
-    public int getMillisPerAction() {
-        SortAlgorithmScreen sortAlgorithmScreen =
-                (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
-        return sortAlgorithmScreen.getViewSetting().getSlowerScale() * Config.MILLIS_PER_ACTION;
+    public void resetColorBars() {
+        for (int i = 0; i < bars.length; i++) {
+            bars[i].setBackgroundColor(Color.WHITE);
+        }
+        repaint();
     }
 
     public App getApp() {

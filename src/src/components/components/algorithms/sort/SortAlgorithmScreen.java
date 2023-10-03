@@ -2,6 +2,8 @@ package src.components.components.algorithms.sort;
 
 import src.Config;
 import src.components.components.AbstractScreen;
+import src.components.components.algorithms.sort.sortanimations.SortAnimation;
+import src.components.components.algorithms.sort.sortanimations.SortAnimationFactory;
 import src.components.components.algorithms.sort.viewcontroller.ViewController;
 import src.components.components.algorithms.sort.viewsetting.ViewSetElementsValue;
 import src.components.components.algorithms.sort.viewsetting.ViewSetting;
@@ -19,6 +21,9 @@ public class SortAlgorithmScreen extends AbstractScreen {
     private ViewSetElementsValue viewSetElementsValue;
     private int[] array;
     public static Timer timer;
+    public static String sortAlgorithmName;
+    public static SortAnimation sortAnimation;
+    public static int period;
 
     public SortAlgorithmScreen(
             int x, int y, int width, int height,
@@ -26,7 +31,7 @@ public class SortAlgorithmScreen extends AbstractScreen {
             ImageIcon backgroundImage,
             String text) {
         super(x, y, width, height, backgroundColor, backgroundImage, text);
-
+        sortAlgorithmName = "";
         array = Service.createRandomArray(20, 1, 100);
         addViewSetting();
         addViewController();
@@ -36,6 +41,7 @@ public class SortAlgorithmScreen extends AbstractScreen {
         setComponentZOrder(viewSetElementsValue, 1);
         setComponentZOrder(viewController, 2);
         setComponentZOrder(viewSort, 3);
+        period = getMillisPerAction();
 
         repaint();
     }
@@ -76,10 +82,23 @@ public class SortAlgorithmScreen extends AbstractScreen {
     }
 
     public void setArray(int[] array) {
-        this.array = array;
-        viewSetElementsValue.setElements(array);
-        viewSort.setElements(array);
-        repaint();
+        boolean isChanged = false;
+        if (this.array.length != array.length) isChanged = true;
+        if (!isChanged) {
+            for (int i = 0; i < array.length; i++) {
+                if (this.array[i] != array[i]) {
+                    isChanged = true;
+                    break;
+                }
+            }
+        }
+        if (isChanged) {
+            endSort();
+            this.array = array;
+            viewSetElementsValue.setElements(array);
+            viewSort.setElements(array);
+            repaint();
+        }
     }
 
     public void addViewSort() {
@@ -118,6 +137,49 @@ public class SortAlgorithmScreen extends AbstractScreen {
                 null, "", 20, array
         );
         add(viewSetElementsValue);
+    }
+
+    public int getMillisPerAction() {
+        return viewSetting.getSlowerScale() * Config.MILLIS_PER_ACTION;
+    }
+
+    // Sort
+    public void startSort() {
+        viewController.startSort();
+        viewSort.resetColorBars();
+        timer = new Timer();
+        period = getMillisPerAction();
+        sortAnimation = SortAnimationFactory.createSortAnimation(
+                viewSetting.getAlgorithmName(),
+                this,
+                viewSort.bars,
+                timer,
+                period
+        );
+        sortAnimation.start();
+    }
+
+    public void pauseSort() {
+        if (sortAnimation != null && sortAnimation.isRunning()) {
+            viewController.pauseSort();
+            sortAnimation.pause();
+        }
+    }
+
+    public void continueSort() {
+        if (sortAnimation != null && sortAnimation.isPaused()) {
+            viewController.continueSort();
+            sortAnimation.continueRun();
+        }
+    }
+
+    public void endSort() {
+        if (timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
+        sortAnimation = null;
+        viewController.endSort();
     }
 
 

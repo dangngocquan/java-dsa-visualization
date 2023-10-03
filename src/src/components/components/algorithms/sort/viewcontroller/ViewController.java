@@ -4,18 +4,14 @@ import src.App;
 import src.components.base.Button;
 import src.components.base.Panel;
 import src.components.components.algorithms.sort.SortAlgorithmScreen;
-import src.components.components.algorithms.sort.sortanimations.BubbleSort;
-import src.components.components.algorithms.sort.sortanimations.SortAnimation;
-import src.components.components.algorithms.sort.viewsort.ViewSort;
 import src.services.services.Service;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Timer;
 
 public class ViewController extends Panel {
-    private Button[] buttons;
-    private SortAnimation sortAnimation;
+    public static Button[] buttons;
+
     public ViewController(int x, int y, int width, int height, Color backgroundColor, ImageIcon backgroundImage, String text, int shadowSize) {
         super(x, y, width, height, backgroundColor, backgroundImage, text, shadowSize);
         addButtons();
@@ -39,7 +35,7 @@ public class ViewController extends Panel {
         tempY += buttonHeight + gapY;
 
         buttons[1] = new Button(
-                initialX, tempY, buttonWidth, buttonHeight, "Run sort"
+                initialX, tempY, buttonWidth, buttonHeight, "Start sort"
         );
 
         add(buttons[0]);
@@ -49,25 +45,46 @@ public class ViewController extends Panel {
     public void addActionListenerForButtons() {
         // Back
         buttons[0].addActionListener(e -> {
+            SortAlgorithmScreen sortAlgorithmScreen =
+                    (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
             getApp().getScreens().get("MainAlgorithmsScreen").setHidden(false);
-            getApp().getScreens().get("SortAlgorithmScreen").setHidden(true);
+            sortAlgorithmScreen.setHidden(true);
         });
 
         buttons[1].addActionListener(e -> {
             SortAlgorithmScreen sortAlgorithmScreen =
-                    ((SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen"));
-            ViewSort viewSort = sortAlgorithmScreen.getViewSort();
-            sortAlgorithmScreen.timer = new Timer();
-            sortAnimation = new BubbleSort(
-                    viewSort, viewSort.bars,
-                    sortAlgorithmScreen.timer,
-                    viewSort.getMillisPerAction());
-            sortAnimation.start();
+                    (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
+            if (SortAlgorithmScreen.sortAnimation == null) {
+                sortAlgorithmScreen.startSort();
+            } else {
+                if (SortAlgorithmScreen.sortAnimation.isRunning()) {
+                    sortAlgorithmScreen.pauseSort();
+                } else if (SortAlgorithmScreen.sortAnimation.isPaused()) {
+                    sortAlgorithmScreen.continueSort();
+                }
+            }
         });
+    }
+
+    public void startSort() {
+        buttons[1].setText("Pause sort");
+    }
+
+    public void pauseSort() {
+        buttons[1].setText("Continue sort");
+    }
+
+    public void continueSort() {
+        buttons[1].setText("Pause sort");
+    }
+
+    public void endSort() {
+        buttons[1].setText("Start sort");
     }
 
     public App getApp() {
         return (App) (Service.getFrame(this));
     }
+
 
 }

@@ -28,7 +28,7 @@ public class Button extends JButton {
         this.height = height;
         this.backgroundColor = new Color(210, 210, 210);
         this.backgroundColorEntered = new Color(200, 255, 200);
-        this.borderWidth = 1;
+        this.borderWidth = 2;
         this.borderColor = Color.BLACK;
 
         setLayout(null);
@@ -92,15 +92,15 @@ public class Button extends JButton {
             if (tempTransitionColor != null) {
                 tempTransitionColor.stop();
             }
-            tempTransitionColor = new TransitionColor(
-                    getInstance(),
-                    backgroundColor,
-                    backgroundColorEntered,
-                    0, 300
-            );
-            tempTransitionColor.start();
             if (getInstance().isEnabled()) {
                 getInstance().setCursor(new Cursor(Cursor.HAND_CURSOR));
+                tempTransitionColor = new TransitionColor(
+                        getInstance(),
+                        backgroundColor,
+                        backgroundColorEntered,
+                        0, 300
+                );
+                tempTransitionColor.start();
             } else {
                 getInstance().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
@@ -111,13 +111,16 @@ public class Button extends JButton {
             if (tempTransitionColor != null) {
                 tempTransitionColor.stop();
             }
-            tempTransitionColor = new TransitionColor(
-                    getInstance(),
-                    backgroundColorEntered,
-                    backgroundColor,
-                    0, 300
-            );
-            tempTransitionColor.start();
+            if (getInstance().isEnabled()) {
+                tempTransitionColor = new TransitionColor(
+                        getInstance(),
+                        backgroundColorEntered,
+                        backgroundColor,
+                        0, 300
+                );
+                tempTransitionColor.start();
+            }
+
         }
     }
 }

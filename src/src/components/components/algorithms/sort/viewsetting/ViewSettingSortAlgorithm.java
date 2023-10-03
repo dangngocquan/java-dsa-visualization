@@ -33,7 +33,7 @@ public class ViewSettingSortAlgorithm extends Panel {
         panels[0].setFont(Config.ARIAL_BOLD_16);
 
         panels[1] = new Panel(
-                80, panels[0].getY() + panels[0].getHeightPanel(), 170, 30,
+                80, panels[0].getY() + panels[0].getHeightPanel() + 30, 170, 30,
                 getBackgroundColor(), null,
                 String.format("%-17s:", "Sorting Algorithm"),
                 0
@@ -47,23 +47,23 @@ public class ViewSettingSortAlgorithm extends Panel {
     public void addComboBoxes() {
         comboBoxes = new ComboBox[1];
         String[] choices = new String[] {
-                "BubbleSort",
-                "SelectionSort",
-                "InsertionSort",
-                "QuickSort",
-                "MergeSort"
+                "Bubble Sort",
+                "Selection Sort",
+                "Insertion Sort",
+                "Quick Sort",
+                "Merge Sort"
         };
         comboBoxes[0] = new ComboBox<>(
-                panels[1].getX() + panels[1].getWidthPanel(),
+                panels[1].getX() + panels[1].getWidthPanel() + 10,
                 panels[1].getY(),
-                300, panels[1].getHeightPanel(),
+                200, panels[1].getHeightPanel(),
                 choices
         );
 
         add(comboBoxes[0]);
     }
 
-    public String getSelectingValue() {
+    public String getAlgorithmName() {
         return comboBoxes[0].getSelectedItem().toString();
     }
 

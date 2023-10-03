@@ -33,12 +33,19 @@ public class ViewSetElementsValue extends Panel {
     }
 
     public void updateValueElements() {
+        int[] a = new int[elements.length];
         for (int i = 0; i < textFields.length; i++) {
-            elements[i] = Integer.parseInt(textFields[i].getText());
+            a[i] = Integer.parseInt(textFields[i].getText());
         }
         SortAlgorithmScreen sortAlgorithmScreen =
                 (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
-        sortAlgorithmScreen.setArray(elements);
+        sortAlgorithmScreen.setArray(a);
+    }
+
+    public void updateValueTextFields() {
+        for (int i = 0; i < textFields.length; i++) {
+            textFields[i].setText(elements[i] + "");
+        }
     }
 
     public void create() {

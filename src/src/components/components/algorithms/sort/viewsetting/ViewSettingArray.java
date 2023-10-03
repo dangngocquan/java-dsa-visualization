@@ -96,7 +96,7 @@ public class ViewSettingArray extends Panel {
         buttons[0].addActionListener(e -> {
             SortAlgorithmScreen sortAlgorithmScreen =
                     (SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen");
-            int[] mainArray = sortAlgorithmScreen.getArray();
+            int[] mainArray = sortAlgorithmScreen.getArray().clone();
             Service.shuffleArray(mainArray);
             sortAlgorithmScreen.setArray(mainArray);
         });

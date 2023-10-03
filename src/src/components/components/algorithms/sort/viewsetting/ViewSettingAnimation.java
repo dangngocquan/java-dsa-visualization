@@ -1,11 +1,16 @@
 package src.components.components.algorithms.sort.viewsetting;
 
+import src.App;
 import src.Config;
 import src.components.base.Panel;
 import src.components.base.TextField;
+import src.components.components.algorithms.sort.SortAlgorithmScreen;
+import src.services.services.Service;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class ViewSettingAnimation extends Panel {
     private Panel[] panels;
@@ -19,6 +24,7 @@ public class ViewSettingAnimation extends Panel {
         setBorderWidth(2);
         addPanels();
         addTextFields();
+        addFocusListenerForTextFields();
         repaint();
     }
 
@@ -33,7 +39,7 @@ public class ViewSettingAnimation extends Panel {
         panels[0].setFont(Config.ARIAL_BOLD_16);
 
         panels[1] = new Panel(
-                80, panels[0].getY() + panels[0].getHeightPanel(), 120, 30,
+                80, panels[0].getY() + panels[0].getHeightPanel() + 30, 120, 30,
                 getBackgroundColor(), null,
                 String.format("%-12s:", "Slower Speed"),
                 0
@@ -50,7 +56,7 @@ public class ViewSettingAnimation extends Panel {
         textFields[0]=  new TextField(
                 panels[1].getX() + panels[1].getWidthPanel() + 10,
                 panels[1].getY(),
-                panels[1].getHeightPanel() + 10,
+                panels[1].getHeightPanel() * 3,
                 panels[1].getHeightPanel(),
                 "500",
                 Color.WHITE,
@@ -59,6 +65,27 @@ public class ViewSettingAnimation extends Panel {
 
         textFields[0].setFont(Config.ARIAL_BOLD_14);
         add(textFields[0]);
+    }
+
+    public void addFocusListenerForTextFields() {
+        textFields[0].addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                int period = Config.MILLIS_PER_ACTION * getSlowerScale();
+                System.out.println(period + " " + SortAlgorithmScreen.period);
+                if (period != SortAlgorithmScreen.period) {
+                    SortAlgorithmScreen.period = period;
+                    SortAlgorithmScreen sortAlgorithmScreen =
+                            ((SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen"));
+                    sortAlgorithmScreen.endSort();
+                }
+            }
+        });
     }
 
     public int getSlowerScale() {
@@ -75,5 +102,9 @@ public class ViewSettingAnimation extends Panel {
             textFields[0].setText("500");
             return 500;
         }
+    }
+
+    public App getApp() {
+        return (App) (Service.getFrame(this));
     }
 }
