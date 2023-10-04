@@ -13,7 +13,7 @@ public class Bar extends Panel implements Comparable<Bar> {
     public Bar(int index, int value) {
         super(
                 ViewSort.initialX + index * (ViewSort.barWidth + ViewSort.gapWidth),
-                ViewSort.initialY - (3* value + 20),
+                ViewSort.initialY0 - (3* value + 20),
                 ViewSort.barWidth,
                 3* value + 20,
                 Color.WHITE,
@@ -48,6 +48,7 @@ public class Bar extends Panel implements Comparable<Bar> {
     public int getValue() {
         return value;
     }
+
 
     public void setBackgroundColor(Color color) {
         this.backgroundColor = color;

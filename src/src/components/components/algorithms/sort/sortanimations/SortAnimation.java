@@ -48,7 +48,6 @@ public abstract class SortAnimation extends TimerTask {
 
     public void end() {
         status = IS_ENDED;
-        sortAlgorithmScreen.endSort();
     }
 
     public boolean isNotStart() {

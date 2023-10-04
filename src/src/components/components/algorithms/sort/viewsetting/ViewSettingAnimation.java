@@ -77,7 +77,6 @@ public class ViewSettingAnimation extends Panel {
             @Override
             public void focusLost(FocusEvent e) {
                 int period = Config.MILLIS_PER_ACTION * getSlowerScale();
-                System.out.println(period + " " + SortAlgorithmScreen.period);
                 if (period != SortAlgorithmScreen.period) {
                     SortAlgorithmScreen.period = period;
                     SortAlgorithmScreen sortAlgorithmScreen =

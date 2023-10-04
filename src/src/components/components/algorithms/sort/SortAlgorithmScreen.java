@@ -23,7 +23,7 @@ public class SortAlgorithmScreen extends AbstractScreen {
     public static Timer timer;
     public static String sortAlgorithmName;
     public static SortAnimation sortAnimation;
-    public static int period;
+    public static int period = 1000;
 
     public SortAlgorithmScreen(
             int x, int y, int width, int height,
@@ -146,7 +146,11 @@ public class SortAlgorithmScreen extends AbstractScreen {
     // Sort
     public void startSort() {
         viewController.startSort();
-        viewSort.resetColorBars();
+        viewSort.setColorAndLocationBars(
+                0, viewSort.bars.length-1,
+                Config.COLOR_BAR_PLAIN,
+                viewSort.initialY0
+        );
         timer = new Timer();
         period = getMillisPerAction();
         sortAnimation = SortAnimationFactory.createSortAnimation(

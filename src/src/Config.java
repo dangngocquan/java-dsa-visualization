@@ -22,7 +22,9 @@ public class Config {
     public static Color COLOR_BAR_PLAIN = new Color(255, 255, 255);
     public static Color COLOR_BAR_CHECKING = new Color(255, 255, 0);
     public static Color COLOR_BAR_DONE = new Color(0, 255, 0);
-    public static Color COLOR_BAR_SORTED = new Color(0, 255, 255);
+    public static Color COLOR_BAR_TEMP_SORTED = new Color(0, 150, 255);
+    public static Color COLOR_BAR_FLAG = new Color(255, 110, 110);
+    public static Color COLOR_BAR_SMALLER_PIVOT = new Color(255, 210, 210);
 
     // Font
     public static final Font ARIAL_BOLD_12 = new Font(Font.MONOSPACED, Font.BOLD, 12);

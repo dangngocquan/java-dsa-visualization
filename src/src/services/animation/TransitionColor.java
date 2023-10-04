@@ -37,13 +37,13 @@ public class TransitionColor {
     }
 
     public void stop() {
+        timer.cancel();
+        timer.purge();
         if (component instanceof Panel) {
             ((Panel) component).setBackgroundColor(targetColor);
         } else {
             component.setBackground(targetColor);
         }
-        timer.cancel();
-        timer.purge();
     }
 
     private class TaskAnimation extends TimerTask {
