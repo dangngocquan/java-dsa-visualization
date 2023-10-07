@@ -67,6 +67,15 @@ public class Button extends JButton {
         ));
     }
 
+    public void setEnabledButton(boolean enable) {
+        setEnabled(enable);
+        if (enable) {
+            setBorderColor(Color.BLACK);
+        } else {
+            setBorderColor(Color.GRAY);
+        }
+    }
+
     private Component getInstance() {
         return this;
     }

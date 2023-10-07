@@ -75,7 +75,9 @@ public class ViewSetting extends Panel {
                     ((SortAlgorithmScreen) getApp().getScreens().get("SortAlgorithmScreen"));
             ViewSetElementsValue viewSetElementsValue =
                     sortAlgorithmScreen.getViewSetElementsValue();
+            ViewController viewController = sortAlgorithmScreen.getViewController();
             if (x == 25) {
+                viewController.setEnabledAllButtons(true);
                 String sortAlgorithmName = getAlgorithmName();
                 if (!sortAlgorithmName.equals(SortAlgorithmScreen.sortAlgorithmName)) {
                     sortAlgorithmScreen.endSort();
@@ -100,6 +102,7 @@ public class ViewSetting extends Panel {
                         200
                 );
             } else {
+                viewController.setEnabledAllButtons(false);
                 viewSetElementsValue.updateValueTextFields();
                 if (SortAlgorithmScreen.sortAnimation != null) {
                     if (SortAlgorithmScreen.sortAnimation.isRunning()) {

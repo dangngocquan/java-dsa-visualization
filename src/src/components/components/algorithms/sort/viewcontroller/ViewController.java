@@ -1,6 +1,7 @@
 package src.components.components.algorithms.sort.viewcontroller;
 
 import src.App;
+import src.Config;
 import src.components.base.Button;
 import src.components.base.Panel;
 import src.components.components.algorithms.sort.SortAlgorithmScreen;
@@ -86,5 +87,9 @@ public class ViewController extends Panel {
         return (App) (Service.getFrame(this));
     }
 
+    public void setEnabledAllButtons(boolean enable) {
+        buttons[0].setEnabledButton(enable);
+        buttons[1].setEnabledButton(enable);
+    }
 
 }
