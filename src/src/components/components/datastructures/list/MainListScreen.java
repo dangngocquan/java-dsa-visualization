@@ -1,26 +1,21 @@
-package src.components.components.datastructures;
+package src.components.components.datastructures.list;
 
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
-import src.components.components.datastructures.list.MainListScreen;
+import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainDataStructuresScreen extends AbstractScreen {
-    public MainDataStructuresScreen(
-            int x, int y, int width, int height,
-            Color backgroundColor,
-            ImageIcon backgroundImage,
-            String text) {
+public class MainListScreen extends AbstractScreen {
+    public MainListScreen(int x, int y, int width, int height, Color backgroundColor, ImageIcon backgroundImage, String text) {
         super(x, y, width, height, backgroundColor, backgroundImage, text);
     }
 
     @Override
     public void addButtons() {
-        int numberButtonPerColumn = 4;
+        int numberButtonPerColumn = 5;
         int numberButtonPerRow = 1;
         int buttonWidth = 250;
         int buttonHeight = 50;
@@ -31,8 +26,8 @@ public class MainDataStructuresScreen extends AbstractScreen {
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new Button[4];
-        buttons[0] = new Button(
+        buttons = new src.components.base.Button[5];
+        buttons[0] = new src.components.base.Button(
                 initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
                 buttonWidth, buttonHeight,
@@ -42,25 +37,33 @@ public class MainDataStructuresScreen extends AbstractScreen {
                 initialX,
                 initialY,
                 buttonWidth, buttonHeight,
-                "List"
+                "Array List"
         );
         buttons[2] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight),
                 buttonWidth, buttonHeight,
-                "Stack"
+                "Singly Linked List"
         );
         buttons[3] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight) * 2,
                 buttonWidth, buttonHeight,
-                "Queue"
+                "Double Linked List"
+        );
+
+        buttons[4] = new Button(
+                initialX,
+                initialY + (gapHeight + buttonHeight) * 3,
+                buttonWidth, buttonHeight,
+                "Circular Linked List"
         );
 
         add(buttons[0]);
         add(buttons[1]);
         add(buttons[2]);
         add(buttons[3]);
+        add(buttons[4]);
     }
 
     @Override
@@ -73,18 +76,18 @@ public class MainDataStructuresScreen extends AbstractScreen {
         // Back
         buttons[0].addActionListener(e -> {
             if (screens[0] == null) {
-                screens[0] = getApp().getScreens().get("MainScreen");
+                screens[0] = getApp().getScreens().get("MainDataStructuresScreen");
             }
             setHidden(true);
             screens[0].setHidden(false);
         });
 
-        // List
+        // Array List
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new MainListScreen(
+                screens[1] = new ArrayListScreen(
                         0, 0, Config.WIDTH, Config.HEIGHT,
-                        Config.BACKGROUND_COLOR_APP, null, ""
+                        Config.BACKGROUND_COLOR_APP, null
                 );
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);

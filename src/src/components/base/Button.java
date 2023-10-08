@@ -16,9 +16,12 @@ public class Button extends JButton {
     private int height;
     private TransitionColor tempTransitionColor;
     private Color backgroundColorEntered;
+    private Color backgroundColorClicked;
     private Color backgroundColor;
     private int borderWidth;
     private Color borderColor;
+    private boolean isClicked;
+    private boolean hasStatusClicked = false;
 
     public Button(int x, int y, int width, int height, String text) {
         super(text);
@@ -28,8 +31,10 @@ public class Button extends JButton {
         this.height = height;
         this.backgroundColor = new Color(210, 210, 210);
         this.backgroundColorEntered = new Color(200, 255, 200);
+        this.backgroundColorClicked = new Color(150, 150, 255);
         this.borderWidth = 2;
         this.borderColor = Color.BLACK;
+        this.isClicked = false;
 
         setLayout(null);
         setSize(width, height);
@@ -68,12 +73,28 @@ public class Button extends JButton {
     }
 
     public void setEnabledButton(boolean enable) {
-        setEnabled(enable);
         if (enable) {
             setBorderColor(Color.BLACK);
         } else {
             setBorderColor(Color.GRAY);
         }
+        setEnabled(enable);
+        setBackground(backgroundColor);
+    }
+
+    public void setIsClicked(boolean isClicked) {
+        if (isEnabled() && hasStatusClicked) {
+            this.isClicked = isClicked;
+            if (isClicked) {
+                setBackground(backgroundColorClicked);
+            } else {
+                setBackground(backgroundColor);
+            }
+        }
+    }
+
+    public void setHasStatusClicked(boolean hasStatusClicked) {
+        this.hasStatusClicked = hasStatusClicked;
     }
 
     private Component getInstance() {
@@ -84,6 +105,21 @@ public class Button extends JButton {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            if (hasStatusClicked) {
+                if (tempTransitionColor != null) {
+                    tempTransitionColor.stop();
+                }
+                if (getInstance().isEnabled()) {
+                    isClicked = true;
+                    tempTransitionColor = new TransitionColor(
+                            getInstance(),
+                            backgroundColorEntered,
+                            backgroundColorClicked,
+                            0, 300
+                    );
+                    tempTransitionColor.start();
+                }
+            }
         }
 
         @Override
@@ -102,16 +138,27 @@ public class Button extends JButton {
                 tempTransitionColor.stop();
             }
             if (getInstance().isEnabled()) {
-                getInstance().setCursor(new Cursor(Cursor.HAND_CURSOR));
-                tempTransitionColor = new TransitionColor(
-                        getInstance(),
-                        backgroundColor,
-                        backgroundColorEntered,
-                        0, 300
-                );
+                if (isClicked) {
+                    getInstance().setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    tempTransitionColor = new TransitionColor(
+                            getInstance(),
+                            backgroundColor,
+                            backgroundColorClicked,
+                            0, 300
+                    );
+                } else {
+                    getInstance().setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    tempTransitionColor = new TransitionColor(
+                            getInstance(),
+                            backgroundColor,
+                            backgroundColorEntered,
+                            0, 300
+                    );
+                }
                 tempTransitionColor.start();
             } else {
                 getInstance().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                setBackground(backgroundColor);
             }
         }
 
@@ -121,13 +168,24 @@ public class Button extends JButton {
                 tempTransitionColor.stop();
             }
             if (getInstance().isEnabled()) {
-                tempTransitionColor = new TransitionColor(
-                        getInstance(),
-                        backgroundColorEntered,
-                        backgroundColor,
-                        0, 300
-                );
+                if (isClicked) {
+                    tempTransitionColor = new TransitionColor(
+                            getInstance(),
+                            backgroundColorEntered,
+                            backgroundColorClicked,
+                            0, 300
+                    );
+                } else {
+                    tempTransitionColor = new TransitionColor(
+                            getInstance(),
+                            backgroundColorEntered,
+                            backgroundColor,
+                            0, 300
+                    );
+                }
                 tempTransitionColor.start();
+            } else {
+                setBackground(backgroundColor);
             }
 
         }
