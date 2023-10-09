@@ -4,14 +4,13 @@ import src.Config;
 import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.base.TextField;
-import src.components.components.AbstractScreen;
+import src.components.components.datastructures.AbstractDataStructureScreen;
 import src.models.datastructures.list.MyList;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-public abstract class AbstractListScreen extends AbstractScreen {
+public abstract class AbstractListScreen extends AbstractDataStructureScreen {
     public static final Map<Integer, String> ACTIONS = Map.of(
             0, "add(value)",
             1, "add(index, value)",
@@ -19,37 +18,28 @@ public abstract class AbstractListScreen extends AbstractScreen {
             3, "remove(index)",
             4, "remove(value)"
     );
-    public ViewController viewController;
-    public AbstractViewListAction viewAction;
-    protected int indexActionSelected = -1;
     protected int index = -1;
     protected int value = -1;
-    public MyList<Integer> list;
+    public MyList<AbstractPanelListNode> list;
 
-    public AbstractListScreen(
-            int x, int y, int width, int height,
-            Color backgroundColor, ImageIcon backgroundImage) {
-        super(x, y, width, height, backgroundColor, backgroundImage, "");
+    public AbstractListScreen() {
+        super();
+    }
 
-        createList();
-        addViewController();
-        addViewAction();
-        repaint();
+    public AbstractViewListAction getViewAction() {
+        return (AbstractViewListAction) viewAction;
     }
 
     public abstract void createList();
 
-    public void addViewController() {
-        viewController = new ViewController(
-                0, Config.HEIGHT / 7 * 6,
-                Config.WIDTH, Config.HEIGHT - Config.HEIGHT / 7 * 6,
-                Config.COLOR_GRAY_2, null, "", 0, this
-        );
+    @Override
+    public void createViewController() {
+        createList();
+        viewController = new ViewListController(this);
         add(viewController);
     }
 
-    public abstract void addViewAction();
-
+    @Override
     public void setIndexActionSelected(int indexActionSelected) {
         this.indexActionSelected = indexActionSelected;
         switch (indexActionSelected) {
@@ -99,13 +89,35 @@ public abstract class AbstractListScreen extends AbstractScreen {
     }
 
     @Override
-    public void addButtons() {}
+    public void runAction() {
+        setEnabledAllButtons(false);
+        switch (indexActionSelected) {
+            case 0:
+                getViewAction().actionAdd(value);
+                break;
+            case 1:
+                getViewAction().actionAdd(index, value);
+                break;
+            case 2:
+                getViewAction().actionGet(index);
+                break;
+            case 3:
+                getViewAction().actionRemove(index);
+                break;
+            case 4:
+                getViewAction().actionRemove(Integer.valueOf(value));
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
-    public void createDefaultScreens() {}
-
-    @Override
-    public void addActionListenerForButtons() {}
+    public void endAction() {
+        viewController.buttons[0].setEnabledButton(true);
+        viewController.buttons[1].setEnabledButton(true);
+        setIndexActionSelected(-1);
+    };
 
     private class DialogGetIndex extends DialogWithFieldText {
 
@@ -205,37 +217,4 @@ public abstract class AbstractListScreen extends AbstractScreen {
 
         public abstract void addListeners();
     }
-
-    public void setEnabledAllButtons(boolean isEnabled) {
-        for (Button button : viewController.buttons) button.setEnabledButton(isEnabled);
-    }
-
-    public void runAction() {
-        setEnabledAllButtons(false);
-        switch (indexActionSelected) {
-            case 0:
-                viewAction.actionAdd(value);
-                break;
-            case 1:
-                viewAction.actionAdd(index, value);
-                break;
-            case 2:
-                viewAction.actionGet(index);
-                break;
-            case 3:
-                viewAction.actionRemove(index);
-                break;
-            case 4:
-                viewAction.actionRemove(Integer.valueOf(value));
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void endAction() {
-        viewController.buttons[0].setEnabledButton(true);
-        viewController.buttons[1].setEnabledButton(true);
-        setIndexActionSelected(-1);
-    };
 }

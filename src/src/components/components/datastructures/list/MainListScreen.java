@@ -85,10 +85,7 @@ public class MainListScreen extends AbstractScreen {
         // Array List
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new ArrayListScreen(
-                        0, 0, Config.WIDTH, Config.HEIGHT,
-                        Config.BACKGROUND_COLOR_APP, null
-                );
+                screens[1] = new ArrayListScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }

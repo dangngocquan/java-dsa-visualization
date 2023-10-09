@@ -3,13 +3,13 @@ package src.components.components.datastructures.list.abstractlistscreen;
 import src.Config;
 import src.components.base.Panel;
 
-public abstract class AbstractPanelNode extends Panel implements Comparable<AbstractPanelNode> {
+public abstract class AbstractPanelListNode extends Panel implements Comparable<AbstractPanelListNode> {
     protected int index;
     protected int value;
     protected int widthNode;
     protected int heightNode;
 
-    public AbstractPanelNode(int index, int value, int width, int height) {
+    public AbstractPanelListNode(int index, int value, int width, int height) {
         super(0, 0, width, height, Config.COLOR_BAR_PLAIN, null, value + "", 0);
         this.index = index;
         this.value = value;
@@ -40,7 +40,7 @@ public abstract class AbstractPanelNode extends Panel implements Comparable<Abst
     }
 
     @Override
-    public int compareTo(AbstractPanelNode o) {
+    public int compareTo(AbstractPanelListNode o) {
         return value - o.getValue();
     }
 }

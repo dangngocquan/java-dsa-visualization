@@ -10,6 +10,7 @@ public class Config {
             .getMaximumWindowBounds().getHeight()));
     public static int WIDTH = DEVICE_WIDTH - 14;
     public static int HEIGHT = DEVICE_HEIGHT - 36;
+    public static int HEIGHT_VIEW_CONTROLLER = HEIGHT / 7;
 
     // Color
     public static Color COLOR_TEXT = new Color(20, 20, 20);

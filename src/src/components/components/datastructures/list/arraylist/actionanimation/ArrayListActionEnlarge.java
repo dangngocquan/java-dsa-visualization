@@ -2,33 +2,40 @@ package src.components.components.datastructures.list.arraylist.actionanimation;
 
 import src.Config;
 import src.components.base.Panel;
+import src.components.components.datastructures.list.abstractlistscreen.AbstractListAnimation;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelNode;
+import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
+import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
 import src.models.datastructures.list.MyArrayList;
 import src.models.datastructures.list.MyList;
 import src.services.animation.Animation;
 import src.services.animation.Location;
 
-public class ActionEnlarge extends ArrayListAnimation {
+public class ArrayListActionEnlarge extends AbstractListAnimation {
     private Panel title1;
     private Panel newPanelData;
-    public ActionEnlarge(AbstractListScreen rootScreen, int period) {
-        super(rootScreen, period);
+    public ArrayListActionEnlarge(
+            AbstractListScreen rootScreen,
+            int period, AbstractListAnimation nextAnimation) {
+        super(rootScreen, period, nextAnimation);
     }
 
+    public ArrayListScreen getRootScreen() {
+        return (ArrayListScreen) rootScreen;
+    }
     @Override
     public void run() {
         if (animationStep == 0) {
             createNewData();
             animationStep++;
-        } else if (animationStep <= rootScreen.list.size()) {
+        } else if (animationStep <= getRootScreen().list.size()) {
             movePanelNodeToNewData(animationStep-1);
             animationStep++;
-        } else if (animationStep == rootScreen.list.size() + 1) {
+        } else if (animationStep == getRootScreen().list.size() + 1) {
             replaceDataByNewData();
             animationStep++;
-        } else if (animationStep == rootScreen.list.size() + 2) {
+        } else if (animationStep == getRootScreen().list.size() + 2) {
             solveRelations();
             animationStep++;
         } else {
@@ -38,7 +45,7 @@ public class ActionEnlarge extends ArrayListAnimation {
     }
 
     public void createNewData() {
-        int dataLength = ((MyArrayList) (rootScreen.list)).getSizeData() * 2;
+        int dataLength = ((MyArrayList) (getRootScreen().list)).getSizeData() * 2;
         title1 = new Panel(
                 0,
                 ViewArrayListAction.INITIAL_Y + 20 + ViewArrayListAction.SIZE_PER_NODE + ViewArrayListAction.GAP_Y,
@@ -92,7 +99,7 @@ public class ActionEnlarge extends ArrayListAnimation {
     }
 
     public void movePanelNodeToNewData(int index) {
-        AbstractPanelNode panelNode = rootScreen.viewAction.getPanelNode(index);
+        AbstractPanelListNode panelNode = getRootScreen().list.get(index);
         Animation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -104,9 +111,9 @@ public class ActionEnlarge extends ArrayListAnimation {
     }
 
     public void replaceDataByNewData() {
-        MyList<AbstractPanelNode> panelElements = ((ViewArrayListAction) rootScreen.viewAction).panelElements;
+        MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
-            AbstractPanelNode panel = panelElements.get(i);
+            AbstractPanelListNode panel = panelElements.get(i);
             rootScreen.viewAction.remove(panel);
             panel.setXY(
                     panel.getX() - ViewArrayListAction.INITIAL_X,
@@ -130,15 +137,16 @@ public class ActionEnlarge extends ArrayListAnimation {
 
     public void solveRelations() {
         ((ViewArrayListAction) rootScreen.viewAction).panelData = newPanelData;
-        MyList<AbstractPanelNode> panelElements = ((ViewArrayListAction) rootScreen.viewAction).panelElements;
+        MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
-            AbstractPanelNode panel = panelElements.get(i);
+            AbstractPanelListNode panel = panelElements.get(i);
             newPanelData.remove(panel);
             panel.setXY(
                     panel.getX() + ViewArrayListAction.INITIAL_X,
                     ViewArrayListAction.INITIAL_Y + 10
             );
             rootScreen.viewAction.add(panel);
+            rootScreen.viewAction.setComponentZOrder(panel, 0);
         }
     }
 }

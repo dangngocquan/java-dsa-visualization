@@ -3,33 +3,33 @@ package src.components.components.datastructures.list.arraylist;
 import src.Config;
 import src.components.base.Panel;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelNode;
+import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractViewListAction;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListAnimationFactory;
+import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionAdd1;
+import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionAdd2;
+import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionEnlarge;
+import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionGet;
 import src.models.datastructures.list.MyArrayList;
-import src.models.datastructures.list.MyList;
-
-import java.awt.*;
 
 public class ViewArrayListAction extends AbstractViewListAction {
     private Panel title0;
     public Panel panelData;
-    public MyList<AbstractPanelNode> panelElements;
     public static final int SIZE_PER_NODE = 60;
     public static final int GAP_X = 40;
     public static final int GAP_Y = 200;
     public static final int INITIAL_X = 200;
     public static final int INITIAL_Y = 150;
 
-
-    public ViewArrayListAction(
-            int x, int y, int width, int height, Color backgroundColor,
-            AbstractListScreen rootScreen) {
-        super(x, y, width, height, backgroundColor, rootScreen);
+    public ViewArrayListAction(AbstractListScreen rootScreen) {
+        super(rootScreen);
         drawTitle();
         drawElements();
         drawData();
         repaint();
+    }
+
+    public ArrayListScreen getRootScreen() {
+        return (ArrayListScreen) rootScreen;
     }
 
     public void drawTitle() {
@@ -62,29 +62,42 @@ public class ViewArrayListAction extends AbstractViewListAction {
         add(panelData);
     }
 
-    public void drawElements() {
-        panelElements = new MyArrayList<>();
-        for (int i = 0; i < rootScreen.list.size(); i++) {
-            ArrayListPanelNode panelNode = new ArrayListPanelNode(i, rootScreen.list.get(i));
-            panelElements.add(panelNode);
+    public void drawElements() {;
+        for (int i = 0; i < getRootScreen().list.size(); i++) {
+            AbstractPanelListNode panelNode = getRootScreen().list.get(i);
             add(panelNode);
         }
     }
 
     @Override
     public void actionAdd(int value) {
-//        ArrayListAnimationFactory.actionAdd(value, rootScreen, 2000);
-        ArrayListAnimationFactory.actionEnlarge(rootScreen, 2000);
+        if (getRootScreen().list.size() == ((MyArrayList) getRootScreen().list).getSizeData()) {
+            new ArrayListActionEnlarge(
+                    getRootScreen(),
+                    1000,
+                    new ArrayListActionAdd1(value, getRootScreen(), 1000, null)
+            ).start();
+        } else {
+            new ArrayListActionAdd1(value, getRootScreen(), 1000, null).start();
+        }
     }
 
     @Override
     public void actionAdd(int index, int value) {
-
+        if (getRootScreen().list.size() == ((MyArrayList) getRootScreen().list).getSizeData()) {
+            new ArrayListActionEnlarge(
+                    getRootScreen(),
+                    1000,
+                    new ArrayListActionAdd2(index, value, getRootScreen(), 1000, null)
+            ).start();
+        } else {
+            new ArrayListActionAdd2(index, value, getRootScreen(), 1000, null).start();
+        }
     }
 
     @Override
     public void actionGet(int index) {
-
+        new ArrayListActionGet(index, getRootScreen(), 2000, null).start();
     }
 
     @Override
@@ -95,30 +108,5 @@ public class ViewArrayListAction extends AbstractViewListAction {
     @Override
     public void actionRemove(Integer value) {
 
-    }
-
-    @Override
-    public void addPanelNode(AbstractPanelNode node) {
-        panelElements.add(node);
-    }
-
-    @Override
-    public void addPanelNode(int index, AbstractPanelNode node) {
-        panelElements.add(index, node);
-    }
-
-    @Override
-    public AbstractPanelNode getPanelNode(int index) {
-        return panelElements.get(index);
-    }
-
-    @Override
-    public AbstractPanelNode removePanelNode(int index) {
-        return panelElements.remove(index);
-    }
-
-    @Override
-    public boolean removePanelNode(AbstractPanelNode node) {
-        return panelElements.remove(node);
     }
 }

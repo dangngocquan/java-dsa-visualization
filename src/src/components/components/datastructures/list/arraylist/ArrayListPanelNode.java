@@ -1,8 +1,8 @@
 package src.components.components.datastructures.list.arraylist;
 
-import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelNode;
+import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
 
-public class ArrayListPanelNode extends AbstractPanelNode {
+public class ArrayListPanelNode extends AbstractPanelListNode {
     public ArrayListPanelNode(int index, int value) {
         super(index, value, ViewArrayListAction.SIZE_PER_NODE, ViewArrayListAction.SIZE_PER_NODE);
     }

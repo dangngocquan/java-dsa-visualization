@@ -1,22 +1,28 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
+import src.components.components.datastructures.list.abstractlistscreen.AbstractListAnimation;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
+import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListPanelNode;
+import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
+import src.models.datastructures.list.MyArrayList;
 import src.services.animation.Animation;
 import src.services.animation.Location;
 
-public class ActionAdd1 extends ArrayListAnimation {
+public class ArrayListActionAdd2 extends AbstractListAnimation {
     public int value;
     public int index;
     public int x;
     public int y;
     public ArrayListPanelNode panelNode;
 
-    public ActionAdd1(int value, AbstractListScreen rootScreen, int period) {
-        super(rootScreen, period);
+    public ArrayListActionAdd2(
+            int index, int value, AbstractListScreen rootScreen,
+            int period, AbstractListAnimation nextAnimation) {
+        super(rootScreen, period, nextAnimation);
+        this.index = index;
         this.value = value;
-        index = ((ViewArrayListAction) rootScreen.viewAction).panelElements.size();
         panelNode = new ArrayListPanelNode(index, value);
         x = ViewArrayListAction.INITIAL_X
                 + ViewArrayListAction.GAP_X * (index + 1)
@@ -29,14 +35,21 @@ public class ActionAdd1 extends ArrayListAnimation {
         rootScreen.viewAction.add(panelNode);
     }
 
+    public ArrayListScreen getRootScreen() {
+        return (ArrayListScreen) rootScreen;
+    }
+
     @Override
     public void run() {
         if (animationStep == 0) {
             createNewElement();
             animationStep++;
-        } else if (animationStep == 1) {
-            addToDataOfArrayList();
+        } else if (animationStep <= getRootScreen().list.size() - index) {
+            movePanelNodeToRight(getRootScreen().list.size() - animationStep);
             animationStep++;
+        } else if (animationStep == getRootScreen().list.size() - index + 1) {
+            addToDataOfArrayList();
+            animationStep = 100000;
         } else {
             animationStep = 0;
             end();
@@ -54,10 +67,20 @@ public class ActionAdd1 extends ArrayListAnimation {
         );
     }
 
+    public void movePanelNodeToRight(int i) {
+        AbstractPanelListNode node = getRootScreen().list.get(i);
+        Animation.translate(
+                node,
+                new Location(node.getX(), node.getY()),
+                ViewArrayListAction.SIZE_PER_NODE + ViewArrayListAction.GAP_X,
+                0,
+                10,
+                period - 10
+        );
+    }
+
     public void addToDataOfArrayList() {
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
-        rootScreen.list.add(value);
-        rootScreen.viewAction.addPanelNode(panelNode);
         Animation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -66,5 +89,6 @@ public class ActionAdd1 extends ArrayListAnimation {
                 10,
                 period - 10
         );
+        getRootScreen().list.add(index, panelNode);
     }
 }
