@@ -10,13 +10,11 @@ public abstract class AbstractPanelListNode extends Panel implements Comparable<
     protected int heightNode;
 
     public AbstractPanelListNode(int index, int value, int width, int height) {
-        super(0, 0, width, height, Config.COLOR_BAR_PLAIN, null, value + "", 0);
+        super(0, 0, width, height, Config.COLOR_BAR_PLAIN, null, "", 0);
         this.index = index;
         this.value = value;
         this.widthNode = width;
         this.heightNode = height;
-        setBorderWidth(1);
-        setFont(Config.ARIAL_BOLD_18);
         setXY(createX(), createY());
     }
 

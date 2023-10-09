@@ -2,7 +2,7 @@ package src.models.datastructures.list;
 
 import java.util.Iterator;
 
-public class MyArrayList<E extends Comparable<E>> implements MyList<E> {
+public class MyArrayList<E extends Comparable<E>> extends MyAbstractList<E> {
     public static final int DEFAULT_CAPACITY = 4;
     private E[] data;
     private int size;

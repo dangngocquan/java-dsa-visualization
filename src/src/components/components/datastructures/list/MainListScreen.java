@@ -4,6 +4,7 @@ import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
+import src.components.components.datastructures.list.singlylinkedlist.SinglyLinkedListScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +92,17 @@ public class MainListScreen extends AbstractScreen {
             }
             setHidden(true);
             screens[1].setHidden(false);
+        });
+
+        // Singly Linked List
+        buttons[2].addActionListener(e -> {
+            if (screens[2] == null) {
+                screens[2] = new SinglyLinkedListScreen();
+                screens[2].setVisible(false);
+                getApp().addScreen(screens[2]);
+            }
+            setHidden(true);
+            screens[2].setHidden(false);
         });
     }
 }
