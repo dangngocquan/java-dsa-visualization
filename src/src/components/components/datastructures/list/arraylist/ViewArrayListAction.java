@@ -5,10 +5,7 @@ import src.components.base.Panel;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractViewListAction;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionAdd1;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionAdd2;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionEnlarge;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionGet;
+import src.components.components.datastructures.list.arraylist.actionanimation.*;
 import src.models.datastructures.list.MyArrayList;
 
 public class ViewArrayListAction extends AbstractViewListAction {
@@ -102,11 +99,11 @@ public class ViewArrayListAction extends AbstractViewListAction {
 
     @Override
     public void actionRemove(int index) {
-
+        new ArrayListActionRemove1(index, getRootScreen(), 1000, null).start();
     }
 
     @Override
     public void actionRemove(Integer value) {
-
+        new ArrayListActionRemove2(value, getRootScreen(), 1000, null).start();
     }
 }
