@@ -4,6 +4,8 @@ import src.Config;
 import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
 import src.models.datastructures.list.MyArrayList;
 
+import java.awt.*;
+
 public class ArrayListScreen extends AbstractListScreen {
 
     @Override
