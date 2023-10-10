@@ -17,7 +17,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     public int[] xBars;
     public int[] elements;
     public Bar[] bars;
-    public int animationPeriod = 2000;
+    public int animationPeriod = 500;
 
     public ViewSortAlgorithmAction(AbstractSortAlgorithmScreen rootScreen, int[] array) {
         super(rootScreen);

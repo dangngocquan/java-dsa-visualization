@@ -32,7 +32,4 @@ public class Config {
     public static final Font ARIAL_BOLD_14 = new Font(Font.MONOSPACED, Font.BOLD, 14);
     public static final Font ARIAL_BOLD_16 = new Font(Font.MONOSPACED, Font.BOLD, 16);
     public static final Font ARIAL_BOLD_18 = new Font(Font.MONOSPACED, Font.BOLD, 18);
-
-    // TIME
-    public static final int MILLIS_PER_ACTION = 2;
 }
