@@ -1,9 +1,7 @@
 package src.components.components.datastructures.list.singlylinkedlist;
 
-import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
+import src.components.components.datastructures.list.AbstractListScreen;
 import src.models.datastructures.list.MySinglyLinkedList;
-
-import java.awt.*;
 
 public class SinglyLinkedListScreen extends AbstractListScreen {
     @Override

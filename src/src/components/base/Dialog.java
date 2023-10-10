@@ -18,7 +18,7 @@ public abstract class Dialog {
         dialog = new JDialog(f, title, true);
         dialog.setLayout(null);
         dialog.setBounds(
-                x, y, width, height
+                x, y, width+14, height+32
         );
         dialog.setIconImage(null);
         dialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

@@ -3,19 +3,11 @@ package src.components.components.algorithms;
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
-import src.components.components.datastructures.MainDataStructuresScreen;
-
-import javax.swing.*;
-import java.awt.*;
+import src.components.components.algorithms.sort.MainSortAlgorithmsScreen;
 
 public class MainAlgorithmsScreen extends AbstractScreen {
-    public MainAlgorithmsScreen(
-            int x, int y, int width, int height,
-            Color backgroundColor,
-            ImageIcon backgroundImage,
-            String text) {
-        super(x, y, width, height, backgroundColor, backgroundImage, text);
+    public MainAlgorithmsScreen() {
+        super();
     }
 
     @Override
@@ -68,10 +60,7 @@ public class MainAlgorithmsScreen extends AbstractScreen {
         // Sorting Algorithms
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new SortAlgorithmScreen(
-                        0, 0, Config.WIDTH, Config.HEIGHT,
-                        Config.BACKGROUND_COLOR_APP, null, ""
-                );
+                screens[1] = new MainSortAlgorithmsScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }

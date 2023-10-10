@@ -8,19 +8,13 @@ import src.services.animation.Animation;
 import src.services.animation.Location;
 import src.services.services.Service;
 
-import javax.swing.*;
-import java.awt.*;
 
 public abstract class AbstractScreen extends Panel {
     protected Button[] buttons;
     protected AbstractScreen[] screens;
 
-    public AbstractScreen(
-            int x, int y, int width, int height,
-            Color backgroundColor,
-            ImageIcon backgroundImage,
-            String text) {
-        super(x, y, width, height, backgroundColor, backgroundImage, text, 0);
+    public AbstractScreen() {
+        super(0, 0, Config.WIDTH, Config.HEIGHT, Config.BACKGROUND_COLOR_APP, null, "", 0);
         addButtons();
         createDefaultScreens();
         addActionListenerForButtons();

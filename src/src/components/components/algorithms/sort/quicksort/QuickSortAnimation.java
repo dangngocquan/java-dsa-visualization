@@ -1,21 +1,23 @@
-package src.components.components.algorithms.sort.sortanimations;
+package src.components.components.algorithms.sort.quicksort;
 
 import src.Config;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
-import src.components.components.algorithms.sort.viewsort.Bar;
+import src.components.components.algorithms.sort.AbstractSortAlgorithmAnimation;
+import src.components.components.algorithms.sort.AbstractSortAlgorithmScreen;
+import src.components.components.algorithms.sort.Bar;
 
 import java.util.Stack;
-import java.util.Timer;
 
-public class QuickSort extends SortAnimation {
+public class QuickSortAnimation extends AbstractSortAlgorithmAnimation {
     private Stack<int[]> ranges;
     private int l; // left/low index
     private int r; // right/high index
     private int pivotIndex;
     private int i;
+    private Bar[] bars;
 
-    public QuickSort(SortAlgorithmScreen sortAlgorithmScreen, Bar[] bars, Timer timer, int period) {
-        super(sortAlgorithmScreen, bars, timer, period);
+    public QuickSortAnimation(AbstractSortAlgorithmScreen rootScreen, int period) {
+        super(rootScreen, period);
+        bars = rootScreen.getViewAction().bars;
         ranges = new Stack<>();
         l = 0;
         r = bars.length - 1;
@@ -33,18 +35,15 @@ public class QuickSort extends SortAnimation {
             } else {
                 solveWhenInRange();
             }
-        } else if (isEnded()) {
-            sortAlgorithmScreen.getViewSort().runEndAnimation();
-            sortAlgorithmScreen.endSort();
         }
     }
 
     public void solveWhenStartARange() {
-        sortAlgorithmScreen.getViewSort().pickUpBar(
+        getRootScreen().getViewAction().pickUpBar(
                 i,
-                sortAlgorithmScreen.getViewSort().initialY0
+                getRootScreen().getViewAction().initialY0
         );
-        sortAlgorithmScreen.getViewSort().checkBar(
+        getRootScreen().getViewAction().checkBar(
                 i,
                 Config.COLOR_BAR_FLAG
         );
@@ -53,7 +52,7 @@ public class QuickSort extends SortAnimation {
 
     public void solveWhenInRange() {
         if (animationStep == 0) {
-            sortAlgorithmScreen.getViewSort().checkBar(
+            getRootScreen().getViewAction().checkBar(
                     i,
                     Config.COLOR_BAR_CHECKING
             );
@@ -61,15 +60,15 @@ public class QuickSort extends SortAnimation {
         } else if (animationStep == 1) {
             if (bars[i].compareTo(bars[l]) < 0) {
                 pivotIndex++;
-                sortAlgorithmScreen.getViewSort().swapBars(
+                getRootScreen().getViewAction().swapBars(
                         pivotIndex,
-                        sortAlgorithmScreen.getViewSort().initialY0,
+                        getRootScreen().getViewAction().initialY0,
                         i,
-                        sortAlgorithmScreen.getViewSort().initialY0
+                        getRootScreen().getViewAction().initialY0
                 );
                 animationStep++;
             } else {
-                sortAlgorithmScreen.getViewSort().checkBar(
+                getRootScreen().getViewAction().checkBar(
                         i,
                         Config.COLOR_BAR_PLAIN
                 );
@@ -77,7 +76,7 @@ public class QuickSort extends SortAnimation {
                 i++;
             }
         } else if (animationStep == 2) {
-            sortAlgorithmScreen.getViewSort().checkBar(
+            getRootScreen().getViewAction().checkBar(
                     pivotIndex,
                     Config.COLOR_BAR_SMALLER_PIVOT
             );
@@ -88,16 +87,16 @@ public class QuickSort extends SortAnimation {
 
     public void solveWhenFinishARange() {
         if (pivotIndex == l) {
-            sortAlgorithmScreen.getViewSort().pickDownBar(
+            getRootScreen().getViewAction().pickDownBar(
                     l,
-                    sortAlgorithmScreen.getViewSort().initialY1
+                    getRootScreen().getViewAction().initialY1
             );
-            sortAlgorithmScreen.getViewSort().checkBar(
+            getRootScreen().getViewAction().checkBar(
                     l,
                     Config.COLOR_BAR_TEMP_SORTED
             );
             if (pivotIndex + 1 == r) {
-                sortAlgorithmScreen.getViewSort().checkBar(
+                getRootScreen().getViewAction().checkBar(
                         r,
                         Config.COLOR_BAR_TEMP_SORTED
                 );
@@ -115,35 +114,35 @@ public class QuickSort extends SortAnimation {
             }
         } else {
             if (animationStep == 0) {
-                sortAlgorithmScreen.getViewSort().pickUpBar(
+                getRootScreen().getViewAction().pickUpBar(
                         pivotIndex,
-                        sortAlgorithmScreen.getViewSort().initialY0
+                        getRootScreen().getViewAction().initialY0
                 );
                 animationStep++;
             } else if (animationStep == 1) {
-                sortAlgorithmScreen.getViewSort().swapBars(
+                getRootScreen().getViewAction().swapBars(
                         l,
-                        sortAlgorithmScreen.getViewSort().initialY1,
+                        getRootScreen().getViewAction().initialY1,
                         pivotIndex,
-                        sortAlgorithmScreen.getViewSort().initialY1
+                        getRootScreen().getViewAction().initialY1
                 );
                 animationStep++;
             } else if (animationStep == 2) {
-                sortAlgorithmScreen.getViewSort().pickDownBar(
+                getRootScreen().getViewAction().pickDownBar(
                         l,
-                        sortAlgorithmScreen.getViewSort().initialY1
+                        getRootScreen().getViewAction().initialY1
                 );
-                sortAlgorithmScreen.getViewSort().pickDownBar(
+                getRootScreen().getViewAction().pickDownBar(
                         pivotIndex,
-                        sortAlgorithmScreen.getViewSort().initialY1
+                        getRootScreen().getViewAction().initialY1
                 );
-                sortAlgorithmScreen.getViewSort().checkBar(
+                getRootScreen().getViewAction().checkBar(
                         pivotIndex,
                         Config.COLOR_BAR_TEMP_SORTED
                 );
 
                 if (pivotIndex + 1 == r) {
-                    sortAlgorithmScreen.getViewSort().checkBar(
+                    getRootScreen().getViewAction().checkBar(
                             r,
                             Config.COLOR_BAR_TEMP_SORTED
                     );
@@ -152,7 +151,7 @@ public class QuickSort extends SortAnimation {
                 }
 
                 if (l == pivotIndex - 1) {
-                    sortAlgorithmScreen.getViewSort().checkBar(
+                    getRootScreen().getViewAction().checkBar(
                             l,
                             Config.COLOR_BAR_TEMP_SORTED
                     );
@@ -163,10 +162,10 @@ public class QuickSort extends SortAnimation {
                 animationStep++;
             } else if (animationStep == 3) {
                 if (l < pivotIndex-1) {
-                    sortAlgorithmScreen.getViewSort().setColorAndLocationBars(
+                    getRootScreen().getViewAction().setColorAndLocationBars(
                             l, pivotIndex-1,
                             Config.COLOR_BAR_PLAIN,
-                            sortAlgorithmScreen.getViewSort().initialY0
+                            getRootScreen().getViewAction().initialY0
                     );
                 }
 

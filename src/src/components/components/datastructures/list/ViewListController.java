@@ -1,6 +1,5 @@
-package src.components.components.datastructures.list.abstractlistscreen;
+package src.components.components.datastructures.list;
 
-import src.App;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Dialog;

@@ -1,6 +1,6 @@
 package src.components.components.datastructures;
 
-import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
+import src.components.components.datastructures.list.AbstractListScreen;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,7 +13,7 @@ public abstract class AbstractDataStructureAnimation extends TimerTask {
     protected AbstractDataStructureAnimation nextAnimation;
 
     public AbstractDataStructureAnimation(
-            AbstractListScreen rootScreen, int period,
+            AbstractDataStructureScreen rootScreen, int period,
             AbstractDataStructureAnimation nextAnimation) {
         this.rootScreen = rootScreen;
         this.period = period;

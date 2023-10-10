@@ -1,12 +1,11 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
 import src.Config;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractListAnimation;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
+import src.components.components.datastructures.list.AbstractListAnimation;
+import src.components.components.datastructures.list.AbstractListScreen;
+import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.services.animation.Animation;
-import src.services.animation.Location;
 
 public class ArrayListActionRemove2 extends AbstractListAnimation {
     private int value;

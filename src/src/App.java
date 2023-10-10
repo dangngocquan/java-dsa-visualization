@@ -23,10 +23,7 @@ public class App extends Frame {
 
     public void addScreens() {
         screens = new HashMap<>();
-        mainScreen = new MainScreen(
-                0, 0, Config.WIDTH, Config.HEIGHT,
-                null, null, ""
-        );
+        mainScreen = new MainScreen();
         addScreen(mainScreen);
     }
 

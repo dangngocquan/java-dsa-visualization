@@ -2,7 +2,7 @@ package src.components.components.datastructures.list.arraylist;
 
 import src.Config;
 import src.components.base.Panel;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
+import src.components.components.datastructures.list.AbstractPanelListNode;
 
 import java.awt.*;
 

@@ -1,10 +1,7 @@
 package src.components.components.datastructures.list.arraylist;
 
-import src.Config;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
+import src.components.components.datastructures.list.AbstractListScreen;
 import src.models.datastructures.list.MyArrayList;
-
-import java.awt.*;
 
 public class ArrayListScreen extends AbstractListScreen {
 

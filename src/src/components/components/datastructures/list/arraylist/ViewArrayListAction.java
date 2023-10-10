@@ -2,9 +2,9 @@ package src.components.components.datastructures.list.arraylist;
 
 import src.Config;
 import src.components.base.Panel;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractListScreen;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractPanelListNode;
-import src.components.components.datastructures.list.abstractlistscreen.AbstractViewListAction;
+import src.components.components.datastructures.list.AbstractListScreen;
+import src.components.components.datastructures.list.AbstractPanelListNode;
+import src.components.components.datastructures.list.AbstractViewListAction;
 import src.components.components.datastructures.list.arraylist.actionanimation.*;
 import src.models.datastructures.list.MyArrayList;
 

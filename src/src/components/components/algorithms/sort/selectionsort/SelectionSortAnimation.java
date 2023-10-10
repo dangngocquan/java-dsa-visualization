@@ -1,22 +1,22 @@
-package src.components.components.algorithms.sort.sortanimations;
+package src.components.components.algorithms.sort.selectionsort;
 
 import src.Config;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
-import src.components.components.algorithms.sort.viewsort.Bar;
+import src.components.components.algorithms.sort.AbstractSortAlgorithmAnimation;
+import src.components.components.algorithms.sort.AbstractSortAlgorithmScreen;
+import src.components.components.algorithms.sort.Bar;
 
-import java.util.Timer;
-
-public class SelectionSort extends SortAnimation {
+public class SelectionSortAnimation extends AbstractSortAlgorithmAnimation {
     private int i;
     private int j;
     private int indexMinBar;
+    private Bar[] bars;
 
-    public SelectionSort(
-            SortAlgorithmScreen sortAlgorithmScreen,
-            Bar[] bars, Timer timer, int period) {
-        super(sortAlgorithmScreen, bars, timer, period);
+    public SelectionSortAnimation(AbstractSortAlgorithmScreen rootScreen, int period) {
+        super(rootScreen, period);
+        bars = rootScreen.getViewAction().bars;
         i = 0;
         j = 0;
+
     }
 
     @Override
@@ -27,24 +27,24 @@ public class SelectionSort extends SortAnimation {
             } else {
                 if (j == i) {
                     indexMinBar = i;
-                    sortAlgorithmScreen.getViewSort().checkBar(i, Config.COLOR_BAR_FLAG);
+                    getRootScreen().getViewAction().checkBar(i, Config.COLOR_BAR_FLAG);
                     j++;
                 } else if (j >= bars.length) {
                     if (i == indexMinBar) {
-                        sortAlgorithmScreen.getViewSort().checkBar(i, Config.COLOR_BAR_TEMP_SORTED);
+                        getRootScreen().getViewAction().checkBar(i, Config.COLOR_BAR_TEMP_SORTED);
                         i++;
                         j = i;
                     } else {
                         if (animationStep == 0) {
-                            sortAlgorithmScreen.getViewSort().swapBars(
+                            getRootScreen().getViewAction().swapBars(
                                     i,
-                                    sortAlgorithmScreen.getViewSort().initialY0,
+                                    getRootScreen().getViewAction().initialY0,
                                     indexMinBar,
-                                    sortAlgorithmScreen.getViewSort().initialY0
+                                    getRootScreen().getViewAction().initialY0
                             );
                             animationStep++;
                         } else if (animationStep == 1) {
-                            sortAlgorithmScreen.getViewSort().checkBar(i, Config.COLOR_BAR_TEMP_SORTED);
+                            getRootScreen().getViewAction().checkBar(i, Config.COLOR_BAR_TEMP_SORTED);
                             i++;
                             j = i;
                             indexMinBar = i;
@@ -54,19 +54,19 @@ public class SelectionSort extends SortAnimation {
 
                 } else {
                     if (animationStep == 0) {
-                        sortAlgorithmScreen.getViewSort().checkBar(j, Config.COLOR_BAR_CHECKING);
+                        getRootScreen().getViewAction().checkBar(j, Config.COLOR_BAR_CHECKING);
                         animationStep++;
                     } else if (animationStep == 1) {
                         if (bars[j].compareTo(bars[indexMinBar]) < 0) {
-                            sortAlgorithmScreen.getViewSort().checkBar(indexMinBar, Config.COLOR_BAR_PLAIN);
+                            getRootScreen().getViewAction().checkBar(indexMinBar, Config.COLOR_BAR_PLAIN);
                             animationStep++;
                         } else {
-                            sortAlgorithmScreen.getViewSort().checkBar(j, Config.COLOR_BAR_PLAIN);
+                            getRootScreen().getViewAction().checkBar(j, Config.COLOR_BAR_PLAIN);
                             animationStep = 0;
                             j++;
                         }
                     } else if (animationStep == 2) {
-                        sortAlgorithmScreen.getViewSort().checkBar(j, Config.COLOR_BAR_FLAG);
+                        getRootScreen().getViewAction().checkBar(j, Config.COLOR_BAR_FLAG);
                         indexMinBar = j;
                         animationStep = 0;
                         j++;
@@ -74,9 +74,6 @@ public class SelectionSort extends SortAnimation {
 
                 }
             }
-        } else if (isEnded()) {
-            sortAlgorithmScreen.getViewSort().runEndAnimation();
-            sortAlgorithmScreen.endSort();
         }
     }
 }

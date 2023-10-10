@@ -1,4 +1,4 @@
-package src.components.components.algorithms.sort.viewsort;
+package src.components.components.algorithms.sort;
 
 import src.Config;
 import src.components.base.Panel;
@@ -12,9 +12,9 @@ public class Bar extends Panel implements Comparable<Bar> {
 
     public Bar(int index, int value) {
         super(
-                ViewSort.initialX + index * (ViewSort.barWidth + ViewSort.gapWidth),
-                ViewSort.initialY0 - (3* value + 20),
-                ViewSort.barWidth,
+                ViewSortAlgorithmAction.initialX + index * (ViewSortAlgorithmAction.barWidth + ViewSortAlgorithmAction.gapWidth),
+                ViewSortAlgorithmAction.initialY0 - (3* value + 20),
+                ViewSortAlgorithmAction.barWidth,
                 3* value + 20,
                 Color.WHITE,
                 null, "", 0);

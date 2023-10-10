@@ -10,7 +10,7 @@ public abstract class AbstractDataStructureScreen extends AbstractScreen {
     public int indexActionSelected = -1;
 
     public AbstractDataStructureScreen() {
-        super(0, 0, Config.WIDTH, Config.WIDTH, Config.BACKGROUND_COLOR_APP, null, "");
+        super();
         createViewController();
         createViewAction();
         repaint();

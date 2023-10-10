@@ -1,14 +1,14 @@
-package src.components.components.algorithms.sort.sortanimations;
+package src.components.components.algorithms.sort.mergesort;
 
 import src.Config;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
-import src.components.components.algorithms.sort.viewsort.Bar;
+import src.components.components.algorithms.sort.AbstractSortAlgorithmAnimation;
+import src.components.components.algorithms.sort.AbstractSortAlgorithmScreen;
+import src.components.components.algorithms.sort.Bar;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Timer;
 
-public class MergeSort extends SortAnimation {
+public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
     private Queue<int[]>[] queues;
     private int indexQueue;
     private int[] range1; // [left, mid]
@@ -17,9 +17,11 @@ public class MergeSort extends SortAnimation {
     private int i2; // index for range2
     private int i; // run in range [left, right] to merge range1 and range2
     private Bar[] subBars;
+    private Bar[] bars;
 
-    public MergeSort(SortAlgorithmScreen sortAlgorithmScreen, Bar[] bars, Timer timer, int period) {
-        super(sortAlgorithmScreen, bars, timer, period);
+    public MergeSortAnimation(AbstractSortAlgorithmScreen rootScreen, int period) {
+        super(rootScreen, period);
+        bars = rootScreen.getViewAction().bars;
         Queue<int[]> queue;
         Queue<int[]> nextQueue = new LinkedList<>();
         Queue<int[]> lastQueue = new LinkedList<>();
@@ -37,16 +39,15 @@ public class MergeSort extends SortAnimation {
                 int mid = (left + right) / 2;
                 if (left == right) {
                     if (nextQueue.size() > 0) {
-                        nextQueue.add(new int[] {left, left});
-                        nextQueue.add(new int[] {right, right});
+                        nextQueue.add(new int[]{left, left});
+                        nextQueue.add(new int[]{right, right});
                     }
                 } else {
-                    nextQueue.add(new int[] {left, mid});
-                    nextQueue.add(new int[] {mid+1, right});
+                    nextQueue.add(new int[]{left, mid});
+                    nextQueue.add(new int[]{mid + 1, right});
                 }
             }
         }
-
         queues = new Queue[size];
         for (int i = 0; i < size; i++) {
             queues[i] = new LinkedList<>();
@@ -68,11 +69,11 @@ public class MergeSort extends SortAnimation {
                 } else {
                     range1 = queues[indexQueue].poll();
                     range2 = queues[indexQueue].poll();
-                    sortAlgorithmScreen.getViewSort().setColorAndLocationBars(
+                    getRootScreen().getViewAction().setColorAndLocationBars(
                             range1[0],
                             range2[1],
                             Config.COLOR_BAR_FLAG,
-                            sortAlgorithmScreen.getViewSort().initialY0
+                            getRootScreen().getViewAction().initialY0
                     );
                     subBars = new Bar[range2[1] - range1[0] + 1];
                     i = range1[0];
@@ -83,11 +84,11 @@ public class MergeSort extends SortAnimation {
                 if (i > range2[1]) {
                     if (animationStep < subBars.length) {
                         int j = range1[0] + animationStep;
-                        sortAlgorithmScreen.getViewSort().setBar(j, subBars[animationStep]);
-                        sortAlgorithmScreen.getViewSort().pickDownBar(
-                                j, sortAlgorithmScreen.getViewSort().initialY1
+                        getRootScreen().getViewAction().setBar(j, subBars[animationStep]);
+                        getRootScreen().getViewAction().pickDownBar(
+                                j, getRootScreen().getViewAction().initialY1
                         );
-                        sortAlgorithmScreen.getViewSort().checkBar(
+                        getRootScreen().getViewAction().checkBar(
                                 j, Config.COLOR_BAR_TEMP_SORTED
                         );
                         animationStep++;
@@ -101,51 +102,48 @@ public class MergeSort extends SortAnimation {
                     if (i1 <= range1[1] && i2 <= range2[1]) {
                         if (bars[i1].compareTo(bars[i2]) <= 0) {
                             subBars[-range1[0] + i] = bars[i1];
-                            sortAlgorithmScreen.getViewSort().moveBar(
+                            getRootScreen().getViewAction().moveBar(
                                     i1,
-                                    sortAlgorithmScreen.getViewSort().initialY0,
+                                    getRootScreen().getViewAction().initialY0,
                                     i,
-                                    sortAlgorithmScreen.getViewSort().initialY1
+                                    getRootScreen().getViewAction().initialY1
                             );
                             i1++;
                             i++;
                         } else {
                             subBars[-range1[0] + i] = bars[i2];
-                            sortAlgorithmScreen.getViewSort().moveBar(
+                            getRootScreen().getViewAction().moveBar(
                                     i2,
-                                    sortAlgorithmScreen.getViewSort().initialY0,
+                                    getRootScreen().getViewAction().initialY0,
                                     i,
-                                    sortAlgorithmScreen.getViewSort().initialY1
+                                    getRootScreen().getViewAction().initialY1
                             );
                             i2++;
                             i++;
                         }
                     } else if (i1 <= range1[1]) {
                         subBars[-range1[0] + i] = bars[i1];
-                        sortAlgorithmScreen.getViewSort().moveBar(
+                        getRootScreen().getViewAction().moveBar(
                                 i1,
-                                sortAlgorithmScreen.getViewSort().initialY0,
+                                getRootScreen().getViewAction().initialY0,
                                 i,
-                                sortAlgorithmScreen.getViewSort().initialY1
+                                getRootScreen().getViewAction().initialY1
                         );
                         i1++;
                         i++;
                     } else {
                         subBars[-range1[0] + i] = bars[i2];
-                        sortAlgorithmScreen.getViewSort().moveBar(
+                        getRootScreen().getViewAction().moveBar(
                                 i2,
-                                sortAlgorithmScreen.getViewSort().initialY0,
+                                getRootScreen().getViewAction().initialY0,
                                 i,
-                                sortAlgorithmScreen.getViewSort().initialY1
+                                getRootScreen().getViewAction().initialY1
                         );
                         i2++;
                         i++;
                     }
                 }
             }
-        } else if (isEnded()) {
-            sortAlgorithmScreen.getViewSort().runEndAnimation();
-            sortAlgorithmScreen.endSort();
         }
     }
 }

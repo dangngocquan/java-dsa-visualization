@@ -1,36 +1,34 @@
-package src.components.components.algorithms.sort.viewsort;
+package src.components.components.algorithms.sort;
 
-import src.App;
 import src.Config;
-import src.components.base.Panel;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
+import src.components.components.algorithms.AbstractViewAlgorithmAction;
 import src.services.animation.Animation;
 import src.services.animation.Location;
-import src.services.services.Service;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class ViewSort extends Panel {
+public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     public static int gapWidth = 2;
     public static int barWidth = 10;
     public static int initialX = 10;
     public static int initialY = 10;
     public static int initialY0;
     public static int initialY1;
-    public static int[] xBars;
-    public static int[] elements;
-    public static Bar[] bars;
+    public int[] xBars;
+    public int[] elements;
+    public Bar[] bars;
+    public int animationPeriod = 2000;
 
-    public ViewSort(
-            int x, int y, int width, int height,
-            Color backgroundColor, ImageIcon backgroundImage,
-            String text, int shadowSize, int[] array) {
-        super(x, y, width, height, backgroundColor, backgroundImage, text, shadowSize);
+    public ViewSortAlgorithmAction(AbstractSortAlgorithmScreen rootScreen, int[] array) {
+        super(rootScreen);
         this.elements = array;
         updateStaticValues();
         addBars();
         repaint();
+    }
+
+    public AbstractSortAlgorithmScreen getRootScreen() {
+        return (AbstractSortAlgorithmScreen) rootScreen;
     }
 
     public void setElements(int[] array) {
@@ -68,13 +66,24 @@ public class ViewSort extends Panel {
         repaint();
     }
 
+    public int getAnimationPeriod() {
+        return animationPeriod;
+    }
+
+    public void setAnimationPeriod(int animationPeriod) {
+        if (animationPeriod != this.animationPeriod) {
+            this.animationPeriod = animationPeriod;
+            getRootScreen().endSort();
+        }
+    }
+
     public void checkBar(int i, Color targetColor) {
         Animation.transitionColor(
                 bars[i],
                 bars[i].getBackgroundColor(),
                 targetColor,
                 1,
-                SortAlgorithmScreen.period-1
+                getAnimationPeriod()-1
                 );
     }
 
@@ -85,7 +94,7 @@ public class ViewSort extends Panel {
                 (i2 - i1) * (barWidth + gapWidth),
                 0,
                 1,
-                SortAlgorithmScreen.period-1
+                getAnimationPeriod()-1
         );
         Animation.translate(
                 bars[i2],
@@ -93,7 +102,7 @@ public class ViewSort extends Panel {
                 (i1 - i2) * (barWidth + gapWidth),
                 0,
                 1,
-                SortAlgorithmScreen.period-1
+                getAnimationPeriod()-1
         );
         Bar bar = bars[i1];
         bars[i1] = bars[i2];
@@ -110,7 +119,7 @@ public class ViewSort extends Panel {
                 0,
                 (getHeightPanel() - 2 * initialY) / 2,
                 1,
-                SortAlgorithmScreen.period - 1
+                getAnimationPeriod() - 1
         );
     }
 
@@ -121,7 +130,7 @@ public class ViewSort extends Panel {
                 0,
                 -(getHeightPanel() - 2 * initialY) / 2,
                 1,
-                SortAlgorithmScreen.period - 1
+                getAnimationPeriod() - 1
         );
     }
 
@@ -131,7 +140,7 @@ public class ViewSort extends Panel {
                 bars[i].getBackgroundColor(),
                 Config.COLOR_BAR_TEMP_SORTED,
                 1,
-                SortAlgorithmScreen.period-1
+                getAnimationPeriod() - 1
         );
     }
 
@@ -176,11 +185,7 @@ public class ViewSort extends Panel {
                 (i2 - i1) * (barWidth + gapWidth),
                 getYBar(i1, yBase2) - getYBar(i1, yBase1),
                 1,
-                SortAlgorithmScreen.period-1
+                getAnimationPeriod()-1
         );
-    }
-
-    public App getApp() {
-        return (App) (Service.getFrame(this));
     }
 }

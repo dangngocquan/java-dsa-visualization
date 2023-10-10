@@ -1,8 +1,6 @@
-package src.components.components.datastructures.list.abstractlistscreen;
+package src.components.components.datastructures.list;
 
 import src.components.components.datastructures.AbstractDataStructureAnimation;
-
-import java.util.Timer;
 
 public abstract class AbstractListAnimation extends AbstractDataStructureAnimation {
     public AbstractListAnimation(

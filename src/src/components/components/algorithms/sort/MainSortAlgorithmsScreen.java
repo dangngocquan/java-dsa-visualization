@@ -1,22 +1,18 @@
-package src.components.components.datastructures.list;
+package src.components.components.algorithms.sort;
 
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
-import src.components.components.datastructures.list.arraylist.ArrayListScreen;
-import src.components.components.datastructures.list.singlylinkedlist.SinglyLinkedListScreen;
+import src.components.components.algorithms.sort.bubblesort.BubbleSortAlgorithmScreen;
+import src.components.components.algorithms.sort.insertionsort.InsertionSortAlgorithmScreen;
+import src.components.components.algorithms.sort.mergesort.MergeSortAlgorithmScreen;
+import src.components.components.algorithms.sort.quicksort.QuickSortAlgorithmScreen;
+import src.components.components.algorithms.sort.selectionsort.SelectionSortAlgorithmScreen;
 
-import javax.swing.*;
-import java.awt.*;
-
-public class MainListScreen extends AbstractScreen {
-    public MainListScreen() {
-        super();
-    }
-
+public class MainSortAlgorithmsScreen extends AbstractScreen {
     @Override
     public void addButtons() {
-        int numberButtonPerColumn = 5;
+        int numberButtonPerColumn = 6;
         int numberButtonPerRow = 1;
         int buttonWidth = 250;
         int buttonHeight = 50;
@@ -27,7 +23,7 @@ public class MainListScreen extends AbstractScreen {
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new src.components.base.Button[5];
+        buttons = new src.components.base.Button[6];
         buttons[0] = new src.components.base.Button(
                 initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
@@ -38,38 +34,39 @@ public class MainListScreen extends AbstractScreen {
                 initialX,
                 initialY,
                 buttonWidth, buttonHeight,
-                "Array List"
+                "Bubble Sort"
         );
         buttons[2] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight),
                 buttonWidth, buttonHeight,
-                "Singly Linked List"
+                "Selection Sort"
         );
         buttons[3] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight) * 2,
                 buttonWidth, buttonHeight,
-                "Double Linked List"
+                "Insertion Sort"
         );
-
         buttons[4] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight) * 3,
                 buttonWidth, buttonHeight,
-                "Circular Linked List"
+                "Quick Sort"
+        );
+        buttons[5] = new Button(
+                initialX,
+                initialY + (gapHeight + buttonHeight) * 4,
+                buttonWidth, buttonHeight,
+                "Merge Sort"
         );
 
-        add(buttons[0]);
-        add(buttons[1]);
-        add(buttons[2]);
-        add(buttons[3]);
-        add(buttons[4]);
+        for (Button button : buttons) add(button);
     }
 
     @Override
     public void createDefaultScreens() {
-        screens = new AbstractScreen[5];
+        screens = new AbstractScreen[6];
     }
 
     @Override
@@ -77,16 +74,16 @@ public class MainListScreen extends AbstractScreen {
         // Back
         buttons[0].addActionListener(e -> {
             if (screens[0] == null) {
-                screens[0] = getApp().getScreens().get("MainDataStructuresScreen");
+                screens[0] = getApp().getScreens().get("MainAlgorithmsScreen");
             }
             setHidden(true);
             screens[0].setHidden(false);
         });
 
-        // Array List
+        // Bubble Sort
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new ArrayListScreen();
+                screens[1] = new BubbleSortAlgorithmScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }
@@ -94,15 +91,48 @@ public class MainListScreen extends AbstractScreen {
             screens[1].setHidden(false);
         });
 
-        // Singly Linked List
+        // Selection Sort
         buttons[2].addActionListener(e -> {
             if (screens[2] == null) {
-                screens[2] = new SinglyLinkedListScreen();
+                screens[2] = new SelectionSortAlgorithmScreen();
                 screens[2].setVisible(false);
                 getApp().addScreen(screens[2]);
             }
             setHidden(true);
             screens[2].setHidden(false);
+        });
+
+        // Insertion Sort
+        buttons[3].addActionListener(e -> {
+            if (screens[3] == null) {
+                screens[3] = new InsertionSortAlgorithmScreen();
+                screens[3].setVisible(false);
+                getApp().addScreen(screens[3]);
+            }
+            setHidden(true);
+            screens[3].setHidden(false);
+        });
+
+        // Quick Sort
+        buttons[4].addActionListener(e -> {
+            if (screens[4] == null) {
+                screens[4] = new QuickSortAlgorithmScreen();
+                screens[4].setVisible(false);
+                getApp().addScreen(screens[4]);
+            }
+            setHidden(true);
+            screens[4].setHidden(false);
+        });
+
+        // Merge Sort
+        buttons[5].addActionListener(e -> {
+            if (screens[5] == null) {
+                screens[5] = new MergeSortAlgorithmScreen();
+                screens[5].setVisible(false);
+                getApp().addScreen(screens[5]);
+            }
+            setHidden(true);
+            screens[5].setHidden(false);
         });
     }
 }

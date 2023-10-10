@@ -3,19 +3,12 @@ package src.components.components.datastructures;
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
-import src.components.components.algorithms.sort.SortAlgorithmScreen;
 import src.components.components.datastructures.list.MainListScreen;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class MainDataStructuresScreen extends AbstractScreen {
-    public MainDataStructuresScreen(
-            int x, int y, int width, int height,
-            Color backgroundColor,
-            ImageIcon backgroundImage,
-            String text) {
-        super(x, y, width, height, backgroundColor, backgroundImage, text);
+    public MainDataStructuresScreen() {
+        super();
     }
 
     @Override
@@ -82,10 +75,7 @@ public class MainDataStructuresScreen extends AbstractScreen {
         // List
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new MainListScreen(
-                        0, 0, Config.WIDTH, Config.HEIGHT,
-                        Config.BACKGROUND_COLOR_APP, null, ""
-                );
+                screens[1] = new MainListScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }

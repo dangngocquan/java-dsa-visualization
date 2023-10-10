@@ -1,4 +1,4 @@
-package src.components.components.datastructures.list.abstractlistscreen;
+package src.components.components.datastructures.list;
 
 import src.components.components.datastructures.AbstractViewDataStructureAction;
 

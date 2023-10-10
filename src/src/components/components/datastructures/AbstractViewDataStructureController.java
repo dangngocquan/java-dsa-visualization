@@ -15,7 +15,7 @@ public abstract class AbstractViewDataStructureController extends Panel {
         super(
                 0, Config.HEIGHT - Config.HEIGHT_VIEW_CONTROLLER,
                 Config.WIDTH, Config.HEIGHT_VIEW_CONTROLLER,
-                Config.COLOR_GRAY_2, null, "", 0
+                Config.COLOR_GRAY_1, null, "", 0
         );
         this.rootScreen = rootScreen;
         addButtons();
