@@ -1,19 +1,20 @@
-package src.services.animation;
+package src.services.serviceanimations;
 
 import src.components.base.Panel;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Transform {
     private Timer timer;
-    private Panel panel;
-    private int translateX;
-    private int translateY;
-    private int delay;
-    private int duration;
-    private Location locationStart;
+    private final Panel panel;
+    private final int translateX;
+    private final int translateY;
+    private final int delay;
+    private final int duration;
+    private final Location locationStart;
     private long msStart;
-    private double process = 0.0;
 
 
     public Transform(Panel panel, Location start, int translateX, int translateY, int delay, int duration) {
@@ -33,6 +34,9 @@ public class Transform {
 
     public void stop() {
         panel.setXY(locationStart.getX() + translateX, locationStart.getY() + translateY);
+        if (panel instanceof AbstractPanelDataStructureNode) {
+            panel.getParent().repaint();
+        }
         timer.cancel();
         timer.purge();
     }
@@ -41,7 +45,7 @@ public class Transform {
         @Override
         public void run() {
             long temp = System.currentTimeMillis() - msStart;
-            process = temp * 1.0 / duration;
+            double process = temp * 1.0 / duration;
             if (process >= 1f) {
                 stop();
                 return;
@@ -52,6 +56,9 @@ public class Transform {
                     (int) Math.round(x),
                     (int) Math.round(y)
             );
+            if (panel instanceof AbstractPanelDataStructureNode) {
+                panel.getParent().repaint();
+            }
         }
     }
 }

@@ -1,13 +1,14 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListPanelNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
-import src.services.animation.Animation;
-import src.services.animation.Location;
+import src.services.ServiceAnimation;
+import src.services.serviceanimations.Location;
 
 public class ArrayListActionAdd2 extends AbstractListAnimation {
     public int value;
@@ -56,7 +57,7 @@ public class ArrayListActionAdd2 extends AbstractListAnimation {
     }
 
     public void createNewElement() {
-        Animation.translate(
+        ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
                 -1500,
@@ -67,8 +68,8 @@ public class ArrayListActionAdd2 extends AbstractListAnimation {
     }
 
     public void movePanelNodeToRight(int i) {
-        AbstractPanelListNode node = getRootScreen().list.get(i);
-        Animation.translate(
+        AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
                 ViewArrayListAction.SIZE_PER_NODE + ViewArrayListAction.GAP_X,
@@ -80,7 +81,7 @@ public class ArrayListActionAdd2 extends AbstractListAnimation {
 
     public void addToDataOfArrayList() {
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
-        Animation.translate(
+        ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
                 0,

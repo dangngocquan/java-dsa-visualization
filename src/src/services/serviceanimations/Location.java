@@ -1,4 +1,4 @@
-package src.services.animation;
+package src.services.serviceanimations;
 
 public class Location {
     private int x;

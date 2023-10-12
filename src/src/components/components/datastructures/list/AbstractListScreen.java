@@ -5,6 +5,7 @@ import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.base.TextField;
 import src.components.components.datastructures.AbstractDataStructureScreen;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.models.datastructures.list.MyList;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
     );
     protected int index = -1;
     protected int value = -1;
-    public MyList<AbstractPanelListNode> list;
+    public MyList<AbstractPanelDataStructureNode> list;
 
     public AbstractListScreen() {
         super();

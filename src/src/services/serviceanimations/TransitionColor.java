@@ -1,4 +1,4 @@
-package src.services.animation;
+package src.services.serviceanimations;
 
 
 import src.components.base.Panel;
@@ -7,16 +7,18 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TransitionColor {
+public class TransitionColor{
     private Timer timer;
-    private Component component;
-    private Color initialColor;
-    private Color targetColor;
-    private int absR, absG, absB;
-    private int delay;
-    private int duration;
+    private final Component component;
+    private final Color initialColor;
+    private final Color targetColor;
+    private final int absR;
+    private final int absG;
+    private final int absB;
+    private final int delay;
+    private final int duration;
     private long msStart;
-    private double process = 0.0;
+    private Component dependencyComponent;
 
 
     public TransitionColor(Component component, Color initialColor, Color targetColor, int delay, int duration) {
@@ -28,6 +30,10 @@ public class TransitionColor {
         this.absB = targetColor.getBlue() - initialColor.getBlue();
         this.delay = delay;
         this.duration = duration;
+    }
+
+    public void setDependencyComponent(Component panel) {
+        this.dependencyComponent = panel;
     }
 
     public void start() {
@@ -44,13 +50,14 @@ public class TransitionColor {
         } else {
             component.setBackground(targetColor);
         }
+        if (dependencyComponent != null) dependencyComponent.repaint();
     }
 
     private class TaskAnimation extends TimerTask {
         @Override
         public void run() {
             long temp = System.currentTimeMillis() - msStart;
-            process = temp * 1.0 / duration;
+            double process = temp * 1.0 / duration;
             if (process >= 1f) {
                 stop();
                 return;
@@ -72,6 +79,7 @@ public class TransitionColor {
                         )
                 );
             }
+            if (dependencyComponent != null) dependencyComponent.repaint();
         }
     }
 }

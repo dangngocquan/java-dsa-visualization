@@ -4,9 +4,9 @@ import src.App;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Panel;
-import src.services.animation.Animation;
-import src.services.animation.Location;
-import src.services.services.Service;
+import src.services.ServiceAnimation;
+import src.services.ServiceComponent;
+import src.services.serviceanimations.Location;
 
 
 public abstract class AbstractScreen extends Panel {
@@ -27,19 +27,19 @@ public abstract class AbstractScreen extends Panel {
         int duration = 200;
         if (isHidden) {
             int duration0 = duration;
-            Animation.translate(
+            ServiceAnimation.translate(
                     this,
                     new Location(0, 0),
                     0, Config.HEIGHT,
                     delay, duration
             );
             delay += duration0 + 10;
-            Animation.delayVisible(this, false, delay, 10);
+            ServiceAnimation.delayVisible(this, false, delay, 10);
         } else {
             delay += duration + 10;
-            Animation.delayVisible(this, true, delay, 10);
+            ServiceAnimation.delayVisible(this, true, delay, 10);
             delay += 10;
-            Animation.translate(
+            ServiceAnimation.translate(
                     this,
                     new Location(0, Config.HEIGHT),
                     0, -Config.HEIGHT,
@@ -50,7 +50,7 @@ public abstract class AbstractScreen extends Panel {
     }
 
     public App getApp() {
-        return (App) (Service.getFrame(this));
+        return (App) (ServiceComponent.getFrame(this));
     }
 
     public abstract void addButtons();

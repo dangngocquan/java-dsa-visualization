@@ -1,6 +1,6 @@
 package src.components.base;
 
-import src.services.animation.TransitionColor;
+import src.services.serviceanimations.TransitionColor;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

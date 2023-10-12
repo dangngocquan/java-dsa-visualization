@@ -75,6 +75,10 @@ public class Panel extends JPanel {
         return backgroundImage;
     }
 
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
     public void setX(int x) {
         this.x = x;
         setBounds(x, y, width + shadowSize, height + shadowSize);
@@ -121,6 +125,52 @@ public class Panel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g.create();
 
+        int shade = 0;
+        int topOpacity = 80;
+
+        for (int i = 0; i < shadowSize; i++) {
+            g2d.setColor(new Color(shade, shade, shade, ((topOpacity / shadowSize) * (shadowSize - i))));
+            g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
+                    RenderingHints.	VALUE_COLOR_RENDER_QUALITY);
+//            g2d.drawRect(i, i, width, height);
+            g2d.drawLine(i+width, i, i+width, i + height);
+            g2d.drawLine(i, i + height, i+width, i + height);
+        }
+
+        if (borderWidth > 0) {
+            g2d.setColor(borderColor);
+            g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
+                    RenderingHints.	VALUE_COLOR_RENDER_QUALITY);
+            g2d.fillRect(0, 0, width, height);
+        }
+
+        if (backgroundColor != null) {
+            g2d.setColor(backgroundColor);
+            g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
+                    RenderingHints.	VALUE_COLOR_RENDER_QUALITY);
+            g2d.fillRect(borderWidth, borderWidth, width - 2*borderWidth, height - 2*borderWidth);
+        }
+
+        if (backgroundImage != null) {
+            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g2d.drawImage(backgroundImage.getImage(), 1, 1, width-2, height-2, null);
+        }
+
+        g2d.setColor(new Color(50, 50, 50));
+        g2d.setFont(font);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        FontMetrics fontMetric = g2d.getFontMetrics();
+        int x0 = (width - fontMetric.stringWidth(text)) / 2;
+        int y0 = ((height - fontMetric.getHeight()) / 2) + fontMetric.getAscent();
+        g2d.drawString(text, x0, y0);
+        g2d.dispose();
+    }
+
+    public void drawOnOtherPanel(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g.create();
+
+        g2d.translate(x, y);
         int shade = 0;
         int topOpacity = 80;
 

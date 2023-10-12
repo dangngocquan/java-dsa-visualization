@@ -7,10 +7,12 @@ public class MyArrayList<E extends Comparable<E>> extends MyAbstractList<E> {
     private E[] data;
     private int size;
 
+    @SuppressWarnings("unchecked")
     public MyArrayList() {
         data = (E[]) new Comparable[DEFAULT_CAPACITY];
     }
 
+    @SuppressWarnings("unchecked")
     public MyArrayList(int capacity) {
         data = (E[]) new Comparable[capacity];
     }
@@ -103,9 +105,10 @@ public class MyArrayList<E extends Comparable<E>> extends MyAbstractList<E> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void enlarge() {
         E[] newData = (E[]) new Comparable[data.length * 2];
-        for (int i = 0; i < data.length; i++) newData[i] = data[i];
+        System.arraycopy(data, 0, newData, 0, data.length);
         data = newData;
     }
 

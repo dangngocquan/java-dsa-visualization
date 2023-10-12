@@ -7,14 +7,13 @@ import src.components.base.Panel;
 import src.components.base.TextField;
 import src.components.components.AbstractScreen;
 import src.components.components.algorithms.AbstractViewAlgorithmController;
-import src.services.services.Service;
+import src.services.ServiceArray;
+import src.services.ServiceGenerateRandom;
 
 import java.awt.*;
 
 public class ViewSortAlgorithmController extends AbstractViewAlgorithmController {
     public Button[] buttons;
-    public int[] elements;
-    public int inputPeriod;
     public ViewSortAlgorithmController(AbstractSortAlgorithmScreen rootScreen) {
         super(rootScreen);
         addButtons();
@@ -102,14 +101,14 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         // Shuffle Array
         buttons[1].addActionListener(e -> {
             int[] mainArray = getRootScreen().array.clone();
-            Service.shuffleArray(mainArray);
+            ServiceArray.shuffleArray(mainArray);
             getRootScreen().setArray(mainArray);
         });
 
         // Generate New Array
         buttons[2].addActionListener(e -> {
             int[] mainArray = getRootScreen().array;
-            getRootScreen().setArray(Service.createRandomArray(mainArray.length, 1, 100));
+            getRootScreen().setArray(ServiceGenerateRandom.createRandomArray(mainArray.length, 1, 100));
         });
 
         // Edit Size Array
@@ -214,7 +213,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 }
                 dialog.dispose();
                 if (inputSize != getRootScreen().array.length) {
-                    getRootScreen().setArray(Service.createRandomArray(inputSize, 1, 100));
+                    getRootScreen().setArray(ServiceGenerateRandom.createRandomArray(inputSize, 1, 100));
                 }
             });
         }
@@ -388,7 +387,6 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                     } else {
                         a[i] = 50;
                     }
-                    a[i] = Integer.parseInt(textFields[i+1].getText());
                 }
                 getRootScreen().setArray(a);
                 dialog.dispose();

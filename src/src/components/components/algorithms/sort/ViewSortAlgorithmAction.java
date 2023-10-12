@@ -2,8 +2,8 @@ package src.components.components.algorithms.sort;
 
 import src.Config;
 import src.components.components.algorithms.AbstractViewAlgorithmAction;
-import src.services.animation.Animation;
-import src.services.animation.Location;
+import src.services.ServiceAnimation;
+import src.services.serviceanimations.Location;
 
 import java.awt.*;
 
@@ -78,7 +78,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void checkBar(int i, Color targetColor) {
-        Animation.transitionColor(
+        ServiceAnimation.transitionColor(
                 bars[i],
                 bars[i].getBackgroundColor(),
                 targetColor,
@@ -88,7 +88,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void swapBars(int i1, int yBase1, int i2, int yBase2) {
-        Animation.translate(
+        ServiceAnimation.translate(
                 bars[i1],
                 new Location(xBars[i1], getYBar(i1, yBase1)),
                 (i2 - i1) * (barWidth + gapWidth),
@@ -96,7 +96,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 1,
                 getAnimationPeriod()-1
         );
-        Animation.translate(
+        ServiceAnimation.translate(
                 bars[i2],
                 new Location(xBars[i2], getYBar(i2, yBase2)),
                 (i1 - i2) * (barWidth + gapWidth),
@@ -113,7 +113,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void pickUpBar(int i, int yBase) {
-        Animation.translate(
+        ServiceAnimation.translate(
                 bars[i],
                 new Location(xBars[i], getYBar(i, yBase)),
                 0,
@@ -124,7 +124,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void pickDownBar(int i, int yBase) {
-        Animation.translate(
+        ServiceAnimation.translate(
                 bars[i],
                 new Location(xBars[i], getYBar(i, yBase)),
                 0,
@@ -135,7 +135,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void tempSortedBar(int i) {
-        Animation.transitionColor(
+        ServiceAnimation.transitionColor(
                 bars[i],
                 bars[i].getBackgroundColor(),
                 Config.COLOR_BAR_TEMP_SORTED,
@@ -167,7 +167,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
         int delay = 1;
         int duration = 1;
         for (int i = from; i <= to; i++) {
-            Animation.transitionColor(
+            ServiceAnimation.transitionColor(
                     bars[i],
                     bars[i].getBackgroundColor(),
                     color,
@@ -179,7 +179,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void moveBar(int i1, int yBase1, int i2, int yBase2) {
-        Animation.translate(
+        ServiceAnimation.translate(
                 bars[i1],
                 new Location(xBars[i1], getYBar(i1, yBase1)),
                 (i2 - i1) * (barWidth + gapWidth),

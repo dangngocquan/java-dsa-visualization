@@ -4,13 +4,13 @@ import src.Config;
 import src.components.base.Panel;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.components.components.datastructures.list.AbstractPanelListNode;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
 import src.models.datastructures.list.MyArrayList;
 import src.models.datastructures.list.MyList;
-import src.services.animation.Animation;
-import src.services.animation.Location;
+import src.services.ServiceAnimation;
+import src.services.serviceanimations.Location;
 
 public class ArrayListActionEnlarge extends AbstractListAnimation {
     private Panel title1;
@@ -78,7 +78,7 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
         rootScreen.viewAction.add(title1);
         rootScreen.viewAction.add(newPanelData);
 
-        Animation.translate(
+        ServiceAnimation.translate(
                 newPanelData,
                 new Location(newPanelData.getX(), newPanelData.getY()),
                 -1500,
@@ -87,7 +87,7 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
                 period - 10
         );
 
-        Animation.translate(
+        ServiceAnimation.translate(
                 title1,
                 new Location(title1.getX(), title1.getY()),
                 200,
@@ -99,8 +99,8 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
     }
 
     public void movePanelNodeToNewData(int index) {
-        AbstractPanelListNode panelNode = getRootScreen().list.get(index);
-        Animation.translate(
+        AbstractPanelDataStructureNode panelNode = getRootScreen().list.get(index);
+        ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
                 0,
@@ -111,9 +111,9 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
     }
 
     public void replaceDataByNewData() {
-        MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
+        MyList<AbstractPanelDataStructureNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
-            AbstractPanelListNode panel = panelElements.get(i);
+            AbstractPanelDataStructureNode panel = panelElements.get(i);
             rootScreen.viewAction.remove(panel);
             panel.setXY(
                     panel.getX() - ViewArrayListAction.INITIAL_X,
@@ -121,7 +121,7 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
             );
             newPanelData.add(panel);
         }
-        Animation.translate(
+        ServiceAnimation.translate(
                 newPanelData,
                 new Location(newPanelData.getX(), newPanelData.getY()),
                 0,
@@ -137,9 +137,9 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
 
     public void solveRelations() {
         ((ViewArrayListAction) rootScreen.viewAction).panelData = newPanelData;
-        MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
+        MyList<AbstractPanelDataStructureNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
-            AbstractPanelListNode panel = panelElements.get(i);
+            AbstractPanelDataStructureNode panel = panelElements.get(i);
             newPanelData.remove(panel);
             panel.setXY(
                     panel.getX() + ViewArrayListAction.INITIAL_X,

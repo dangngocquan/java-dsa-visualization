@@ -1,17 +1,17 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
 import src.Config;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
-import src.services.animation.Animation;
-import src.services.animation.Location;
+import src.services.ServiceAnimation;
+import src.services.serviceanimations.Location;
 
 public class ArrayListActionRemove1 extends AbstractListAnimation {
     private int index;
-    private AbstractPanelListNode node;
+    private AbstractPanelDataStructureNode node;
 
     public ArrayListActionRemove1(
             int index, AbstractListScreen rootScreen,
@@ -46,14 +46,14 @@ public class ArrayListActionRemove1 extends AbstractListAnimation {
 
     public void pickUpElement(int index) {
         node = getRootScreen().list.get(index);
-        Animation.transitionColor(
+        ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_PLAIN,
                 Config.COLOR_BAR_FLAG,
                 10,
                 period - 10
         );
-        Animation.translate(
+        ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
@@ -63,8 +63,8 @@ public class ArrayListActionRemove1 extends AbstractListAnimation {
     }
 
     public void movePanelNodeToLeft(int i) {
-        AbstractPanelListNode node = getRootScreen().list.get(i);
-        Animation.translate(
+        AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
                 -ViewArrayListAction.SIZE_PER_NODE - ViewArrayListAction.GAP_X,
@@ -75,7 +75,7 @@ public class ArrayListActionRemove1 extends AbstractListAnimation {
     }
 
     public void returnElement(int index) {
-        Animation.translate(
+        ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
                 1500,

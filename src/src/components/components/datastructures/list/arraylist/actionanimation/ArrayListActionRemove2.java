@@ -1,11 +1,11 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
 import src.Config;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
-import src.services.animation.Animation;
+import src.services.ServiceAnimation;
 
 public class ArrayListActionRemove2 extends AbstractListAnimation {
     private int value;
@@ -51,8 +51,8 @@ public class ArrayListActionRemove2 extends AbstractListAnimation {
     }
 
     public void checkElement(int i) {
-        AbstractPanelListNode node = getRootScreen().list.get(i);
-        Animation.transitionColor(
+        AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_PLAIN,
                 Config.COLOR_BAR_CHECKING,
@@ -62,8 +62,8 @@ public class ArrayListActionRemove2 extends AbstractListAnimation {
     }
 
     public void uncheckElement(int i) {
-        AbstractPanelListNode node = getRootScreen().list.get(i);
-        Animation.transitionColor(
+        AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_CHECKING,
                 Config.COLOR_BAR_PLAIN,
@@ -73,8 +73,8 @@ public class ArrayListActionRemove2 extends AbstractListAnimation {
     }
 
     public void flagElement(int i) {
-        AbstractPanelListNode node = getRootScreen().list.get(i);
-        Animation.transitionColor(
+        AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_CHECKING,
                 Config.COLOR_BAR_FLAG,

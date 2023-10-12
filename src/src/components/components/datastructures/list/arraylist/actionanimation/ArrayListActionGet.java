@@ -1,18 +1,18 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
 import src.Config;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListPanelNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
-import src.services.animation.Animation;
-import src.services.animation.Location;
+import src.services.ServiceAnimation;
+import src.services.serviceanimations.Location;
 
 public class ArrayListActionGet extends AbstractListAnimation {
     private int index;
-    private AbstractPanelListNode node;
+    private AbstractPanelDataStructureNode node;
 
     public ArrayListActionGet(
             int index,
@@ -44,17 +44,17 @@ public class ArrayListActionGet extends AbstractListAnimation {
     }
 
     public void pickUpElement(int index) {
-        AbstractPanelListNode node0 = getRootScreen().list.get(index);
+        AbstractPanelDataStructureNode node0 = getRootScreen().list.get(index);
         node = new ArrayListPanelNode(node0.getIndex(), node0.getValue());
         getRootScreen().viewAction.add(node);
-        Animation.transitionColor(
+        ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_PLAIN,
                 Config.COLOR_BAR_DONE,
                 10,
                 period - 10
         );
-        Animation.translate(
+        ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
@@ -64,7 +64,7 @@ public class ArrayListActionGet extends AbstractListAnimation {
     }
 
     public void returnElement(int index) {
-        Animation.translate(
+        ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
                 1500,

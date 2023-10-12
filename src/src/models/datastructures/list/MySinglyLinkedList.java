@@ -3,9 +3,9 @@ package src.models.datastructures.list;
 import java.util.Iterator;
 
 public class MySinglyLinkedList<E extends Comparable<E>> extends MyAbstractList<E> {
-    class Node {
-        E data;
-        Node next;
+    public class Node {
+        public E data;
+        public Node next;
 
         public Node(E data) {
             this.data = data;
@@ -144,7 +144,7 @@ public class MySinglyLinkedList<E extends Comparable<E>> extends MyAbstractList<
         }
     }
 
-    private Node getNode(int index) {
+    public Node getNode(int index) {
         if (index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException();
         }

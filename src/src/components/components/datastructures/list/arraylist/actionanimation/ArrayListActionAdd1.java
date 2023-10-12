@@ -5,8 +5,8 @@ import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.list.arraylist.ArrayListPanelNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
-import src.services.animation.Animation;
-import src.services.animation.Location;
+import src.services.ServiceAnimation;
+import src.services.serviceanimations.Location;
 
 public class ArrayListActionAdd1 extends AbstractListAnimation {
     public int value;
@@ -52,7 +52,7 @@ public class ArrayListActionAdd1 extends AbstractListAnimation {
     }
 
     public void createNewElement() {
-        Animation.translate(
+        ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
                 -1500,
@@ -65,7 +65,7 @@ public class ArrayListActionAdd1 extends AbstractListAnimation {
     public void addToDataOfArrayList() {
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         getRootScreen().list.add(panelNode);
-        Animation.translate(
+        ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
                 0,

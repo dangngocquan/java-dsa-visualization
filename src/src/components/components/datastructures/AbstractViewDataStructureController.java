@@ -4,7 +4,7 @@ import src.App;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Panel;
-import src.services.services.Service;
+import src.services.ServiceComponent;
 
 
 public abstract class AbstractViewDataStructureController extends Panel {
@@ -66,6 +66,6 @@ public abstract class AbstractViewDataStructureController extends Panel {
     public abstract void addActionListenerForButtons();
 
     public App getApp() {
-        return (App) (Service.getFrame(this));
+        return (App) (ServiceComponent.getFrame(this));
     }
 }

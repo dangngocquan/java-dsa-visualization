@@ -2,8 +2,8 @@ package src.components.components.datastructures.list.arraylist;
 
 import src.Config;
 import src.components.base.Panel;
+import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.AbstractViewListAction;
 import src.components.components.datastructures.list.arraylist.actionanimation.*;
 import src.models.datastructures.list.MyArrayList;
@@ -61,7 +61,7 @@ public class ViewArrayListAction extends AbstractViewListAction {
 
     public void drawElements() {;
         for (int i = 0; i < getRootScreen().list.size(); i++) {
-            AbstractPanelListNode panelNode = getRootScreen().list.get(i);
+            AbstractPanelDataStructureNode panelNode = getRootScreen().list.get(i);
             add(panelNode);
         }
     }

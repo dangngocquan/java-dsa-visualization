@@ -1,4 +1,4 @@
-package src.services.animation;
+package src.services.serviceanimations;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,12 +7,11 @@ import java.util.TimerTask;
 
 public class DelayVisible {
     private Timer timer;
-    private Component component;
-    private boolean visible;
-    private int delay;
-    private int duration;
+    private final Component component;
+    private final boolean visible;
+    private final int delay;
+    private final int duration;
     private long msStart;
-    private double process = 0.0;
 
 
     public DelayVisible(Component component, boolean visible, int delay, int duration) {
@@ -39,7 +38,7 @@ public class DelayVisible {
         @Override
         public void run() {
             long temp = System.currentTimeMillis() - msStart;
-            process = temp * 1.0 / duration;
+            double process = temp * 1.0 / duration;
             if (process >= 1f) {
                 stop();
             }

@@ -3,8 +3,7 @@ package src.components.components.algorithms;
 import src.App;
 import src.Config;
 import src.components.base.Panel;
-import src.components.components.algorithms.sort.AbstractSortAlgorithmScreen;
-import src.services.services.Service;
+import src.services.ServiceComponent;
 
 public abstract class AbstractViewAlgorithmController extends Panel {
     public AbstractAlgorithmScreen rootScreen;
@@ -18,6 +17,6 @@ public abstract class AbstractViewAlgorithmController extends Panel {
     }
 
     public App getApp() {
-        return (App) (Service.getFrame(this));
+        return (App) (ServiceComponent.getFrame(this));
     }
 }

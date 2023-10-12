@@ -2,7 +2,7 @@ package src.components.components.algorithms.sort;
 
 import src.Config;
 import src.components.components.algorithms.AbstractAlgorithmScreen;
-import src.services.services.Service;
+import src.services.ServiceGenerateRandom;
 
 public abstract class AbstractSortAlgorithmScreen extends AbstractAlgorithmScreen {
     public int[] array;
@@ -10,7 +10,7 @@ public abstract class AbstractSortAlgorithmScreen extends AbstractAlgorithmScree
 
     @Override
     public void createData() {
-        array = Service.createRandomArray(20, 1, 100);
+        array = ServiceGenerateRandom.createRandomArray(20, 1, 100);
     }
 
     @Override
