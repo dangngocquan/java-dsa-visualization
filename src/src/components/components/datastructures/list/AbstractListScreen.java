@@ -5,7 +5,6 @@ import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.base.TextField;
 import src.components.components.datastructures.AbstractDataStructureScreen;
-import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.models.datastructures.list.MyList;
 
 import java.awt.*;
@@ -21,7 +20,7 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
     );
     protected int index = -1;
     protected int value = -1;
-    public MyList<AbstractPanelDataStructureNode> list;
+    public MyList<AbstractPanelListNode> list;
 
     public AbstractListScreen() {
         super();
@@ -44,15 +43,12 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
     public void setIndexActionSelected(int indexActionSelected) {
         this.indexActionSelected = indexActionSelected;
         switch (indexActionSelected) {
-            case 0:
-            case 4:
-                new DialogGetValue(
-                        (Config.WIDTH - 300) / 2,
-                        (Config.HEIGHT - 300) / 2,
-                        300, 300
-                );
-                break;
-            case 1:
+            case 0, 4 -> new DialogGetValue(
+                    (Config.WIDTH - 300) / 2,
+                    (Config.HEIGHT - 300) / 2,
+                    300, 300
+            );
+            case 1 -> {
                 new DialogGetIndex(
                         (Config.WIDTH - 300) / 2,
                         (Config.HEIGHT - 300) / 2,
@@ -63,18 +59,14 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
                         (Config.HEIGHT - 300) / 2,
                         300, 300
                 );
-                break;
-            case 2:
-            case 3:
-                new DialogGetIndex(
-                        (Config.WIDTH - 300) / 2,
-                        (Config.HEIGHT - 300) / 2,
-                        300, 300
-                );
-                break;
-            default:
-                break;
-
+            }
+            case 2, 3 -> new DialogGetIndex(
+                    (Config.WIDTH - 300) / 2,
+                    (Config.HEIGHT - 300) / 2,
+                    300, 300
+            );
+            default -> {
+            }
         }
         if (indexActionSelected == -1) {
             viewController.buttons[1].setText("Choose Action");
@@ -93,23 +85,13 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
     public void runAction() {
         setEnabledAllButtons(false);
         switch (indexActionSelected) {
-            case 0:
-                getViewAction().actionAdd(value);
-                break;
-            case 1:
-                getViewAction().actionAdd(index, value);
-                break;
-            case 2:
-                getViewAction().actionGet(index);
-                break;
-            case 3:
-                getViewAction().actionRemove(index);
-                break;
-            case 4:
-                getViewAction().actionRemove(Integer.valueOf(value));
-                break;
-            default:
-                break;
+            case 0 -> getViewAction().actionAdd(value);
+            case 1 -> getViewAction().actionAdd(index, value);
+            case 2 -> getViewAction().actionGet(index);
+            case 3 -> getViewAction().actionRemove(index);
+            case 4 -> getViewAction().actionRemove(Integer.valueOf(value));
+            default -> {
+            }
         }
     }
 
@@ -136,7 +118,7 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
         public void addListeners() {
             button.addActionListener(e -> {
                 String data = textField.getText();
-                if (data.matches("[0-9]{1,}")) {
+                if (data.matches("[0-9]+")) {
                     index = Integer.parseInt(data);
                     if (indexActionSelected == 1) {
                         if (index > list.size()) index = list.size();
@@ -161,7 +143,7 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
         public void addListeners() {
             button.addActionListener(e -> {
                 String data = textField.getText();
-                if (data.matches("[0-9]{1,}")) {
+                if (data.matches("[0-9]+")) {
                     value = Integer.parseInt(data);
                     if (value > 99) value = 99;
                 } else {
@@ -172,7 +154,7 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
         }
     }
 
-    private abstract class DialogWithFieldText extends Dialog {
+    private abstract static class DialogWithFieldText extends Dialog {
         protected TextField textField;
         protected Button button;
 

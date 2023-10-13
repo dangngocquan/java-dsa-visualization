@@ -191,6 +191,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
 
     public void endSort() {
         buttons[6].setText("Start sort");
+        setEnabledAllButtons(true);
     }
 
     private class DialogGetSizeArray extends DialogWithFieldText {

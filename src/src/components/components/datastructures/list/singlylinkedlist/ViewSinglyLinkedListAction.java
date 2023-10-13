@@ -7,6 +7,7 @@ import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.AbstractViewListAction;
 import src.components.components.datastructures.list.singlylinkedlist.actionanimation.SinglyLinkedListActionAdd1;
+import src.components.components.datastructures.list.singlylinkedlist.actionanimation.SinglyLinkedListActionAdd2;
 import src.models.datastructures.list.MySinglyLinkedList;
 import src.services.ServiceAnimation;
 import src.services.ServiceComponent;
@@ -47,19 +48,21 @@ public class ViewSinglyLinkedListAction extends AbstractViewListAction {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
 
-        Iterator<AbstractPanelDataStructureNode> iterator = getRootScreen().list.iterator();
-        SinglyLinkedListPanelNode prevNode = null;
+        Iterator<AbstractPanelListNode> iterator = getRootScreen().list.iterator();
+        SinglyLinkedListPanelNode prevNode;
         SinglyLinkedListPanelNode node = null;
         while (iterator.hasNext()) {
             prevNode = node;
             node = (SinglyLinkedListPanelNode) iterator.next();
             node.drawOnOtherPanel(g);
-            if (prevNode != null && node != null) {
-                int x1 = prevNode.getX() + prevNode.panels[1].getX() + prevNode.panels[1].getWidthPanel();
-                int y1 = prevNode.getY() + prevNode.panels[1].getY() + prevNode.panels[1].getHeightPanel() / 2;
-                int x2 = node.getX();
-                int y2 = node.getY() + node.getHeightPanel() / 2;
-                ServiceComponent.drawPatternArrow1(g, x1, y1, x2, y2, prevNode.panels[1].getBackgroundColor());
+            if (prevNode != null && prevNode.nextArrow != null) {
+                ServiceComponent.drawPatternArrow1(
+                        g,
+                        prevNode.nextArrow[0],
+                        prevNode.nextArrow[1],
+                        prevNode.nextArrow[2],
+                        prevNode.nextArrow[3],
+                        prevNode.panels[1].getBackgroundColor());
             }
         }
     }
@@ -73,7 +76,9 @@ public class ViewSinglyLinkedListAction extends AbstractViewListAction {
 
     @Override
     public void actionAdd(int index, int value) {
-
+        new SinglyLinkedListActionAdd2(
+                index, value, getRootScreen(), 2000, null
+        ).start();
     }
 
     @Override

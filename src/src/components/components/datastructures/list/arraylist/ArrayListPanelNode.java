@@ -41,4 +41,14 @@ public class ArrayListPanelNode extends AbstractPanelListNode {
     public int createY() {
         return ViewArrayListAction.INITIAL_Y + 10;
     }
+
+    @Override
+    public int[] getDefaultPrevArrow() {
+        return null;
+    }
+
+    @Override
+    public int[] getDefaultNextArrow() {
+        return null;
+    }
 }

@@ -32,7 +32,6 @@ public class SinglyLinkedListActionAdd1 extends AbstractListAnimation {
                 x + 1500,
                 y + ViewSinglyLinkedListAction.HEIGHT_NODE + ViewSinglyLinkedListAction.GAP_Y
         );
-//        panelNode.setVisible(false);
         rootScreen.viewAction.add(panelNode);
     }
 
@@ -46,9 +45,12 @@ public class SinglyLinkedListActionAdd1 extends AbstractListAnimation {
             createNewElement();
             animationStep++;
         } else if (animationStep == 1) {
-            addToDataOfArrayList();
+            createArrowWithPrevNode();
             animationStep++;
         } else if (animationStep == 2) {
+            addToDataOfArrayList();
+            animationStep++;
+        } else if (animationStep == 3) {
             reformatPanelNodes();
             animationStep++;
         } else {
@@ -75,9 +77,36 @@ public class SinglyLinkedListActionAdd1 extends AbstractListAnimation {
         );
     }
 
-    public void addToDataOfArrayList() {
+    public void createArrowWithPrevNode() {
         getRootScreen().list.add(panelNode);
         panelNode.setVisible(false);
+        if (index > 0) {
+            prevPanelNode = (SinglyLinkedListPanelNode) getRootScreen().list.get(index-1);
+            int[] startData = prevPanelNode.getDefaultNextArrow();
+            int[] endData = new int[] {
+                    startData[0],
+                    startData[1],
+                    panelNode.getX(),
+                    panelNode.getY() + panelNode.getHeightPanel()/2
+            };
+            prevPanelNode.setNextArrow(startData);
+            ServiceAnimation.transformArrowPanelNode(
+                    getRootScreen().viewAction,
+                    prevPanelNode.nextArrow,
+                    endData,
+                    10,
+                    period - 10
+            );
+            ServiceAnimation.transitionColor(
+                    prevPanelNode.panels[1],
+                    prevPanelNode.panels[1].getBackgroundColor(),
+                    Config.COLOR_GREEN,
+                    10, period - 10
+            );
+        }
+    }
+
+    public void addToDataOfArrayList() {
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -87,12 +116,13 @@ public class SinglyLinkedListActionAdd1 extends AbstractListAnimation {
                 period - 10
         );
         if (index > 0) {
-            prevPanelNode = (SinglyLinkedListPanelNode) getRootScreen().list.get(index-1);
-            ServiceAnimation.transitionColor(
-                    prevPanelNode.panels[1],
-                    prevPanelNode.panels[1].getBackgroundColor(),
-                    Config.COLOR_GREEN,
-                    10, period - 10
+            int[] endData = prevPanelNode.getDefaultNextArrow();
+            ServiceAnimation.transformArrowPanelNode(
+                    getRootScreen().viewAction,
+                    prevPanelNode.nextArrow,
+                    endData,
+                    10,
+                    period - 10
             );
         }
 

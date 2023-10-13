@@ -65,4 +65,19 @@ public class SinglyLinkedListPanelNode extends AbstractPanelListNode {
     public int createY() {
         return ViewSinglyLinkedListAction.INITIAL_Y;
     }
+
+    @Override
+    public int[] getDefaultPrevArrow() {
+        return null;
+    }
+
+    @Override
+    public int[] getDefaultNextArrow() {
+        return new int[] {
+            getX() + panels[1].getX() + panels[1].getWidthPanel(),
+            getY() + panels[1].getY() + panels[1].getHeightPanel() / 2,
+            getX() + getWidthPanel() + ViewSinglyLinkedListAction.GAP_X,
+            getY() + getHeightPanel() / 2
+        };
+    }
 }

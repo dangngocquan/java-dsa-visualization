@@ -5,6 +5,7 @@ import src.components.base.Panel;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.AbstractPanelDataStructureNode;
+import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
 import src.models.datastructures.list.MyArrayList;
@@ -111,7 +112,7 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
     }
 
     public void replaceDataByNewData() {
-        MyList<AbstractPanelDataStructureNode> panelElements = getRootScreen().list;
+        MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
             AbstractPanelDataStructureNode panel = panelElements.get(i);
             rootScreen.viewAction.remove(panel);
@@ -137,7 +138,7 @@ public class ArrayListActionEnlarge extends AbstractListAnimation {
 
     public void solveRelations() {
         ((ViewArrayListAction) rootScreen.viewAction).panelData = newPanelData;
-        MyList<AbstractPanelDataStructureNode> panelElements = getRootScreen().list;
+        MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
             AbstractPanelDataStructureNode panel = panelElements.get(i);
             newPanelData.remove(panel);

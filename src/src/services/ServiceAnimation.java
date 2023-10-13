@@ -76,4 +76,15 @@ public class ServiceAnimation extends Service {
                 component, visible, delay, duration
         )).start();
     }
+
+    public static void transformArrowPanelNode(
+            Panel rootScreen,
+            int[] start,
+            int[] end,
+            int delay,
+            int duration) {
+        (new TransformArrowOfPanelNode(
+                rootScreen, start, end, delay, duration
+        )).start();
+    }
 }

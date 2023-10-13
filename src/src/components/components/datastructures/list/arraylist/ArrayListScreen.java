@@ -7,7 +7,7 @@ public class ArrayListScreen extends AbstractListScreen {
 
     @Override
     public void createList() {
-        list = new MyArrayList<>();
+        list = new MyArrayList();
         list.add(new ArrayListPanelNode(list.size(), 1));
         list.add(new ArrayListPanelNode(list.size(), 0));
         list.add(new ArrayListPanelNode(list.size(), 4));
