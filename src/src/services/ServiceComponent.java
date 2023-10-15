@@ -47,8 +47,12 @@ public class ServiceComponent extends Service {
     }
 
     public static void drawPatternArrow1(Graphics g, int x1, int y1, int x2, int y2, Color color) {
-        int xCenter = (x1 + x2) / 2;
-
+        int xCenter;
+        if ((y2-y1) * (x2-x1) <= 0) {
+            xCenter = (x1 + 2 * x2) / 3;
+        } else {
+            xCenter = (2 * x1 + x2) / 3;
+        }
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setStroke(new BasicStroke(2));
         g2d.setColor(color);

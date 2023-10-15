@@ -4,6 +4,7 @@ public class TestMyList {
     public void run() {
         testArrayList();
         testSinglyLinkedList();
+        testDoubleLinkedList();
     }
 
     public void testArrayList() {
@@ -15,6 +16,12 @@ public class TestMyList {
     public void testSinglyLinkedList() {
         System.out.println("\nTEST SINGLY LINKED LIST");
         MyList<Integer> list = new MySinglyLinkedList<>();
+        testMyList(list);
+    }
+
+    public void testDoubleLinkedList() {
+        System.out.println("\nTEST DOUBLE LINKED LIST");
+        MyList<Integer> list = new MyDoubleLinkedList<>();
         testMyList(list);
     }
 

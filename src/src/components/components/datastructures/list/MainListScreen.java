@@ -4,6 +4,7 @@ import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
+import src.components.components.datastructures.list.doublelinkedlist.DoubleLinkedListScreen;
 import src.components.components.datastructures.list.singlylinkedlist.SinglyLinkedListScreen;
 
 import javax.swing.*;
@@ -103,6 +104,17 @@ public class MainListScreen extends AbstractScreen {
             }
             setHidden(true);
             screens[2].setHidden(false);
+        });
+
+        // Double Linked List
+        buttons[3].addActionListener(e -> {
+            if (screens[3] == null) {
+                screens[3] = new DoubleLinkedListScreen();
+                screens[3].setVisible(false);
+                getApp().addScreen(screens[3]);
+            }
+            setHidden(true);
+            screens[3].setHidden(false);
         });
     }
 }
