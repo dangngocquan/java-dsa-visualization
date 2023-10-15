@@ -15,14 +15,16 @@ public class Config {
     // Color
     public static Color COLOR_TEXT = new Color(20, 20, 20);
     public static Color BACKGROUND_COLOR_APP = new Color(222, 224, 236);
-    public static Color COLOR_GREEN = new Color(200, 255, 200);
+    public static Color COLOR_GREEN = new Color(0, 255, 0);
     public static Color COLOR_BLUE = new Color(0, 150, 255);
     public static Color COLOR_GRAY_1 = new Color(210, 210, 210);
     public static Color COLOR_GRAY_2 = new Color(150, 150, 150);
     public static Color COLOR_RED = new Color(255, 107, 107);
+    public static Color COLOR_WHITE = new Color(255, 255, 255);
+    public static Color COLOR_YELLOW = new Color(255, 255, 0);
 
-    public static Color COLOR_BAR_PLAIN = new Color(255, 255, 255);
-    public static Color COLOR_BAR_CHECKING = new Color(255, 255, 0);
+    public static Color COLOR_BAR_PLAIN = COLOR_WHITE;
+    public static Color COLOR_BAR_CHECKING = COLOR_YELLOW;
     public static Color COLOR_BAR_DONE = new Color(0, 255, 0);
     public static Color COLOR_BAR_TEMP_SORTED = COLOR_BLUE;
     public static Color COLOR_BAR_FLAG = new Color(255, 110, 110);

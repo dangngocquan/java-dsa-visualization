@@ -35,7 +35,9 @@ public class Transform {
     public void stop() {
         panel.setXY(locationStart.getX() + translateX, locationStart.getY() + translateY);
         if (panel instanceof AbstractPanelDataStructureNode) {
-            panel.getParent().repaint();
+            if (panel.getParent() != null) {
+                panel.getParent().repaint();
+            }
         }
         timer.cancel();
         timer.purge();
@@ -57,7 +59,9 @@ public class Transform {
                     (int) Math.round(y)
             );
             if (panel instanceof AbstractPanelDataStructureNode) {
-                panel.getParent().repaint();
+                if (panel.getParent() != null) {
+                    panel.getParent().repaint();
+                }
             }
         }
     }

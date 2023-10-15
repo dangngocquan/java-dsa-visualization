@@ -1,18 +1,13 @@
 package src.components.components.datastructures.list.singlylinkedlist;
 
 import src.Config;
-import src.components.base.Panel;
 import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.AbstractViewListAction;
-import src.components.components.datastructures.list.singlylinkedlist.actionanimation.SinglyLinkedListActionAdd1;
-import src.components.components.datastructures.list.singlylinkedlist.actionanimation.SinglyLinkedListActionAdd2;
-import src.models.datastructures.list.MySinglyLinkedList;
-import src.services.ServiceAnimation;
+import src.components.components.datastructures.list.singlylinkedlist.actionanimation.*;
 import src.services.ServiceComponent;
 
-import javax.swing.plaf.basic.BasicGraphicsUtils;
 import java.awt.*;
 import java.util.Iterator;
 
@@ -83,16 +78,22 @@ public class ViewSinglyLinkedListAction extends AbstractViewListAction {
 
     @Override
     public void actionGet(int index) {
-
+        new SinglyLinkedListActionGet(
+                index, getRootScreen(), 2000, null
+        ).start();
     }
 
     @Override
     public void actionRemove(int index) {
-
+        new SinglyLinkedListActionRemove1(
+                index, getRootScreen(), 2000, null
+        ).start();
     }
 
     @Override
     public void actionRemove(Integer value) {
-
+        new SinglyLinkedListActionRemove2(
+                value, getRootScreen(), 2000, null
+        ).start();
     }
 }

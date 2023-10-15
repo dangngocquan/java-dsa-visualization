@@ -1,9 +1,9 @@
 package src.components.components.datastructures.list.arraylist.actionanimation;
 
 import src.Config;
-import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
+import src.components.components.datastructures.list.AbstractPanelListNode;
 import src.components.components.datastructures.list.arraylist.ArrayListPanelNode;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
@@ -12,7 +12,7 @@ import src.services.serviceanimations.Location;
 
 public class ArrayListActionGet extends AbstractListAnimation {
     private int index;
-    private AbstractPanelDataStructureNode node;
+    private AbstractPanelListNode node;
 
     public ArrayListActionGet(
             int index,
@@ -44,7 +44,7 @@ public class ArrayListActionGet extends AbstractListAnimation {
     }
 
     public void pickUpElement(int index) {
-        AbstractPanelDataStructureNode node0 = getRootScreen().list.get(index);
+        AbstractPanelListNode node0 = getRootScreen().list.get(index);
         node = new ArrayListPanelNode(node0.getIndex(), node0.getValue());
         getRootScreen().viewAction.add(node);
         ServiceAnimation.transitionColor(
