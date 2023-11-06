@@ -9,7 +9,7 @@ import src.components.components.datastructures.list.arraylist.ViewArrayListActi
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class ArrayListActionRemove1 extends AbstractListAnimation {
+public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
     private int index;
     private AbstractPanelDataStructureNode node;
 

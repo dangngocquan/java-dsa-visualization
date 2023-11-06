@@ -7,7 +7,7 @@ import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.services.ServiceAnimation;
 
-public class ArrayListActionRemove2 extends AbstractListAnimation {
+public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
     private int value;
     private int index;
     public ArrayListActionRemove2(

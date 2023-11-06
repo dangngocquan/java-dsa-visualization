@@ -10,7 +10,7 @@ import src.components.components.datastructures.list.singlylinkedlist.ViewSingly
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class SinglyLinkedListActionRemove1 extends AbstractListAnimation {
+public class SinglyLinkedListActionRemove1 extends AbstractSinglyLinkedListAnimation {
     private final int index;
     private SinglyLinkedListPanelNode node;
     private SinglyLinkedListPanelNode prevNode;

@@ -10,7 +10,7 @@ import src.components.components.datastructures.list.arraylist.ViewArrayListActi
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class ArrayListActionGet extends AbstractListAnimation {
+public class ArrayListActionGet extends AbstractArrayListAnimation {
     private int index;
     private AbstractPanelListNode node;
 

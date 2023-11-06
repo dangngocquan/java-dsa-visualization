@@ -10,7 +10,7 @@ import src.components.components.datastructures.list.doublelinkedlist.ViewDouble
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class DoubleLinkedListActionRemove1 extends AbstractListAnimation {
+public class DoubleLinkedListActionRemove1 extends AbstractDoubleLinkedListAnimation {
     private final int index;
     private DoubleLinkedListPanelNode node;
     private DoubleLinkedListPanelNode prevNode;

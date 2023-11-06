@@ -9,7 +9,7 @@ import src.components.components.datastructures.list.doublelinkedlist.ViewDouble
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class DoubleLinkedListActionAdd1 extends AbstractListAnimation {
+public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimation {
     public int value;
     public int index;
     public int x;

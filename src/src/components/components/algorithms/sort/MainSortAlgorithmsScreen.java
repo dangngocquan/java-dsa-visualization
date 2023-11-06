@@ -4,6 +4,7 @@ import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
 import src.components.components.algorithms.sort.bubblesort.BubbleSortAlgorithmScreen;
+import src.components.components.algorithms.sort.heapsort.HeapSortAlgorithmScreen;
 import src.components.components.algorithms.sort.insertionsort.InsertionSortAlgorithmScreen;
 import src.components.components.algorithms.sort.mergesort.MergeSortAlgorithmScreen;
 import src.components.components.algorithms.sort.quicksort.QuickSortAlgorithmScreen;
@@ -12,7 +13,7 @@ import src.components.components.algorithms.sort.selectionsort.SelectionSortAlgo
 public class MainSortAlgorithmsScreen extends AbstractScreen {
     @Override
     public void addButtons() {
-        int numberButtonPerColumn = 6;
+        int numberButtonPerColumn = 7;
         int numberButtonPerRow = 1;
         int buttonWidth = 250;
         int buttonHeight = 50;
@@ -61,12 +62,19 @@ public class MainSortAlgorithmsScreen extends AbstractScreen {
                 "Merge Sort"
         );
 
+        buttons[6] = new Button(
+                initialX,
+                initialY + (gapHeight + buttonHeight) * 4,
+                buttonWidth, buttonHeight,
+                "Heap Sort"
+        );
+
         for (Button button : buttons) add(button);
     }
 
     @Override
     public void createDefaultScreens() {
-        screens = new AbstractScreen[6];
+        screens = new AbstractScreen[7];
     }
 
     @Override
@@ -133,6 +141,17 @@ public class MainSortAlgorithmsScreen extends AbstractScreen {
             }
             setHidden(true);
             screens[5].setHidden(false);
+        });
+
+        // Heap Sort
+        buttons[6].addActionListener(e -> {
+            if (screens[6] == null) {
+                screens[6] = new HeapSortAlgorithmScreen();
+                screens[6].setVisible(false);
+                getApp().addScreen(screens[6]);
+            }
+            setHidden(true);
+            screens[6].setHidden(false);
         });
     }
 }

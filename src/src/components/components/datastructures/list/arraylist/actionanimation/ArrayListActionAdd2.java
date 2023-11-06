@@ -9,7 +9,7 @@ import src.components.components.datastructures.list.arraylist.ViewArrayListActi
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class ArrayListActionAdd2 extends AbstractListAnimation {
+public class ArrayListActionAdd2 extends AbstractArrayListAnimation {
     public int value;
     public int index;
     public int x;

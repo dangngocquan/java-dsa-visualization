@@ -17,7 +17,7 @@ public class MainListScreen extends AbstractScreen {
 
     @Override
     public void addButtons() {
-        int numberButtonPerColumn = 5;
+        int numberButtonPerColumn = 4;
         int numberButtonPerRow = 1;
         int buttonWidth = 250;
         int buttonHeight = 50;
@@ -54,18 +54,10 @@ public class MainListScreen extends AbstractScreen {
                 "Double Linked List"
         );
 
-        buttons[4] = new Button(
-                initialX,
-                initialY + (gapHeight + buttonHeight) * 3,
-                buttonWidth, buttonHeight,
-                "Circular Linked List"
-        );
-
         add(buttons[0]);
         add(buttons[1]);
         add(buttons[2]);
         add(buttons[3]);
-        add(buttons[4]);
     }
 
     @Override

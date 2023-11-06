@@ -9,7 +9,7 @@ public class TestMyList {
 
     public void testArrayList() {
         System.out.println("\nTEST ARRAY LIST");
-        MyList<Integer> list = new MyArrayList();
+        MyList<Integer> list = new MyArrayList<>();
         testMyList(list);
     }
 

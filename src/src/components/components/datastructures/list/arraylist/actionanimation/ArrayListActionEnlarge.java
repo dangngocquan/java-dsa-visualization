@@ -13,7 +13,7 @@ import src.models.datastructures.list.MyList;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class ArrayListActionEnlarge extends AbstractListAnimation {
+public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
     private Panel title1;
     private Panel newPanelData;
     public ArrayListActionEnlarge(

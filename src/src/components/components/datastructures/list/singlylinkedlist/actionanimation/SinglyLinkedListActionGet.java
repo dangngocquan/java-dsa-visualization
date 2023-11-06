@@ -13,7 +13,7 @@ import src.components.components.datastructures.list.singlylinkedlist.ViewSingly
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
-public class SinglyLinkedListActionGet extends AbstractListAnimation {
+public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation {
     private int index;
     private AbstractPanelListNode node;
 
