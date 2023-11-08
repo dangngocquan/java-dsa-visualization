@@ -1,6 +1,7 @@
 package src.models.algorithms.sorting;
 
-public class BubbleSort {
+public class BubbleSort implements SortAlgorithm {
+    @Override
     public <T extends Comparable<T>> void sort(T[] a) {
         for (int i = 0; i < a.length-1; i++) {
             boolean isSorted = true;

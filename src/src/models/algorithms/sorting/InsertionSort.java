@@ -1,6 +1,7 @@
 package src.models.algorithms.sorting;
 
-public class InsertionSort {
+public class InsertionSort implements SortAlgorithm {
+    @Override
     public <T extends Comparable<T>> void sort(T[] a) {
         for (int i = 1; i < a.length; i++) {
             T valueInsert = a[i];

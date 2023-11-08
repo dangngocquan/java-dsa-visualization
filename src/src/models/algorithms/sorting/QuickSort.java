@@ -1,6 +1,7 @@
 package src.models.algorithms.sorting;
 
-public class QuickSort {
+public class QuickSort implements SortAlgorithm {
+    @Override
     public <T extends Comparable<T>> void sort(T[] a) {
         quickSort(a, 0, a.length-1);
     }

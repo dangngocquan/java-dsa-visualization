@@ -11,10 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainListScreen extends AbstractScreen {
-    public MainListScreen() {
-        super();
-    }
-
     @Override
     public void addButtons() {
         int numberButtonPerColumn = 4;
@@ -28,7 +24,7 @@ public class MainListScreen extends AbstractScreen {
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new src.components.base.Button[5];
+        buttons = new src.components.base.Button[4];
         buttons[0] = new src.components.base.Button(
                 initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
@@ -54,15 +50,12 @@ public class MainListScreen extends AbstractScreen {
                 "Double Linked List"
         );
 
-        add(buttons[0]);
-        add(buttons[1]);
-        add(buttons[2]);
-        add(buttons[3]);
+        for (Button button : buttons) add(button);
     }
 
     @Override
     public void createDefaultScreens() {
-        screens = new AbstractScreen[5];
+        screens = new AbstractScreen[4];
     }
 
     @Override

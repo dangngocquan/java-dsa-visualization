@@ -24,7 +24,7 @@ public class MainSortAlgorithmsScreen extends AbstractScreen {
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new src.components.base.Button[6];
+        buttons = new src.components.base.Button[7];
         buttons[0] = new src.components.base.Button(
                 initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
@@ -64,7 +64,7 @@ public class MainSortAlgorithmsScreen extends AbstractScreen {
 
         buttons[6] = new Button(
                 initialX,
-                initialY + (gapHeight + buttonHeight) * 4,
+                initialY + (gapHeight + buttonHeight) * 5,
                 buttonWidth, buttonHeight,
                 "Heap Sort"
         );

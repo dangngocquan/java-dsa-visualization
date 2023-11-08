@@ -31,6 +31,7 @@ public class LinkedListStack<E> extends AbstractStack<E> {
         if (stack != null) {
             element = stack.element;
             stack = stack.next;
+            size--;
         }
         return element;
     }

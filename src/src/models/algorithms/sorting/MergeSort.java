@@ -2,7 +2,8 @@ package src.models.algorithms.sorting;
 
 import java.util.Arrays;
 
-public class MergeSort {
+public class MergeSort implements SortAlgorithm {
+    @Override
     public <T extends Comparable<T>> void sort(T[] a) {
         mergeSort(a, 0, a.length-1);
     }

@@ -76,7 +76,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 initialX + (buttonWidth + gapWidth) * 3,
                 initialY ,
                 buttonWidth, buttonHeight * 2 + gapHeight,
-                "Animation Speed"
+                "Animation Speed (500)"
         );
 
         buttons[6] = new Button(
@@ -205,7 +205,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
             button.addActionListener(e -> {
                 String data = textField.getText();
                 int inputSize = 0;
-                if (data.matches("[0-9]{1,}")) {
+                if (data.matches("[0-9]+")) {
                     inputSize = Integer.parseInt(data);
                     if (inputSize > 128) inputSize = 128;
                     if (inputSize < 2) inputSize = 2;
@@ -231,7 +231,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
             button.addActionListener(e -> {
                 String data = textField.getText();
                 int inputAnimationPeriod = 0;
-                if (data.matches("[0-9]{1,}")) {
+                if (data.matches("[0-9]+")) {
                     inputAnimationPeriod = Integer.parseInt(data);
                     if (inputAnimationPeriod < 2) inputAnimationPeriod = 2;
                 } else {
@@ -240,13 +240,14 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 dialog.dispose();
                 if (inputAnimationPeriod != getRootScreen().getViewAction().animationPeriod) {
                     getRootScreen().getViewAction().setAnimationPeriod(inputAnimationPeriod);
+                    buttons[5].setText("Animation Speed (" + getRootScreen().getViewAction().getAnimationPeriod() + ")");
                     getRootScreen().getViewAction().setElements(getRootScreen().array);
                 }
             });
         }
     }
 
-    private abstract class DialogWithFieldText extends Dialog {
+    private abstract static class DialogWithFieldText extends Dialog {
         protected TextField textField;
         protected Button button;
 
@@ -269,12 +270,12 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
             int gapHeight = 20;
             int gapWidth = 40;
             int totalHeight = buttonHeight * numberObjectPerColumn + (numberObjectPerColumn - 1) * gapHeight;
-            int totalWidth = buttonWidth * numberObjectPerRow + (numberObjectPerRow - 1) * gapWidth;
+            int totalWidth = buttonWidth * numberObjectPerRow;
             int initialY = (getHeightDialog() - totalHeight) / 2;
             int initialX = (getWidthDialog() - totalWidth) / 2;
 
             button = new Button(
-                    initialX + (gapWidth + buttonWidth) * (numberObjectPerRow - 1),
+                    initialX,
                     initialY + (gapHeight + buttonHeight) * (numberObjectPerColumn - 1),
                     buttonWidth, buttonHeight,
                     "Save"

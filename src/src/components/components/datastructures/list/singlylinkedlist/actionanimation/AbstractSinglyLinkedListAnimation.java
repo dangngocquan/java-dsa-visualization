@@ -7,7 +7,7 @@ public abstract class AbstractSinglyLinkedListAnimation extends AbstractListAnim
     public AbstractSinglyLinkedListAnimation(
             AbstractListScreen rootScreen,
             int period,
-            AbstractSinglyLinkedListAnimation nextAnimation) {
+            AbstractListAnimation nextAnimation) {
         super(rootScreen, period, nextAnimation);
     }
 

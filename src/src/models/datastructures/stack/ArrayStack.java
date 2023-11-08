@@ -3,7 +3,7 @@ package src.models.datastructures.stack;
 import java.util.Iterator;
 
 public class ArrayStack<E> extends AbstractStack<E> {
-    public static final int DEFAULT_CAPACITY = 10;
+    public static final int DEFAULT_CAPACITY = 4;
     private E[] data;
     private int size;
 
@@ -67,5 +67,9 @@ public class ArrayStack<E> extends AbstractStack<E> {
         E[] newData = (E[]) new Object[data.length * 2 + 1];
         System.arraycopy(data, 0, newData, 0, data.length);
         data = newData;
+    }
+
+    public int getSizeData() {
+        return data.length;
     }
 }

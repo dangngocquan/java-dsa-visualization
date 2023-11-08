@@ -46,7 +46,7 @@ public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
     }
 
     public void createNewData() {
-        int dataLength = ((MyArrayList) (getRootScreen().list)).getSizeData() * 2;
+        int dataLength = ((MyArrayList<?>) (getRootScreen().list)).getSizeData() * 2;
         title1 = new Panel(
                 0,
                 ViewArrayListAction.INITIAL_Y + 20 + ViewArrayListAction.SIZE_PER_NODE + ViewArrayListAction.GAP_Y,
