@@ -26,7 +26,7 @@ public class ArrayListPanelNode extends AbstractPanelListNode {
                 value + "", 0
         );
         panel.setBorderWidth(1);
-        panel.setFont(Config.ARIAL_BOLD_18);
+        panel.setFont(Config.MONOSPACED_BOLD_18);
         add(panel);
     }
 

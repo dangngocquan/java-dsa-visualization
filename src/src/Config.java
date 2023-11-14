@@ -31,8 +31,9 @@ public class Config {
     public static Color COLOR_BAR_SMALLER_PIVOT = new Color(255, 210, 210);
 
     // Font
-    public static final Font ARIAL_BOLD_12 = new Font(Font.MONOSPACED, Font.BOLD, 12);
-    public static final Font ARIAL_BOLD_14 = new Font(Font.MONOSPACED, Font.BOLD, 14);
-    public static final Font ARIAL_BOLD_16 = new Font(Font.MONOSPACED, Font.BOLD, 16);
-    public static final Font ARIAL_BOLD_18 = new Font(Font.MONOSPACED, Font.BOLD, 18);
+    public static final Font MONOSPACED_BOLD_6 = new Font(Font.MONOSPACED, Font.BOLD, 6);
+    public static final Font MONOSPACED_BOLD_12 = new Font(Font.MONOSPACED, Font.BOLD, 12);
+    public static final Font MONOSPACED_BOLD_14 = new Font(Font.MONOSPACED, Font.BOLD, 14);
+    public static final Font MONOSPACED_BOLD_16 = new Font(Font.MONOSPACED, Font.BOLD, 16);
+    public static final Font MONOSPACED_BOLD_18 = new Font(Font.MONOSPACED, Font.BOLD, 18);
 }

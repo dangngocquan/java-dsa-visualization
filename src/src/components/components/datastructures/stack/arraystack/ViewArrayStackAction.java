@@ -2,15 +2,12 @@ package src.components.components.datastructures.stack.arraystack;
 
 import src.Config;
 import src.components.base.Panel;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionAdd1;
-import src.components.components.datastructures.list.arraylist.actionanimation.ArrayListActionEnlarge;
 import src.components.components.datastructures.stack.AbstractPanelStackNode;
 import src.components.components.datastructures.stack.AbstractStackScreen;
 import src.components.components.datastructures.stack.AbstractViewStackAction;
 import src.components.components.datastructures.stack.arraystack.actionanimation.ArrayStackActionEnlarge;
 import src.components.components.datastructures.stack.arraystack.actionanimation.ArrayStackActionPop;
 import src.components.components.datastructures.stack.arraystack.actionanimation.ArrayStackActionPush;
-import src.models.datastructures.list.MyArrayList;
 import src.models.datastructures.stack.ArrayStack;
 
 public class ViewArrayStackAction extends AbstractViewStackAction {
@@ -44,7 +41,7 @@ public class ViewArrayStackAction extends AbstractViewStackAction {
                 "DATA",
                 0
         );
-        title0.setFont(Config.ARIAL_BOLD_18);
+        title0.setFont(Config.MONOSPACED_BOLD_18);
         add(title0);
     }
 

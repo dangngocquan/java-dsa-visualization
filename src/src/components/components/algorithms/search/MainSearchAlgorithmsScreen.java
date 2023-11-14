@@ -1,16 +1,12 @@
-package src.components.components.algorithms;
+package src.components.components.algorithms.search;
 
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
-import src.components.components.algorithms.search.MainSearchAlgorithmsScreen;
-import src.components.components.algorithms.sort.MainSortAlgorithmsScreen;
+import src.components.components.algorithms.search.binary.BinarySearchAlgorithmScreen;
+import src.components.components.algorithms.search.sequential.SequentialSearchAlgorithmScreen;
 
-public class MainAlgorithmsScreen extends AbstractScreen {
-    public MainAlgorithmsScreen() {
-        super();
-    }
-
+public class MainSearchAlgorithmsScreen extends AbstractScreen {
     @Override
     public void addButtons() {
         int numberButtonPerColumn = 3;
@@ -24,8 +20,8 @@ public class MainAlgorithmsScreen extends AbstractScreen {
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new Button[3];
-        buttons[0] = new Button(
+        buttons = new src.components.base.Button[3];
+        buttons[0] = new src.components.base.Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
                 buttonWidth, buttonHeight,
@@ -35,13 +31,13 @@ public class MainAlgorithmsScreen extends AbstractScreen {
                 initialX,
                 initialY,
                 buttonWidth, buttonHeight,
-                "Sorting Algorithms"
+                "Sequential Search"
         );
         buttons[2] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight),
                 buttonWidth, buttonHeight,
-                "Searching Algorithms"
+                "Binary Search"
         );
 
         for (Button button : buttons) add(button);
@@ -57,16 +53,16 @@ public class MainAlgorithmsScreen extends AbstractScreen {
         // Back
         buttons[0].addActionListener(e -> {
             if (screens[0] == null) {
-                screens[0] = getApp().getScreens().get("MainScreen");
+                screens[0] = getApp().getScreens().get("MainAlgorithmsScreen");
             }
             setHidden(true);
             screens[0].setHidden(false);
         });
 
-        // Sorting Algorithms
+        // Sequential Search
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new MainSortAlgorithmsScreen();
+                screens[1] = new SequentialSearchAlgorithmScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }
@@ -74,10 +70,10 @@ public class MainAlgorithmsScreen extends AbstractScreen {
             screens[1].setHidden(false);
         });
 
-        // Searching Algorithms
+        // Binary Search
         buttons[2].addActionListener(e -> {
             if (screens[2] == null) {
-                screens[2] = new MainSearchAlgorithmsScreen();
+                screens[2] = new BinarySearchAlgorithmScreen();
                 screens[2].setVisible(false);
                 getApp().addScreen(screens[2]);
             }

@@ -4,12 +4,13 @@ import src.Config;
 import src.components.components.algorithms.sort.AbstractSortAlgorithmAnimation;
 import src.components.components.algorithms.sort.AbstractSortAlgorithmScreen;
 import src.components.components.algorithms.sort.Bar;
+import src.components.components.algorithms.sort.ViewSortAlgorithmAction;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
-    private Queue<int[]>[] queues;
+    private final Queue<int[]>[] queues;
     private int indexQueue;
     private int[] range1; // [left, mid]
     private int[] range2; // [mid+1, right]
@@ -17,7 +18,7 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
     private int i2; // index for range2
     private int i; // run in range [left, right] to merge range1 and range2
     private Bar[] subBars;
-    private Bar[] bars;
+    private final Bar[] bars;
 
     public MergeSortAnimation(AbstractSortAlgorithmScreen rootScreen, int period) {
         super(rootScreen, period);
@@ -38,7 +39,7 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                 int right = range[1];
                 int mid = (left + right) / 2;
                 if (left == right) {
-                    if (nextQueue.size() > 0) {
+                    if (!nextQueue.isEmpty()) {
                         nextQueue.add(new int[]{left, left});
                         nextQueue.add(new int[]{right, right});
                     }
@@ -73,7 +74,7 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                             range1[0],
                             range2[1],
                             Config.COLOR_BAR_FLAG,
-                            getRootScreen().getViewAction().initialY0
+                            ViewSortAlgorithmAction.initialY0
                     );
                     subBars = new Bar[range2[1] - range1[0] + 1];
                     i = range1[0];
@@ -86,7 +87,7 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                         int j = range1[0] + animationStep;
                         getRootScreen().getViewAction().setBar(j, subBars[animationStep]);
                         getRootScreen().getViewAction().pickDownBar(
-                                j, getRootScreen().getViewAction().initialY1
+                                j, ViewSortAlgorithmAction.initialY1
                         );
                         getRootScreen().getViewAction().checkBar(
                                 j, Config.COLOR_BAR_TEMP_SORTED
@@ -104,9 +105,9 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                             subBars[-range1[0] + i] = bars[i1];
                             getRootScreen().getViewAction().moveBar(
                                     i1,
-                                    getRootScreen().getViewAction().initialY0,
+                                    ViewSortAlgorithmAction.initialY0,
                                     i,
-                                    getRootScreen().getViewAction().initialY1
+                                    ViewSortAlgorithmAction.initialY1
                             );
                             i1++;
                             i++;
@@ -114,9 +115,9 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                             subBars[-range1[0] + i] = bars[i2];
                             getRootScreen().getViewAction().moveBar(
                                     i2,
-                                    getRootScreen().getViewAction().initialY0,
+                                    ViewSortAlgorithmAction.initialY0,
                                     i,
-                                    getRootScreen().getViewAction().initialY1
+                                    ViewSortAlgorithmAction.initialY1
                             );
                             i2++;
                             i++;
@@ -125,9 +126,9 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                         subBars[-range1[0] + i] = bars[i1];
                         getRootScreen().getViewAction().moveBar(
                                 i1,
-                                getRootScreen().getViewAction().initialY0,
+                                ViewSortAlgorithmAction.initialY0,
                                 i,
-                                getRootScreen().getViewAction().initialY1
+                                ViewSortAlgorithmAction.initialY1
                         );
                         i1++;
                         i++;
@@ -135,9 +136,9 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
                         subBars[-range1[0] + i] = bars[i2];
                         getRootScreen().getViewAction().moveBar(
                                 i2,
-                                getRootScreen().getViewAction().initialY0,
+                                ViewSortAlgorithmAction.initialY0,
                                 i,
-                                getRootScreen().getViewAction().initialY1
+                                ViewSortAlgorithmAction.initialY1
                         );
                         i2++;
                         i++;

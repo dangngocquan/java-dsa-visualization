@@ -42,12 +42,12 @@ public class DoubleLinkedListPanelNode extends AbstractPanelListNode {
                 getBackgroundColor(), null, "Next", 0);
 
         panels[0].setBorderWidth(0);
-        panels[0].setFont(Config.ARIAL_BOLD_14);
+        panels[0].setFont(Config.MONOSPACED_BOLD_14);
         panels[0].setBackgroundColor(Config.COLOR_BLUE);
         panels[1].setBorderWidth(2);
-        panels[1].setFont(Config.ARIAL_BOLD_16);
+        panels[1].setFont(Config.MONOSPACED_BOLD_16);
         panels[2].setBorderWidth(0);
-        panels[2].setFont(Config.ARIAL_BOLD_14);
+        panels[2].setFont(Config.MONOSPACED_BOLD_14);
         panels[2].setBackgroundColor(Config.COLOR_BLUE);
     }
 

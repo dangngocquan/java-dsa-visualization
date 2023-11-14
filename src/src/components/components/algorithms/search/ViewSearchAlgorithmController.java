@@ -1,28 +1,30 @@
-package src.components.components.algorithms.sort;
+package src.components.components.algorithms.search;
 
 import src.Config;
-import src.components.base.Button;
-import src.components.base.Dialog;
-import src.components.base.Panel;
-import src.components.base.TextField;
 import src.components.components.AbstractScreen;
 import src.components.components.algorithms.AbstractViewAlgorithmController;
+import src.components.components.algorithms.search.binary.BinarySearchAlgorithmScreen;
 import src.services.ServiceArray;
 import src.services.ServiceGenerateRandom;
+import src.components.base.Dialog;
+import src.components.base.Button;
+import src.components.base.Panel;
+import src.components.base.TextField;
 
 import java.awt.*;
 
-public class ViewSortAlgorithmController extends AbstractViewAlgorithmController {
+
+public class ViewSearchAlgorithmController extends AbstractViewAlgorithmController {
     public Button[] buttons;
-    public ViewSortAlgorithmController(AbstractSortAlgorithmScreen rootScreen) {
+    public ViewSearchAlgorithmController(AbstractSearchAlgorithmScreen rootScreen) {
         super(rootScreen);
         addButtons();
         addActionListenerForButtons();
         repaint();
     }
 
-    public AbstractSortAlgorithmScreen getRootScreen() {
-        return (AbstractSortAlgorithmScreen) rootScreen;
+    public AbstractSearchAlgorithmScreen getRootScreen() {
+        return (AbstractSearchAlgorithmScreen) rootScreen;
     }
 
     public void addButtons() {
@@ -37,7 +39,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         int initialY = (getHeightPanel() - totalHeight) / 2;
         int initialX = (getWidthPanel() - totalWidth) / 2;
 
-        buttons = new Button[7];
+        buttons = new Button[8];
         buttons[0] = new Button(
                 initialX ,
                 initialY ,
@@ -75,15 +77,22 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         buttons[5] = new Button(
                 initialX + (buttonWidth + gapWidth) * 3,
                 initialY ,
-                buttonWidth, buttonHeight * 2 + gapHeight,
-                "Animation Speed (500)"
+                buttonWidth, buttonHeight,
+                "Value searching (10)"
         );
 
         buttons[6] = new Button(
+                initialX + (buttonWidth + gapWidth) * 3,
+                initialY + (buttonHeight + gapHeight) ,
+                buttonWidth, buttonHeight,
+                "Animation Speed (500)"
+        );
+
+        buttons[7] = new Button(
                 initialX + (buttonWidth + gapWidth) * 4,
                 initialY ,
                 buttonWidth, buttonHeight * 2 + gapHeight,
-                "Run sort"
+                "Run search"
         );
 
 
@@ -93,7 +102,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
     public void addActionListenerForButtons() {
         // Back
         buttons[0].addActionListener(e -> {
-            AbstractScreen mainAlgorithmsScreen = getApp().getScreens().get("MainSortAlgorithmsScreen");
+            AbstractScreen mainAlgorithmsScreen = getApp().getScreens().get("MainSearchAlgorithmsScreen");
             rootScreen.setHidden(true);
             mainAlgorithmsScreen.setHidden(false);
         });
@@ -108,7 +117,10 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         // Generate New Array
         buttons[2].addActionListener(e -> {
             int[] mainArray = getRootScreen().array;
-            getRootScreen().setArray(ServiceGenerateRandom.createRandomArray(mainArray.length, 1, 100));
+            getRootScreen().setArray(
+                    getRootScreen() instanceof BinarySearchAlgorithmScreen?
+                            ServiceGenerateRandom.createRandomSortedArray(mainArray.length, 1, 100)
+                            : ServiceGenerateRandom.createRandomArray(mainArray.length, 1, 100));
         });
 
         // Edit Size Array
@@ -144,8 +156,19 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
             );
         });
 
-        // Animation Speed
+        // Value Searching
         buttons[5].addActionListener(e -> {
+            new DialogSetValueSearching(
+                    (Config.WIDTH - Config.WIDTH/4) / 2,
+                    (Config.HEIGHT - Config.HEIGHT/3) / 2,
+                    Config.WIDTH/4,
+                    Config.HEIGHT/3,
+                    "Set value searching in range [1 - 99]"
+            );
+        });
+
+        // Animation Speed
+        buttons[6].addActionListener(e -> {
             new DialogSetAnimationSpeed(
                     (Config.WIDTH - Config.WIDTH/4) / 2,
                     (Config.HEIGHT - Config.HEIGHT/3) / 2,
@@ -156,18 +179,23 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         });
 
         // Run/Pause sort
-        buttons[6].addActionListener(e -> {
-            if (getRootScreen().sortAnimation == null) {
+        buttons[7].addActionListener(e -> {
+            if (getRootScreen() instanceof BinarySearchAlgorithmScreen
+                    && !ServiceArray.isSortedArray(getRootScreen().array)) {
+                new DialogNotifyUnsortedArray();
+                return;
+            }
+            if (getRootScreen().searchAnimation == null) {
                 getRootScreen().startSort();
                 setEnabledAllButtons(false);
-                buttons[6].setEnabledButton(true);
+                buttons[7].setEnabledButton(true);
             } else {
-                if (getRootScreen().sortAnimation.isRunning()) {
+                if (getRootScreen().searchAnimation.isRunning()) {
                     setEnabledAllButtons(true);
                     getRootScreen().pauseSort();
-                } else if (getRootScreen().sortAnimation.isPaused()) {
+                } else if (getRootScreen().searchAnimation.isPaused()) {
                     setEnabledAllButtons(false);
-                    buttons[6].setEnabledButton(true);
+                    buttons[7].setEnabledButton(true);
                     getRootScreen().continueSort();
                 }
             }
@@ -178,21 +206,48 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         for (Button button : buttons) button.setEnabledButton(enabled);
     }
 
-    public void startSort() {
-        buttons[6].setText("Pause sort");
+    public void startSearch() {
+        buttons[7].setText("Pause search");
     }
 
-    public void pauseSort() {
-        buttons[6].setText("Continue sort");
+    public void pauseSearch() {
+        buttons[7].setText("Continue search");
     }
 
-    public void continueSort() {
-        buttons[6].setText("Pause sort");
+    public void continueSearch() {
+        buttons[7].setText("Pause search");
     }
 
-    public void endSort() {
-        buttons[6].setText("Start sort");
+    public void endSearch() {
+        buttons[7].setText("Start search");
         setEnabledAllButtons(true);
+    }
+
+    private static class DialogNotifyUnsortedArray extends Dialog {
+        public DialogNotifyUnsortedArray() {
+            super((Config.WIDTH - Config.WIDTH/3) / 2,
+                    (Config.HEIGHT - Config.HEIGHT/3) / 2,
+                    Config.WIDTH/3,
+                    Config.HEIGHT/3, "Invalid array");
+        }
+
+        @Override
+        public void addComponents() {
+            Panel panel = new Panel(
+                    0, 30, getWidthDialog(), 50,
+                    dialog.getBackground(), null,
+                    "Binary search only can execute with sorted array.", 0
+            );
+            panel.setFont(Config.MONOSPACED_BOLD_16);
+            Button button = new Button(
+                    getWidthDialog() / 2 - 50, panel.getY() + panel.getHeightPanel() + 30,
+                    100, 50, "OK"
+            );
+            button.addActionListener(e -> dialog.dispose());
+
+            dialog.add(panel);
+            dialog.add(button);
+        }
     }
 
     private class DialogGetSizeArray extends DialogWithFieldText {
@@ -205,7 +260,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
         public void addListeners() {
             button.addActionListener(e -> {
                 String data = textField.getText();
-                int inputSize;
+                int inputSize = 0;
                 if (data.matches("[0-9]+")) {
                     try {
                         inputSize = Integer.parseInt(data);
@@ -219,7 +274,10 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 }
                 dialog.dispose();
                 if (inputSize != getRootScreen().array.length) {
-                    getRootScreen().setArray(ServiceGenerateRandom.createRandomArray(inputSize, 1, 100));
+                    getRootScreen().setArray(
+                            getRootScreen() instanceof BinarySearchAlgorithmScreen?
+                                    ServiceGenerateRandom.createRandomSortedArray(inputSize, 1, 100)
+                                    : ServiceGenerateRandom.createRandomArray(inputSize, 1, 100));
                     buttons[3].setText("Array size (" + inputSize + ")");
                 }
             });
@@ -238,7 +296,11 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 String data = textField.getText();
                 int inputAnimationPeriod = 0;
                 if (data.matches("[0-9]+")) {
-                    inputAnimationPeriod = Integer.parseInt(data);
+                    try {
+                        inputAnimationPeriod = Integer.parseInt(data);
+                    } catch (Exception exception) {
+                        inputAnimationPeriod = 200;
+                    }
                     if (inputAnimationPeriod < 2) inputAnimationPeriod = 2;
                 } else {
                     inputAnimationPeriod = 200;
@@ -246,7 +308,39 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 dialog.dispose();
                 if (inputAnimationPeriod != getRootScreen().getViewAction().animationPeriod) {
                     getRootScreen().getViewAction().setAnimationPeriod(inputAnimationPeriod);
-                    buttons[5].setText("Animation Speed (" + getRootScreen().getViewAction().getAnimationPeriod() + ")");
+                    buttons[6].setText("Animation Speed (" + getRootScreen().getViewAction().getAnimationPeriod() + ")");
+                    getRootScreen().getViewAction().setElements(getRootScreen().array);
+                }
+            });
+        }
+    }
+
+    private class DialogSetValueSearching extends DialogWithFieldText {
+
+        public DialogSetValueSearching(int x, int y, int width, int height, String title) {
+            super(x, y, width, height, title);
+        }
+
+        @Override
+        public void addListeners() {
+            button.addActionListener(e -> {
+                String data = textField.getText();
+                int inputValueSearching = 0;
+                if (data.matches("[0-9]+")) {
+                    try {
+                        inputValueSearching = Integer.parseInt(data);
+                    } catch (Exception exception) {
+                        inputValueSearching = 10;
+                    }
+                    if (inputValueSearching < 1) inputValueSearching = 1;
+                    if (inputValueSearching > 99) inputValueSearching = 99;
+                } else {
+                    inputValueSearching = 10;
+                }
+                dialog.dispose();
+                if (inputValueSearching != getRootScreen().getViewAction().animationPeriod) {
+                    getRootScreen().setValueSearching(inputValueSearching);
+                    buttons[5].setText("Value searching (" + getRootScreen().valueSearching + ")");
                     getRootScreen().getViewAction().setElements(getRootScreen().array);
                 }
             });
@@ -274,7 +368,6 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
             int buttonWidth = 250;
             int buttonHeight = 50;
             int gapHeight = 20;
-            int gapWidth = 40;
             int totalHeight = buttonHeight * numberObjectPerColumn + (numberObjectPerColumn - 1) * gapHeight;
             int totalWidth = buttonWidth * numberObjectPerRow;
             int initialY = (getHeightDialog() - totalHeight) / 2;
@@ -366,6 +459,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                         Config.COLOR_BAR_PLAIN,
                         1, 0, 0
                 );
+
                 dialog.add(textFields[i]);
             }
         }

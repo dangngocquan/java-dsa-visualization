@@ -55,7 +55,7 @@ public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
                 Config.BACKGROUND_COLOR_APP,
                 null, "NEW DATA", 0
         );
-        title1.setFont(Config.ARIAL_BOLD_18);
+        title1.setFont(Config.MONOSPACED_BOLD_18);
         newPanelData = new Panel(
                 ViewArrayListAction.INITIAL_X,
                 ViewArrayListAction.INITIAL_Y + 20 + ViewArrayListAction.SIZE_PER_NODE + ViewArrayListAction.GAP_Y,

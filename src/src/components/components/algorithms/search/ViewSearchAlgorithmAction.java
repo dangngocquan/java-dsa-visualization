@@ -1,4 +1,4 @@
-package src.components.components.algorithms.sort;
+package src.components.components.algorithms.search;
 
 import src.Config;
 import src.components.components.algorithms.AbstractViewAlgorithmAction;
@@ -7,7 +7,7 @@ import src.services.serviceanimations.Location;
 
 import java.awt.*;
 
-public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
+public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
     public static int gapWidth = 2;
     public static int barWidth = 10;
     public static int initialX = 10;
@@ -17,9 +17,10 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     public int[] xBars;
     public int[] elements;
     public Bar[] bars;
+    public Bar barSearching;
     public int animationPeriod = 500;
 
-    public ViewSortAlgorithmAction(AbstractSortAlgorithmScreen rootScreen, int[] array) {
+    public ViewSearchAlgorithmAction(AbstractSearchAlgorithmScreen rootScreen, int[] array) {
         super(rootScreen);
         this.elements = array;
         updateStaticValues();
@@ -27,8 +28,8 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
         repaint();
     }
 
-    public AbstractSortAlgorithmScreen getRootScreen() {
-        return (AbstractSortAlgorithmScreen) rootScreen;
+    public AbstractSearchAlgorithmScreen getRootScreen() {
+        return (AbstractSearchAlgorithmScreen) rootScreen;
     }
 
     public void setElements(int[] array) {
@@ -58,8 +59,12 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
             bars[i] = new Bar(i, elements[i]);
             add(bars[i]);
         }
+        barSearching = new Bar(0, getRootScreen().valueSearching);
+        barSearching.setY(barSearching.getY() + initialY1 - initialY0);
+        add(barSearching);
         if (bars.length > 64) {
             for (Bar bar : bars) bar.draw(Config.MONOSPACED_BOLD_6);
+            barSearching.draw(Config.MONOSPACED_BOLD_6);
         }
     }
 
@@ -76,7 +81,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     public void setAnimationPeriod(int animationPeriod) {
         if (animationPeriod != this.animationPeriod) {
             this.animationPeriod = animationPeriod;
-            getRootScreen().endSort();
+            getRootScreen().endSearch(0);
         }
     }
 
@@ -87,7 +92,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 targetColor,
                 1,
                 getAnimationPeriod()-1
-                );
+        );
     }
 
     public void swapBars(int i1, int yBase1, int i2, int yBase2) {
@@ -159,11 +164,13 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
         return yBase - (3 * elements[i] + 20);
     }
 
-    public void runEndAnimation() {
-        quickAnimationSetColor(
-                0, bars.length - 1,
-                Config.COLOR_BAR_DONE
-        );
+    public void runEndAnimation(int type) {
+        if (type == 0) {
+            quickAnimationSetColor(
+                    0, bars.length - 1,
+                    Config.COLOR_RED
+            );
+        }
     }
 
     public void quickAnimationSetColor(int from, int to, Color color) {
@@ -181,12 +188,12 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
         }
     }
 
-    public void moveBar(int i1, int yBase1, int i2, int yBase2) {
+    public void moveBarSearching(int i1, int i2) {
         ServiceAnimation.translate(
-                bars[i1],
-                new Location(xBars[i1], getYBar(i1, yBase1)),
+                barSearching,
+                new Location(xBars[i1], barSearching.getY()),
                 (i2 - i1) * (barWidth + gapWidth),
-                getYBar(i1, yBase2) - getYBar(i1, yBase1),
+                0,
                 1,
                 getAnimationPeriod()-1
         );

@@ -40,7 +40,7 @@ public class ViewArrayListAction extends AbstractViewListAction {
                 "DATA",
                 0
         );
-        title0.setFont(Config.ARIAL_BOLD_18);
+        title0.setFont(Config.MONOSPACED_BOLD_18);
         add(title0);
     }
 

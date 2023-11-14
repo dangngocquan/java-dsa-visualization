@@ -32,9 +32,9 @@ public class LinkedStackPanelNode extends AbstractPanelStackNode {
                 getBackgroundColor(), null, "Next", 0);
 
         panels[0].setBorderWidth(2);
-        panels[0].setFont(Config.ARIAL_BOLD_16);
+        panels[0].setFont(Config.MONOSPACED_BOLD_16);
         panels[1].setBorderWidth(0);
-        panels[1].setFont(Config.ARIAL_BOLD_14);
+        panels[1].setFont(Config.MONOSPACED_BOLD_14);
         panels[1].setBackgroundColor(Config.COLOR_BAR_TEMP_SORTED);
     }
 

@@ -15,7 +15,7 @@ import src.services.serviceanimations.Location;
 
 import java.util.Iterator;
 
-public class ArrayStackActionEnlarge extends AbstractStackAnimation {
+public class ArrayStackActionEnlarge extends AbstractArrayStackAnimation {
     private Panel title1;
     private Panel newPanelData;
     private Iterator<AbstractPanelStackNode> iterator;
@@ -59,7 +59,7 @@ public class ArrayStackActionEnlarge extends AbstractStackAnimation {
                 Config.BACKGROUND_COLOR_APP,
                 null, "NEW DATA", 0
         );
-        title1.setFont(Config.ARIAL_BOLD_18);
+        title1.setFont(Config.MONOSPACED_BOLD_18);
         newPanelData = new Panel(
                 ViewArrayStackAction.INITIAL_X,
                 ViewArrayStackAction.INITIAL_Y + 20 + ViewArrayStackAction.SIZE_PER_NODE + ViewArrayStackAction.GAP_Y,

@@ -15,7 +15,7 @@ public class App extends Frame {
                 "Java Algorithm Visualizer",
                 0, 0, Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT,
                 Config.BACKGROUND_COLOR_APP,
-                Config.ARIAL_BOLD_12
+                Config.MONOSPACED_BOLD_12
         );
         addScreens();
         repaint();
