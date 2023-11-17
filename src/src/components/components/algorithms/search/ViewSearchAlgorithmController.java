@@ -174,7 +174,7 @@ public class ViewSearchAlgorithmController extends AbstractViewAlgorithmControll
                     (Config.HEIGHT - Config.HEIGHT/3) / 2,
                     Config.WIDTH/4,
                     Config.HEIGHT/3,
-                    "Set animation speed in range [2 - ?] milliseconds"
+                    "Set animation speed in range [3 - ?] milliseconds"
             );
         });
 
@@ -301,7 +301,7 @@ public class ViewSearchAlgorithmController extends AbstractViewAlgorithmControll
                     } catch (Exception exception) {
                         inputAnimationPeriod = 200;
                     }
-                    if (inputAnimationPeriod < 2) inputAnimationPeriod = 2;
+                    if (inputAnimationPeriod < 3) inputAnimationPeriod = 3;
                 } else {
                     inputAnimationPeriod = 200;
                 }

@@ -151,7 +151,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                     (Config.HEIGHT - Config.HEIGHT/3) / 2,
                     Config.WIDTH/4,
                     Config.HEIGHT/3,
-                    "Set animation speed in range [2 - ?] milliseconds"
+                    "Set animation speed in range [3 - ?] milliseconds"
             );
         });
 
@@ -239,7 +239,7 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 int inputAnimationPeriod = 0;
                 if (data.matches("[0-9]+")) {
                     inputAnimationPeriod = Integer.parseInt(data);
-                    if (inputAnimationPeriod < 2) inputAnimationPeriod = 2;
+                    if (inputAnimationPeriod < 3) inputAnimationPeriod = 3;
                 } else {
                     inputAnimationPeriod = 200;
                 }

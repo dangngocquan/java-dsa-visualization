@@ -2,12 +2,14 @@ import src.App;
 import src.models.algorithms.searching.TestSearchAlgorithms;
 import src.models.algorithms.sorting.TestSortAlgorithms;
 import src.models.datastructures.list.TestMyList;
+import src.models.datastructures.queue.queue.TestQueue;
 
 public class Main {
     public static void main(String[] args) {
         new App();
 //        new TestSearchAlgorithms().run();
 //        new TestMyList().run();
+//        new TestQueue().run();
 //        new TestSortAlgorithms().run();
     }
 }

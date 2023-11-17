@@ -168,7 +168,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
 
     public void quickAnimationSetColor(int from, int to, Color color) {
         int delay = 1;
-        int duration = 1;
+        int duration = 2;
         for (int i = from; i <= to; i++) {
             ServiceAnimation.transitionColor(
                     bars[i],

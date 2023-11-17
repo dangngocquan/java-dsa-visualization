@@ -1,9 +1,10 @@
 package src.models.datastructures.queue.queue;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class ArrayQueue<E> extends AbstractQueue<E> {
-    public static final int DEFAULT_CAPACITY = 10;
+    public static final int DEFAULT_CAPACITY = 4;
     private E[] data;
     private int firstIndex;
     private int size;
@@ -55,11 +56,12 @@ public class ArrayQueue<E> extends AbstractQueue<E> {
     }
 
     private void enlarge() {
-        if (data.length * 2 + 1 < data.length) throw new IllegalArgumentException();
-        E[] newData = (E[]) new Object[data.length * 2 + 1];
+        if (data.length * 2 < data.length) throw new IllegalArgumentException();
+        E[] newData = (E[]) new Object[data.length * 2];
         int i = 0;
         while (!isEmpty()) newData[i++] = dequeue();
         firstIndex = 0;
+        size = i;
         data = newData;
     }
 
@@ -82,5 +84,12 @@ public class ArrayQueue<E> extends AbstractQueue<E> {
             currentIndex++;
             return element;
         }
+    }
+
+    public int getSizeData() {
+        return data.length;
+    }
+    public int getFirstIndex() {
+        return firstIndex;
     }
 }

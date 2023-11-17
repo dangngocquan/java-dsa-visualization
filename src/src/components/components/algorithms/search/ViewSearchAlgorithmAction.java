@@ -68,12 +68,6 @@ public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
         }
     }
 
-    public void setBar(int i, Bar bar) {
-        bars[i] = bar;
-        elements[i] = bar.getValue();
-        repaint();
-    }
-
     public int getAnimationPeriod() {
         return animationPeriod;
     }
@@ -92,63 +86,6 @@ public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
                 targetColor,
                 1,
                 getAnimationPeriod()-1
-        );
-    }
-
-    public void swapBars(int i1, int yBase1, int i2, int yBase2) {
-        ServiceAnimation.translate(
-                bars[i1],
-                new Location(xBars[i1], getYBar(i1, yBase1)),
-                (i2 - i1) * (barWidth + gapWidth),
-                0,
-                1,
-                getAnimationPeriod()-1
-        );
-        ServiceAnimation.translate(
-                bars[i2],
-                new Location(xBars[i2], getYBar(i2, yBase2)),
-                (i1 - i2) * (barWidth + gapWidth),
-                0,
-                1,
-                getAnimationPeriod()-1
-        );
-        Bar bar = bars[i1];
-        bars[i1] = bars[i2];
-        bars[i2] = bar;
-        int value = elements[i1];
-        elements[i1] = elements[i2];
-        elements[i2] = value;
-    }
-
-    public void pickUpBar(int i, int yBase) {
-        ServiceAnimation.translate(
-                bars[i],
-                new Location(xBars[i], getYBar(i, yBase)),
-                0,
-                (getHeightPanel() - 2 * initialY) / 2,
-                1,
-                getAnimationPeriod() - 1
-        );
-    }
-
-    public void pickDownBar(int i, int yBase) {
-        ServiceAnimation.translate(
-                bars[i],
-                new Location(xBars[i], getYBar(i, yBase)),
-                0,
-                -(getHeightPanel() - 2 * initialY) / 2,
-                1,
-                getAnimationPeriod() - 1
-        );
-    }
-
-    public void tempSortedBar(int i) {
-        ServiceAnimation.transitionColor(
-                bars[i],
-                bars[i].getBackgroundColor(),
-                Config.COLOR_BAR_TEMP_SORTED,
-                1,
-                getAnimationPeriod() - 1
         );
     }
 
@@ -175,7 +112,7 @@ public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
 
     public void quickAnimationSetColor(int from, int to, Color color) {
         int delay = 1;
-        int duration = 1;
+        int duration = 2;
         for (int i = from; i <= to; i++) {
             ServiceAnimation.transitionColor(
                     bars[i],

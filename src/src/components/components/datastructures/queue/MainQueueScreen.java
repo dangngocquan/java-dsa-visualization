@@ -1,34 +1,28 @@
-package src.components.components.datastructures;
+package src.components.components.datastructures.queue;
 
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
-import src.components.components.datastructures.list.MainListScreen;
-import src.components.components.datastructures.queue.MainQueueScreen;
-import src.components.components.datastructures.stack.MainStackScreen;
+import src.components.components.datastructures.queue.arrayqueue.ArrayQueueScreen;
+import src.components.components.datastructures.queue.linkedqueue.LinkedQueueScreen;
 
-
-public class MainDataStructuresScreen extends AbstractScreen {
-    public MainDataStructuresScreen() {
-        super();
-    }
-
+public class MainQueueScreen extends AbstractScreen {
     @Override
     public void addButtons() {
-        int numberButtonPerColumn = 6;
+        int numberButtonPerColumn = 3;
         int numberButtonPerRow = 1;
         int buttonWidth = 250;
         int buttonHeight = 50;
         int gapHeight = 40;
         int gapWidth = 40;
         int totalHeight = buttonHeight * numberButtonPerColumn + (numberButtonPerColumn - 1) * gapHeight;
-        int totalWidth = buttonWidth * numberButtonPerRow + (numberButtonPerRow - 1) * gapWidth;
+        int totalWidth = buttonWidth * numberButtonPerRow;
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new Button[6];
-        buttons[0] = new Button(
-                initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
+        buttons = new src.components.base.Button[3];
+        buttons[0] = new src.components.base.Button(
+                initialX,
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
                 buttonWidth, buttonHeight,
                 "Back"
@@ -37,31 +31,13 @@ public class MainDataStructuresScreen extends AbstractScreen {
                 initialX,
                 initialY,
                 buttonWidth, buttonHeight,
-                "List"
+                "Array Queue"
         );
         buttons[2] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight),
                 buttonWidth, buttonHeight,
-                "Stack"
-        );
-        buttons[3] = new Button(
-                initialX,
-                initialY + (gapHeight + buttonHeight) * 2,
-                buttonWidth, buttonHeight,
-                "Queue"
-        );
-        buttons[4] = new Button(
-                initialX,
-                initialY + (gapHeight + buttonHeight) * 3,
-                buttonWidth, buttonHeight,
-                "Priority Queue"
-        );
-        buttons[5] = new Button(
-                initialX,
-                initialY + (gapHeight + buttonHeight) * 4,
-                buttonWidth, buttonHeight,
-                "Tree"
+                "Linked Queue"
         );
 
         for (Button button : buttons) add(button);
@@ -69,7 +45,7 @@ public class MainDataStructuresScreen extends AbstractScreen {
 
     @Override
     public void createDefaultScreens() {
-        screens = new AbstractScreen[6];
+        screens = new AbstractScreen[3];
     }
 
     @Override
@@ -77,16 +53,16 @@ public class MainDataStructuresScreen extends AbstractScreen {
         // Back
         buttons[0].addActionListener(e -> {
             if (screens[0] == null) {
-                screens[0] = getApp().getScreens().get("MainScreen");
+                screens[0] = getApp().getScreens().get("MainDataStructuresScreen");
             }
             setHidden(true);
             screens[0].setHidden(false);
         });
 
-        // List
+        // Array Queue
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new MainListScreen();
+                screens[1] = new ArrayQueueScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }
@@ -94,26 +70,15 @@ public class MainDataStructuresScreen extends AbstractScreen {
             screens[1].setHidden(false);
         });
 
-        // Stack
+        // Linked Queue
         buttons[2].addActionListener(e -> {
             if (screens[2] == null) {
-                screens[2] = new MainStackScreen();
+                screens[2] = new LinkedQueueScreen();
                 screens[2].setVisible(false);
                 getApp().addScreen(screens[2]);
             }
             setHidden(true);
             screens[2].setHidden(false);
-        });
-
-        // Queue
-        buttons[3].addActionListener(e -> {
-            if (screens[3] == null) {
-                screens[3] = new MainQueueScreen();
-                screens[3].setVisible(false);
-                getApp().addScreen(screens[3]);
-            }
-            setHidden(true);
-            screens[3].setHidden(false);
         });
     }
 }
