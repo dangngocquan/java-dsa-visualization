@@ -1,4 +1,4 @@
-package src.models.datastructures.queue.queue;
+package src.models.datastructures.queue;
 
 import java.util.Iterator;
 

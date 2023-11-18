@@ -59,7 +59,7 @@ public abstract class AbstractSortAlgorithmScreen extends AbstractAlgorithmScree
         getViewAction().setColorAndLocationBars(
                 0, getViewAction().bars.length-1,
                 Config.COLOR_BAR_PLAIN,
-                getViewAction().initialY0
+                ViewSortAlgorithmAction.initialY0
         );
         createSortAnimation();
         sortAnimation.start();

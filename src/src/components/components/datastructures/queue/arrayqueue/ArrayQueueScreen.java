@@ -1,7 +1,7 @@
 package src.components.components.datastructures.queue.arrayqueue;
 
 import src.components.components.datastructures.queue.AbstractQueueScreen;
-import src.models.datastructures.queue.queue.ArrayQueue;
+import src.models.datastructures.queue.ArrayQueue;
 
 public class ArrayQueueScreen extends AbstractQueueScreen {
     @Override

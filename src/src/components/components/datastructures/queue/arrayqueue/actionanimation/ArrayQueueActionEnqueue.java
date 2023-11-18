@@ -1,11 +1,12 @@
 package src.components.components.datastructures.queue.arrayqueue.actionanimation;
 
+import src.components.base.Panel;
 import src.components.components.datastructures.queue.AbstractQueueAnimation;
 import src.components.components.datastructures.queue.AbstractQueueScreen;
 import src.components.components.datastructures.queue.arrayqueue.ArrayQueuePanelNode;
 import src.components.components.datastructures.queue.arrayqueue.ArrayQueueScreen;
 import src.components.components.datastructures.queue.arrayqueue.ViewArrayQueueAction;
-import src.models.datastructures.queue.queue.ArrayQueue;
+import src.models.datastructures.queue.ArrayQueue;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
@@ -51,16 +52,16 @@ public class ArrayQueueActionEnqueue extends AbstractArrayQueueAnimation {
     public void run() {
         if (animationStep == 0) {
             createNewElement();
-            animationStep++;
-            System.out.println(getRootScreen().queue.size());
+            animationStep = 1;
         } else if (animationStep == 1) {
             addToDataOfArrayQueue();
-            animationStep++;
-            System.out.println(getRootScreen().queue.size());
+            animationStep = (getRootScreen().queue.size() > 1)? 3 : 2;
+        } else if (animationStep == 2) {
+            updatePanelFirst();
+            animationStep = 3;
         } else {
             animationStep = 0;
             end();
-            System.out.println(getRootScreen().queue.size() + "\n");
         }
     }
 
@@ -86,8 +87,18 @@ public class ArrayQueueActionEnqueue extends AbstractArrayQueueAnimation {
                 10,
                 period - 10
         );
-        if (getRootScreen().queue.size() == 1) {
-            ((ViewArrayQueueAction) getRootScreen().viewAction).panelFirst.setVisible(true);
-        }
+    }
+
+    public void updatePanelFirst() {
+        Panel panelFirst = ((ViewArrayQueueAction) getRootScreen().viewAction).panelFirst;
+        panelFirst.setVisible(true);
+        ServiceAnimation.translate(
+                panelFirst,
+                new Location(panelFirst.getX(), panelFirst.getY()),
+                getRootScreen().queue.first().getX() - panelFirst.getX(),
+                0,
+                10, period - 10
+        );
+
     }
 }

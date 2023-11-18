@@ -1,7 +1,7 @@
 package src.components.components.datastructures.queue.linkedqueue;
 
 import src.components.components.datastructures.queue.AbstractQueueScreen;
-import src.models.datastructures.queue.queue.LinkedListQueue;
+import src.models.datastructures.queue.LinkedListQueue;
 
 public class LinkedQueueScreen extends AbstractQueueScreen {
     @Override

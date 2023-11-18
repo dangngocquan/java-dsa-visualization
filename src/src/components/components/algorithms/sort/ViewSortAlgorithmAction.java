@@ -61,6 +61,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
         if (bars.length > 64) {
             for (Bar bar : bars) bar.draw(Config.MONOSPACED_BOLD_6);
         }
+        repaint();
     }
 
     public void setBar(int i, Bar bar) {
@@ -86,7 +87,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 bars[i].getBackgroundColor(),
                 targetColor,
                 1,
-                getAnimationPeriod()-1
+                animationPeriod-1
                 );
     }
 
@@ -97,7 +98,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 (i2 - i1) * (barWidth + gapWidth),
                 0,
                 1,
-                getAnimationPeriod()-1
+                animationPeriod-1
         );
         ServiceAnimation.translate(
                 bars[i2],
@@ -105,7 +106,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 (i1 - i2) * (barWidth + gapWidth),
                 0,
                 1,
-                getAnimationPeriod()-1
+                animationPeriod-1
         );
         Bar bar = bars[i1];
         bars[i1] = bars[i2];
@@ -122,7 +123,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 0,
                 (getHeightPanel() - 2 * initialY) / 2,
                 1,
-                getAnimationPeriod() - 1
+                animationPeriod - 1
         );
     }
 
@@ -133,7 +134,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 0,
                 -(getHeightPanel() - 2 * initialY) / 2,
                 1,
-                getAnimationPeriod() - 1
+                animationPeriod - 1
         );
     }
 
@@ -143,7 +144,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 bars[i].getBackgroundColor(),
                 Config.COLOR_BAR_TEMP_SORTED,
                 1,
-                getAnimationPeriod() - 1
+                animationPeriod - 1
         );
     }
 
@@ -167,17 +168,24 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void quickAnimationSetColor(int from, int to, Color color) {
-        int delay = 1;
-        int duration = 2;
-        for (int i = from; i <= to; i++) {
-            ServiceAnimation.transitionColor(
-                    bars[i],
-                    bars[i].getBackgroundColor(),
-                    color,
-                    delay,
-                    duration
-            );
-            delay += duration + 1;
+        if (animationPeriod >= (to - from + 1) * 3) {
+            int delay = 1;
+            int duration = 2;
+            for (int i = from; i <= to; i++) {
+                ServiceAnimation.transitionColor(
+                        bars[i],
+                        bars[i].getBackgroundColor(),
+                        color,
+                        delay,
+                        duration
+                );
+                delay += duration + 1;
+            }
+        } else {
+            for (int i = from; i <= to; i++) {
+                bars[i].setBackgroundColor(color);
+            }
+            repaint();
         }
     }
 
@@ -188,7 +196,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 (i2 - i1) * (barWidth + gapWidth),
                 getYBar(i1, yBase2) - getYBar(i1, yBase1),
                 1,
-                getAnimationPeriod()-1
+                animationPeriod-1
         );
     }
 }

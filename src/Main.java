@@ -1,16 +1,8 @@
 import src.App;
-import src.models.algorithms.searching.TestSearchAlgorithms;
-import src.models.algorithms.sorting.TestSortAlgorithms;
-import src.models.datastructures.list.TestMyList;
-import src.models.datastructures.queue.queue.TestQueue;
 
 public class Main {
     public static void main(String[] args) {
         new App();
-//        new TestSearchAlgorithms().run();
-//        new TestMyList().run();
-//        new TestQueue().run();
-//        new TestSortAlgorithms().run();
     }
 }
 
@@ -37,8 +29,8 @@ public class Main {
           + Array Stack: Done
           + Linked Stack: Done
       + Queue:
-          + Array Queue:
-          + Linked Queue:
+          + Array Queue: Done
+          + Linked Queue: Done
       + Priority Queue:
           + Sorted Array Priority Queue:
           + Sorted Linked Priority Queue:

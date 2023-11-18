@@ -186,17 +186,17 @@ public class ViewSearchAlgorithmController extends AbstractViewAlgorithmControll
                 return;
             }
             if (getRootScreen().searchAnimation == null) {
-                getRootScreen().startSort();
+                getRootScreen().startSearch();
                 setEnabledAllButtons(false);
                 buttons[7].setEnabledButton(true);
             } else {
                 if (getRootScreen().searchAnimation.isRunning()) {
                     setEnabledAllButtons(true);
-                    getRootScreen().pauseSort();
+                    getRootScreen().pauseSearch();
                 } else if (getRootScreen().searchAnimation.isPaused()) {
                     setEnabledAllButtons(false);
                     buttons[7].setEnabledButton(true);
-                    getRootScreen().continueSort();
+                    getRootScreen().continueSearch();
                 }
             }
         });
@@ -338,7 +338,7 @@ public class ViewSearchAlgorithmController extends AbstractViewAlgorithmControll
                     inputValueSearching = 10;
                 }
                 dialog.dispose();
-                if (inputValueSearching != getRootScreen().getViewAction().animationPeriod) {
+                if (inputValueSearching != getRootScreen().valueSearching) {
                     getRootScreen().setValueSearching(inputValueSearching);
                     buttons[5].setText("Value searching (" + getRootScreen().valueSearching + ")");
                     getRootScreen().getViewAction().setElements(getRootScreen().array);

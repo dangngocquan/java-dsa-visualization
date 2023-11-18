@@ -59,12 +59,15 @@ public abstract class AbstractSearchAlgorithmScreen extends AbstractAlgorithmScr
     }
 
     public void setValueSearching(int value) {
-        valueSearching = value;
+        if (value != valueSearching) {
+            valueSearching = value;
+            endSearch(0);
+        }
     }
 
     public abstract void createSearchAnimation();
 
-    public void startSort() {
+    public void startSearch() {
         getViewController().startSearch();
         getViewAction().setColorAndLocationBars(
                 0, getViewAction().bars.length-1,
@@ -75,14 +78,14 @@ public abstract class AbstractSearchAlgorithmScreen extends AbstractAlgorithmScr
         searchAnimation.start();
     }
 
-    public void pauseSort() {
+    public void pauseSearch() {
         if (searchAnimation != null && searchAnimation.isRunning()) {
             getViewController().pauseSearch();
             searchAnimation.pause();
         }
     }
 
-    public void continueSort() {
+    public void continueSearch() {
         if (searchAnimation != null && searchAnimation.isPaused()) {
             getViewController().continueSearch();
             searchAnimation.continueRun();

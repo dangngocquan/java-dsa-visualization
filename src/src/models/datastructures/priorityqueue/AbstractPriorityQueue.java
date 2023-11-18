@@ -1,4 +1,4 @@
-package src.models.datastructures.queue.priorityqueue;
+package src.models.datastructures.priorityqueue;
 
 public abstract class AbstractPriorityQueue<K, E>
         implements PriorityQueueInterface<K, E>, Iterable<EntryInterface<K, E>> {

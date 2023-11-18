@@ -2,7 +2,7 @@ package src.models.datastructures.list;
 
 import java.util.Iterator;
 
-public class MySinglyLinkedList<E extends Comparable<E>> extends MyAbstractList<E> {
+public class SinglyLinkedList<E extends Comparable<E>> extends MyAbstractList<E> {
     public class Node {
         public E data;
         public Node next;

@@ -1,6 +1,10 @@
-package src.models.algorithms.searching;
+package src.tests;
 
-public class TestSearchAlgorithms {
+import src.models.algorithms.searching.BinarySearch;
+import src.models.algorithms.searching.SequentialSearch;
+
+public class TestSearchAlgorithms implements Test {
+    @Override
     public void run() {
         Integer[] a = new Integer[] {1, 7, 2, 3, 8, 5, 10, 6, 9, 4};
         SequentialSearch<Integer> sequentialSearch = new SequentialSearch<>();

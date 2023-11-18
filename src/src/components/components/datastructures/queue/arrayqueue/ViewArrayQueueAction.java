@@ -8,7 +8,7 @@ import src.components.components.datastructures.queue.AbstractViewQueueAction;
 import src.components.components.datastructures.queue.arrayqueue.actionanimation.ArrayQueueActionDequeue;
 import src.components.components.datastructures.queue.arrayqueue.actionanimation.ArrayQueueActionEnlarge;
 import src.components.components.datastructures.queue.arrayqueue.actionanimation.ArrayQueueActionEnqueue;
-import src.models.datastructures.queue.queue.ArrayQueue;
+import src.models.datastructures.queue.ArrayQueue;
 
 public class ViewArrayQueueAction extends AbstractViewQueueAction {
     public Panel panelData;

@@ -1,7 +1,7 @@
 package src.components.components.datastructures.list.singlylinkedlist;
 
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.models.datastructures.list.MySinglyLinkedList;
+import src.models.datastructures.list.SinglyLinkedList;
 
 public class SinglyLinkedListScreen extends AbstractListScreen {
     @Override
@@ -12,7 +12,7 @@ public class SinglyLinkedListScreen extends AbstractListScreen {
 
     @Override
     public void createList() {
-        list = new MySinglyLinkedList();
+        list = new SinglyLinkedList();
         list.add(new SinglyLinkedListPanelNode(list.size(), 1));
         list.get(list.size()-1).setNextArrow(list.get(list.size()-1).getDefaultNextArrow());
         list.add(new SinglyLinkedListPanelNode(list.size(), 0));

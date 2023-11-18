@@ -89,7 +89,7 @@ public class ArrayQueueActionDequeue extends AbstractArrayQueueAnimation {
         getRootScreen().viewAction.remove(node);
         getRootScreen().queue.dequeue();
         Panel panelFirst = ((ViewArrayQueueAction) getRootScreen().viewAction).panelFirst;
-        if (getRootScreen().queue.isEmpty()) {
+        if (getRootScreen().queue.first() == null) {
             panelFirst.setVisible(false);
         } else {
             ServiceAnimation.translate(
@@ -100,5 +100,6 @@ public class ArrayQueueActionDequeue extends AbstractArrayQueueAnimation {
                     10, period - 10
             );
         }
+
     }
 }

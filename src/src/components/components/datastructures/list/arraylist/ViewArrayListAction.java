@@ -9,7 +9,6 @@ import src.components.components.datastructures.list.arraylist.actionanimation.*
 import src.models.datastructures.list.MyArrayList;
 
 public class ViewArrayListAction extends AbstractViewListAction {
-    private Panel title0;
     public Panel panelData;
     public static final int INITIAL_X = 200;
     public static final int INITIAL_Y = 150;
@@ -30,7 +29,7 @@ public class ViewArrayListAction extends AbstractViewListAction {
     }
 
     public void drawTitle() {
-        title0 = new Panel(
+        Panel title0 = new Panel(
                 0,
                 INITIAL_Y,
                 INITIAL_X,
@@ -68,7 +67,7 @@ public class ViewArrayListAction extends AbstractViewListAction {
 
     @Override
     public void actionAdd(int value) {
-        if (getRootScreen().list.size() == ((MyArrayList) getRootScreen().list).getSizeData()) {
+        if (getRootScreen().list.size() == ((MyArrayList<?>) getRootScreen().list).getSizeData()) {
             new ArrayListActionEnlarge(
                     getRootScreen(),
                     1000,

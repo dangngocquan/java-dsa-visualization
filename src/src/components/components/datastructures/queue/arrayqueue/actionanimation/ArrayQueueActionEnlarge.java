@@ -8,8 +8,8 @@ import src.components.components.datastructures.queue.AbstractQueueAnimation;
 import src.components.components.datastructures.queue.AbstractQueueScreen;
 import src.components.components.datastructures.queue.arrayqueue.ArrayQueueScreen;
 import src.components.components.datastructures.queue.arrayqueue.ViewArrayQueueAction;
-import src.models.datastructures.queue.queue.ArrayQueue;
-import src.models.datastructures.queue.queue.QueueInterface;
+import src.models.datastructures.queue.ArrayQueue;
+import src.models.datastructures.queue.QueueInterface;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 

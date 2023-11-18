@@ -4,6 +4,7 @@ import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.list.MainListScreen;
+import src.components.components.datastructures.priorityqueue.MainPriorityQueueScreen;
 import src.components.components.datastructures.queue.MainQueueScreen;
 import src.components.components.datastructures.stack.MainStackScreen;
 
@@ -114,6 +115,17 @@ public class MainDataStructuresScreen extends AbstractScreen {
             }
             setHidden(true);
             screens[3].setHidden(false);
+        });
+
+        // Priority Queue
+        buttons[4].addActionListener(e -> {
+            if (screens[4] == null) {
+                screens[4] = new MainPriorityQueueScreen();
+                screens[4].setVisible(false);
+                getApp().addScreen(screens[4]);
+            }
+            setHidden(true);
+            screens[4].setHidden(false);
         });
     }
 }

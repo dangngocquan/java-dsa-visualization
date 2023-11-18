@@ -1,6 +1,10 @@
-package src.models.datastructures.queue.queue;
+package src.tests;
 
-public class TestQueue {
+import src.models.datastructures.queue.ArrayQueue;
+import src.models.datastructures.queue.QueueInterface;
+
+public class TestQueue implements Test {
+    @Override
     public void run() {
         QueueInterface<Integer> queue = new ArrayQueue<>();
         queue.enqueue(1);

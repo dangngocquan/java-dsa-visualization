@@ -1,29 +1,30 @@
-package src.components.components.datastructures.queue;
+package src.components.components.datastructures.priorityqueue;
 
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.base.TextField;
 import src.components.components.datastructures.AbstractDataStructureScreen;
-import src.models.datastructures.queue.QueueInterface;
+import src.models.datastructures.priorityqueue.PriorityQueueInterface;
 
 import java.awt.*;
 import java.util.Map;
 
-public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
+public abstract class AbstractPriorityQueueScreen extends AbstractDataStructureScreen {
     public static final Map<Integer, String> ACTIONS = Map.of(
-            0, "enqueue(value)",
-            1, "dequeue()"
+            0, "insert(key, value)",
+            1, "removeMin()"
     );
-    protected int value = -1;
-    public QueueInterface<AbstractPanelQueueNode> queue;
+    protected Integer key = -1;
+    protected Integer value = -1;
+    public PriorityQueueInterface<Integer, AbstractPanelPriorityQueueNode> queue;
 
-    public AbstractQueueScreen() {
+    public AbstractPriorityQueueScreen() {
         super();
     }
 
-    public AbstractViewQueueAction getViewAction() {
-        return (AbstractViewQueueAction) viewAction;
+    public AbstractViewPriorityQueueAction getViewAction() {
+        return (AbstractViewPriorityQueueAction) viewAction;
     }
 
     public abstract void createQueue();
@@ -31,7 +32,7 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
     @Override
     public void createViewController() {
         createQueue();
-        viewController = new ViewQueueController(this);
+        viewController = new ViewPriorityQueueController(this);
         add(viewController);
     }
 
@@ -39,7 +40,12 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
     public void setIndexActionSelected(int indexActionSelected) {
         this.indexActionSelected = indexActionSelected;
         if (indexActionSelected == 0) {
-            new AbstractQueueScreen.DialogGetValue(
+            new DialogGetKey(
+                    (Config.WIDTH - 300) / 2,
+                    (Config.HEIGHT - 300) / 2,
+                    300, 300
+            );
+            new DialogGetValue(
                     (Config.WIDTH - 300) / 2,
                     (Config.HEIGHT - 300) / 2,
                     300, 300
@@ -51,6 +57,7 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
         } else {
             viewController.buttons[1].setText(
                     ACTIONS.get(indexActionSelected)
+                            .replace("key", "key=" + key)
                             .replace("value", "value=" + value)
             );
             viewController.buttons[2].setEnabledButton(true);
@@ -61,8 +68,8 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
     public void runAction() {
         setEnabledAllButtons(false);
         switch (indexActionSelected) {
-            case 0 -> getViewAction().actionEnqueue(value);
-            case 1 -> getViewAction().actionDequeue();
+            case 0 -> getViewAction().actionInsert(key, value);
+            case 1 -> getViewAction().actionRemoveMin();
             default -> {}
         }
     }
@@ -72,9 +79,29 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
         viewController.buttons[0].setEnabledButton(true);
         viewController.buttons[1].setEnabledButton(true);
         setIndexActionSelected(-1);
-    };
+    }
 
-    private class DialogGetValue extends AbstractQueueScreen.DialogWithFieldText {
+    private class DialogGetKey extends DialogWithFieldText {
+        public DialogGetKey(int x, int y, int width, int height) {
+            super(x, y, width, height, "Set key in range [0-99]");
+        }
+
+        @Override
+        public void addListeners() {
+            button.addActionListener(e -> {
+                String data = textField.getText();
+                if (data.matches("[0-9]+")) {
+                    key = Integer.parseInt(data);
+                    if (key > 99) key = 99;
+                } else {
+                    key = 1;
+                }
+                dialog.dispose();
+            });
+        }
+    }
+
+    private class DialogGetValue extends DialogWithFieldText {
         public DialogGetValue(int x, int y, int width, int height) {
             super(x, y, width, height, "Set value in range [0-99]");
         }
@@ -82,7 +109,8 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
         @Override
         public void addListeners() {
             button.addActionListener(e -> {
-                String data = textField.getText();
+                String data;
+                data = textField.getText();
                 if (data.matches("[0-9]+")) {
                     value = Integer.parseInt(data);
                     if (value > 99) value = 99;
@@ -116,7 +144,7 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
             int buttonHeight = 50;
             int gapHeight = 20;
             int totalHeight = buttonHeight * numberObjectPerColumn + (numberObjectPerColumn - 1) * gapHeight;
-            int totalWidth = buttonWidth * numberObjectPerRow;
+            int totalWidth = buttonWidth * numberObjectPerRow + 1 - 1;
             int initialY = (getHeightDialog() - totalHeight) / 2;
             int initialX = (getWidthDialog() - totalWidth) / 2;
 
@@ -124,7 +152,7 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
                     initialX,
                     initialY + (gapHeight + buttonHeight) * (numberObjectPerColumn - 1),
                     buttonWidth, buttonHeight,
-                    "Save"
+                    "Save" + " "
             );
 
             textField = new TextField(
@@ -133,8 +161,9 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
                     "0", Color.WHITE, 1, 0, 0
             );
 
-            dialog.add(button);
             dialog.add(textField);
+            dialog.add(button);
+
         }
 
         public abstract void addListeners();

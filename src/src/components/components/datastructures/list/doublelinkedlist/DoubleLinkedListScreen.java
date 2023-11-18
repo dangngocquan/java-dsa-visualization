@@ -1,7 +1,7 @@
 package src.components.components.datastructures.list.doublelinkedlist;
 
 import src.components.components.datastructures.list.AbstractListScreen;
-import src.models.datastructures.list.MyDoubleLinkedList;
+import src.models.datastructures.list.DoubleLinkedList;
 
 public class DoubleLinkedListScreen extends AbstractListScreen {
     @Override
@@ -12,7 +12,7 @@ public class DoubleLinkedListScreen extends AbstractListScreen {
 
     @Override
     public void createList() {
-        list = new MyDoubleLinkedList();
+        list = new DoubleLinkedList();
         list.add(new DoubleLinkedListPanelNode(list.size(), 1));
         list.get(list.size()-1).setNextArrow(list.get(list.size()-1).getDefaultNextArrow());
         list.add(new DoubleLinkedListPanelNode(list.size(), 0));

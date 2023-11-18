@@ -1,4 +1,4 @@
-package src.models.datastructures.queue.priorityqueue;
+package src.models.datastructures.priorityqueue;
 
 public class UnsortedLinkedPriorityQueue<K extends Comparable<K>, E>
         extends AbstractLinkedPriorityQueue<K, E> {

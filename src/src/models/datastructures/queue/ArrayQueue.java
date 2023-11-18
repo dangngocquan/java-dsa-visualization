@@ -1,6 +1,5 @@
-package src.models.datastructures.queue.queue;
+package src.models.datastructures.queue;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class ArrayQueue<E> extends AbstractQueue<E> {

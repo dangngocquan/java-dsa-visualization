@@ -1,4 +1,4 @@
-package src.models.datastructures.queue.queue;
+package src.models.datastructures.queue;
 
 public interface QueueInterface<E> extends Iterable<E> {
     int size();

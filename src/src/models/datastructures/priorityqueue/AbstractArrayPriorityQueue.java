@@ -1,11 +1,11 @@
-package src.models.datastructures.queue.priorityqueue;
+package src.models.datastructures.priorityqueue;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
 public abstract class AbstractArrayPriorityQueue<K extends Comparable<K>, E>
         extends AbstractPriorityQueue<K, E> {
-    public static final int DEFAULT_CAPACITY = 64;
+    public static final int DEFAULT_CAPACITY = 4;
     protected EntryInterface<K, E>[] data;
     protected int size;
 
@@ -53,5 +53,9 @@ public abstract class AbstractArrayPriorityQueue<K extends Comparable<K>, E>
             count++;
             return data[currentPosition++];
         }
+    }
+
+    public int getSizeData() {
+        return data.length;
     }
 }

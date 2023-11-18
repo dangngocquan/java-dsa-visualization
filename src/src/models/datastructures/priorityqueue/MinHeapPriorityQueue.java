@@ -1,4 +1,4 @@
-package src.models.datastructures.queue.priorityqueue;
+package src.models.datastructures.priorityqueue;
 
 public class MinHeapPriorityQueue<K extends Comparable<K>, E>
         extends AbstractArrayPriorityQueue<K, E> {

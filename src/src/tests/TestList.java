@@ -1,6 +1,12 @@
-package src.models.datastructures.list;
+package src.tests;
 
-public class TestMyList {
+import src.models.datastructures.list.DoubleLinkedList;
+import src.models.datastructures.list.MyArrayList;
+import src.models.datastructures.list.MyList;
+import src.models.datastructures.list.SinglyLinkedList;
+
+public class TestList implements Test {
+    @Override
     public void run() {
         testArrayList();
         testSinglyLinkedList();
@@ -15,13 +21,13 @@ public class TestMyList {
 
     public void testSinglyLinkedList() {
         System.out.println("\nTEST SINGLY LINKED LIST");
-        MyList<Integer> list = new MySinglyLinkedList<>();
+        MyList<Integer> list = new SinglyLinkedList<>();
         testMyList(list);
     }
 
     public void testDoubleLinkedList() {
         System.out.println("\nTEST DOUBLE LINKED LIST");
-        MyList<Integer> list = new MyDoubleLinkedList<>();
+        MyList<Integer> list = new DoubleLinkedList<>();
         testMyList(list);
     }
 

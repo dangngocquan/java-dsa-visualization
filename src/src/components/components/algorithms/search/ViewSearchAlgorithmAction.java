@@ -111,17 +111,23 @@ public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
     }
 
     public void quickAnimationSetColor(int from, int to, Color color) {
-        int delay = 1;
-        int duration = 2;
-        for (int i = from; i <= to; i++) {
-            ServiceAnimation.transitionColor(
-                    bars[i],
-                    bars[i].getBackgroundColor(),
-                    color,
-                    delay,
-                    duration
-            );
-            delay += duration + 1;
+        if (getAnimationPeriod() >= (to - from + 1) * 3) {
+            int delay = 1;
+            int duration = 2;
+            for (int i = from; i <= to; i++) {
+                ServiceAnimation.transitionColor(
+                        bars[i],
+                        bars[i].getBackgroundColor(),
+                        color,
+                        delay,
+                        duration
+                );
+                delay += duration + 1;
+            }
+        } else {
+            for (int i = from; i <= to; i++) {
+                bars[i].setBackgroundColor(color);
+            }
         }
     }
 
