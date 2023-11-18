@@ -3,6 +3,7 @@ package src.components.components.datastructures.priorityqueue;
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
+import src.components.components.datastructures.priorityqueue.minheappriorityqueue.MinHeapPriorityQueueScreen;
 import src.components.components.datastructures.priorityqueue.sortedarraypriorityqueue.SortedArrayPriorityQueueScreen;
 import src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.SortedLinkedPriorityQueueScreen;
 
@@ -84,6 +85,17 @@ public class MainPriorityQueueScreen extends AbstractScreen {
             }
             setHidden(true);
             screens[2].setHidden(false);
+        });
+
+        // Min Heap Priority Queue
+        buttons[3].addActionListener(e -> {
+            if (screens[3] == null) {
+                screens[3] = new MinHeapPriorityQueueScreen();
+                screens[3].setVisible(false);
+                getApp().addScreen(screens[3]);
+            }
+            setHidden(true);
+            screens[3].setHidden(false);
         });
     }
 }

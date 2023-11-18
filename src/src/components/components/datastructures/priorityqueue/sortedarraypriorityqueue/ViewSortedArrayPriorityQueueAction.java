@@ -92,6 +92,4 @@ public class ViewSortedArrayPriorityQueueAction extends AbstractViewPriorityQueu
     public void actionRemoveMin() {
         new SortedArrayPriorityQueueActionRemoveMin(getRootScreen(), 1000, null).start();
     }
-
-
 }

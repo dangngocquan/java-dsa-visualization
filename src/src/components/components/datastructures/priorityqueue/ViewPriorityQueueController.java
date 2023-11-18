@@ -5,6 +5,7 @@ import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
+import src.components.components.datastructures.priorityqueue.minheappriorityqueue.MinHeapPriorityQueueScreen;
 
 public class ViewPriorityQueueController extends AbstractViewDataStructureController {
     private int tempIndexActionSelecting;
@@ -34,13 +35,11 @@ public class ViewPriorityQueueController extends AbstractViewDataStructureContro
                     (Config.HEIGHT - Config.HEIGHT / 10 * 9) / 2,
                     Config.WIDTH / 3,
                     Config.HEIGHT / 10 * 9,
-                    "Setting Actions"
+                    "Setting Actions "
             );
         });
 
-        buttons[2].addActionListener(e -> {
-            rootScreen.runAction();
-        });
+        buttons[2].addActionListener(e -> rootScreen.runAction());
     }
 
     private class DialogChangeAction extends Dialog {
@@ -90,7 +89,9 @@ public class ViewPriorityQueueController extends AbstractViewDataStructureContro
             for (Button button : buttons) dialog.add(button);
 
             boolean[] enableButtons = new boolean[] {
-                    getRootScreen().queue.size() < 8,
+                    getRootScreen().queue.size() < (
+                            (getRootScreen() instanceof MinHeapPriorityQueueScreen)? 15 : 8
+                    ),
                     !getRootScreen().queue.isEmpty(),
             };
 
