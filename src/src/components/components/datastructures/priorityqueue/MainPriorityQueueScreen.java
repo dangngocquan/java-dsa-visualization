@@ -4,6 +4,7 @@ import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.priorityqueue.sortedarraypriorityqueue.SortedArrayPriorityQueueScreen;
+import src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.SortedLinkedPriorityQueueScreen;
 
 public class MainPriorityQueueScreen extends AbstractScreen {
     @Override
@@ -63,7 +64,7 @@ public class MainPriorityQueueScreen extends AbstractScreen {
             screens[0].setHidden(false);
         });
 
-        // Array Queue
+        // Sorted Array Priority Queue
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
                 screens[1] = new SortedArrayPriorityQueueScreen();
@@ -73,16 +74,16 @@ public class MainPriorityQueueScreen extends AbstractScreen {
             setHidden(true);
             screens[1].setHidden(false);
         });
-//
-//        // Linked Queue
-//        buttons[2].addActionListener(e -> {
-//            if (screens[2] == null) {
-//                screens[2] = new LinkedQueueScreen();
-//                screens[2].setVisible(false);
-//                getApp().addScreen(screens[2]);
-//            }
-//            setHidden(true);
-//            screens[2].setHidden(false);
-//        });
+
+        // Sorted Linked Priority Queue
+        buttons[2].addActionListener(e -> {
+            if (screens[2] == null) {
+                screens[2] = new SortedLinkedPriorityQueueScreen();
+                screens[2].setVisible(false);
+                getApp().addScreen(screens[2]);
+            }
+            setHidden(true);
+            screens[2].setHidden(false);
+        });
     }
 }
