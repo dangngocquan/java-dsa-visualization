@@ -48,7 +48,6 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
 
-        MinHeapPriorityQueuePanelNode[] nodes = getRootScreen().getCloneData();
         g2d.setStroke(new BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
                 RenderingHints.VALUE_RENDER_QUALITY);
@@ -56,21 +55,33 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
             if (dataClone[i] == null) break;
             if (dataClone[2 * i + 1] != null) {
                 g2d.drawLine(
-                        dataClone[i].getX(),
-                        dataClone[i].getY() + dataClone[i].getHeightPanel(),
-                        dataClone[2 * i + 1].getX() + dataClone[2 * i + 1].getWidthPanel(),
-                        dataClone[2 * i + 1].getY()
+                        getDefaultX(i),
+                        getDefaultY(i) + dataClone[i].getHeightPanel(),
+                        getDefaultX(2 * i + 1) + dataClone[2 * i + 1].getWidthPanel(),
+                        getDefaultY(2 * i + 1)
                 );
             }
             if (dataClone[2 * i + 2] != null) {
                 g2d.drawLine(
-                        dataClone[i].getX() + dataClone[i].getWidthPanel(),
-                        dataClone[i].getY() + dataClone[i].getHeightPanel(),
-                        dataClone[2 * i + 2].getX(),
-                        dataClone[2 * i + 2].getY()
+                        getDefaultX(i) + dataClone[i].getWidthPanel(),
+                        getDefaultY(i) + dataClone[i].getHeightPanel(),
+                        getDefaultX(2 * i + 2),
+                        getDefaultY(2 * i + 2)
                 );
             }
         }
+    }
+
+    public int getDefaultX(int i) {
+        return ViewMinHeapPriorityQueueAction.INITIAL_X
+                + ViewMinHeapPriorityQueueAction.GAP_X * (MinHeapPriorityQueueScreen.indexColumns[i] + 1)
+                + ViewMinHeapPriorityQueueAction.SIZE_PER_NODE * MinHeapPriorityQueueScreen.indexColumns[i];
+    }
+
+    public int getDefaultY(int i) {
+        return ViewMinHeapPriorityQueueAction.INITIAL_Y
+                + ViewMinHeapPriorityQueueAction.GAP_Y * (MinHeapPriorityQueueScreen.indexRows[i] + 1)
+                + ViewMinHeapPriorityQueueAction.SIZE_PER_NODE * MinHeapPriorityQueueScreen.indexRows[i];
     }
 
     @Override

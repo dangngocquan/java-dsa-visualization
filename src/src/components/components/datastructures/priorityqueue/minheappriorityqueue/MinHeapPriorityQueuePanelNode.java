@@ -44,7 +44,7 @@ public class MinHeapPriorityQueuePanelNode extends AbstractPanelPriorityQueueNod
                 0, getHeightPanel()/3,
                 getWidthPanel(), getHeightPanel() - getHeightPanel()/3,
                 getBackgroundColor(), null,
-                value + "", 0
+                value + "", 1 + 2 - 3
         );
         panelValue.setBorderWidth(1);
         panelValue.setFont(Config.MONOSPACED_BOLD_18);

@@ -6,13 +6,12 @@ import src.components.components.datastructures.priorityqueue.AbstractPriorityQu
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.MinHeapPriorityQueuePanelNode;
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.MinHeapPriorityQueueScreen;
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.ViewMinHeapPriorityQueueAction;
-import src.components.components.datastructures.priorityqueue.sortedarraypriorityqueue.actionanimation.AbstractSortedArrayPriorityQueueAnimation;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
 import java.awt.*;
 
-public class MinHeapPriorityQueueActionInsert extends AbstractSortedArrayPriorityQueueAnimation {
+public class MinHeapPriorityQueueActionInsert extends AbstractMinHeapPriorityQueueAnimation {
     public int key;
     public int value;
     public MinHeapPriorityQueuePanelNode[] data;
@@ -38,9 +37,7 @@ public class MinHeapPriorityQueueActionInsert extends AbstractSortedArrayPriorit
         getRootScreen().getViewAction().repaint();
     }
 
-    public MinHeapPriorityQueueScreen getRootScreen() {
-        return (MinHeapPriorityQueueScreen) rootScreen;
-    }
+
 
     @Override
     public void run() {
