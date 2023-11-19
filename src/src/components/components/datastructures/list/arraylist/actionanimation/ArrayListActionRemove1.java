@@ -33,7 +33,7 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
             movePanelNodeToLeft(index + animationStep);
             animationStep++;
         } else if (animationStep == getRootScreen().list.size() - index) {
-            returnElement(index);
+            returnElement();
             animationStep++;
         } else if (animationStep == getRootScreen().list.size() - index + 1) {
             solveEnd();
@@ -74,7 +74,7 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
         );
     }
 
-    public void returnElement(int index) {
+    public void returnElement() {
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

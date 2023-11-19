@@ -1,33 +1,45 @@
-package src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.actionanimation;
+package src.components.components.datastructures.priorityqueue.unsortedlinkedpriorityqueue.actionanimation;
 
 import src.Config;
 import src.components.components.datastructures.priorityqueue.AbstractPanelPriorityQueueNode;
 import src.components.components.datastructures.priorityqueue.AbstractPriorityQueueAnimation;
 import src.components.components.datastructures.priorityqueue.AbstractPriorityQueueScreen;
-import src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.SortedLinkedPriorityQueuePanelNode;
-import src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.SortedLinkedPriorityQueueScreen;
-import src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.ViewSortedLinkedPriorityQueueAction;
+import src.components.components.datastructures.priorityqueue.unsortedlinkedpriorityqueue.UnsortedLinkedPriorityQueuePanelNode;
+import src.components.components.datastructures.priorityqueue.unsortedlinkedpriorityqueue.UnsortedLinkedPriorityQueueScreen;
+import src.components.components.datastructures.priorityqueue.unsortedlinkedpriorityqueue.ViewUnsortedLinkedPriorityQueueAction;
 import src.models.datastructures.priorityqueue.EntryInterface;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
 import java.util.Iterator;
 
-public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLinkedPriorityQueueAnimation {
-    private final int index;
-    private SortedLinkedPriorityQueuePanelNode node;
-    private SortedLinkedPriorityQueuePanelNode prevNode;
-    private SortedLinkedPriorityQueuePanelNode nextNode;
+public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsortedLinkedPriorityQueueAnimation {
+    private int index;
+    private UnsortedLinkedPriorityQueuePanelNode node;
+    private UnsortedLinkedPriorityQueuePanelNode prevNode;
+    private UnsortedLinkedPriorityQueuePanelNode nextNode;
 
-    public SortedLinkedPriorityQueueActionRemoveMin(
+    public UnsortedLinkedPriorityQueueActionRemoveMin(
             AbstractPriorityQueueScreen rootScreen, int period,
             AbstractPriorityQueueAnimation nextAnimation) {
         super(rootScreen, period, nextAnimation);
-        this.index = 0;
+        Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
+                = getRootScreen().queue.iterator();
+        int currentKey = iterator.next().getKey();
+        int minKey = currentKey;
+        int i = 0;
+        while (iterator.hasNext()) {
+            i++;
+            currentKey = iterator.next().getKey();
+            if (currentKey < minKey) {
+                this.index = i;
+                minKey = currentKey;
+            }
+        }
     }
 
-    public SortedLinkedPriorityQueueScreen getRootScreen() {
-        return (SortedLinkedPriorityQueueScreen) rootScreen;
+    public UnsortedLinkedPriorityQueueScreen getRootScreen() {
+        return (UnsortedLinkedPriorityQueueScreen) rootScreen;
     }
 
     @Override
@@ -58,7 +70,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
     }
 
     public void checkNode(int i) {
-        SortedLinkedPriorityQueuePanelNode node0 = getPanelNode(i);
+        UnsortedLinkedPriorityQueuePanelNode node0 = getPanelNode(i);
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -77,7 +89,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
     }
 
     public void uncheckNode(int i) {
-        SortedLinkedPriorityQueuePanelNode node0 = getPanelNode(i);
+        UnsortedLinkedPriorityQueuePanelNode node0 = getPanelNode(i);
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_YELLOW,
@@ -123,7 +135,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewSortedLinkedPriorityQueueAction.GAP_Y,
+                ViewUnsortedLinkedPriorityQueueAction.GAP_Y,
                 10, period - 10
         );
         // Move arrow
@@ -135,7 +147,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                             prevNode.nextArrow[0],
                             prevNode.nextArrow[1],
                             prevNode.nextArrow[2],
-                            prevNode.nextArrow[3] + ViewSortedLinkedPriorityQueueAction.GAP_Y
+                            prevNode.nextArrow[3] + ViewUnsortedLinkedPriorityQueueAction.GAP_Y
                     },
                     10,
                     period - 10
@@ -148,7 +160,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                     node.nextArrow,
                     new int[] {
                             node.nextArrow[0],
-                            node.nextArrow[1] + ViewSortedLinkedPriorityQueueAction.GAP_Y,
+                            node.nextArrow[1] + ViewUnsortedLinkedPriorityQueueAction.GAP_Y,
                             node.nextArrow[2],
                             node.nextArrow[3]
                     },
@@ -168,9 +180,9 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                             prevNode.nextArrow[0],
                             prevNode.nextArrow[1],
                             prevNode.nextArrow[2]
-                                    + ViewSortedLinkedPriorityQueueAction.GAP_X
-                                    + ViewSortedLinkedPriorityQueueAction.WIDTH_NODE,
-                            prevNode.nextArrow[3] - ViewSortedLinkedPriorityQueueAction.GAP_Y
+                                    + ViewUnsortedLinkedPriorityQueueAction.GAP_X
+                                    + ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
+                            prevNode.nextArrow[3] - ViewUnsortedLinkedPriorityQueueAction.GAP_Y
                     },
                     10,
                     period - 10
@@ -207,11 +219,11 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
         );
         node.nextArrow = null;
         for (int i = index+1; i < getRootScreen().queue.size(); i++) {
-            SortedLinkedPriorityQueuePanelNode node = getPanelNode(i);
+            UnsortedLinkedPriorityQueuePanelNode node = getPanelNode(i);
             ServiceAnimation.translate(
                     node,
                     new Location(node.getX(), node.getY()),
-                    -ViewSortedLinkedPriorityQueueAction.GAP_X - ViewSortedLinkedPriorityQueueAction.WIDTH_NODE,
+                    -ViewUnsortedLinkedPriorityQueueAction.GAP_X - ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
                     0,
                     10, period - 10
             );
@@ -221,12 +233,12 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                         node.nextArrow,
                         new int[] {
                                 node.nextArrow[0]
-                                        - ViewSortedLinkedPriorityQueueAction.GAP_X
-                                        - ViewSortedLinkedPriorityQueueAction.WIDTH_NODE,
+                                        - ViewUnsortedLinkedPriorityQueueAction.GAP_X
+                                        - ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
                                 node.nextArrow[1],
                                 node.nextArrow[2]
-                                        - ViewSortedLinkedPriorityQueueAction.GAP_X
-                                        - ViewSortedLinkedPriorityQueueAction.WIDTH_NODE,
+                                        - ViewUnsortedLinkedPriorityQueueAction.GAP_X
+                                        - ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
                                 node.nextArrow[3]
                         },
                         10,
@@ -259,8 +271,8 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                                 prevNode.nextArrow[0],
                                 prevNode.nextArrow[1],
                                 prevNode.nextArrow[2]
-                                        - ViewSortedLinkedPriorityQueueAction.GAP_X
-                                        - ViewSortedLinkedPriorityQueueAction.WIDTH_NODE,
+                                        - ViewUnsortedLinkedPriorityQueueAction.GAP_X
+                                        - ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
                                 prevNode.nextArrow[3]
                         },
                         10,
@@ -278,11 +290,11 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
         getRootScreen().queue.removeMin();
     }
 
-    public SortedLinkedPriorityQueuePanelNode getPanelNode(int i) {
+    public UnsortedLinkedPriorityQueuePanelNode getPanelNode(int i) {
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator =
                 getRootScreen().queue.iterator();
         AbstractPanelPriorityQueueNode panel = null;
         while (i-- >= 0) panel = iterator.next().getValue();
-        return (SortedLinkedPriorityQueuePanelNode) panel;
+        return (UnsortedLinkedPriorityQueuePanelNode) panel;
     }
 }

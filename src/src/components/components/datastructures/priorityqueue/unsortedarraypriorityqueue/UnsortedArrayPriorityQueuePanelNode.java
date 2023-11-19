@@ -1,4 +1,4 @@
-package src.components.components.datastructures.priorityqueue.sortedarraypriorityqueue;
+package src.components.components.datastructures.priorityqueue.unsortedarraypriorityqueue;
 
 import src.Config;
 import src.components.base.Panel;
@@ -7,10 +7,10 @@ import src.components.components.datastructures.queue.arrayqueue.ViewArrayQueueA
 
 import java.awt.*;
 
-public class SortedArrayPriorityQueuePanelNode extends AbstractPanelPriorityQueueNode {
+public class UnsortedArrayPriorityQueuePanelNode extends AbstractPanelPriorityQueueNode {
     private Panel panelKey;
     private Panel panelValue;
-    public SortedArrayPriorityQueuePanelNode(int index, int key, int value) {
+    public UnsortedArrayPriorityQueuePanelNode(int index, int key, int value) {
         super(
                 index, key, value,
                 ViewArrayQueueAction.SIZE_PER_NODE,
@@ -32,14 +32,14 @@ public class SortedArrayPriorityQueuePanelNode extends AbstractPanelPriorityQueu
                 getBackgroundColor(), null,
                 key + "", 0
         );
-        panelKey.setBorderWidth(2 - 1);
+        panelKey.setBorderWidth(1);
         panelKey.setFont(Config.MONOSPACED_BOLD_18);
 
         panelValue = new Panel(
                 0, getHeightPanel()/3,
                 getWidthPanel(), getHeightPanel() - getHeightPanel()/3,
                 getBackgroundColor(), null,
-                value + "", 1 - 2 + 1
+                value + "", 0
         );
         panelValue.setBorderWidth(1);
         panelValue.setFont(Config.MONOSPACED_BOLD_18);

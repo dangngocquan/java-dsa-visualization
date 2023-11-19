@@ -1,4 +1,4 @@
-package src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue;
+package src.components.components.datastructures.priorityqueue.unsortedlinkedpriorityqueue;
 
 import src.Config;
 import src.components.base.Panel;
@@ -6,13 +6,13 @@ import src.components.components.datastructures.priorityqueue.AbstractPanelPrior
 
 import java.awt.*;
 
-public class SortedLinkedPriorityQueuePanelNode extends AbstractPanelPriorityQueueNode {
+public class UnsortedLinkedPriorityQueuePanelNode extends AbstractPanelPriorityQueueNode {
     public Panel[] panels;
-    public SortedLinkedPriorityQueuePanelNode(int index, int key, int value) {
+    public UnsortedLinkedPriorityQueuePanelNode(int index, int key, int value) {
         super(
                 index, key, value,
-                ViewSortedLinkedPriorityQueueAction.WIDTH_NODE,
-                ViewSortedLinkedPriorityQueueAction.HEIGHT_NODE
+                ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
+                ViewUnsortedLinkedPriorityQueueAction.HEIGHT_NODE
         );
         setBorderWidth(4);
         setBorderColor(Config.COLOR_BAR_TEMP_SORTED);
@@ -65,13 +65,13 @@ public class SortedLinkedPriorityQueuePanelNode extends AbstractPanelPriorityQue
 
     @Override
     public int createX() {
-        return ViewSortedLinkedPriorityQueueAction.INITIAL_X
-                + (ViewSortedLinkedPriorityQueueAction.GAP_X + ViewSortedLinkedPriorityQueueAction.WIDTH_NODE) * index;
+        return ViewUnsortedLinkedPriorityQueueAction.INITIAL_X
+                + (ViewUnsortedLinkedPriorityQueueAction.GAP_X + ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE) * index;
     }
 
     @Override
     public int createY() {
-        return ViewSortedLinkedPriorityQueueAction.INITIAL_Y;
+        return ViewUnsortedLinkedPriorityQueueAction.INITIAL_Y;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class SortedLinkedPriorityQueuePanelNode extends AbstractPanelPriorityQue
         return new int[] {
                 getX() + panels[2].getX() + panels[2].getWidthPanel(),
                 getY() + panels[2].getY() + panels[2].getHeightPanel() / 2,
-                getX() + getWidthPanel() + ViewSortedLinkedPriorityQueueAction.GAP_X,
+                getX() + getWidthPanel() + ViewUnsortedLinkedPriorityQueueAction.GAP_X,
                 getY() + getHeightPanel() / 2
         };
     }

@@ -6,11 +6,13 @@ import src.components.components.AbstractScreen;
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.MinHeapPriorityQueueScreen;
 import src.components.components.datastructures.priorityqueue.sortedarraypriorityqueue.SortedArrayPriorityQueueScreen;
 import src.components.components.datastructures.priorityqueue.sortedlinkedpriorityqueue.SortedLinkedPriorityQueueScreen;
+import src.components.components.datastructures.priorityqueue.unsortedarraypriorityqueue.UnsortedArrayPriorityQueueScreen;
+import src.components.components.datastructures.priorityqueue.unsortedlinkedpriorityqueue.UnsortedLinkedPriorityQueueScreen;
 
 public class MainPriorityQueueScreen extends AbstractScreen {
     @Override
     public void addButtons() {
-        int numberButtonPerColumn = 4;
+        int numberButtonPerColumn = 6;
         int numberButtonPerRow = 1;
         int buttonWidth = 400;
         int buttonHeight = 50;
@@ -20,7 +22,7 @@ public class MainPriorityQueueScreen extends AbstractScreen {
         int initialY = (Config.HEIGHT - totalHeight) / 2;
         int initialX = (Config.WIDTH - totalWidth) / 2;
 
-        buttons = new Button[4];
+        buttons = new Button[6];
         buttons[0] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
@@ -31,17 +33,29 @@ public class MainPriorityQueueScreen extends AbstractScreen {
                 initialX,
                 initialY,
                 buttonWidth, buttonHeight,
-                "Sorted Array Priority Queue"
+                "Unsorted Array Priority Queue"
         );
         buttons[2] = new Button(
                 initialX,
-                initialY + (gapHeight + buttonHeight),
+                initialY  + (gapHeight + buttonHeight),
                 buttonWidth, buttonHeight,
-                "Sorted Linked Priority Queue"
+                "Sorted Array Priority Queue"
         );
         buttons[3] = new Button(
                 initialX,
                 initialY + (gapHeight + buttonHeight) * 2,
+                buttonWidth, buttonHeight,
+                "Unsorted Linked Priority Queue"
+        );
+        buttons[4] = new Button(
+                initialX,
+                initialY + (gapHeight + buttonHeight) * 3,
+                buttonWidth, buttonHeight,
+                "Sorted Linked Priority Queue"
+        );
+        buttons[5] = new Button(
+                initialX,
+                initialY + (gapHeight + buttonHeight) * 4,
                 buttonWidth, buttonHeight,
                 "Min Heap Priority Queue"
         );
@@ -51,7 +65,7 @@ public class MainPriorityQueueScreen extends AbstractScreen {
 
     @Override
     public void createDefaultScreens() {
-        screens = new AbstractScreen[4];
+        screens = new AbstractScreen[6];
     }
 
     @Override
@@ -65,10 +79,10 @@ public class MainPriorityQueueScreen extends AbstractScreen {
             screens[0].setHidden(false);
         });
 
-        // Sorted Array Priority Queue
+        // Unsorted Array Priority Queue
         buttons[1].addActionListener(e -> {
             if (screens[1] == null) {
-                screens[1] = new SortedArrayPriorityQueueScreen();
+                screens[1] = new UnsortedArrayPriorityQueueScreen();
                 screens[1].setVisible(false);
                 getApp().addScreen(screens[1]);
             }
@@ -76,10 +90,10 @@ public class MainPriorityQueueScreen extends AbstractScreen {
             screens[1].setHidden(false);
         });
 
-        // Sorted Linked Priority Queue
+        // Unsorted Array Priority Queue
         buttons[2].addActionListener(e -> {
             if (screens[2] == null) {
-                screens[2] = new SortedLinkedPriorityQueueScreen();
+                screens[2] = new SortedArrayPriorityQueueScreen();
                 screens[2].setVisible(false);
                 getApp().addScreen(screens[2]);
             }
@@ -87,15 +101,37 @@ public class MainPriorityQueueScreen extends AbstractScreen {
             screens[2].setHidden(false);
         });
 
-        // Min Heap Priority Queue
+        // Unsorted Linked Priority Queue
         buttons[3].addActionListener(e -> {
             if (screens[3] == null) {
-                screens[3] = new MinHeapPriorityQueueScreen();
+                screens[3] = new UnsortedLinkedPriorityQueueScreen();
                 screens[3].setVisible(false);
                 getApp().addScreen(screens[3]);
             }
             setHidden(true);
             screens[3].setHidden(false);
+        });
+
+        // Sorted Linked Priority Queue
+        buttons[4].addActionListener(e -> {
+            if (screens[4] == null) {
+                screens[4] = new SortedLinkedPriorityQueueScreen();
+                screens[4].setVisible(false);
+                getApp().addScreen(screens[4]);
+            }
+            setHidden(true);
+            screens[4].setHidden(false);
+        });
+
+        // Min Heap Priority Queue
+        buttons[5].addActionListener(e -> {
+            if (screens[5] == null) {
+                screens[5] = new MinHeapPriorityQueueScreen();
+                screens[5].setVisible(false);
+                getApp().addScreen(screens[5]);
+            }
+            setHidden(true);
+            screens[5].setHidden(false);
         });
     }
 }

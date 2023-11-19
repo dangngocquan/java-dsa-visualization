@@ -8,7 +8,7 @@ import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 import src.services.ServiceAnimation;
 
 public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
-    private int value;
+    private final int value;
     private int index;
     public ArrayListActionRemove2(
             int value, AbstractListScreen rootScreen,
