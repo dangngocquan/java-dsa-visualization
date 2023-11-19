@@ -32,9 +32,11 @@ public class Main {
           + Array Queue: Done
           + Linked Queue: Done
       + Priority Queue:
-          + Sorted Array Priority Queue:
-          + Sorted Linked Priority Queue:
-          + Min Heap Priority Queue:
+          + Unsorted Array Priority Queue: Done
+          + Sorted Array Priority Queue: Done
+          + Unsorted Linked Priority Queue: Done
+          + Sorted Linked Priority Queue: Done
+          + Min Heap Priority Queue: Done
       + Tree:
           + Array Binary Tree:
           + Linked Binary Tree:

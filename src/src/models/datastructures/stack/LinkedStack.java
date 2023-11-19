@@ -2,7 +2,7 @@ package src.models.datastructures.stack;
 
 import java.util.Iterator;
 
-public class LinkedListStack<E> extends AbstractStack<E> {
+public class LinkedStack<E> extends AbstractStack<E> {
     class Node {
         E element;
         Node next;
@@ -49,10 +49,10 @@ public class LinkedListStack<E> extends AbstractStack<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new MyStackIterator();
+        return new LinkedStackIterator();
     }
 
-    class MyStackIterator implements Iterator<E> {
+    class LinkedStackIterator implements Iterator<E> {
         private Node currentNode = stack;
 
         @Override

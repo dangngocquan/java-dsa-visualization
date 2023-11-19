@@ -45,10 +45,10 @@ public class ArrayStack<E> extends AbstractStack<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new MyStackIterator();
+        return new ArrayStackIterator();
     }
 
-    class MyStackIterator implements Iterator<E> {
+    class ArrayStackIterator implements Iterator<E> {
         private int currentIndex = size-1;
 
         @Override

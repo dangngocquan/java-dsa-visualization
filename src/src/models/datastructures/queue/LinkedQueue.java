@@ -2,7 +2,7 @@ package src.models.datastructures.queue;
 
 import java.util.Iterator;
 
-public class LinkedListQueue<E> extends AbstractQueue<E> {
+public class LinkedQueue<E> extends AbstractQueue<E> {
     class Node {
         E element;
         Node next;
@@ -66,10 +66,10 @@ public class LinkedListQueue<E> extends AbstractQueue<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new LinkedListQueueIterator();
+        return new LinkedQueueIterator();
     }
 
-    private class LinkedListQueueIterator implements Iterator<E> {
+    private class LinkedQueueIterator implements Iterator<E> {
         private Node currentNode = first;
 
         @Override

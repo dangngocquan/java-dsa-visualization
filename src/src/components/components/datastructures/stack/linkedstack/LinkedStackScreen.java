@@ -2,7 +2,7 @@ package src.components.components.datastructures.stack.linkedstack;
 
 
 import src.components.components.datastructures.stack.AbstractStackScreen;
-import src.models.datastructures.stack.LinkedListStack;
+import src.models.datastructures.stack.LinkedStack;
 
 public class LinkedStackScreen extends AbstractStackScreen {
     @Override
@@ -13,7 +13,7 @@ public class LinkedStackScreen extends AbstractStackScreen {
 
     @Override
     public void createStack() {
-        stack = new LinkedListStack<>();
+        stack = new LinkedStack<>();
         LinkedStackPanelNode node3 = new LinkedStackPanelNode(2, 4);
         LinkedStackPanelNode node2 = new LinkedStackPanelNode(1, 0);
         LinkedStackPanelNode node1 = new LinkedStackPanelNode(0, 1);

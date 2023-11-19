@@ -1,7 +1,7 @@
 package src.components.components.datastructures.queue.linkedqueue;
 
 import src.components.components.datastructures.queue.AbstractQueueScreen;
-import src.models.datastructures.queue.LinkedListQueue;
+import src.models.datastructures.queue.LinkedQueue;
 
 public class LinkedQueueScreen extends AbstractQueueScreen {
     @Override
@@ -12,7 +12,7 @@ public class LinkedQueueScreen extends AbstractQueueScreen {
 
     @Override
     public void createQueue() {
-        queue = new LinkedListQueue<>();
+        queue = new LinkedQueue<>();
         LinkedQueuePanelNode node1 = new LinkedQueuePanelNode(0, 1);
         LinkedQueuePanelNode node2 = new LinkedQueuePanelNode(1, 0);
         LinkedQueuePanelNode node3 = new LinkedQueuePanelNode(2, 4);
