@@ -4,8 +4,7 @@ import src.Config;
 import src.components.base.Panel;
 
 public abstract class AbstractPanelDataStructureNode
-        extends Panel
-        implements Comparable<AbstractPanelDataStructureNode> {
+        extends Panel {
     protected int index;
     protected int value;
     protected int widthNode;
@@ -75,9 +74,4 @@ public abstract class AbstractPanelDataStructureNode
 
     public abstract int[] getDefaultPrevArrow();
     public abstract int[] getDefaultNextArrow();
-
-    @Override
-    public int compareTo(AbstractPanelDataStructureNode o) {
-        return value - o.getValue();
-    }
 }

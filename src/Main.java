@@ -3,7 +3,9 @@ import src.App;
 public class Main {
     public static void main(String[] args) {
         new App();
+//        new TestFactory().testAll();
     }
+
 }
 
  /*
@@ -40,6 +42,6 @@ public class Main {
       + Tree:
           + Array Binary Tree:
           + Linked Binary Tree:
-          + Traversal Tree:
+          + Binary Search Tree
 
 */

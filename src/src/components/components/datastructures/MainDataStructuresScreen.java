@@ -7,6 +7,7 @@ import src.components.components.datastructures.list.MainListScreen;
 import src.components.components.datastructures.priorityqueue.MainPriorityQueueScreen;
 import src.components.components.datastructures.queue.MainQueueScreen;
 import src.components.components.datastructures.stack.MainStackScreen;
+import src.components.components.datastructures.tree.MainTreeScreen;
 
 
 public class MainDataStructuresScreen extends AbstractScreen {
@@ -126,6 +127,17 @@ public class MainDataStructuresScreen extends AbstractScreen {
             }
             setHidden(true);
             screens[4].setHidden(false);
+        });
+
+        // Tree
+        buttons[5].addActionListener(e -> {
+            if (screens[5] == null) {
+                screens[5] = new MainTreeScreen();
+                screens[5].setVisible(false);
+                getApp().addScreen(screens[5]);
+            }
+            setHidden(true);
+            screens[5].setHidden(false);
         });
     }
 }

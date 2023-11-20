@@ -35,7 +35,7 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
         if (elementOfNode(root()) == null) return "";
         StringBuilder sb = new StringBuilder();
         createStringRightRootLeft(sb, maxLengthStringNode(root()) + 2, root());
-        if (sb.length() > 0) sb.delete(sb.length()-1, sb.length());
+        if (!sb.isEmpty()) sb.delete(sb.length()-1, sb.length());
         return sb.toString();
     }
 

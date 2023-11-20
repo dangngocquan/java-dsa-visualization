@@ -65,7 +65,7 @@ public class TestList implements Test {
     }
 
     public String dashes(int length) {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         while (length-- > 0) sb.append("-");
         return sb.toString();
     }

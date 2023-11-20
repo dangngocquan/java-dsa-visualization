@@ -24,7 +24,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
         }
     }
 
-    private Node<E> root;
+    public Node<E> root;
 
     @Override
     public Node<E> root() {

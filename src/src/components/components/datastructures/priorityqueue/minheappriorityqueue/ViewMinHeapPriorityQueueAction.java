@@ -7,6 +7,7 @@ import src.components.components.datastructures.priorityqueue.AbstractViewPriori
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.actionanimation.MinHeapPriorityQueueActionInsert;
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.actionanimation.MinHeapPriorityQueueActionRemoveMin;
 import src.models.datastructures.priorityqueue.EntryInterface;
+import src.services.ServiceComponent;
 
 import java.awt.*;
 import java.util.Iterator;
@@ -54,19 +55,23 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
         for (int i = 0; i < 7; i++) {
             if (dataClone[i] == null) break;
             if (dataClone[2 * i + 1] != null) {
-                g2d.drawLine(
+                ServiceComponent.drawPatternArrow2(
+                        g2d,
                         getDefaultX(i),
-                        getDefaultY(i) + dataClone[i].getHeightPanel(),
-                        getDefaultX(2 * i + 1) + dataClone[2 * i + 1].getWidthPanel(),
-                        getDefaultY(2 * i + 1)
+                        getDefaultY(i) + dataClone[i].getHeightPanel() / 2,
+                        getDefaultX(2 * i + 1) + dataClone[2 * i + 1].getWidthPanel() / 2,
+                        getDefaultY(2 * i + 1),
+                        Color.BLACK
                 );
             }
             if (dataClone[2 * i + 2] != null) {
-                g2d.drawLine(
+                ServiceComponent.drawPatternArrow2(
+                        g2d,
                         getDefaultX(i) + dataClone[i].getWidthPanel(),
-                        getDefaultY(i) + dataClone[i].getHeightPanel(),
-                        getDefaultX(2 * i + 2),
-                        getDefaultY(2 * i + 2)
+                        getDefaultY(i) + dataClone[i].getHeightPanel() / 2,
+                        getDefaultX(2 * i + 2) + dataClone[2 * i + 1].getWidthPanel() / 2,
+                        getDefaultY(2 * i + 2),
+                        Color.BLACK
                 );
             }
         }
