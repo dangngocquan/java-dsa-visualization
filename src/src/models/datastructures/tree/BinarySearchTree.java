@@ -53,9 +53,8 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
     // Return root of tree after deleted x
     public Node<E> delete(E x) {
         if (x == null) return root();
-        Node<E> removeNode = delete(x, root());
-        if (removeNode == root) root = null;
-        return removeNode;
+        root = delete(x, root());
+        return root;
     }
 
     private Node<E> delete(E x, Node<E> root) {

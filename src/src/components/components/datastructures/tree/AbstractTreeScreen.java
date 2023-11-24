@@ -48,7 +48,7 @@ public abstract class AbstractTreeScreen extends AbstractDataStructureScreen {
     @Override
     public void setIndexActionSelected(int indexActionSelected) {
         this.indexActionSelected = indexActionSelected;
-        if (indexActionSelected == 0) {
+        if (indexActionSelected >= 6) {
             new DialogGetValue(
                     (Config.WIDTH - 300) / 2,
                     (Config.HEIGHT - 300) / 2,
@@ -91,10 +91,22 @@ public abstract class AbstractTreeScreen extends AbstractDataStructureScreen {
         LinkedBinaryTree.Node<TreePanelNode> node = tree.root;
         QueueInterface<LinkedBinaryTree.Node<TreePanelNode>> queue = new LinkedQueue<>();
         queue.enqueue(node);
-        while (!queue.isEmpty()) {
-            if (queue.first().left != null) queue.enqueue(queue.first().left);
-            if (queue.first().right != null) queue.enqueue(queue.first().right);
-            array[i++] = queue.dequeue().element;
+        while (i < 31) {
+            if (queue.first() == null) {
+                queue.enqueue(null);
+                queue.enqueue(null);
+                array[i++] = null;
+                queue.dequeue();
+            } else {
+                queue.enqueue(queue.first().left);
+                queue.enqueue(queue.first().right);
+                array[i] = queue.dequeue().element;
+                array[i].setXY(
+                        AbstractViewTreeAction.getDefaultX(i),
+                        AbstractViewTreeAction.getDefaultY(i)
+                );
+                i++;
+            }
         }
         return array;
     }

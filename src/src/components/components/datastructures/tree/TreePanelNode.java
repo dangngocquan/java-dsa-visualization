@@ -27,6 +27,7 @@ public class TreePanelNode
 
     @Override
     public void setBackgroundColor(Color backgroundColor) {
+        super.setBackgroundColor(backgroundColor);
         panel.setBackgroundColor(backgroundColor);
     }
 

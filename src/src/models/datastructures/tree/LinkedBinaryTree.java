@@ -1,7 +1,7 @@
 package src.models.datastructures.tree;
 
-public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.Node<E>> {
-    public static class Node<E> {
+public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTree<E, LinkedBinaryTree.Node<E>> {
+    public static class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
         public E element;
         public Node<E> parent;
         public Node<E> left;
@@ -21,6 +21,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
         @Override
         public String toString() {
             return element == null? "null" : element.toString();
+        }
+
+        @Override
+        public int compareTo(Node<E> o) {
+            return this.element.compareTo(o.element);
         }
     }
 

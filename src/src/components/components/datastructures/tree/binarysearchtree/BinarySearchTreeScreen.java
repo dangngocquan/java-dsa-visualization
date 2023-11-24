@@ -13,7 +13,7 @@ public class BinarySearchTreeScreen extends AbstractTreeScreen {
             tree.insert(new TreePanelNode(
                     AbstractViewTreeAction.INDEX_ROWS[i],
                     AbstractViewTreeAction.INDEX_COLUMNS[i],
-                    i));
+                    AbstractViewTreeAction.INDEX_COLUMNS[i]));
         }
     }
 

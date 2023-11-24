@@ -3,6 +3,7 @@ package src.components.components.datastructures.tree;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Dialog;
+import src.components.base.Panel;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
 
@@ -128,6 +129,8 @@ public class ViewTreeController extends AbstractViewDataStructureController {
                 referAllButtons(); buttons[6].setIsClicked(true); tempIndexActionSelecting = 5; });
             this.buttons[7].addActionListener(e -> {
                 referAllButtons(); buttons[7].setIsClicked(true); tempIndexActionSelecting = 6; });
+            this.buttons[8].addActionListener(e -> {
+                referAllButtons(); buttons[8].setIsClicked(true); tempIndexActionSelecting = 7; });
         }
     }
 }
