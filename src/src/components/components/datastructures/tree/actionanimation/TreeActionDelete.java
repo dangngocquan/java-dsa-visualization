@@ -28,7 +28,7 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             AbstractTreeAnimation nextAnimation) {
         super(rootScreen, period, nextAnimation);
         this.value = value;
-        this.panels = rootScreen.getPanelNodeArray();
+        this.panels = getViewAction().panelsClone;
     }
 
     public AbstractTreeScreen getRootScreen() {
@@ -102,9 +102,11 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     } else {
                         translatePanelToPrevRoot();
                     }
-                    prevRoot = i;
                     subStep = 2;
                 } else if (subStep == 2) {
+                    if (prevRoot > -1) panels[prevRoot] = panels[i];
+                    panels[i] = null;
+                    prevRoot = i;
                     translateLeftTreeBecomeRoot();
                     subStep = 0;
                     animationStep = 2;
@@ -126,9 +128,11 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     } else {
                         translatePanelToPrevRoot();
                     }
-                    prevRoot = i;
                     subStep = 2;
                 } else if (subStep == 2) {
+                    if (prevRoot > -1) panels[prevRoot] = panels[i];
+                    panels[i] = null;
+                    prevRoot = i;
                     translateRightTreeBecomeRoot();
                     subStep = 0;
                     animationStep = 2;
@@ -191,16 +195,14 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     }
 
     protected void removePanelFromView() {
-        TreePanelNode panel = panels[i];
         ServiceAnimation.translate(
-                panel,
-                new Location(panel.getX(), panel.getY()),
+                panels[i],
+                new Location(panels[i].getX(), panels[i].getY()),
                 0,
                 1000,
                 10,
                 period - 10
         );
-        panels[i] = null;
     }
 
     protected void translatePanelToPrevRoot() {
@@ -226,7 +228,6 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     // type == 2: tree right
     protected void translateSubTreeBecomeRoot(int type) {
         AbstractViewTreeAction.movableArrow = true;
-        panels[i] = null;
         Map<Integer, Integer> newIndexes = new LinkedHashMap<>();
         QueueInterface<Integer> queueOldIndexes = new LinkedQueue<>();
         queueOldIndexes.enqueue(2 * i + type); // add root of subtree
@@ -244,14 +245,6 @@ public class TreeActionDelete extends AbstractTreeAnimation {
         }
         Map<Integer, TreePanelNode> nodes = new LinkedHashMap<>();
         for (Integer i : newIndexes.keySet()) {
-            ServiceAnimation.translate(
-                    panels[i],
-                    new Location(panels[i].getX(), panels[i].getY()),
-                    AbstractViewTreeAction.getDefaultX(newIndexes.get(i)) - panels[i].getX(),
-                    AbstractViewTreeAction.getDefaultY(newIndexes.get(i)) - panels[i].getY(),
-                    10,
-                    period - 10
-            );
             nodes.put(newIndexes.get(i), panels[i]);
         }
 
@@ -259,8 +252,20 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             panels[i] = null;
             panels[newIndexes.get(i)] = nodes.get(newIndexes.get(i));
         }
+
         getViewAction().drawElements();
         getViewAction().repaint();
+
+        for (Integer i : newIndexes.keySet()) {
+            ServiceAnimation.translate(
+                    panels[newIndexes.get(i)],
+                    new Location(panels[newIndexes.get(i)].getX(), panels[newIndexes.get(i)].getY()),
+                    AbstractViewTreeAction.getDefaultX(newIndexes.get(i)) - panels[newIndexes.get(i)].getX(),
+                    AbstractViewTreeAction.getDefaultY(newIndexes.get(i)) - panels[newIndexes.get(i)].getY(),
+                    10,
+                    period - 10
+            );
+        }
     }
 
     public int getIndexMinNode(int rootIndex) {

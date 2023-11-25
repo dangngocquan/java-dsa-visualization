@@ -23,7 +23,7 @@ public class ViewBinarySearchTreeAction extends AbstractViewTreeAction {
 
     @Override
     public void actionDelete(Integer value) {
-        new TreeActionDelete(value, getRootScreen(), 2000, null).start();
+        new TreeActionDelete(value, getRootScreen(), 500, null).start();
     }
 
 }

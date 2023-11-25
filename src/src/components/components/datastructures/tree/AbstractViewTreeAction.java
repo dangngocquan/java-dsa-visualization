@@ -45,6 +45,7 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
             panel.setBackgroundColor(Config.COLOR_WHITE);
             add(panel);
         }
+        repaint();
     }
 
     public AbstractTreeScreen getRootScreen() {
@@ -52,7 +53,13 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
     }
 
     public void resetPanelsClone() {
-        this.panelsClone = getRootScreen().getPanelNodeArray();
+        TreePanelNode[] a = getRootScreen().getPanelNodeArray();
+        if (this.panelsClone == null) {
+            this.panelsClone = a;
+        } else {
+            System.arraycopy(a, 0, panelsClone, 0, a.length);
+        }
+
         drawElements();
         repaint();
     }
