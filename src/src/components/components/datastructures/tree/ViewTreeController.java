@@ -3,7 +3,6 @@ package src.components.components.datastructures.tree;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Dialog;
-import src.components.base.Panel;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
 
@@ -97,7 +96,7 @@ public class ViewTreeController extends AbstractViewDataStructureController {
                     !getRootScreen().tree.isEmpty(),
                     !getRootScreen().tree.isEmpty(),
                     !getRootScreen().tree.isEmpty(),
-                    getRootScreen().tree.size() < 31,
+                    getRootScreen().tree.size() < AbstractViewTreeAction.INDEX_COLUMNS.length,
                     !getRootScreen().tree.isEmpty()
             };
 

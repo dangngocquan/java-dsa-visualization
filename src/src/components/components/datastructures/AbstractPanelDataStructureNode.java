@@ -74,4 +74,9 @@ public abstract class AbstractPanelDataStructureNode
 
     public abstract int[] getDefaultPrevArrow();
     public abstract int[] getDefaultNextArrow();
+
+    @Override
+    public String toString() {
+        return "Node[" + value + "]";
+    }
 }

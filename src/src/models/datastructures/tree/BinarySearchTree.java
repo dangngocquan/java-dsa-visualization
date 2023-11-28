@@ -6,7 +6,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
         return findMin(root());
     }
 
-    private E findMin(Node<E> root) {
+    protected E findMin(Node<E> root) {
         while (root != null && root.left != null) root = root.left;
         return root == null? null : root.element;
     }
@@ -23,31 +23,22 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
         return null;
     }
 
-    public boolean insert(E x) {
-        if (x == null) return false;
-        if (root() == null) {
-            addRoot(x);
-            return true;
-        }
+    public Node<E> insert(E x) {
+        if (x == null) return null;
+        if (root() == null) return addRoot(x);
         Node<E> node = root();
         while (node != null) {
             int compare = x.compareTo(node.element);
-            if (compare == 0) return false; // Duplicated value
+            if (compare == 0) return null; // Duplicated value
             if (compare < 0) {
-                if (node.left == null) {
-                    addLeft(node, x);
-                    return true;
-                }
+                if (node.left == null) return addLeft(node, x);
                 node = node.left;
                 continue;
             }
-            if (node.right == null) {
-                addRight(node, x);
-                return true;
-            }
+            if (node.right == null) return addRight(node, x);
             node = node.right;
         }
-        return false;
+        return null;
     }
 
     // Return root of tree after deleted x
@@ -57,7 +48,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
         return root;
     }
 
-    private Node<E> delete(E x, Node<E> root) {
+    protected Node<E> delete(E x, Node<E> root) {
         if (root == null) return null;
         int compare = x.compareTo(root.element);
         // case 1: has no child

@@ -92,6 +92,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
             p.right = new Node<>(
                     element, p, null, null
             );
+            p.right.parent = p;
         }
         return p.right;
     }
@@ -107,6 +108,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
         if (p == null) return null;
         if (p.left == null) {
             p.left = leftP;
+            if (leftP != null) leftP.parent = p;
         }
         return p.left;
     }
@@ -115,6 +117,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
         if (p == null) return null;
         if (p.right == null) {
             p.right = rightP;
+            if (rightP != null) rightP.parent = p;
         }
         return p.right;
     }

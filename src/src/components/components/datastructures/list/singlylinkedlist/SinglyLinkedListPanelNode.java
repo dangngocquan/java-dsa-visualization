@@ -6,7 +6,8 @@ import src.components.components.datastructures.list.AbstractPanelListNode;
 
 import java.awt.*;
 
-public class SinglyLinkedListPanelNode extends AbstractPanelListNode {
+public class SinglyLinkedListPanelNode extends AbstractPanelListNode
+        implements Comparable<SinglyLinkedListPanelNode> {
     public Panel[] panels;
     public SinglyLinkedListPanelNode(int index, int value) {
         super(
@@ -79,5 +80,10 @@ public class SinglyLinkedListPanelNode extends AbstractPanelListNode {
             getX() + getWidthPanel() + ViewSinglyLinkedListAction.GAP_X,
             getY() + getHeightPanel() / 2
         };
+    }
+
+    @Override
+    public int compareTo(SinglyLinkedListPanelNode o) {
+        return value - o.value;
     }
 }

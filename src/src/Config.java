@@ -32,6 +32,7 @@ public class Config {
 
     // Font
     public static final Font MONOSPACED_BOLD_6 = new Font(Font.MONOSPACED, Font.BOLD, 6);
+    public static final Font MONOSPACED_BOLD_10 = new Font(Font.MONOSPACED, Font.BOLD, 10);
     public static final Font MONOSPACED_BOLD_12 = new Font(Font.MONOSPACED, Font.BOLD, 12);
     public static final Font MONOSPACED_BOLD_14 = new Font(Font.MONOSPACED, Font.BOLD, 14);
     public static final Font MONOSPACED_BOLD_16 = new Font(Font.MONOSPACED, Font.BOLD, 16);

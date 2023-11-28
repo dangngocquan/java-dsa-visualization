@@ -1,10 +1,10 @@
-package src.components.components.datastructures.tree.actionanimation;
+package src.components.components.datastructures.tree.avltree;
 
-import src.Config;
 import src.components.components.datastructures.tree.AbstractTreeAnimation;
 import src.components.components.datastructures.tree.AbstractTreeScreen;
 import src.components.components.datastructures.tree.AbstractViewTreeAction;
 import src.components.components.datastructures.tree.TreePanelNode;
+import src.components.components.datastructures.tree.actionanimation.TreeActionDelete;
 import src.models.datastructures.queue.LinkedQueue;
 import src.models.datastructures.queue.QueueInterface;
 import src.services.ServiceAnimation;
@@ -13,30 +13,16 @@ import src.services.serviceanimations.Location;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class TreeActionDelete extends AbstractTreeAnimation {
-    public int value;
-    public TreePanelNode[] panels;
-    public int i;
-    public int subStep = 0;
-    public int prevRoot = -1;
-    public TreePanelNode panelRemove = null;
+public class AVLTreeActionDelete extends TreeActionDelete {
+    public int indexCheckBalance = -1;
+    public int stepBalance = 0;
 
-    public TreeActionDelete(
+    public AVLTreeActionDelete(
             int value,
             AbstractTreeScreen rootScreen,
             int period,
             AbstractTreeAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
-        this.value = value;
-        this.panels = getViewAction().panelsClone;
-    }
-
-    public AbstractTreeScreen getRootScreen() {
-        return (AbstractTreeScreen) rootScreen;
-    }
-
-    public AbstractViewTreeAction getViewAction() {
-        return (AbstractViewTreeAction) getRootScreen().viewAction;
+        super(value, rootScreen, period, nextAnimation);
     }
 
     @Override
@@ -52,6 +38,10 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             }
         } else if (animationStep == 1) {
             delete();
+        } else if (animationStep == 2) {
+            getRootScreen().getViewAction().drawElements();
+            getRootScreen().repaint();
+            balance();
         } else {
             end();
             getRootScreen().tree.delete(panelRemove);
@@ -59,16 +49,7 @@ public class TreeActionDelete extends AbstractTreeAnimation {
         }
     }
 
-    public void checkNode() {
-        ServiceAnimation.transitionColor(
-                panels[i],
-                panels[i].getBackgroundColor(),
-                Config.COLOR_YELLOW,
-                10, period - 10
-        );
-        animationStep = 1;
-    }
-
+    @Override
     public void delete() {
         int compare = 0;
         if (panels[i] != null) compare = value - panels[i].getValue();
@@ -85,12 +66,14 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                         translatePanelToPrevRoot();
                     }
                     subStep = 2;
+                    indexCheckBalance = i == 0? -1 : (i - 1) / 2;
                 } else if (subStep == 2) {
                     if (prevRoot > -1) panels[prevRoot] = panels[i];
                     panels[i] = null;
                     prevRoot = i;
                     subStep = 0;
                     animationStep = 2;
+                    indexCheckBalance = i == 0? -1 : (i - 1) / 2;
                 }
             } else {
                 whiteFlag();
@@ -102,7 +85,6 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     redFlag();
                     subStep = 1;
                     if (panelRemove == null) panelRemove = panels[i];
-                    subStep = 1;
                 } else if (subStep == 1) {
                     if (prevRoot == -1) {
                         removePanelFromView();
@@ -114,9 +96,9 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     if (prevRoot > -1) panels[prevRoot] = panels[i];
                     panels[i] = null;
                     prevRoot = i;
-                    translateLeftTreeBecomeRoot();
                     subStep = 0;
                     animationStep = 2;
+                    indexCheckBalance = i == 0? -1 : (i - 1) / 2;
                 }
             } else {
                 whiteFlag();
@@ -129,7 +111,6 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     redFlag();
                     subStep = 1;
                     if (panelRemove == null) panelRemove = panels[i];
-                    subStep = 1;
                 } else if (subStep == 1) {
                     if (prevRoot == -1) {
                         removePanelFromView();
@@ -144,6 +125,7 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     translateRightTreeBecomeRoot();
                     subStep = 0;
                     animationStep = 2;
+                    indexCheckBalance = i == 0? -1 : (i - 1) / 2;
                 }
             } else {
                 whiteFlag();
@@ -162,9 +144,14 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     } else {
                         translatePanelToPrevRoot();
                     }
+                    subStep = 2;
+                } else if (subStep == 2) {
+                    if (prevRoot > -1) panels[prevRoot] = panels[i];
                     prevRoot = i;
                     i = 2 * i + 2;
-                    value = panels[getIndexMinNode(i)].getValue();
+                    int indexMinNode = getIndexMinNode(i);
+                    indexCheckBalance = indexMinNode == 0? -1 : (indexMinNode - 1) / 2;
+                    value = panels[indexMinNode].getValue();
                     animationStep = 0;
                     subStep = 0;
                 }
@@ -176,61 +163,96 @@ public class TreeActionDelete extends AbstractTreeAnimation {
         }
     }
 
-    public boolean hasChildLeft(int i) {
-        return 2 * i + 1 < panels.length && panels[2 * i + 1] != null;
+    protected void balance() {
+        if (stepBalance == 0) {
+            if (indexCheckBalance > -1) {
+                i = indexCheckBalance;
+                System.out.println(i + " " + panels[i]);
+                yellowFlag();
+                stepBalance = 1;
+                return;
+            }
+            animationStep = 3;
+        } else if (stepBalance == 1) {
+            whiteFlag();
+            int heightL = height(2 * i + 1);
+            int heightR = height(2 * i + 2);
+            if (heightL - heightR > 1) {
+                int heightLL = height((2 * i + 1) * 2 + 1);
+                int heightLR = height((2 * i + 1) * 2 + 2);
+                if (heightLR > heightLL) {
+                    stepBalance = 2;
+                    return;
+                }
+                stepBalance = 3;
+            } else if (heightR - heightL > 1) {
+                int heightRL = height((2 * i + 2) * 2 + 1);
+                int heightRR = height((2 * i + 2) * 2 + 2);
+                if (heightRL > heightRR) {
+                    stepBalance = 4;
+                    return;
+                }
+                stepBalance = 5;
+            } else {
+                indexCheckBalance = i > 0?  (i-1) / 2 : -1;
+                stepBalance = 0;
+            }
+        } else if(stepBalance == 2) {
+            rotateLeft(2 * i + 1);
+            stepBalance = 3;
+        } else if (stepBalance == 3) {
+            rotateRight(i);
+            indexCheckBalance = i == 0? -1 : (i - 1) / 2;
+            stepBalance = 0;
+        }else if (stepBalance == 4) {
+            rotateRight(2 * i + 2);
+            stepBalance = 5;
+        } else if (stepBalance == 5) {
+            rotateLeft(i);
+            indexCheckBalance = i == 0? -1 : (i - 1) / 2;
+            stepBalance = 0;
+        }
     }
 
-    public boolean hasChildRight(int i) {
-        return 2 * i + 2 < panels.length && panels[2 * i + 2] != null;
+    protected void rotateLeft(int j) {
+        int i0 = i;
+        i = j;
+        translateRootBecomeLeftTree();
+        translateLeftOfTreeRightToRightOfTreeLeft();
+        translateRightTreeBecomeRoot();
+        i = i0;
     }
 
-    protected void redFlag() {
-        ServiceAnimation.transitionColor(
-                panels[i],
-                panels[i].getBackgroundColor(),
-                Config.COLOR_RED,
-                10, period - 10
-        );
+    protected void rotateRight(int j) {
+        int i0 = i;
+        i = j;
+        translateRootBecomeRightTree();
+        translateRightOfTreeLeftToLeftOfTreeRight();
+        translateLeftTreeBecomeRoot();
+        i = i0;
     }
 
-    protected void whiteFlag() {
-        ServiceAnimation.transitionColor(
-                panels[i],
-                panels[i].getBackgroundColor(),
-                Config.COLOR_WHITE,
-                10, period - 10
-        );
+    protected void translateRootBecomeLeftTree() {
+        translateRootBecomeSubTree(1);
     }
 
-    protected void yellowFlag() {
-        ServiceAnimation.transitionColor(
-                panels[i],
-                panels[i].getBackgroundColor(),
-                Config.COLOR_YELLOW,
-                10, period - 10
-        );
+    protected void translateRootBecomeRightTree() {
+        translateRootBecomeSubTree(2);
     }
 
-    protected void removePanelFromView() {
-        ServiceAnimation.translate(
-                panels[i],
-                new Location(panels[i].getX(), panels[i].getY()),
-                0,
-                1000,
-                10,
-                period - 10
-        );
+    protected void translateRootBecomeSubTree(int type) {
+        // Solve subtree
+        translateTree(2 * i + type, (2 * i + type) * 2 + type);
+        // solve root
+        translateNode(i, 2 * i + type);
     }
 
-    protected void translatePanelToPrevRoot() {
-        ServiceAnimation.translate(
-                panels[i],
-                new Location(panels[i].getX(), panels[i].getY()),
-                AbstractViewTreeAction.getDefaultX(prevRoot) - panels[i].getX(),
-                AbstractViewTreeAction.getDefaultY(prevRoot) - panels[i].getY(),
-                10,
-                period - 10
-        );
+    protected void translateLeftOfTreeRightToRightOfTreeLeft() {
+        translateTree((2 * i + 2) * 2 + 1, (2 * i + 1) * 2 + 2);
+    }
+
+    protected void translateRightOfTreeLeftToLeftOfTreeRight() {
+        translateTree((2 * i + 1) * 2 + 2, (2 * i + 2) * 2 + 1);
     }
 
     protected void translateLeftTreeBecomeRoot() {
@@ -244,11 +266,39 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     // type == 1: tree left
     // type == 2: tree right
     protected void translateSubTreeBecomeRoot(int type) {
+        translateTree(2 * i + type, i);
+    }
+
+    protected int height(int indexRoot) {
+        if (indexRoot >= panels.length || panels[indexRoot] == null) return 0;
+        return 1 + Math.max(
+                height(indexRoot * 2 + 1),
+                height(indexRoot * 2 + 2)
+        );
+    }
+
+    protected void translateNode(int i1, int i2) {
+        AbstractViewTreeAction.movableArrow = true;
+        panels[i2] = panels[i1];
+        panels[i1] = null;
+        ServiceAnimation.translate(
+                panels[i2],
+                new Location(panels[i2].getX(), panels[i2].getY()),
+                AbstractViewTreeAction.getDefaultX(i2) - panels[i2].getX(),
+                AbstractViewTreeAction.getDefaultY(i2) - panels[i2].getY(),
+                10,
+                period - 10
+        );
+    }
+
+    protected void translateTree(int i1, int i2) {
         AbstractViewTreeAction.movableArrow = true;
         Map<Integer, Integer> newIndexes = new LinkedHashMap<>();
         QueueInterface<Integer> queueOldIndexes = new LinkedQueue<>();
-        queueOldIndexes.enqueue(2 * i + type); // add root of subtree
-        newIndexes.put(2 * i + type, i);
+        if (i1 < panels.length && panels[i1] != null) {
+            queueOldIndexes.enqueue(i1);
+            newIndexes.put(i1, i2);
+        }
         while (!queueOldIndexes.isEmpty()) {
             Integer iRoot = queueOldIndexes.dequeue();
             if (hasChildLeft(iRoot)) {
@@ -265,8 +315,8 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             nodes.put(newIndexes.get(i), panels[i]);
         }
 
+        for (Integer i : newIndexes.keySet()) panels[i] = null;
         for (Integer i : newIndexes.keySet()) {
-            panels[i] = null;
             panels[newIndexes.get(i)] = nodes.get(newIndexes.get(i));
         }
 
@@ -283,11 +333,5 @@ public class TreeActionDelete extends AbstractTreeAnimation {
                     period - 10
             );
         }
-    }
-
-    public int getIndexMinNode(int rootIndex) {
-        int index = rootIndex;
-        while (hasChildLeft(index)) index = 2 * index + 1;
-        return index;
     }
 }

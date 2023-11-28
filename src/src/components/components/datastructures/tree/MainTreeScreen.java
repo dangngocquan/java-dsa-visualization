@@ -3,6 +3,7 @@ package src.components.components.datastructures.tree;
 import src.Config;
 import src.components.base.Button;
 import src.components.components.AbstractScreen;
+import src.components.components.datastructures.tree.avltree.AVLTreeScreen;
 import src.components.components.datastructures.tree.binarysearchtree.BinarySearchTreeScreen;
 
 public class MainTreeScreen extends AbstractScreen {
@@ -68,16 +69,16 @@ public class MainTreeScreen extends AbstractScreen {
             setHidden(true);
             screens[1].setHidden(false);
         });
-//
-//        // Linked Tree
-//        buttons[2].addActionListener(e -> {
-//            if (screens[2] == null) {
-//                screens[2] = new LinkedTreeScreen();
-//                screens[2].setVisible(false);
-//                getApp().addScreen(screens[2]);
-//            }
-//            setHidden(true);
-//            screens[2].setHidden(false);
-//        });
+
+        // AVL Tree
+        buttons[2].addActionListener(e -> {
+            if (screens[2] == null) {
+                screens[2] = new AVLTreeScreen();
+                screens[2].setVisible(false);
+                getApp().addScreen(screens[2]);
+            }
+            setHidden(true);
+            screens[2].setHidden(false);
+        });
     }
 }

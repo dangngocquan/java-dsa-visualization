@@ -86,12 +86,12 @@ public abstract class AbstractTreeScreen extends AbstractDataStructureScreen {
     }
 
     public TreePanelNode[] getPanelNodeArray() {
-        TreePanelNode[] array = new TreePanelNode[31];
+        TreePanelNode[] array = new TreePanelNode[AbstractViewTreeAction.INDEX_COLUMNS.length];
         int i = 0;
         LinkedBinaryTree.Node<TreePanelNode> node = tree.root;
         QueueInterface<LinkedBinaryTree.Node<TreePanelNode>> queue = new LinkedQueue<>();
         queue.enqueue(node);
-        while (i < 31) {
+        while (i < AbstractViewTreeAction.INDEX_COLUMNS.length) {
             if (queue.first() == null) {
                 queue.enqueue(null);
                 queue.enqueue(null);

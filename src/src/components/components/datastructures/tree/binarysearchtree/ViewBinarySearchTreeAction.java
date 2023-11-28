@@ -2,7 +2,6 @@ package src.components.components.datastructures.tree.binarysearchtree;
 
 import src.components.components.datastructures.tree.AbstractTreeScreen;
 import src.components.components.datastructures.tree.AbstractViewTreeAction;
-import src.components.components.datastructures.tree.TreePanelNode;
 import src.components.components.datastructures.tree.actionanimation.TreeActionDelete;
 import src.components.components.datastructures.tree.actionanimation.TreeActionInsert;
 
@@ -28,5 +27,4 @@ public class ViewBinarySearchTreeAction extends AbstractViewTreeAction {
         getRootScreen().getViewAction().resetPanelsClone();
         new TreeActionDelete(value, getRootScreen(), 500, null).start();
     }
-
 }

@@ -39,7 +39,7 @@ public class TreePanelNode
                 value + "", 0
         );
         panel.setBorderWidth(1);
-        panel.setFont(Config.MONOSPACED_BOLD_18);
+        panel.setFont(Config.MONOSPACED_BOLD_14);
         add(panel);
     }
 

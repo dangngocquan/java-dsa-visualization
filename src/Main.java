@@ -1,9 +1,14 @@
 import src.App;
+import src.tests.TestAVLTree;
+import src.tests.TestBinarySearchTree;
+import src.tests.TestFactory;
 
 public class Main {
     public static void main(String[] args) {
         new App();
 //        new TestFactory().testAll();
+//        new TestBinarySearchTree().run();
+//        new TestAVLTree().run();
     }
 
 }
@@ -40,8 +45,6 @@ public class Main {
           + Sorted Linked Priority Queue: Done
           + Min Heap Priority Queue: Done
       + Tree:
-          + Array Binary Tree:
-          + Linked Binary Tree:
-          + Binary Search Tree
-
+          + Binary Search Tree: Done
+          + AVL Tree
 */

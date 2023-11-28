@@ -38,7 +38,12 @@ public class TreeActionInsert extends AbstractTreeAnimation {
     public void run() {
         if (animationStep == 0) {
             if (i < panels.length) {
-                checkNode();
+                if (panels[i] == null) {
+                    newRootPanel();
+                    animationStep = 3;
+                } else {
+                    checkNode();
+                }
             } else {
                 end();
                 getRootScreen().tree.insert(panelInsert);
@@ -67,6 +72,10 @@ public class TreeActionInsert extends AbstractTreeAnimation {
         flag(Config.COLOR_WHITE);
     }
 
+    protected void yellowFlag() {
+        flag(Config.COLOR_YELLOW);
+    }
+
     protected void greenFlag() {
         flag(Config.COLOR_GREEN);
     }
@@ -85,6 +94,7 @@ public class TreeActionInsert extends AbstractTreeAnimation {
         whiteFlag();
         if (compare == 0) {
             animationStep = 2;
+            i = -1;
         } else if (compare < 0) {
             if (hasChildLeft(i)) {
                 i = 2 * i + 1;
@@ -118,6 +128,10 @@ public class TreeActionInsert extends AbstractTreeAnimation {
 
     protected void newRightPanel() {
         newPanel(2);
+    }
+
+    protected void newRootPanel() {
+        newPanel(0);
     }
 
     protected void newPanel(int type) {

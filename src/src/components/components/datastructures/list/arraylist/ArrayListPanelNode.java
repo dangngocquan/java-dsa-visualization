@@ -6,7 +6,7 @@ import src.components.components.datastructures.list.AbstractPanelListNode;
 
 import java.awt.*;
 
-public class ArrayListPanelNode extends AbstractPanelListNode {
+public class ArrayListPanelNode extends AbstractPanelListNode implements Comparable<ArrayListPanelNode> {
     private Panel panel;
     public ArrayListPanelNode(int index, int value) {
         super(index, value, ViewArrayListAction.SIZE_PER_NODE, ViewArrayListAction.SIZE_PER_NODE);
@@ -50,5 +50,10 @@ public class ArrayListPanelNode extends AbstractPanelListNode {
     @Override
     public int[] getDefaultNextArrow() {
         return null;
+    }
+
+    @Override
+    public int compareTo(ArrayListPanelNode o) {
+        return value - o.value;
     }
 }

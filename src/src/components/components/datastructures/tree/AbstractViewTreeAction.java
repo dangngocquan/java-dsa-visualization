@@ -8,27 +8,33 @@ import src.services.ServiceComponent;
 import java.awt.*;
 
 public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAction {
-    public static final int INITIAL_X = 10;
-    public static final int INITIAL_Y = 50;
-    public static final int GAP_X = 10;
+    public static final int INITIAL_X = 2;
+    public static final int INITIAL_Y = 30;
+    public static final int GAP_X = 0;
     public static final int GAP_Y = 60;
-    public static final int SIZE_PER_NODE = (Config.WIDTH - 2 * INITIAL_X - 32 * GAP_X) / 31;
     public static final int[] INDEX_ROWS = new int[] {
             0,
             1, 1,
             2, 2, 2, 2,
             3, 3, 3, 3, 3, 3, 3, 3,
-            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+            5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
     };
     public static final int[] INDEX_COLUMNS = new int[] {
-            15,
-            7, 23,
-            3, 11, 19, 27,
-            1, 5, 9, 13, 17, 21, 25, 29,
-            0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30
+            31,
+            15, 47,
+            7, 23, 39, 55,
+            3, 11, 19, 27, 35, 43, 51, 59,
+            1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61,
+            0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62
     };
+    public static final int SIZE_PER_NODE =
+            (Config.WIDTH - 2 * INITIAL_X - (INDEX_COLUMNS.length + 1) * GAP_X)
+                    / INDEX_COLUMNS.length;
 
     public TreePanelNode[] panelsClone;
+
+    // Variables support for animation
     public static boolean movableArrow = false;
 
     public AbstractViewTreeAction(AbstractTreeScreen rootScreen) {
@@ -75,6 +81,7 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
                 RenderingHints.VALUE_RENDER_QUALITY);
         for (int i = 0; i < panelsClone.length; i++) {
             if (panelsClone[i] == null) continue;
+            // Draw arrow from root to left tree
             if (2 * i + 1 < panelsClone.length && panelsClone[2 * i + 1] != null) {
                 if (movableArrow) {
                     ServiceComponent.drawPatternArrow2(
@@ -94,8 +101,10 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
                             getDefaultY(2 * i + 1),
                             Color.BLACK
                     );
+
                 }
             }
+            // Draw arrow from root to right tree
             if (2 * i + 2 < panelsClone.length && panelsClone[2 * i + 2] != null) {
                 if (movableArrow) {
                     ServiceComponent.drawPatternArrow2(
