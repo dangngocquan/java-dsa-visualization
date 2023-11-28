@@ -65,35 +65,35 @@ public class ViewSinglyLinkedListAction extends AbstractViewListAction {
     @Override
     public void actionAdd(int value) {
         new SinglyLinkedListActionAdd1(
-                value, getRootScreen(), 2000, null
+                value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionAdd(int index, int value) {
         new SinglyLinkedListActionAdd2(
-                index, value, getRootScreen(), 2000, null
+                index, value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionGet(int index) {
         new SinglyLinkedListActionGet(
-                index, getRootScreen(), 2000, null
+                index, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionRemove(int index) {
         new SinglyLinkedListActionRemove1(
-                index, getRootScreen(), 2000, null
+                index, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionRemove(Integer value) {
         new SinglyLinkedListActionRemove2(
-                value, getRootScreen(), 2000, null
+                value, getRootScreen(), null
         ).start();
     }
 }

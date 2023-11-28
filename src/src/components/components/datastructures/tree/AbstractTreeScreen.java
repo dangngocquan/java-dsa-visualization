@@ -78,13 +78,6 @@ public abstract class AbstractTreeScreen extends AbstractDataStructureScreen {
         }
     }
 
-    @Override
-    public void endAction() {
-        viewController.buttons[0].setEnabledButton(true);
-        viewController.buttons[1].setEnabledButton(true);
-        setIndexActionSelected(-1);
-    }
-
     public TreePanelNode[] getPanelNodeArray() {
         TreePanelNode[] array = new TreePanelNode[AbstractViewTreeAction.INDEX_COLUMNS.length];
         int i = 0;

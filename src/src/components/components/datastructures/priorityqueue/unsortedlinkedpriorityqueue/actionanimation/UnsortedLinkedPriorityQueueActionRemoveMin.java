@@ -20,9 +20,9 @@ public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsorted
     private UnsortedLinkedPriorityQueuePanelNode nextNode;
 
     public UnsortedLinkedPriorityQueueActionRemoveMin(
-            AbstractPriorityQueueScreen rootScreen, int period,
+            AbstractPriorityQueueScreen rootScreen,
             AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         int currentKey = iterator.next().getKey();

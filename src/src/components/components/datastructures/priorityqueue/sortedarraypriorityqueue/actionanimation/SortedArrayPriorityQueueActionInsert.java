@@ -23,8 +23,8 @@ public class SortedArrayPriorityQueueActionInsert extends AbstractSortedArrayPri
 
     public SortedArrayPriorityQueueActionInsert(
             int key, int value, AbstractPriorityQueueScreen rootScreen,
-            int period, AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         if (rootScreen.queue.isEmpty()) {
             this.index = 0;
         } else {

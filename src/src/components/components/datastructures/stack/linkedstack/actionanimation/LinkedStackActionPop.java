@@ -17,9 +17,9 @@ public class LinkedStackActionPop extends AbstractLinkedStackAnimation {
     private LinkedStackPanelNode nextNode;
 
     public LinkedStackActionPop(
-            AbstractStackScreen rootScreen, int period,
+            AbstractStackScreen rootScreen,
             AbstractStackAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         animationStep = 1;
     }
 

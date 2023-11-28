@@ -19,8 +19,8 @@ public class LinkedQueueActionEnqueue extends AbstractLinkedQueueAnimation {
 
     public LinkedQueueActionEnqueue(
             int value, AbstractQueueScreen rootScreen,
-            int period, AbstractQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         index = rootScreen.queue.size();
         panelNode = new LinkedQueuePanelNode(index, value);

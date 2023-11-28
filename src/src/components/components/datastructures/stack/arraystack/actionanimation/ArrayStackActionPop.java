@@ -15,8 +15,8 @@ public class ArrayStackActionPop extends AbstractArrayStackAnimation {
 
     public ArrayStackActionPop(
             AbstractStackScreen rootScreen,
-            int period, AbstractStackAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractStackAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.index = getRootScreen().stack.size()-1;
     }
 

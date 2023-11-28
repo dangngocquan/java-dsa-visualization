@@ -69,14 +69,14 @@ public class ViewUnsortedLinkedPriorityQueueAction extends AbstractViewPriorityQ
     @Override
     public void actionInsert(Integer key, Integer value) {
         new UnsortedLinkedPriorityQueueActionInsert(
-                key, value, getRootScreen(), 2000, null
+                key, value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionRemoveMin() {
         new UnsortedLinkedPriorityQueueActionRemoveMin(
-                getRootScreen(), 2000, null
+                getRootScreen(), null
         ).start();
     }
 }

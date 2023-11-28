@@ -70,11 +70,10 @@ public class ViewArrayListAction extends AbstractViewListAction {
         if (getRootScreen().list.size() == ((MyArrayList<?>) getRootScreen().list).getSizeData()) {
             new ArrayListActionEnlarge(
                     getRootScreen(),
-                    1000,
-                    new ArrayListActionAdd1(value, getRootScreen(), 1000, null)
+                    new ArrayListActionAdd1(value, getRootScreen(), null)
             ).start();
         } else {
-            new ArrayListActionAdd1(value, getRootScreen(), 1000, null).start();
+            new ArrayListActionAdd1(value, getRootScreen(), null).start();
         }
     }
 
@@ -83,26 +82,25 @@ public class ViewArrayListAction extends AbstractViewListAction {
         if (getRootScreen().list.size() == ((MyArrayList) getRootScreen().list).getSizeData()) {
             new ArrayListActionEnlarge(
                     getRootScreen(),
-                    1000,
-                    new ArrayListActionAdd2(index, value, getRootScreen(), 1000, null)
+                    new ArrayListActionAdd2(index, value, getRootScreen(), null)
             ).start();
         } else {
-            new ArrayListActionAdd2(index, value, getRootScreen(), 1000, null).start();
+            new ArrayListActionAdd2(index, value, getRootScreen(), null).start();
         }
     }
 
     @Override
     public void actionGet(int index) {
-        new ArrayListActionGet(index, getRootScreen(), 2000, null).start();
+        new ArrayListActionGet(index, getRootScreen(), null).start();
     }
 
     @Override
     public void actionRemove(int index) {
-        new ArrayListActionRemove1(index, getRootScreen(), 1000, null).start();
+        new ArrayListActionRemove1(index, getRootScreen(), null).start();
     }
 
     @Override
     public void actionRemove(Integer value) {
-        new ArrayListActionRemove2(value, getRootScreen(), 1000, null).start();
+        new ArrayListActionRemove2(value, getRootScreen(), null).start();
     }
 }

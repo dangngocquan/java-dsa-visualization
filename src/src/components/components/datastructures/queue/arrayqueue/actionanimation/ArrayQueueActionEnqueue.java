@@ -19,8 +19,8 @@ public class ArrayQueueActionEnqueue extends AbstractArrayQueueAnimation {
 
     public ArrayQueueActionEnqueue(
             int value, AbstractQueueScreen rootScreen,
-            int period, AbstractQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         int size = getRootScreen().queue.size();
         int firstIndex = ((ArrayQueue<?>) getRootScreen().queue).getFirstIndex();

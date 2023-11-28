@@ -16,9 +16,9 @@ public class ArrayListActionGet extends AbstractArrayListAnimation {
 
     public ArrayListActionGet(
             int index,
-            AbstractListScreen rootScreen, int period,
+            AbstractListScreen rootScreen,
             AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.index = index;
     }
 

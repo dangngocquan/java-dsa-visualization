@@ -19,12 +19,18 @@ public class ViewBinarySearchTreeAction extends AbstractViewTreeAction {
     @Override
     public void actionInsert(Integer value) {
         getRootScreen().getViewAction().resetPanelsClone();
-        new TreeActionInsert(value, getRootScreen(), 500, null).start();
+        new TreeActionInsert(
+                value, getRootScreen(),
+                getRootScreen().getPeriod(), null
+        ).start();
     }
 
     @Override
     public void actionDelete(Integer value) {
         getRootScreen().getViewAction().resetPanelsClone();
-        new TreeActionDelete(value, getRootScreen(), 500, null).start();
+        new TreeActionDelete(
+                value, getRootScreen(),
+                getRootScreen().getPeriod(), null
+        ).start();
     }
 }

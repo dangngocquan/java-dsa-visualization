@@ -16,8 +16,8 @@ public class ArrayQueueActionDequeue extends AbstractArrayQueueAnimation {
 
     public ArrayQueueActionDequeue(
             AbstractQueueScreen rootScreen,
-            int period, AbstractQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.index = getRootScreen().queue.size()-1;
     }
 

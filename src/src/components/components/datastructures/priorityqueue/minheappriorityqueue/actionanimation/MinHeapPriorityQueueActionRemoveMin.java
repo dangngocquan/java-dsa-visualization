@@ -17,9 +17,8 @@ public class MinHeapPriorityQueueActionRemoveMin extends AbstractMinHeapPriority
 
     public MinHeapPriorityQueueActionRemoveMin(
             AbstractPriorityQueueScreen rootScreen,
-            int period,
             AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         data = ((ViewMinHeapPriorityQueueAction) getRootScreen().getViewAction()).dataClone;
         i = 0;
     }

@@ -64,14 +64,14 @@ public class ViewLinkedQueueAction extends AbstractViewQueueAction {
     @Override
     public void actionEnqueue(int value) {
         new LinkedQueueActionEnqueue(
-                value, getRootScreen(), 2000, null
+                value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionDequeue() {
         new LinkedQueueActionDequeue(
-                getRootScreen(), 2000, null
+                getRootScreen(), null
         ).start();
     }
 }

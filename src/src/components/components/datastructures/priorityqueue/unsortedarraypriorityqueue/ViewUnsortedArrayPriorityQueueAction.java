@@ -76,20 +76,19 @@ public class ViewUnsortedArrayPriorityQueueAction extends AbstractViewPriorityQu
         if (getRootScreen().queue.size() == ((UnsortedArrayPriorityQueue<?, ?>) getRootScreen().queue).getSizeData()) {
             new UnsortedArrayPriorityQueueActionEnlarge(
                     getRootScreen(),
-                    1000,
                     new UnsortedArrayPriorityQueueActionInsert(
-                            key, value, getRootScreen(), 1000, null
+                            key, value, getRootScreen(), null
                     )
             ).start();
         } else {
             new UnsortedArrayPriorityQueueActionInsert(
-                    key, value, getRootScreen(), 1000, null
+                    key, value, getRootScreen(), null
             ).start();
         }
     }
 
     @Override
     public void actionRemoveMin() {
-        new UnsortedArrayPriorityQueueActionRemoveMin(getRootScreen(), 1000, null).start();
+        new UnsortedArrayPriorityQueueActionRemoveMin(getRootScreen(), null).start();
     }
 }

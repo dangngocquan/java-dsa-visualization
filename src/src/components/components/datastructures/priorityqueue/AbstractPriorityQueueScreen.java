@@ -74,13 +74,6 @@ public abstract class AbstractPriorityQueueScreen extends AbstractDataStructureS
         }
     }
 
-    @Override
-    public void endAction() {
-        viewController.buttons[0].setEnabledButton(true);
-        viewController.buttons[1].setEnabledButton(true);
-        setIndexActionSelected(-1);
-    }
-
     private class DialogGetKey extends DialogWithFieldText {
         public DialogGetKey(int x, int y, int width, int height) {
             super(x, y, width, height, "Set key in range [0-99]");

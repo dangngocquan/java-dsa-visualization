@@ -6,9 +6,8 @@ import src.components.components.datastructures.stack.AbstractStackScreen;
 public abstract class AbstractLinkedStackAnimation extends AbstractStackAnimation {
     public AbstractLinkedStackAnimation(
             AbstractStackScreen rootScreen,
-            int period,
             AbstractStackAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
     }
 
     @Override

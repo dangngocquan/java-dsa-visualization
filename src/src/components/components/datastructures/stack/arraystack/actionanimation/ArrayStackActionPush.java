@@ -17,8 +17,8 @@ public class ArrayStackActionPush extends AbstractArrayStackAnimation {
 
     public ArrayStackActionPush(
             int value, AbstractStackScreen rootScreen,
-            int period, AbstractStackAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractStackAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         index = rootScreen.stack.size();
         panelNode = new ArrayStackPanelNode(index, value);

@@ -5,6 +5,7 @@ import src.components.base.Panel;
 
 public abstract class AbstractViewDataStructureAction extends Panel {
     public AbstractDataStructureScreen rootScreen;
+    public int period = 100;
 
     public AbstractViewDataStructureAction(AbstractDataStructureScreen rootScreen) {
         super(
@@ -13,5 +14,13 @@ public abstract class AbstractViewDataStructureAction extends Panel {
                 Config.BACKGROUND_COLOR_APP, null, "", 0
         );
         this.rootScreen = rootScreen;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
     }
 }

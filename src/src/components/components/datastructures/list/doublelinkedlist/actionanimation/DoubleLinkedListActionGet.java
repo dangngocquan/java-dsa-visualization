@@ -16,9 +16,9 @@ public class DoubleLinkedListActionGet extends AbstractDoubleLinkedListAnimation
 
     public DoubleLinkedListActionGet(
             int index,
-            AbstractListScreen rootScreen, int period,
+            AbstractListScreen rootScreen,
             AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.index = index;
     }
 

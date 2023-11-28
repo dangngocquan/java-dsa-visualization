@@ -73,35 +73,35 @@ public class ViewDoubleLinkedListAction extends AbstractViewListAction {
     @Override
     public void actionAdd(int value) {
         new DoubleLinkedListActionAdd1(
-                value, getRootScreen(), 2000, null
+                value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionAdd(int index, int value) {
         new DoubleLinkedListActionAdd2(
-                index, value, getRootScreen(), 2000, null
+                index, value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionGet(int index) {
         new DoubleLinkedListActionGet(
-                index, getRootScreen(), 2000, null
+                index, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionRemove(int index) {
         new DoubleLinkedListActionRemove1(
-                index, getRootScreen(), 2000, null
+                index, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionRemove(Integer value) {
         new DoubleLinkedListActionRemove2(
-                value, getRootScreen(), 2000, null
+                value, getRootScreen(), null
         ).start();
     }
 }

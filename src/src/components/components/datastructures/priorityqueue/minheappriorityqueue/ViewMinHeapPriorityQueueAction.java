@@ -92,14 +92,14 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
     @Override
     public void actionInsert(Integer key, Integer value) {
         new MinHeapPriorityQueueActionInsert(
-                key, value, getRootScreen(), 1000, null
+                key, value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionRemoveMin() {
         new MinHeapPriorityQueueActionRemoveMin(
-                getRootScreen(), 1000, null
+                getRootScreen(), null
         ).start();
     }
 }

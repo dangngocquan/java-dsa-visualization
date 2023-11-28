@@ -18,8 +18,8 @@ public class SortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQue
 
     public SortedArrayPriorityQueueActionRemoveMin(
             AbstractPriorityQueueScreen rootScreen,
-            int period, AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
     }
 
     public SortedArrayPriorityQueueScreen getRootScreen() {

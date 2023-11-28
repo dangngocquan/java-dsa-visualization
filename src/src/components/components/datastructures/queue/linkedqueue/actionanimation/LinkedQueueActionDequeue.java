@@ -17,9 +17,9 @@ public class LinkedQueueActionDequeue extends AbstractLinkedQueueAnimation {
     private LinkedQueuePanelNode nextNode;
 
     public LinkedQueueActionDequeue(
-            AbstractQueueScreen rootScreen, int period,
+            AbstractQueueScreen rootScreen,
             AbstractQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
     }
 
     public LinkedQueueScreen getRootScreen() {

@@ -64,14 +64,14 @@ public class ViewLinkedStackAction extends AbstractViewStackAction {
     @Override
     public void actionPush(int value) {
         new LinkedStackActionPush(
-                value, getRootScreen(), 2000, null
+                value, getRootScreen(), null
         ).start();
     }
 
     @Override
     public void actionPop() {
         new LinkedStackActionPop(
-                getRootScreen(), 2000, null
+                getRootScreen(), null
         ).start();
     }
 }

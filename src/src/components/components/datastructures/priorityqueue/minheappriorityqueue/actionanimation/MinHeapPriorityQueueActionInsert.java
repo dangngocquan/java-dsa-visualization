@@ -20,9 +20,8 @@ public class MinHeapPriorityQueueActionInsert extends AbstractMinHeapPriorityQue
     public MinHeapPriorityQueueActionInsert(
             int key, int value,
             AbstractPriorityQueueScreen rootScreen,
-            int period,
             AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.key = key;
         this.value = value;
         data = ((ViewMinHeapPriorityQueueAction) getRootScreen().getViewAction()).dataClone;

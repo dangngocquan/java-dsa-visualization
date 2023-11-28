@@ -18,9 +18,9 @@ public class SinglyLinkedListActionRemove1 extends AbstractSinglyLinkedListAnima
 
     public SinglyLinkedListActionRemove1(
             int index,
-            AbstractListScreen rootScreen, int period,
+            AbstractListScreen rootScreen,
             AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.index = index;
     }
 

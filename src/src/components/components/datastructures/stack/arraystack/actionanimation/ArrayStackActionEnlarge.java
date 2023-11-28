@@ -21,8 +21,8 @@ public class ArrayStackActionEnlarge extends AbstractArrayStackAnimation {
     private Iterator<AbstractPanelStackNode> iterator;
     public ArrayStackActionEnlarge(
             AbstractStackScreen rootScreen,
-            int period, AbstractStackAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractStackAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         iterator = getRootScreen().stack.iterator();
     }
 

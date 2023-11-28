@@ -14,7 +14,10 @@ public class ViewAVLTreeAction extends AbstractViewTreeAction {
     @Override
     public void actionInsert(Integer value) {
         getRootScreen().getViewAction().resetPanelsClone();
-        new AVLTreeActionInsert(value, getRootScreen(), 500, null).start();
+        new AVLTreeActionInsert(
+                value, getRootScreen(),
+                getRootScreen().getPeriod(), null
+        ).start();
 //        getRootScreen().tree.insert(new TreePanelNode(0, 0, value));
 //        getRootScreen().endAction();
 //        getRootScreen().getViewAction().resetPanelsClone();
@@ -23,7 +26,10 @@ public class ViewAVLTreeAction extends AbstractViewTreeAction {
     @Override
     public void actionDelete(Integer value) {
         getRootScreen().getViewAction().resetPanelsClone();
-        new AVLTreeActionDelete(value, getRootScreen(), 500, null).start();
+        new AVLTreeActionDelete(
+                value, getRootScreen(),
+                getRootScreen().getPeriod(), null
+        ).start();
 //        TreePanelNode node = null;
 //        for (TreePanelNode e : panelsClone) {
 //            if (e != null && e.getValue() == value) {

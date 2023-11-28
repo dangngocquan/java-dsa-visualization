@@ -85,18 +85,17 @@ public class ViewArrayQueueAction extends AbstractViewQueueAction {
         if (getRootScreen().queue.size() == ((ArrayQueue<?>) getRootScreen().queue).getSizeData()) {
             new ArrayQueueActionEnlarge(
                     getRootScreen(),
-                    1000,
                     new ArrayQueueActionEnqueue(
-                            value, getRootScreen(), 1000, null)
+                            value, getRootScreen(), null)
             ).start();
         } else {
             new ArrayQueueActionEnqueue(
-                    value, getRootScreen(), 1000, null).start();
+                    value, getRootScreen(), null).start();
         }
     }
 
     @Override
     public void actionDequeue() {
-        new ArrayQueueActionDequeue(getRootScreen(), 1000, null).start();
+        new ArrayQueueActionDequeue(getRootScreen(), null).start();
     }
 }

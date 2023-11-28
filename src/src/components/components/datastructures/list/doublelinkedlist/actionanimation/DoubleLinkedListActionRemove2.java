@@ -19,9 +19,9 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
 
     public DoubleLinkedListActionRemove2(
             Integer value,
-            AbstractListScreen rootScreen, int period,
+            AbstractListScreen rootScreen,
             AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.value = value;
         this.index = -1;
     }

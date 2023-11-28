@@ -23,8 +23,8 @@ public class UnsortedArrayPriorityQueueActionInsert extends AbstractUnsortedArra
 
     public UnsortedArrayPriorityQueueActionInsert(
             int key, int value, AbstractPriorityQueueScreen rootScreen,
-            int period, AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.index = getRootScreen().queue.size();
         this.key = key;
         this.value = value;

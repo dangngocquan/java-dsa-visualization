@@ -7,8 +7,8 @@ import src.components.components.datastructures.priorityqueue.minheappriorityque
 public abstract class AbstractMinHeapPriorityQueueAnimation extends AbstractPriorityQueueAnimation {
     public AbstractMinHeapPriorityQueueAnimation(
             AbstractPriorityQueueScreen rootScreen,
-            int period, AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
     }
 
     public MinHeapPriorityQueueScreen getRootScreen() {

@@ -18,8 +18,8 @@ public class UnsortedArrayPriorityQueueActionEnlarge extends AbstractUnsortedArr
     private Panel newPanelData;
     public UnsortedArrayPriorityQueueActionEnlarge(
             UnsortedArrayPriorityQueueScreen rootScreen,
-            int period, AbstractUnsortedArrayPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractUnsortedArrayPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
     }
 
     public UnsortedArrayPriorityQueueScreen getRootScreen() {

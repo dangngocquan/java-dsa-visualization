@@ -20,8 +20,8 @@ public class UnsortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQ
 
     public UnsortedArrayPriorityQueueActionRemoveMin(
             AbstractPriorityQueueScreen rootScreen,
-            int period, AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         int currentKey = iterator.next().getKey();

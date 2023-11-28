@@ -479,7 +479,12 @@ public class ViewSearchAlgorithmController extends AbstractViewAlgorithmControll
                 for (int i = 0; i < a.length; i++) {
                     String data = textFields[i+1].getText();
                     if (data.matches("[0-9]+")) {
-                        int value = Integer.parseInt(data);
+                        int value;
+                        try {
+                            value = Integer.parseInt(data);
+                        } catch (Exception exception) {
+                            value = 50;
+                        }
                         if (value > 99) {
                             value = 99;
                         } else if (value < 1) {

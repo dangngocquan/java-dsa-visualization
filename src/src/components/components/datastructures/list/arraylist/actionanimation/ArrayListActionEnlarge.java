@@ -18,8 +18,8 @@ public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
     private Panel newPanelData;
     public ArrayListActionEnlarge(
             AbstractListScreen rootScreen,
-            int period, AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractListAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
     }
 
     public ArrayListScreen getRootScreen() {

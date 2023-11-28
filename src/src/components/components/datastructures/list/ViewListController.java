@@ -28,13 +28,6 @@ public class ViewListController extends AbstractViewDataStructureController {
         });
 
         buttons[1].addActionListener(e -> {
-            boolean[] enableButtons = new boolean[] {
-                    getRootScreen().list.size() < 8,
-                    getRootScreen().list.size() < 8,
-                    getRootScreen().list.size() > 0,
-                    getRootScreen().list.size() > 0,
-                    getRootScreen().list.size() > 0
-            };
             tempIndexActionSelecting = -1;
             new DialogChangeAction(
                     (Config.WIDTH - Config.WIDTH / 3) / 2,
@@ -45,9 +38,7 @@ public class ViewListController extends AbstractViewDataStructureController {
             );
         });
 
-        buttons[2].addActionListener(e -> {
-            rootScreen.runAction();
-        });
+        buttons[2].addActionListener(e -> rootScreen.runAction());
     }
 
     private class DialogChangeAction extends Dialog {
@@ -72,15 +63,14 @@ public class ViewListController extends AbstractViewDataStructureController {
             int buttonWidth = 250;
             int buttonHeight = 50;
             int gapHeight = 20;
-            int gapWidth = 40;
             int totalHeight = buttonHeight * numberButtonPerColumn + (numberButtonPerColumn - 1) * gapHeight;
-            int totalWidth = buttonWidth * numberButtonPerRow + (numberButtonPerRow - 1) * gapWidth;
+            int totalWidth = buttonWidth * numberButtonPerRow;
             int initialY = (getHeightDialog() - totalHeight) / 2;
             int initialX = (getWidthDialog() - totalWidth) / 2;
 
             buttons = new Button[AbstractListScreen.ACTIONS.size() + 1];
             buttons[0] = new Button(
-                    initialX + (gapWidth + buttonWidth) * (numberButtonPerRow - 1),
+                    initialX,
                     initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
                     buttonWidth, buttonHeight,
                     "Save"
@@ -101,9 +91,9 @@ public class ViewListController extends AbstractViewDataStructureController {
             boolean[] enableButtons = new boolean[] {
                     getRootScreen().list.size() < 8,
                     getRootScreen().list.size() < 8,
-                    getRootScreen().list.size() > 0,
-                    getRootScreen().list.size() > 0,
-                    getRootScreen().list.size() > 0
+                    !getRootScreen().list.isEmpty(),
+                    !getRootScreen().list.isEmpty(),
+                    !getRootScreen().list.isEmpty()
             };
 
             for (int i = 0; i < AbstractListScreen.ACTIONS.size(); i++) buttons[i+1].setEnabledButton(enableButtons[i]);

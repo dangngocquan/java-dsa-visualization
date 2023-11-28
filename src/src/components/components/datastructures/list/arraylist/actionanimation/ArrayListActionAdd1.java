@@ -17,8 +17,8 @@ public class ArrayListActionAdd1 extends AbstractArrayListAnimation {
 
     public ArrayListActionAdd1(
             int value, AbstractListScreen rootScreen,
-            int period, AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractListAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         index = rootScreen.list.size();
         panelNode = new ArrayListPanelNode(index, value);

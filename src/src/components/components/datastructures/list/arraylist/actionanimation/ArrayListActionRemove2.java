@@ -12,8 +12,8 @@ public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
     private int index;
     public ArrayListActionRemove2(
             int value, AbstractListScreen rootScreen,
-            int period, AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractListAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         this.index = -1;
     }
@@ -46,7 +46,7 @@ public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
         } else {
             end();
             getRootScreen().setEnabledAllButtons(false);
-            new ArrayListActionRemove1(index, getRootScreen(), period, null).start();
+            new ArrayListActionRemove1(index, getRootScreen(), null).start();
         }
     }
 

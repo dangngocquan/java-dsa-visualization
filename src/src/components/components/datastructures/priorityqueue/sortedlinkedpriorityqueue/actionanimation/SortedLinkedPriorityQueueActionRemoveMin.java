@@ -20,9 +20,9 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
     private SortedLinkedPriorityQueuePanelNode nextNode;
 
     public SortedLinkedPriorityQueueActionRemoveMin(
-            AbstractPriorityQueueScreen rootScreen, int period,
+            AbstractPriorityQueueScreen rootScreen,
             AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.index = 0;
     }
 

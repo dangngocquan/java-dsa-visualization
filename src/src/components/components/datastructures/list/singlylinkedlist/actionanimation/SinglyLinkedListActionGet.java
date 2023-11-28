@@ -19,9 +19,9 @@ public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation
 
     public SinglyLinkedListActionGet(
             int index,
-            AbstractListScreen rootScreen, int period,
+            AbstractListScreen rootScreen,
             AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
         this.index = index;
     }
 

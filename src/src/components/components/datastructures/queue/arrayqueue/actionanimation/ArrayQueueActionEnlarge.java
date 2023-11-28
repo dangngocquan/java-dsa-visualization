@@ -22,8 +22,8 @@ public class ArrayQueueActionEnlarge extends AbstractArrayQueueAnimation {
     private int tempValue = 0;
     public ArrayQueueActionEnlarge(
             AbstractQueueScreen rootScreen,
-            int period, AbstractQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         iterator = getRootScreen().queue.iterator();
     }
 

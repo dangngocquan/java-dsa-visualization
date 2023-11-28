@@ -30,6 +30,8 @@ public class Config {
     public static Color COLOR_BAR_FLAG = new Color(255, 110, 110);
     public static Color COLOR_BAR_SMALLER_PIVOT = new Color(255, 210, 210);
 
+    public static int DEFAULT_ANIMATION_SPEED = 200;
+
     // Font
     public static final Font MONOSPACED_BOLD_6 = new Font(Font.MONOSPACED, Font.BOLD, 6);
     public static final Font MONOSPACED_BOLD_10 = new Font(Font.MONOSPACED, Font.BOLD, 10);

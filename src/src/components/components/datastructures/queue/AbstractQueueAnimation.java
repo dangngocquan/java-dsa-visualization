@@ -6,8 +6,7 @@ import src.components.components.datastructures.AbstractDataStructureScreen;
 public abstract class AbstractQueueAnimation extends AbstractDataStructureAnimation {
     public AbstractQueueAnimation(
             AbstractDataStructureScreen rootScreen,
-            int period,
             AbstractQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, rootScreen.getPeriod(), nextAnimation);
     }
 }

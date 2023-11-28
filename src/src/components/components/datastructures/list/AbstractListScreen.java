@@ -95,13 +95,6 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
         }
     }
 
-    @Override
-    public void endAction() {
-        viewController.buttons[0].setEnabledButton(true);
-        viewController.buttons[1].setEnabledButton(true);
-        setIndexActionSelected(-1);
-    };
-
     private class DialogGetIndex extends DialogWithFieldText {
 
         public DialogGetIndex(int x, int y, int width, int height) {

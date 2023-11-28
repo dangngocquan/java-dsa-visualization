@@ -19,8 +19,8 @@ public class LinkedStackActionPush extends AbstractLinkedStackAnimation {
     public LinkedStackPanelNode nextNode;
 
     public LinkedStackActionPush(int value, AbstractStackScreen rootScreen,
-            int period, AbstractStackAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractStackAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         panelNode = new LinkedStackPanelNode(index, value);
         x = ViewLinkedStackAction.INITIAL_X;

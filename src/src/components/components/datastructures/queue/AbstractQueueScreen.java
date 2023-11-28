@@ -67,13 +67,6 @@ public abstract class AbstractQueueScreen extends AbstractDataStructureScreen {
         }
     }
 
-    @Override
-    public void endAction() {
-        viewController.buttons[0].setEnabledButton(true);
-        viewController.buttons[1].setEnabledButton(true);
-        setIndexActionSelected(-1);
-    };
-
     private class DialogGetValue extends AbstractQueueScreen.DialogWithFieldText {
         public DialogGetValue(int x, int y, int width, int height) {
             super(x, y, width, height, "Set value in range [0-99]");

@@ -71,16 +71,15 @@ public class ViewArrayStackAction extends AbstractViewStackAction {
         if (getRootScreen().stack.size() == ((ArrayStack<?>) getRootScreen().stack).getSizeData()) {
             new ArrayStackActionEnlarge(
                     getRootScreen(),
-                    1000,
-                    new ArrayStackActionPush(value, getRootScreen(), 1000, null)
+                    new ArrayStackActionPush(value, getRootScreen(), null)
             ).start();
         } else {
-            new ArrayStackActionPush(value, getRootScreen(), 1000, null).start();
+            new ArrayStackActionPush(value, getRootScreen(), null).start();
         }
     }
 
     @Override
     public void actionPop() {
-        new ArrayStackActionPop(getRootScreen(), 1000, null).start();
+        new ArrayStackActionPop(getRootScreen(), null).start();
     }
 }

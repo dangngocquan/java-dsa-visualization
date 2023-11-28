@@ -238,10 +238,15 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 String data = textField.getText();
                 int inputAnimationPeriod = 0;
                 if (data.matches("[0-9]+")) {
-                    inputAnimationPeriod = Integer.parseInt(data);
+                    try {
+                        inputAnimationPeriod = Integer.parseInt(data);
+                    } catch (Exception exception) {
+                        inputAnimationPeriod = Config.DEFAULT_ANIMATION_SPEED;
+                    }
+
                     if (inputAnimationPeriod < 3) inputAnimationPeriod = 3;
                 } else {
-                    inputAnimationPeriod = 200;
+                    inputAnimationPeriod = Config.DEFAULT_ANIMATION_SPEED;
                 }
                 dialog.dispose();
                 if (inputAnimationPeriod != getRootScreen().getViewAction().animationPeriod) {
@@ -385,7 +390,12 @@ public class ViewSortAlgorithmController extends AbstractViewAlgorithmController
                 for (int i = 0; i < a.length; i++) {
                     String data = textFields[i+1].getText();
                     if (data.matches("[0-9]+")) {
-                        int value = Integer.parseInt(data);
+                        int value;
+                        try {
+                            value = Integer.parseInt(data);
+                        } catch (Exception exception) {
+                            value = 50;
+                        }
                         if (value > 99) {
                             value = 99;
                         } else if (value < 1) {

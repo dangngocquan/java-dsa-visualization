@@ -25,8 +25,8 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
 
     public UnsortedLinkedPriorityQueueActionInsert(
             int key, int value, AbstractPriorityQueueScreen rootScreen,
-            int period, AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.index = getRootScreen().queue.size();
         this.value = value;
         this.key = key;

@@ -6,9 +6,8 @@ import src.components.components.datastructures.list.AbstractListScreen;
 public abstract class AbstractSinglyLinkedListAnimation extends AbstractListAnimation {
     public AbstractSinglyLinkedListAnimation(
             AbstractListScreen rootScreen,
-            int period,
             AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
     }
 
     @Override

@@ -19,8 +19,8 @@ public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimatio
 
     public DoubleLinkedListActionAdd1(
             int value, AbstractListScreen rootScreen,
-            int period, AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractListAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.value = value;
         index = rootScreen.list.size();
         panelNode = new DoubleLinkedListPanelNode(index, value);

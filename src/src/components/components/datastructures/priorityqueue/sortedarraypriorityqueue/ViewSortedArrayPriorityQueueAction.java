@@ -76,20 +76,19 @@ public class ViewSortedArrayPriorityQueueAction extends AbstractViewPriorityQueu
         if (getRootScreen().queue.size() == ((SortedArrayPriorityQueue<?, ?>) getRootScreen().queue).getSizeData()) {
             new SortedArrayPriorityQueueActionEnlarge(
                     getRootScreen(),
-                    1000,
                     new SortedArrayPriorityQueueActionInsert(
-                            key, value, getRootScreen(), 1000, null
+                            key, value, getRootScreen(), null
                     )
             ).start();
         } else {
             new SortedArrayPriorityQueueActionInsert(
-                    key, value, getRootScreen(), 1000, null
+                    key, value, getRootScreen(), null
             ).start();
         }
     }
 
     @Override
     public void actionRemoveMin() {
-        new SortedArrayPriorityQueueActionRemoveMin(getRootScreen(), 1000, null).start();
+        new SortedArrayPriorityQueueActionRemoveMin(getRootScreen(), null).start();
     }
 }

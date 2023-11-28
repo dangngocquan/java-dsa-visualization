@@ -145,7 +145,10 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
     public void actionTraversal(int type) {
         drawElements();
         repaint();
-        new TreeActionTraversal(type, getRootScreen(), 200, null).start();
+        new TreeActionTraversal(
+                type, getRootScreen(),
+                getRootScreen().getPeriod(), null
+        ).start();
     }
 
     public abstract void actionInsert(Integer value);

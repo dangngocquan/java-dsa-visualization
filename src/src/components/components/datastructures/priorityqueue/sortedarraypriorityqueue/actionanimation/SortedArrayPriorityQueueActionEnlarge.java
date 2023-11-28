@@ -18,8 +18,8 @@ public class SortedArrayPriorityQueueActionEnlarge extends AbstractSortedArrayPr
     private Panel newPanelData;
     public SortedArrayPriorityQueueActionEnlarge(
             SortedArrayPriorityQueueScreen rootScreen,
-            int period, AbstractSortedArrayPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractSortedArrayPriorityQueueAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
     }
 
     public SortedArrayPriorityQueueScreen getRootScreen() {

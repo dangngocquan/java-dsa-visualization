@@ -15,8 +15,8 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
 
     public ArrayListActionRemove1(
             int index, AbstractListScreen rootScreen,
-            int period, AbstractListAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+            AbstractListAnimation nextAnimation) {
+        super(rootScreen, nextAnimation);
         this.index = index;
     }
 

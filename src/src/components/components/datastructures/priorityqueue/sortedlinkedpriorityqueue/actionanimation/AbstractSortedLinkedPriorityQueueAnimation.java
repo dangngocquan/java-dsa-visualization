@@ -6,9 +6,8 @@ import src.components.components.datastructures.priorityqueue.AbstractPriorityQu
 public abstract class AbstractSortedLinkedPriorityQueueAnimation extends AbstractPriorityQueueAnimation {
     public AbstractSortedLinkedPriorityQueueAnimation(
             AbstractPriorityQueueScreen rootScreen,
-            int period,
             AbstractPriorityQueueAnimation nextAnimation) {
-        super(rootScreen, period, nextAnimation);
+        super(rootScreen, nextAnimation);
     }
 
     @Override

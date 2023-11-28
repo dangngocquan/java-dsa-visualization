@@ -26,8 +26,22 @@ public abstract class AbstractDataStructureScreen extends AbstractScreen {
         for (Button button : viewController.buttons) button.setEnabledButton(isEnabled);
     }
 
+    public int getPeriod() {
+        return viewAction == null? Config.DEFAULT_ANIMATION_SPEED : viewAction.getPeriod();
+    }
+
+    public void setPeriod(int period) {
+        viewAction.setPeriod(period);
+    }
+
     public abstract void runAction();
-    public abstract void endAction();
+
+    public void endAction() {
+        viewController.buttons[0].setEnabledButton(true);
+        viewController.buttons[1].setEnabledButton(true);
+        viewController.buttons[3].setEnabledButton(true);
+        setIndexActionSelected(-1);
+    }
 
 
     // Unused
