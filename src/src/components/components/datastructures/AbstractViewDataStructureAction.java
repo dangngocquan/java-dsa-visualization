@@ -5,7 +5,7 @@ import src.components.base.Panel;
 
 public abstract class AbstractViewDataStructureAction extends Panel {
     public AbstractDataStructureScreen rootScreen;
-    public int period = 100;
+    public int period = Config.DEFAULT_ANIMATION_SPEED;
 
     public AbstractViewDataStructureAction(AbstractDataStructureScreen rootScreen) {
         super(

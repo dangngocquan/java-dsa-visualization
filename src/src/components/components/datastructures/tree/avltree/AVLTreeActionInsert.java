@@ -1,9 +1,6 @@
 package src.components.components.datastructures.tree.avltree;
 
-import src.components.components.datastructures.tree.AbstractTreeAnimation;
-import src.components.components.datastructures.tree.AbstractTreeScreen;
-import src.components.components.datastructures.tree.AbstractViewTreeAction;
-import src.components.components.datastructures.tree.TreePanelNode;
+import src.components.components.datastructures.tree.*;
 import src.components.components.datastructures.tree.actionanimation.TreeActionInsert;
 import src.models.datastructures.queue.LinkedQueue;
 import src.models.datastructures.queue.QueueInterface;
@@ -53,6 +50,7 @@ public class AVLTreeActionInsert extends TreeActionInsert {
         } else {
             end();
             getRootScreen().tree.insert(panelInsert);
+            if (panelInsert == null) new ViewTreeController.DialogNotifyMaxHeight();
             getViewAction().resetPanelsClone();
         }
     }

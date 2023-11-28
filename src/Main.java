@@ -1,7 +1,4 @@
 import src.App;
-import src.tests.TestAVLTree;
-import src.tests.TestBinarySearchTree;
-import src.tests.TestFactory;
 
 public class Main {
     public static void main(String[] args) {

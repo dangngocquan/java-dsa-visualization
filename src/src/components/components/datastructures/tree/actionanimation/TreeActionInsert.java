@@ -1,10 +1,8 @@
 package src.components.components.datastructures.tree.actionanimation;
 
 import src.Config;
-import src.components.components.datastructures.tree.AbstractTreeAnimation;
-import src.components.components.datastructures.tree.AbstractTreeScreen;
-import src.components.components.datastructures.tree.AbstractViewTreeAction;
-import src.components.components.datastructures.tree.TreePanelNode;
+import src.components.components.datastructures.AbstractViewDataStructureController;
+import src.components.components.datastructures.tree.*;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
@@ -105,6 +103,7 @@ public class TreeActionInsert extends AbstractTreeAnimation {
                    animationStep = 2;
                } else {
                    end();
+                   new ViewTreeController.DialogNotifyMaxHeight();
                }
             }
         } else {
@@ -117,6 +116,7 @@ public class TreeActionInsert extends AbstractTreeAnimation {
                     animationStep = 2;
                 } else {
                     end();
+                    new ViewTreeController.DialogNotifyMaxHeight();
                 }
             }
         }

@@ -96,6 +96,7 @@ public class AVLTreeActionDelete extends TreeActionDelete {
                     if (prevRoot > -1) panels[prevRoot] = panels[i];
                     panels[i] = null;
                     prevRoot = i;
+                    translateLeftTreeBecomeRoot();
                     subStep = 0;
                     animationStep = 2;
                     indexCheckBalance = i == 0? -1 : (i - 1) / 2;
@@ -167,7 +168,6 @@ public class AVLTreeActionDelete extends TreeActionDelete {
         if (stepBalance == 0) {
             if (indexCheckBalance > -1) {
                 i = indexCheckBalance;
-                System.out.println(i + " " + panels[i]);
                 yellowFlag();
                 stepBalance = 1;
                 return;

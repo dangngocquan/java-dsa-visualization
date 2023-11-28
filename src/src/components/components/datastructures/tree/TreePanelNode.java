@@ -39,7 +39,7 @@ public class TreePanelNode
                 value + "", 0
         );
         panel.setBorderWidth(1);
-        panel.setFont(Config.MONOSPACED_BOLD_14);
+        panel.setFont(AbstractViewTreeAction.INDEX_COLUMNS.length < 32? Config.MONOSPACED_BOLD_18 : Config.MONOSPACED_BOLD_14);
         add(panel);
     }
 

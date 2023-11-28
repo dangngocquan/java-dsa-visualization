@@ -3,6 +3,7 @@ package src.components.components.datastructures.tree;
 import src.Config;
 import src.components.base.Button;
 import src.components.base.Dialog;
+import src.components.base.Panel;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
 
@@ -130,6 +131,33 @@ public class ViewTreeController extends AbstractViewDataStructureController {
                 referAllButtons(); buttons[7].setIsClicked(true); tempIndexActionSelecting = 6; });
             this.buttons[8].addActionListener(e -> {
                 referAllButtons(); buttons[8].setIsClicked(true); tempIndexActionSelecting = 7; });
+        }
+    }
+
+    public static class DialogNotifyMaxHeight extends Dialog {
+        public DialogNotifyMaxHeight() {
+            super((Config.WIDTH - Config.WIDTH / 3 * 2) / 2,
+                    (Config.HEIGHT - Config.HEIGHT / 4) / 2,
+                    Config.WIDTH / 3 * 2,
+                    Config.HEIGHT / 4 , "Reached maximum height of tree");
+        }
+
+        @Override
+        public void addComponents() {
+            Panel panel = new Panel(
+                    0, 30, getWidthDialog(), 50,
+                    dialog.getBackground(), null,
+                    "This screen only can contains the tree with maximum height is 6. Please insert other elements.", 0
+            );
+            panel.setFont(Config.MONOSPACED_BOLD_16);
+            Button button = new Button(
+                    getWidthDialog() / 2 - 50, panel.getY() + panel.getHeightPanel() + 30,
+                    100, 50, "OK"
+            );
+            button.addActionListener(e -> dialog.dispose());
+
+            dialog.add(panel);
+            dialog.add(button);
         }
     }
 }
