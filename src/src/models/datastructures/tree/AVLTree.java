@@ -66,6 +66,7 @@ public class AVLTree<E extends Comparable<E>> extends BinarySearchTree<E> {
         if (compare == 0) {
             root.element = findMin(root.right);
             root.right = delete(root.element, root.right);
+            if (root.right != null) root.right.parent = root; // update parent for root.right
         } else if (compare < 0) {
             root.left = delete(x, root.left);
             if (root.left != null) root.left.parent = root; // update parent for root.left

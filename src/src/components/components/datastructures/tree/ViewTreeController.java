@@ -147,7 +147,7 @@ public class ViewTreeController extends AbstractViewDataStructureController {
             Panel panel = new Panel(
                     0, 30, getWidthDialog(), 50,
                     dialog.getBackground(), null,
-                    "This screen only can contains the tree with maximum height is 6. Please insert other elements.", 0
+                    "This screen only can contains the tree with maximum height is 5. Please insert other elements.", 0
             );
             panel.setFont(Config.MONOSPACED_BOLD_16);
             Button button = new Button(

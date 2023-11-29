@@ -63,7 +63,9 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
         }
         // case 3: only has child right
         if (root.left == null) {
-            if (compare == 0) return root.right;
+            if (compare == 0) {
+                return root.right;
+            }
             root.right = delete(x, root.right);
             if (root.right != null) root.right.parent = root; // update parent for root.right
             return root;
@@ -72,6 +74,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
         if (compare == 0) {
             root.element = findMin(root.right);
             root.right = delete(root.element, root.right);
+            if (root.right != null) root.right.parent = root; // update parent for root.right
         } else if (compare < 0) {
             root.left = delete(x, root.left);
             if (root.left != null) root.left.parent = root; // update parent for root.left

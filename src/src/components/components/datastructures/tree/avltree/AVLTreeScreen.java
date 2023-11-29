@@ -9,7 +9,7 @@ public class AVLTreeScreen extends AbstractTreeScreen {
     @Override
     public void createTree() {
         tree = new AVLTree<>();
-        for (int i = 0; i < 31; i++) {
+        for (int i = 0; i < 7; i++) {
             tree.insert(new TreePanelNode(
                     AbstractViewTreeAction.INDEX_ROWS[i],
                     AbstractViewTreeAction.INDEX_COLUMNS[i],

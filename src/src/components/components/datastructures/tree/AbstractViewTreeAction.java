@@ -79,7 +79,6 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
         } else {
             System.arraycopy(a, 0, panelsClone, 0, a.length);
         }
-
         drawElements();
         repaint();
     }

@@ -1,4 +1,5 @@
 import src.App;
+import src.tests.TestBinarySearchTree;
 
 public class Main {
     public static void main(String[] args) {
