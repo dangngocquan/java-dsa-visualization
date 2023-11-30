@@ -1,8 +1,12 @@
 package src;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class Config {
+    public static Config instance = null;
+
     // Size
     public static int DEVICE_WIDTH = (int) (GraphicsEnvironment.getLocalGraphicsEnvironment()
             .getMaximumWindowBounds().getWidth());
@@ -28,7 +32,7 @@ public class Config {
     public static Color COLOR_BAR_DONE = new Color(0, 255, 0);
     public static Color COLOR_BAR_TEMP_SORTED = COLOR_BLUE;
     public static Color COLOR_BAR_FLAG = new Color(255, 110, 110);
-    public static Color COLOR_BAR_SMALLER_PIVOT = new Color(255, 210, 210);
+    public static Color COLOR_PINK = new Color(255, 210, 210);
 
     public static int DEFAULT_ANIMATION_SPEED = 200;
 
@@ -39,4 +43,17 @@ public class Config {
     public static final Font MONOSPACED_BOLD_14 = new Font(Font.MONOSPACED, Font.BOLD, 14);
     public static final Font MONOSPACED_BOLD_16 = new Font(Font.MONOSPACED, Font.BOLD, 16);
     public static final Font MONOSPACED_BOLD_18 = new Font(Font.MONOSPACED, Font.BOLD, 18);
+
+    // Image
+    public static ImageIcon LOGO = null;
+
+    public Config() {
+        instance = this;
+        try {
+            LOGO = new ImageIcon(
+                    Objects.requireNonNull(instance.getClass().getResource("assets/images/logo.png")));
+        } catch (Exception e) {
+            System.out.println("Error when read img");
+        }
+    }
 }

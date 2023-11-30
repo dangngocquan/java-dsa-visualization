@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class App extends Frame {
-    private AbstractScreen mainScreen;
     private Map<String, AbstractScreen> screens;
     public App() {
         super(
@@ -17,13 +16,14 @@ public class App extends Frame {
                 Config.BACKGROUND_COLOR_APP,
                 Config.MONOSPACED_BOLD_12
         );
+        setIconImage(Config.LOGO.getImage());
         addScreens();
         repaint();
     }
 
     public void addScreens() {
         screens = new HashMap<>();
-        mainScreen = new MainScreen();
+        AbstractScreen mainScreen = new MainScreen();
         addScreen(mainScreen);
     }
 

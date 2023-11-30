@@ -34,6 +34,7 @@ public class BinarySearchAnimation extends AbstractSearchAlgorithmAnimation {
                     getRootScreen().getViewAction().moveBarSearching(i, mid);
                     i = mid;
                     animationStep = 1;
+                    getRootScreen().descriptionCompare(barSearching.getValue(), i, bars[i].getValue());
                 } else if (animationStep == 1) {
                     if (barSearching.getValue() == bars[mid].getValue()) {
                         getRootScreen().getViewAction().checkBar(mid, Config.COLOR_GREEN);

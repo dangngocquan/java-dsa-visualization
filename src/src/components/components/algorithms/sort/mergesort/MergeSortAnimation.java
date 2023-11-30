@@ -62,89 +62,128 @@ public class MergeSortAnimation extends AbstractSortAlgorithmAnimation {
     public void run() {
         if (isRunning()) {
             if (subBars == null) {
-                while (indexQueue < queues.length && queues[indexQueue].size() < 2) {
-                    indexQueue++;
-                }
-                if (indexQueue >= queues.length) {
-                    end();
-                } else {
-                    range1 = queues[indexQueue].poll();
-                    range2 = queues[indexQueue].poll();
-                    getRootScreen().getViewAction().setColorAndLocationBars(
-                            range1[0],
-                            range2[1],
-                            Config.COLOR_BAR_FLAG,
-                            ViewSortAlgorithmAction.initialY0
-                    );
-                    subBars = new Bar[range2[1] - range1[0] + 1];
-                    i = range1[0];
-                    i1 = range1[0];
-                    i2 = range2[0];
-                }
+                newSubArraySorting();
             } else {
-                if (i > range2[1]) {
-                    if (animationStep < subBars.length) {
-                        int j = range1[0] + animationStep;
-                        getRootScreen().getViewAction().setBar(j, subBars[animationStep]);
-                        getRootScreen().getViewAction().pickDownBar(
-                                j, ViewSortAlgorithmAction.initialY1
-                        );
-                        getRootScreen().getViewAction().checkBar(
-                                j, Config.COLOR_BAR_TEMP_SORTED
-                        );
-                        animationStep++;
-                    } else {
-                        animationStep = 0;
-                        subBars = null;
-                        indexQueue--;
-                        queues[indexQueue].add(new int[] {range1[0], range2[1]});
-                    }
-                } else {
-                    if (i1 <= range1[1] && i2 <= range2[1]) {
-                        if (bars[i1].compareTo(bars[i2]) <= 0) {
-                            subBars[-range1[0] + i] = bars[i1];
-                            getRootScreen().getViewAction().moveBar(
-                                    i1,
-                                    ViewSortAlgorithmAction.initialY0,
-                                    i,
-                                    ViewSortAlgorithmAction.initialY1
-                            );
-                            i1++;
-                            i++;
-                        } else {
-                            subBars[-range1[0] + i] = bars[i2];
-                            getRootScreen().getViewAction().moveBar(
-                                    i2,
-                                    ViewSortAlgorithmAction.initialY0,
-                                    i,
-                                    ViewSortAlgorithmAction.initialY1
-                            );
-                            i2++;
-                            i++;
-                        }
-                    } else if (i1 <= range1[1]) {
-                        subBars[-range1[0] + i] = bars[i1];
-                        getRootScreen().getViewAction().moveBar(
-                                i1,
-                                ViewSortAlgorithmAction.initialY0,
-                                i,
-                                ViewSortAlgorithmAction.initialY1
-                        );
-                        i1++;
-                        i++;
-                    } else {
-                        subBars[-range1[0] + i] = bars[i2];
-                        getRootScreen().getViewAction().moveBar(
-                                i2,
-                                ViewSortAlgorithmAction.initialY0,
-                                i,
-                                ViewSortAlgorithmAction.initialY1
-                        );
-                        i2++;
-                        i++;
-                    }
-                }
+                merge();
             }
+        }
+    }
+
+    public void newSubArraySorting() {
+        while (indexQueue < queues.length && queues[indexQueue].size() < 2) {
+            indexQueue++;
+        }
+        if (indexQueue >= queues.length) {
+            end();
+        } else {
+            range1 = queues[indexQueue].poll();
+            range2 = queues[indexQueue].poll();
+            getRootScreen().getViewAction().setColorAndLocationBars(
+                    range1[0],
+                    range2[1],
+                    Config.COLOR_RED,
+                    ViewSortAlgorithmAction.initialY0
+            );
+            subBars = new Bar[range2[1] - range1[0] + 1];
+            i = range1[0];
+            i1 = range1[0];
+            i2 = range2[0];
+            getRootScreen().setDescription(String.format(
+                    "Merge two sorted subarray [%d,%d] and [%d,%d].",
+                    range1[0], range1[1], range2[0], range2[1]
+            ));
+        }
+    }
+
+    public void merge() {
+        if (i > range2[1]) {
+            translateSubSortedArrayToMainArray();
+        } else {
+            mergeTwoSubArrayToSortedArray();
+        }
+    }
+
+    public void translateSubSortedArrayToMainArray() {
+        if (animationStep < subBars.length) {
+            int j = range1[0] + animationStep;
+            getRootScreen().getViewAction().setBar(j, subBars[animationStep]);
+            getRootScreen().getViewAction().pickDownBar(
+                    j, ViewSortAlgorithmAction.initialY1
+            );
+            getRootScreen().getViewAction().checkBar(
+                    j, Config.COLOR_BLUE
+            );
+            getRootScreen().setDescription(String.format(
+                    "a[%d] := b[%d] = %d",
+                    j, animationStep, subBars[animationStep].getValue()
+            ));
+            animationStep++;
+        } else {
+            animationStep = 0;
+            subBars = null;
+            indexQueue--;
+            queues[indexQueue].add(new int[] {range1[0], range2[1]});
+        }
+    }
+
+    public void mergeTwoSubArrayToSortedArray() {
+        if (i1 <= range1[1] && i2 <= range2[1]) {
+            if (bars[i1].compareTo(bars[i2]) <= 0) {
+                getRootScreen().setDescription(String.format(
+                        "a[%d] = %d equals or smaller than a[%d]=%d, then b[%d] := a[%d]",
+                        i1, bars[i1].getValue(), i2, bars[i2].getValue(), -range1[0] + i, i1
+                ));
+                subBars[-range1[0] + i] = bars[i1];
+                getRootScreen().getViewAction().moveBar(
+                        i1,
+                        ViewSortAlgorithmAction.initialY0,
+                        i,
+                        ViewSortAlgorithmAction.initialY1
+                );
+                i1++;
+            } else {
+                getRootScreen().setDescription(String.format(
+                        "a[%d] = %d smaller than a[%d]=%d, then b[%d] := a[%d]",
+                        i2, bars[i2].getValue(), i1, bars[i1].getValue(), -range1[0] + i, i2
+                ));
+                subBars[-range1[0] + i] = bars[i2];
+                getRootScreen().getViewAction().moveBar(
+                        i2,
+                        ViewSortAlgorithmAction.initialY0,
+                        i,
+                        ViewSortAlgorithmAction.initialY1
+                );
+                i2++;
+            }
+            i++;
+        } else if (i1 <= range1[1]) {
+            getRootScreen().setDescription(String.format(
+                    "b[%d] := a[%d] = %d",
+                    -range1[0] + i, i1, bars[i1].getValue()
+            ));
+            subBars[-range1[0] + i] = bars[i1];
+            getRootScreen().getViewAction().moveBar(
+                    i1,
+                    ViewSortAlgorithmAction.initialY0,
+                    i,
+                    ViewSortAlgorithmAction.initialY1
+            );
+            i1++;
+            i++;
+        } else {
+            getRootScreen().setDescription(String.format(
+                    "b[%d] := a[%d] = %d",
+                    -range1[0] + i, i2, bars[i2].getValue()
+            ));
+            subBars[-range1[0] + i] = bars[i2];
+            getRootScreen().getViewAction().moveBar(
+                    i2,
+                    ViewSortAlgorithmAction.initialY0,
+                    i,
+                    ViewSortAlgorithmAction.initialY1
+            );
+            i2++;
+            i++;
         }
     }
 }

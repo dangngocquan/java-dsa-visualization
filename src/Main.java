@@ -1,12 +1,10 @@
 import src.App;
-import src.tests.TestBinarySearchTree;
+import src.Config;
 
 public class Main {
     public static void main(String[] args) {
+        new Config();
         new App();
-//        new TestFactory().testAll();
-//        new TestBinarySearchTree().run();
-//        new TestAVLTree().run();
     }
 
 }
@@ -44,5 +42,5 @@ public class Main {
           + Min Heap Priority Queue: Done
       + Tree:
           + Binary Search Tree: Done
-          + AVL Tree
+          + AVL Tree: Done
 */

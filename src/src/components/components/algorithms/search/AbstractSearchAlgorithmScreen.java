@@ -96,5 +96,20 @@ public abstract class AbstractSearchAlgorithmScreen extends AbstractAlgorithmScr
         searchAnimation = null;
         getViewController().endSearch();
         getViewAction().runEndAnimation(type);
+        setDescription("");
+    }
+
+    public void descriptionCompare(int searchingValue, int i, int aI) {
+        setDescription(
+                String.format(
+                        "Compare searchingValue=%d to a[%d]=%d.", searchingValue, i, aI
+                ) + String.format(
+                        " SearchingValue=%d %s a[%d]=%d.",
+                        searchingValue,
+                        searchingValue == aI? "equals to" : "not equals to",
+                        i,
+                        aI
+                )
+        );
     }
 }

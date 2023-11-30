@@ -29,6 +29,7 @@ public class SequentialSearchAnimation extends AbstractSearchAlgorithmAnimation 
                     getRootScreen().getViewAction().moveBarSearching(i, j);
                     i = j;
                     animationStep = 1;
+                    getRootScreen().descriptionCompare(barSearching.getValue(), i, bars[i].getValue());
                 } else if (animationStep == 1) {
                     if (barSearching.getValue() == bars[j].getValue()) {
                         getRootScreen().getViewAction().checkBar(j , Config.COLOR_GREEN);

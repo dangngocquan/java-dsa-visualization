@@ -28,4 +28,12 @@ public abstract class AbstractAlgorithmScreen extends AbstractScreen {
 
     @Override
     public void addActionListenerForButtons() {}
+
+    public void setDescription(String s) {
+        viewAction.setDescription(s);
+    }
+
+    public String getDescription() {
+        return viewAction.description.getText();
+    }
 }

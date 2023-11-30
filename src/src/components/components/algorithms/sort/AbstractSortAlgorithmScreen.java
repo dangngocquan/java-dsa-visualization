@@ -83,5 +83,6 @@ public abstract class AbstractSortAlgorithmScreen extends AbstractAlgorithmScree
         sortAnimation = null;
         getViewController().endSort();
         getViewAction().runEndAnimation();
+        setDescription("");
     }
 }
