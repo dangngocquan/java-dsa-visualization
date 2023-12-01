@@ -1,5 +1,7 @@
 package src.components.base;
 
+import src.Config;
+
 import javax.swing.*;
 
 public abstract class Dialog {
@@ -16,6 +18,7 @@ public abstract class Dialog {
         this.height = height;
 
         JFrame f = new JFrame();
+        f.setIconImage(Config.LOGO.getImage());
         dialog = new JDialog(f, title, true);
         dialog.setLayout(null);
         dialog.setBounds(

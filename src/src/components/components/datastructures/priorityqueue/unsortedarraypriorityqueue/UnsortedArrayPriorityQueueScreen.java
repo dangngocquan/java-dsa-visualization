@@ -5,7 +5,7 @@ import src.models.datastructures.priorityqueue.UnsortedArrayPriorityQueue;
 
 public class UnsortedArrayPriorityQueueScreen extends AbstractPriorityQueueScreen {
     @Override
-    public void createQueue() {
+    public void createPriorityQueue() {
         queue = new UnsortedArrayPriorityQueue<>();
         queue.insert(0, new UnsortedArrayPriorityQueuePanelNode(queue.size(), 0, 1));
         queue.insert(1, new UnsortedArrayPriorityQueuePanelNode(queue.size(), 1, 0));

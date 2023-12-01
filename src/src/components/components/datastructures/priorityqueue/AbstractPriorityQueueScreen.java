@@ -27,11 +27,11 @@ public abstract class AbstractPriorityQueueScreen extends AbstractDataStructureS
         return (AbstractViewPriorityQueueAction) viewAction;
     }
 
-    public abstract void createQueue();
+    public abstract void createPriorityQueue();
 
     @Override
     public void createViewController() {
-        createQueue();
+        createPriorityQueue();
         viewController = new ViewPriorityQueueController(this);
         add(viewController);
     }

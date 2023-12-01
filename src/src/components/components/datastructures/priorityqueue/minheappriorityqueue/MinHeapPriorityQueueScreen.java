@@ -16,7 +16,7 @@ public class MinHeapPriorityQueueScreen extends AbstractPriorityQueueScreen {
             0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
     };
     @Override
-    public void createQueue() {
+    public void createPriorityQueue() {
         queue = new MinHeapPriorityQueue<>();
         queue.insert(0, new MinHeapPriorityQueuePanelNode(indexRows[0], indexColumns[0], 0, 1));
         queue.insert(1, new MinHeapPriorityQueuePanelNode(indexRows[1], indexColumns[1], 1, 0));

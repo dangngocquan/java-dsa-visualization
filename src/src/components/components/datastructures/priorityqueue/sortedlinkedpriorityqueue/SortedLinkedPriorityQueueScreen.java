@@ -11,7 +11,7 @@ public class SortedLinkedPriorityQueueScreen extends AbstractPriorityQueueScreen
     }
 
     @Override
-    public void createQueue() {
+    public void createPriorityQueue() {
         queue = new SortedLinkedPriorityQueue<>();
         SortedLinkedPriorityQueuePanelNode node1
                 = new SortedLinkedPriorityQueuePanelNode(0, 0, 1);
