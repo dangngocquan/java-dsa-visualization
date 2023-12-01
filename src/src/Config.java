@@ -15,6 +15,7 @@ public class Config {
     public static int WIDTH = DEVICE_WIDTH - 14;
     public static int HEIGHT = DEVICE_HEIGHT - 36;
     public static int HEIGHT_VIEW_CONTROLLER = HEIGHT / 7;
+    public static int HEIGHT_DESCRIPTION = 40;
 
     // Color
     public static Color COLOR_TEXT = new Color(20, 20, 20);
@@ -35,6 +36,8 @@ public class Config {
     public static Color COLOR_PINK = new Color(255, 210, 210);
 
     public static int DEFAULT_ANIMATION_SPEED = 200;
+    public static int MAX_NODE_TYPE_1 = 16;
+    public static int MAX_NODE_TYPE_2 = 8;
 
     // Font
     public static final Font MONOSPACED_BOLD_6 = new Font(Font.MONOSPACED, Font.BOLD, 6);

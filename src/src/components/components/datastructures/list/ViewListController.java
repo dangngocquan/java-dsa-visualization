@@ -5,6 +5,7 @@ import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
+import src.components.components.datastructures.list.arraylist.ArrayListScreen;
 
 public class ViewListController extends AbstractViewDataStructureController {
     private int tempIndexActionSelecting;
@@ -89,8 +90,8 @@ public class ViewListController extends AbstractViewDataStructureController {
             for (Button button : buttons) dialog.add(button);
 
             boolean[] enableButtons = new boolean[] {
-                    getRootScreen().list.size() < 8,
-                    getRootScreen().list.size() < 8,
+                    getRootScreen().list.size() < (rootScreen instanceof ArrayListScreen? Config.MAX_NODE_TYPE_1 : Config.MAX_NODE_TYPE_2),
+                    getRootScreen().list.size() < (rootScreen instanceof ArrayListScreen? Config.MAX_NODE_TYPE_1 : Config.MAX_NODE_TYPE_2),
                     !getRootScreen().list.isEmpty(),
                     !getRootScreen().list.isEmpty(),
                     !getRootScreen().list.isEmpty()

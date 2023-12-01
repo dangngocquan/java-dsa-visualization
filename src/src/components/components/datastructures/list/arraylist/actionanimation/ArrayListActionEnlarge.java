@@ -46,6 +46,9 @@ public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
     }
 
     public void createNewData() {
+        getRootScreen().setDescription(
+            "[ENLARGE] Create array b with b.length = 2 * a.length"
+        );
         int dataLength = ((MyArrayList<?>) (getRootScreen().list)).getSizeData() * 2;
         title1 = new Panel(
                 0,
@@ -101,6 +104,11 @@ public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
 
     public void movePanelNodeToNewData(int index) {
         AbstractPanelDataStructureNode panelNode = getRootScreen().list.get(index);
+        getRootScreen().setDescription(
+                String.format(
+                        "[ENLARGE] b[%d] := a[%d] = %d", index, index, panelNode.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -112,6 +120,9 @@ public class ArrayListActionEnlarge extends AbstractArrayListAnimation {
     }
 
     public void replaceDataByNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Update array data of ArrayList a := b"
+        );
         MyList<AbstractPanelListNode> panelElements = getRootScreen().list;
         for (int i = 0; i < panelElements.size(); i++) {
             AbstractPanelDataStructureNode panel = panelElements.get(i);

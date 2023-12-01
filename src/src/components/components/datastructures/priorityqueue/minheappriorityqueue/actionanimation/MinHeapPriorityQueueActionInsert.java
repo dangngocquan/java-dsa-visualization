@@ -61,6 +61,12 @@ public class MinHeapPriorityQueueActionInsert extends AbstractMinHeapPriorityQue
             check(i, Config.COLOR_WHITE);
             animationStep = 5;
         } else if (animationStep == 5) {
+            getRootScreen().setDescription(
+                    String.format(
+                            "[INSERT] Inserted Entry(key=%d, value=%d).",
+                            key, value
+                    )
+            );
             getRootScreen().queue.insert(key, data[i]);
             ((ViewMinHeapPriorityQueueAction) getRootScreen().getViewAction()).resetDataClone();
             end();
@@ -68,6 +74,12 @@ public class MinHeapPriorityQueueActionInsert extends AbstractMinHeapPriorityQue
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create new Entry(key=%d, value=%d)",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 data[i],
                 new Location(data[i].getX(), data[i].getY()),
@@ -90,9 +102,21 @@ public class MinHeapPriorityQueueActionInsert extends AbstractMinHeapPriorityQue
 
     public void upHeap() {
         if (i > 0 && data[i].key < data[(i - 1) / 2].key) {
+            getRootScreen().setDescription(
+                    String.format(
+                            "[UP HEAP] Entry(key=%d, value=%d) has key smaller than parent Entry(key=%d, value=%d). Swap them.",
+                            data[i].key, data[i].getValue(), data[(i-1)/2].key, data[(i-1)/2].getValue()
+                    )
+            );
             swap(i, (i - 1) / 2);
             animationStep = 3;
         } else {
+            getRootScreen().setDescription(
+                    String.format(
+                            "[UP HEAP] Entry(key=%d, value=%d) has key equals or greater than parent Entry(key=%d, value=%d). Swap them.",
+                            data[i].key, data[i].getValue(), data[(i-1) / 2].key, data[(i-1) / 2].getValue()
+                    )
+            );
             check((i - 1) / 2, Config.COLOR_WHITE);
             animationStep = 4;
         }

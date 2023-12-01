@@ -170,12 +170,12 @@ public abstract class AbstractListScreen extends AbstractDataStructureScreen {
             int gapHeight = 20;
             int gapWidth = 40;
             int totalHeight = buttonHeight * numberObjectPerColumn + (numberObjectPerColumn - 1) * gapHeight;
-            int totalWidth = buttonWidth * numberObjectPerRow + (numberObjectPerRow - 1) * gapWidth;
+            int totalWidth = buttonWidth * numberObjectPerRow;
             int initialY = (getHeightDialog() - totalHeight) / 2;
             int initialX = (getWidthDialog() - totalWidth) / 2;
 
             button = new Button(
-                    initialX + (gapWidth + buttonWidth) * (numberObjectPerRow - 1),
+                    initialX,
                     initialY + (gapHeight + buttonHeight) * (numberObjectPerColumn - 1),
                     buttonWidth, buttonHeight,
                     "Save"

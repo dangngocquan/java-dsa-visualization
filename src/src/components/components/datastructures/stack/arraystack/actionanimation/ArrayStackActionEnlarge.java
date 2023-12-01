@@ -18,7 +18,7 @@ import java.util.Iterator;
 public class ArrayStackActionEnlarge extends AbstractArrayStackAnimation {
     private Panel title1;
     private Panel newPanelData;
-    private Iterator<AbstractPanelStackNode> iterator;
+    private final Iterator<AbstractPanelStackNode> iterator;
     public ArrayStackActionEnlarge(
             AbstractStackScreen rootScreen,
             AbstractStackAnimation nextAnimation) {
@@ -50,6 +50,9 @@ public class ArrayStackActionEnlarge extends AbstractArrayStackAnimation {
     }
 
     public void createNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Create new array data b with b.length = 2 * a.length"
+        );
         int dataLength = ((ArrayStack<AbstractPanelStackNode>) (getRootScreen().stack)).getSizeData() * 2;
         title1 = new Panel(
                 0,
@@ -105,6 +108,9 @@ public class ArrayStackActionEnlarge extends AbstractArrayStackAnimation {
 
     public void movePanelNodeToNewData(Iterator<AbstractPanelStackNode> iterator) {
         AbstractPanelDataStructureNode panelNode = iterator.next();
+        getRootScreen().setDescription(
+                "[ENLARGE] Copy elements to new array data."
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -116,6 +122,9 @@ public class ArrayStackActionEnlarge extends AbstractArrayStackAnimation {
     }
 
     public void replaceDataByNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Update new array data for ArrayStack a := b"
+        );
         StackInterface<AbstractPanelStackNode> panelElements = getRootScreen().stack;
         for (AbstractPanelStackNode panel : panelElements) {
             rootScreen.viewAction.remove(panel);

@@ -52,6 +52,11 @@ public class ArrayStackActionPush extends AbstractArrayStackAnimation {
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] New element %d", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -63,6 +68,9 @@ public class ArrayStackActionPush extends AbstractArrayStackAnimation {
     }
 
     public void addToDataOfArrayStack() {
+        getRootScreen().setDescription(
+                String.format("[PUSH] Push new element %d to stack", panelNode.getValue())
+        );
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         getRootScreen().stack.push(panelNode);
         ServiceAnimation.translate(

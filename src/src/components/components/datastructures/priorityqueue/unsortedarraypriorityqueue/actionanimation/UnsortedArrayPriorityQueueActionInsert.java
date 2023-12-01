@@ -49,12 +49,9 @@ public class UnsortedArrayPriorityQueueActionInsert extends AbstractUnsortedArra
         if (animationStep == 0) {
             createNewElement();
             animationStep = 1;
-        } else if (animationStep <= getRootScreen().queue.size() - index) {
-            movePanelNodeToRight(getRootScreen().queue.size() - animationStep);
-            animationStep++;
-        } else if (animationStep == getRootScreen().queue.size() - index + 1) {
+        } else if (animationStep == 1) {
             addToDataOfSortedArrayPriorityQueue();
-            animationStep = 100000;
+            animationStep = 2;
         } else {
             animationStep = 0;
             end();
@@ -62,6 +59,12 @@ public class UnsortedArrayPriorityQueueActionInsert extends AbstractUnsortedArra
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create new Entry(key=%d, value=%d)",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -72,22 +75,12 @@ public class UnsortedArrayPriorityQueueActionInsert extends AbstractUnsortedArra
         );
     }
 
-    public void movePanelNodeToRight(int i) {
-        Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
-                = getRootScreen().queue.iterator();
-        while (i-- > 0) iterator.next();
-        AbstractPanelDataStructureNode node = iterator.next().getValue();
-        ServiceAnimation.translate(
-                node,
-                new Location(node.getX(), node.getY()),
-                ViewUnsortedArrayPriorityQueueAction.SIZE_PER_NODE + ViewUnsortedArrayPriorityQueueAction.GAP_X,
-                0,
-                10,
-                period - 10
-        );
-    }
-
     public void addToDataOfSortedArrayPriorityQueue() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted element %d to Priority Queue", value
+                )
+        );
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         ServiceAnimation.translate(
                 panelNode,

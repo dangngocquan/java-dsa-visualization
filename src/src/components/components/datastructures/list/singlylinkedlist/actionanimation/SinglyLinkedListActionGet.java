@@ -4,9 +4,6 @@ import src.Config;
 import src.components.components.datastructures.list.AbstractListAnimation;
 import src.components.components.datastructures.list.AbstractListScreen;
 import src.components.components.datastructures.list.AbstractPanelListNode;
-import src.components.components.datastructures.list.arraylist.ArrayListPanelNode;
-import src.components.components.datastructures.list.arraylist.ArrayListScreen;
-import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
 import src.components.components.datastructures.list.singlylinkedlist.SinglyLinkedListPanelNode;
 import src.components.components.datastructures.list.singlylinkedlist.SinglyLinkedListScreen;
 import src.components.components.datastructures.list.singlylinkedlist.ViewSinglyLinkedListAction;
@@ -14,7 +11,7 @@ import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
 public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation {
-    private int index;
+    private final int index;
     private AbstractPanelListNode node;
 
     public SinglyLinkedListActionGet(
@@ -55,6 +52,11 @@ public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation
 
     public void checkNode(int i) {
         AbstractPanelListNode node0 = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Checking node(element=%d), index = %d", node0.getValue(), i
+                )
+        );
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -95,6 +97,11 @@ public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation
         AbstractPanelListNode node0 = getRootScreen().list.get(i);
         uncheckNode(i);
         node = new SinglyLinkedListPanelNode(node0.getIndex(), node0.getValue());
+        getRootScreen().setDescription(
+                String.format(
+                        "[GET] Get node(%d) with index = %d", node.getValue(), index
+                )
+        );
         getRootScreen().viewAction.add(node);
         ServiceAnimation.transitionColor(
                 node,
@@ -113,6 +120,11 @@ public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return element %d", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

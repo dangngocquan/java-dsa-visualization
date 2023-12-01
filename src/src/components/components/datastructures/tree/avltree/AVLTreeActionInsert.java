@@ -38,6 +38,9 @@ public class AVLTreeActionInsert extends TreeActionInsert {
                     checkNode();
                 }
             } else {
+                getRootScreen().setDescription(
+                        "[INSERT] Finished"
+                );
                 end();
                 getRootScreen().tree.insert(panelInsert);
                 getViewAction().resetPanelsClone();
@@ -48,6 +51,9 @@ public class AVLTreeActionInsert extends TreeActionInsert {
         } else if (animationStep == 2) {
             balance();
         } else {
+            getRootScreen().setDescription(
+                    "[INSERT] Finished"
+            );
             end();
             getRootScreen().tree.insert(panelInsert);
             if (panelInsert == null) new ViewTreeController.DialogNotifyMaxHeight();
@@ -59,6 +65,7 @@ public class AVLTreeActionInsert extends TreeActionInsert {
         if (stepBalance == 0) {
             if (!queueRootBalance.isEmpty()) {
                 i = queueRootBalance.dequeue();
+                getRootScreen().setDescription("[BALANCE] Check sub tree with root " + panels[i].getValue());
                 yellowFlag();
                 stepBalance = 1;
                 return;
@@ -89,16 +96,20 @@ public class AVLTreeActionInsert extends TreeActionInsert {
                 stepBalance = 0;
             }
         } else if(stepBalance == 2) {
+            getRootScreen().setDescription("[BALANCE] Sub left tree - rotate left");
             rotateLeft(2 * i + 1);
             stepBalance = 3;
         } else if (stepBalance == 3) {
+            getRootScreen().setDescription("[BALANCE] Current tree - rotate right");
             rotateRight(i);
             if (i != 0) queueRootBalance.enqueue((i-1) / 2);
             stepBalance = 0;
         }else if (stepBalance == 4) {
+            getRootScreen().setDescription("[BALANCE] Sub right tree - rotate right");
             rotateRight(2 * i + 2);
             stepBalance = 5;
         } else if (stepBalance == 5) {
+            getRootScreen().setDescription("[BALANCE] current tree - rotate left");
             rotateLeft(i);
             if (i != 0) queueRootBalance.enqueue((i-1) / 2);
             stepBalance = 0;

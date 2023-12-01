@@ -54,6 +54,11 @@ public class LinkedStackActionPush extends AbstractLinkedStackAnimation {
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -95,6 +100,9 @@ public class LinkedStackActionPush extends AbstractLinkedStackAnimation {
     public void createArrowWithNextNode() {
         panelNode.setVisible(false);
         getRootScreen().stack.push(panelNode);
+        getRootScreen().setDescription(
+                "[UPDATE] node.next := head; head := node"
+        );
         if (1 < getRootScreen().stack.size()) {
             panelNode = (LinkedStackPanelNode) getRootScreen().stack.pop();
             nextNode = (LinkedStackPanelNode) getRootScreen().stack.pop();
@@ -132,6 +140,11 @@ public class LinkedStackActionPush extends AbstractLinkedStackAnimation {
     }
 
     public void addToDataOfLinkedStack() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[PUSH] Pushed new element %d to stack", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

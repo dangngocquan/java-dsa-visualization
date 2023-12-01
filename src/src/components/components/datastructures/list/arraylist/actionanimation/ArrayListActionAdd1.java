@@ -52,6 +52,9 @@ public class ArrayListActionAdd1 extends AbstractArrayListAnimation {
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format("[CREATE] New element %d", value)
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -63,6 +66,11 @@ public class ArrayListActionAdd1 extends AbstractArrayListAnimation {
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] a[%d] := %d", index, value
+                )
+        );
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         getRootScreen().list.add(panelNode);
         ServiceAnimation.translate(

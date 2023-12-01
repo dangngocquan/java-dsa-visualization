@@ -57,6 +57,11 @@ public class SinglyLinkedListActionRemove1 extends AbstractSinglyLinkedListAnima
 
     public void checkNode(int i) {
         AbstractPanelListNode node0 = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] node(%d) with index = %d", node0.getValue(), i
+                )
+        );
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -95,6 +100,12 @@ public class SinglyLinkedListActionRemove1 extends AbstractSinglyLinkedListAnima
 
     public void pickUpElement(int i) {
         node = (SinglyLinkedListPanelNode) getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                    "[CHECK] node(%d) with index = %d. Remove this node.",
+                    node.getValue(), i
+                )
+        );
         if (i-1 >= 0) {
             prevNode = (SinglyLinkedListPanelNode) getRootScreen().list.get(i-1);
         }
@@ -159,6 +170,9 @@ public class SinglyLinkedListActionRemove1 extends AbstractSinglyLinkedListAnima
 
     public void createArrowFromPrevToNext() {
         if (prevNode != null && nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := nextNode"
+            );
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
                     prevNode.nextArrow,
@@ -190,12 +204,25 @@ public class SinglyLinkedListActionRemove1 extends AbstractSinglyLinkedListAnima
             );
         } else if (prevNode != null) {
             prevNode.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := null"
+            );
         } else if (nextNode != null) {
             node.nextArrow = null;
+            getRootScreen().setDescription(
+                    String.format(
+                            "[UPDATE] node.next := null"
+                    )
+            );
         }
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return removed element %d", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

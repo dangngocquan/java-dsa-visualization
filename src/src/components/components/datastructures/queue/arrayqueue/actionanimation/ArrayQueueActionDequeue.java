@@ -30,15 +30,12 @@ public class ArrayQueueActionDequeue extends AbstractArrayQueueAnimation {
         if (animationStep == 0) {
             pickUpElement();
             animationStep++;
-        } else if (animationStep <= getRootScreen().queue.size() - 1 - index) {
-            movePanelNodeToLeft();
-            animationStep++;
-        } else if (animationStep == getRootScreen().queue.size() - index) {
+        } else if (animationStep == 1) {
             returnElement();
             animationStep++;
-        } else if (animationStep == getRootScreen().queue.size() - index + 1) {
+        } else if (animationStep == 2) {
             solveEnd();
-            animationStep = 100000;
+            animationStep++;
         } else {
             animationStep = 0;
             end();
@@ -47,6 +44,11 @@ public class ArrayQueueActionDequeue extends AbstractArrayQueueAnimation {
 
     public void pickUpElement() {
         node = getRootScreen().queue.first();
+        getRootScreen().setDescription(
+                String.format(
+                        "[DEQUEUE] Dequeue element %d from queue", node.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_PLAIN,
@@ -63,19 +65,12 @@ public class ArrayQueueActionDequeue extends AbstractArrayQueueAnimation {
         );
     }
 
-    public void movePanelNodeToLeft() {
-        AbstractPanelDataStructureNode node = getRootScreen().queue.first();
-        ServiceAnimation.translate(
-                node,
-                new Location(node.getX(), node.getY()),
-                -ViewArrayQueueAction.SIZE_PER_NODE - ViewArrayQueueAction.GAP_X,
-                0,
-                10,
-                period - 10
-        );
-    }
-
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[DEQUEUE] Return element %d", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

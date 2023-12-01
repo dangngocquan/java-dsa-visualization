@@ -46,6 +46,9 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             if (i < panels.length) {
                 checkNode();
             } else {
+                getRootScreen().setDescription(
+                        "[DELETE] Finished."
+                );
                 end();
                 getRootScreen().tree.delete(panelRemove);
                 getViewAction().resetPanelsClone();
@@ -53,6 +56,9 @@ public class TreeActionDelete extends AbstractTreeAnimation {
         } else if (animationStep == 1) {
             delete();
         } else {
+            getRootScreen().setDescription(
+                    "[DELETE] Finished."
+            );
             end();
             getRootScreen().tree.delete(panelRemove);
             getViewAction().resetPanelsClone();
@@ -60,6 +66,11 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     }
 
     public void checkNode() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Check element %d", panels[i].getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 panels[i],
                 panels[i].getBackgroundColor(),
@@ -100,7 +111,6 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             if (compare == 0) {
                 if (subStep == 0) {
                     redFlag();
-                    subStep = 1;
                     if (panelRemove == null) panelRemove = panels[i];
                     subStep = 1;
                 } else if (subStep == 1) {
@@ -127,7 +137,6 @@ public class TreeActionDelete extends AbstractTreeAnimation {
             if (compare == 0) {
                 if (subStep == 0) {
                     redFlag();
-                    subStep = 1;
                     if (panelRemove == null) panelRemove = panels[i];
                     subStep = 1;
                 } else if (subStep == 1) {
@@ -212,6 +221,9 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     }
 
     protected void removePanelFromView() {
+        getRootScreen().setDescription(
+                "[DELETE] Delete this element."
+        );
         ServiceAnimation.translate(
                 panels[i],
                 new Location(panels[i].getX(), panels[i].getY()),
@@ -223,6 +235,9 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     }
 
     protected void translatePanelToPrevRoot() {
+        getRootScreen().setDescription(
+                "[DELETE] Found min element of sub right tree."
+        );
         ServiceAnimation.translate(
                 panels[i],
                 new Location(panels[i].getX(), panels[i].getY()),
@@ -234,10 +249,16 @@ public class TreeActionDelete extends AbstractTreeAnimation {
     }
 
     protected void translateLeftTreeBecomeRoot() {
+        getRootScreen().setDescription(
+                "[UPDATE] node := node.left"
+        );
         translateSubTreeBecomeRoot(1);
     }
 
     protected void translateRightTreeBecomeRoot() {
+        getRootScreen().setDescription(
+                "[UPDATE] node := node.right"
+        );
         translateSubTreeBecomeRoot(2);
     }
 

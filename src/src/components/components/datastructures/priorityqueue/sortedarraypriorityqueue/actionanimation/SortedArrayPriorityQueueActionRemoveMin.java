@@ -14,7 +14,7 @@ import src.services.serviceanimations.Location;
 import java.util.Iterator;
 
 public class SortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQueueAnimation {
-    private AbstractPanelDataStructureNode node;
+    private AbstractPanelPriorityQueueNode node;
 
     public SortedArrayPriorityQueueActionRemoveMin(
             AbstractPriorityQueueScreen rootScreen,
@@ -31,15 +31,12 @@ public class SortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQue
         if (animationStep == 0) {
             pickUpElement();
             animationStep++;
-        } else if (animationStep <= getRootScreen().queue.size() - 1) {
-            movePanelNodeToLeft(animationStep);
-            animationStep++;
-        } else if (animationStep == getRootScreen().queue.size()) {
+        } else if (animationStep == 1) {
             returnElement();
             animationStep++;
-        } else if (animationStep == getRootScreen().queue.size() + 1) {
+        } else if (animationStep == 2) {
             solveEnd();
-            animationStep = 100000;
+            animationStep = 3;
         } else {
             animationStep = 0;
             end();
@@ -50,10 +47,16 @@ public class SortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQue
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         node = iterator.next().getValue();
+        getRootScreen().setDescription(
+                String.format(
+                        "[REMOVE MIN] Remove this Entry(key=%d, value=%d)",
+                        node.key, node.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node,
-                Config.COLOR_BAR_PLAIN,
-                Config.COLOR_BAR_FLAG,
+                Config.COLOR_WHITE,
+                Config.COLOR_RED,
                 10,
                 period - 10
         );
@@ -66,22 +69,13 @@ public class SortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQue
         );
     }
 
-    public void movePanelNodeToLeft(int i) {
-        Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
-                = getRootScreen().queue.iterator();
-        while (i-- > 0) iterator.next();
-        AbstractPanelDataStructureNode node = iterator.next().getValue();
-        ServiceAnimation.translate(
-                node,
-                new Location(node.getX(), node.getY()),
-                -ViewArrayListAction.SIZE_PER_NODE - ViewArrayListAction.GAP_X,
-                0,
-                10,
-                period - 10
-        );
-    }
-
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return Entry(key=%d, value=%d)",
+                        node.key, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

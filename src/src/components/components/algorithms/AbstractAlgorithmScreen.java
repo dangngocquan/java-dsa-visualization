@@ -32,8 +32,4 @@ public abstract class AbstractAlgorithmScreen extends AbstractScreen {
     public void setDescription(String s) {
         viewAction.setDescription(s);
     }
-
-    public String getDescription() {
-        return viewAction.description.getText();
-    }
 }

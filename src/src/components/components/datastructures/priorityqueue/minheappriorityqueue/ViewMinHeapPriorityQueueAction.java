@@ -24,6 +24,7 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
         super(rootScreen);
         dataClone = getRootScreen().getCloneData();
         drawElements();
+        addDescriptionPanel();
         repaint();
     }
 

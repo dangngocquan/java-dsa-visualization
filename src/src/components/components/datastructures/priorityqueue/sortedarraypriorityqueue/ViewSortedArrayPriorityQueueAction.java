@@ -19,13 +19,16 @@ public class ViewSortedArrayPriorityQueueAction extends AbstractViewPriorityQueu
     public static final int INITIAL_Y = 150;
     public static final int GAP_X = 40;
     public static final int GAP_Y = 200;
-    public static final int SIZE_PER_NODE = (Config.WIDTH - 2 * INITIAL_X - 9 * GAP_X) / 8;
+    public static final int SIZE_PER_NODE =
+            (Config.WIDTH - 2 * INITIAL_X - (Config.MAX_NODE_TYPE_1) * GAP_X)
+                    / Config.MAX_NODE_TYPE_1;
 
     public ViewSortedArrayPriorityQueueAction(AbstractPriorityQueueScreen rootScreen) {
         super(rootScreen);
         drawTitle();
         drawElements();
         drawData();
+        addDescriptionPanel();
         repaint();
     }
 

@@ -1,7 +1,6 @@
 package src.components.components.datastructures.priorityqueue.unsortedarraypriorityqueue.actionanimation;
 
 import src.Config;
-import src.components.components.datastructures.AbstractPanelDataStructureNode;
 import src.components.components.datastructures.list.arraylist.ViewArrayListAction;
 import src.components.components.datastructures.priorityqueue.AbstractPanelPriorityQueueNode;
 import src.components.components.datastructures.priorityqueue.AbstractPriorityQueueAnimation;
@@ -15,7 +14,7 @@ import src.services.serviceanimations.Location;
 import java.util.Iterator;
 
 public class UnsortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQueueAnimation {
-    private AbstractPanelDataStructureNode node;
+    private AbstractPanelPriorityQueueNode node;
     private int index;
 
     public UnsortedArrayPriorityQueueActionRemoveMin(
@@ -64,10 +63,13 @@ public class UnsortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQ
 
     public void pickUpElement(int index) {
         node = getPanelNode(index);
+        getRootScreen().setDescription(
+                "[REMOVE MIN] Remove this element."
+        );
         ServiceAnimation.transitionColor(
                 node,
-                Config.COLOR_BAR_PLAIN,
-                Config.COLOR_BAR_FLAG,
+                Config.COLOR_WHITE,
+                Config.COLOR_RED,
                 10,
                 period - 10
         );
@@ -81,10 +83,17 @@ public class UnsortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQ
     }
 
     public void movePanelNodeToLeft(int i) {
+        int i1 = i;
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         while (i-- > 0) iterator.next();
-        AbstractPanelDataStructureNode node = iterator.next().getValue();
+        AbstractPanelPriorityQueueNode node = iterator.next().getValue();
+        getRootScreen().setDescription(
+                String.format(
+                        "[UPDATE] Update a[%d] := a[%d] = Entry(key=%d, value=%d)",
+                        i1-1, i1, node.key, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
@@ -96,6 +105,12 @@ public class UnsortedArrayPriorityQueueActionRemoveMin extends AbstractPriorityQ
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return min entry Entry(key=%d, value=%d)",
+                        node.key, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

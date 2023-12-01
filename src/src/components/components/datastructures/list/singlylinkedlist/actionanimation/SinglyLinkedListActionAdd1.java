@@ -60,6 +60,11 @@ public class SinglyLinkedListActionAdd1 extends AbstractSinglyLinkedListAnimatio
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -81,6 +86,9 @@ public class SinglyLinkedListActionAdd1 extends AbstractSinglyLinkedListAnimatio
         getRootScreen().list.add(panelNode);
         panelNode.setVisible(false);
         if (index > 0) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := node"
+            );
             prevPanelNode = (SinglyLinkedListPanelNode) getRootScreen().list.get(index-1);
             int[] startData = prevPanelNode.getDefaultNextArrow();
             int[] endData = new int[] {
@@ -107,6 +115,11 @@ public class SinglyLinkedListActionAdd1 extends AbstractSinglyLinkedListAnimatio
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new element %d", panelNode.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

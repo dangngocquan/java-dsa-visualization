@@ -1,7 +1,6 @@
 package src.components.components.datastructures.tree.actionanimation;
 
 import src.Config;
-import src.components.components.datastructures.AbstractViewDataStructureController;
 import src.components.components.datastructures.tree.*;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
@@ -43,6 +42,9 @@ public class TreeActionInsert extends AbstractTreeAnimation {
                     checkNode();
                 }
             } else {
+                getRootScreen().setDescription(
+                        "[INSERT] Finished"
+                );
                 end();
                 getRootScreen().tree.insert(panelInsert);
                 getViewAction().resetPanelsClone();
@@ -50,6 +52,9 @@ public class TreeActionInsert extends AbstractTreeAnimation {
         } else if (animationStep == 1) {
             insert();
         } else {
+            getRootScreen().setDescription(
+                    "[INSERT] Finished."
+            );
             end();
             getRootScreen().tree.insert(panelInsert);
             getViewAction().resetPanelsClone();
@@ -57,6 +62,11 @@ public class TreeActionInsert extends AbstractTreeAnimation {
     }
 
     protected void checkNode() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Check element %d", panels[i].getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 panels[i],
                 panels[i].getBackgroundColor(),
@@ -91,9 +101,18 @@ public class TreeActionInsert extends AbstractTreeAnimation {
         int compare = this.value - panels[i].getValue();
         whiteFlag();
         if (compare == 0) {
+            getRootScreen().setDescription(
+                    "[CHECK] Insert value duplicated!"
+            );
             animationStep = 2;
             i = -1;
         } else if (compare < 0) {
+            getRootScreen().setDescription(
+                    String.format(
+                            "[CHECK] Insert value = %d is smaller than current element = %d",
+                            value, panels[i].getValue()
+                    )
+            );
             if (hasChildLeft(i)) {
                 i = 2 * i + 1;
                 animationStep = 0;
@@ -107,6 +126,12 @@ public class TreeActionInsert extends AbstractTreeAnimation {
                }
             }
         } else {
+            getRootScreen().setDescription(
+                    String.format(
+                            "[CHECK] Insert value = %d is greater than current element = %d",
+                            value, panels[i].getValue()
+                    )
+            );
             if (hasChildRight(i)) {
                 i = 2 * i + 2;
                 animationStep = 0;

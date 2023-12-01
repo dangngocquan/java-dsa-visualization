@@ -47,11 +47,13 @@ public class ArrayQueueActionEnlarge extends AbstractArrayQueueAnimation {
         } else {
             animationStep = 0;
             end();
-            System.out.println(getRootScreen().queue.size());
         }
     }
 
     public void createNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Create new array data b with b.length = 2 * a.length"
+        );
         int dataLength = ((ArrayQueue<AbstractPanelQueueNode>) (getRootScreen().queue)).getSizeData() * 2;
         title1 = new Panel(
                 0,
@@ -106,6 +108,9 @@ public class ArrayQueueActionEnlarge extends AbstractArrayQueueAnimation {
     }
 
     public void movePanelNodeToNewData(Iterator<AbstractPanelQueueNode> iterator) {
+        getRootScreen().setDescription(
+                "[ENLARGE] Copy elements to new array data."
+        );
         AbstractPanelDataStructureNode panelNode = iterator.next();
         int x = ViewArrayQueueAction.INITIAL_X + ViewArrayQueueAction.GAP_X
                 + (ViewArrayQueueAction.SIZE_PER_NODE + ViewArrayQueueAction.GAP_X) * tempValue;
@@ -121,6 +126,9 @@ public class ArrayQueueActionEnlarge extends AbstractArrayQueueAnimation {
     }
 
     public void replaceDataByNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Update array data a := b"
+        );
         QueueInterface<AbstractPanelQueueNode> panelElements = getRootScreen().queue;
         for (AbstractPanelQueueNode panel : panelElements) {
             rootScreen.viewAction.remove(panel);

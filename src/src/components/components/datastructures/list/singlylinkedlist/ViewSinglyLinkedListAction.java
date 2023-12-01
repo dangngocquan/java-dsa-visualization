@@ -14,14 +14,15 @@ import java.util.Iterator;
 public class ViewSinglyLinkedListAction extends AbstractViewListAction {
     public static final int INITIAL_X = 100;
     public static final int INITIAL_Y = 50;
-    public static final int WIDTH_NODE = (Config.WIDTH - INITIAL_X * 2) / 15;
+    public static final int WIDTH_NODE = (Config.WIDTH - INITIAL_X * 2) / (2 * Config.MAX_NODE_TYPE_2 - 1);
     public static final int HEIGHT_NODE = (WIDTH_NODE - 20) * 2 + 30;
     public static final int GAP_X = WIDTH_NODE;
-    public static final int GAP_Y = 200;
+    public static final int GAP_Y = 150;
 
     public ViewSinglyLinkedListAction(AbstractListScreen rootScreen) {
         super(rootScreen);
         drawElements();
+        addDescriptionPanel();
         repaint();
     }
 

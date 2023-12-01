@@ -59,6 +59,12 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
 
     public void checkNode(int i) {
         SortedLinkedPriorityQueuePanelNode node0 = getPanelNode(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Checking Entry(key=%d, value=%d)",
+                        node0.key, node0.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -97,6 +103,9 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
 
     public void pickUpElement(int i) {
         node = getPanelNode(i);
+        getRootScreen().setDescription(
+                "[REMOVE MIN] Remove this Entry."
+        );
         if (i-1 >= 0) {
             prevNode = getPanelNode(i-1);
         }
@@ -161,6 +170,9 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
 
     public void createArrowFromPrevToNext() {
         if (prevNode != null && nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := nextNode"
+            );
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
                     prevNode.nextArrow,
@@ -192,12 +204,26 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
             );
         } else if (prevNode != null) {
             prevNode.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := null"
+            );
+            getRootScreen().viewAction.repaint();
         } else if (nextNode != null) {
             node.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] node.next := null"
+            );
+            getRootScreen().viewAction.repaint();
         }
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return min Entry(key=%d, value=%d)",
+                        node.key, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

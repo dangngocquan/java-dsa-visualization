@@ -53,4 +53,8 @@ public abstract class AbstractDataStructureScreen extends AbstractScreen {
 
     @Override
     public void addActionListenerForButtons() {}
+
+    public void setDescription(String s) {
+        viewAction.setDescription(s);
+    }
 }

@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class ArrayListPanelNode extends AbstractPanelListNode implements Comparable<ArrayListPanelNode> {
     private Panel panel;
+
     public ArrayListPanelNode(int index, int value) {
         super(index, value, ViewArrayListAction.SIZE_PER_NODE, ViewArrayListAction.SIZE_PER_NODE);
         addPanel();

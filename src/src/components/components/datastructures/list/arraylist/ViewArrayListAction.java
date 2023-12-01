@@ -12,15 +12,18 @@ public class ViewArrayListAction extends AbstractViewListAction {
     public Panel panelData;
     public static final int INITIAL_X = 200;
     public static final int INITIAL_Y = 150;
-    public static final int GAP_X = 40;
+    public static final int GAP_X = 20;
     public static final int GAP_Y = 200;
-    public static final int SIZE_PER_NODE = (Config.WIDTH - 2 * INITIAL_X - 9 * GAP_X) / 8;
+    public static final int SIZE_PER_NODE =
+            (Config.WIDTH - 2 * INITIAL_X - (Config.MAX_NODE_TYPE_1 + 1) * GAP_X)
+                    / Config.MAX_NODE_TYPE_1;
 
     public ViewArrayListAction(AbstractListScreen rootScreen) {
         super(rootScreen);
         drawTitle();
         drawElements();
         drawData();
+        addDescriptionPanel();
         repaint();
     }
 
@@ -79,7 +82,7 @@ public class ViewArrayListAction extends AbstractViewListAction {
 
     @Override
     public void actionAdd(int index, int value) {
-        if (getRootScreen().list.size() == ((MyArrayList) getRootScreen().list).getSizeData()) {
+        if (getRootScreen().list.size() == ((MyArrayList<?>) getRootScreen().list).getSizeData()) {
             new ArrayListActionEnlarge(
                     getRootScreen(),
                     new ArrayListActionAdd2(index, value, getRootScreen(), null)

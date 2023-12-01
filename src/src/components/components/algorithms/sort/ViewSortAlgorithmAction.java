@@ -8,7 +8,6 @@ import src.services.serviceanimations.Location;
 import java.awt.*;
 
 public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
-    public static int HEIGHT_DESCRIPTION = 40;
     public static int gapWidth = 2;
     public static int barWidth = 10;
     public static int initialX = 10;
@@ -45,8 +44,8 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
         gapWidth = 4;
         barWidth = (getWidthPanel() - 2 * initialX - gapWidth * (n-1)) / n;
         initialY = 0;
-        initialY0 = initialY + (height - initialY - HEIGHT_DESCRIPTION) / 2;
-        initialY1 = initialY0 + (height - initialY - HEIGHT_DESCRIPTION) / 2;
+        initialY0 = initialY + (height - initialY - Config.HEIGHT_DESCRIPTION) / 2;
+        initialY1 = initialY0 + (height - initialY - Config.HEIGHT_DESCRIPTION) / 2;
         xBars = new int[n];
         for (int i = 0; i < n; i++) xBars[i] = initialX + i * (barWidth + gapWidth);
     }
@@ -123,7 +122,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 bars[i],
                 new Location(xBars[i], getYBar(i, yBase)),
                 0,
-                (getHeightPanel() - HEIGHT_DESCRIPTION - initialY) / 2,
+                (getHeightPanel() - Config.HEIGHT_DESCRIPTION - initialY) / 2,
                 1,
                 animationPeriod - 1
         );
@@ -134,7 +133,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
                 bars[i],
                 new Location(xBars[i], getYBar(i, yBase)),
                 0,
-                -(getHeightPanel() - initialY - HEIGHT_DESCRIPTION) / 2,
+                -(getHeightPanel() - initialY - Config.HEIGHT_DESCRIPTION) / 2,
                 1,
                 animationPeriod - 1
         );

@@ -52,10 +52,15 @@ public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
 
     public void checkElement(int i) {
         AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Checking a[%d] = %d", i, node.getValue()
+                        )
+        );
         ServiceAnimation.transitionColor(
                 node,
-                Config.COLOR_BAR_PLAIN,
-                Config.COLOR_BAR_CHECKING,
+                Config.COLOR_WHITE,
+                Config.COLOR_YELLOW,
                 10,
                 period - 10
         );
@@ -63,10 +68,15 @@ public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
 
     public void uncheckElement(int i) {
         AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] removeValue = %d is not equals to a[%d] = %d", value, i, node.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node,
-                Config.COLOR_BAR_CHECKING,
-                Config.COLOR_BAR_PLAIN,
+                Config.COLOR_YELLOW,
+                Config.COLOR_WHITE,
                 10,
                 period - 10
         );
@@ -74,9 +84,14 @@ public class ArrayListActionRemove2 extends AbstractArrayListAnimation {
 
     public void flagElement(int i) {
         AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] removeValue = %d is equals to a[%d] = %d", value, i, node.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node,
-                Config.COLOR_BAR_CHECKING,
+                Config.COLOR_YELLOW,
                 Config.COLOR_BAR_FLAG,
                 10,
                 period - 10

@@ -62,6 +62,11 @@ public class SinglyLinkedListActionAdd2 extends AbstractSinglyLinkedListAnimatio
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -125,6 +130,9 @@ public class SinglyLinkedListActionAdd2 extends AbstractSinglyLinkedListAnimatio
             prevNode = (SinglyLinkedListPanelNode) getRootScreen().list.get(index-1);
         }
         if (prevNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := node"
+            );
             if (prevNode.nextArrow == null) prevNode.setNextArrow(prevNode.getDefaultNextArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -176,6 +184,9 @@ public class SinglyLinkedListActionAdd2 extends AbstractSinglyLinkedListAnimatio
             nextNode = (SinglyLinkedListPanelNode) getRootScreen().list.get(index + 1);
         }
         if (nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] node.next := nextNode"
+            );
             panelNode.setNextArrow(panelNode.getDefaultNextArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -206,6 +217,11 @@ public class SinglyLinkedListActionAdd2 extends AbstractSinglyLinkedListAnimatio
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new element %d", panelNode.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

@@ -5,6 +5,7 @@ import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
+import src.components.components.datastructures.queue.arrayqueue.ArrayQueueScreen;
 
 public class ViewQueueController extends AbstractViewDataStructureController {
     private int tempIndexActionSelecting;
@@ -90,8 +91,8 @@ public class ViewQueueController extends AbstractViewDataStructureController {
             for (Button button : buttons) dialog.add(button);
 
             boolean[] enableButtons = new boolean[] {
-                    getRootScreen().queue.size() < 8,
-                    getRootScreen().queue.size() > 0,
+                    getRootScreen().queue.size() < (rootScreen instanceof ArrayQueueScreen? Config.MAX_NODE_TYPE_1 : Config.MAX_NODE_TYPE_2),
+                    !getRootScreen().queue.isEmpty(),
             };
 
             for (int i = 0; i < AbstractQueueScreen.ACTIONS.size(); i++) this.buttons[i+1].setEnabledButton(enableButtons[i]);

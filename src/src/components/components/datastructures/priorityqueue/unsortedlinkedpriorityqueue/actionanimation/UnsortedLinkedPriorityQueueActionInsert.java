@@ -21,7 +21,6 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
     public int y;
     public UnsortedLinkedPriorityQueuePanelNode panelNode;
     public UnsortedLinkedPriorityQueuePanelNode prevNode;
-    public UnsortedLinkedPriorityQueuePanelNode nextNode;
 
     public UnsortedLinkedPriorityQueueActionInsert(
             int key, int value, AbstractPriorityQueueScreen rootScreen,
@@ -55,9 +54,6 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
             createArrowWithPrevNode();
             animationStep = 2;
         } else if (animationStep == 2) {
-            createArrowWithNextNode();
-            animationStep++;
-        } else if (animationStep == 3) {
             addToDataOfArrayList();
             animationStep++;
         } else {
@@ -67,6 +63,12 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create new Entry(key=%d, value=%d)",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -131,6 +133,9 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
         }
         if (prevNode == null) return;
         if (prevNode.nextArrow == null) prevNode.setNextArrow(prevNode.getDefaultNextArrow());
+        getRootScreen().setDescription(
+                "[UPDATE] lastNode.next := node"
+        );
         ServiceAnimation.transformArrowPanelNode(
                 getRootScreen().viewAction,
                 prevNode.nextArrow,
@@ -156,61 +161,15 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
                 Config.COLOR_GREEN,
                 10, period - 10
         );
-
-    }
-
-    public void createArrowWithNextNode() {
-        if (prevNode != null) {
-            ServiceAnimation.transitionColor(
-                    prevNode.panels[2],
-                    prevNode.panels[2].getBackgroundColor(),
-                    Config.COLOR_BLUE,
-                    10, period - 10
-            );
-            ServiceAnimation.transitionBorderColor1(
-                    panelNode,
-                    getRootScreen(),
-                    panelNode.getBorderColor(),
-                    Config.COLOR_BLUE,
-                    10, period - 10 + 1 - 1
-            );
-        }
-
-        panelNode.setVisible(false);
-        if (index + 1 < getRootScreen().queue.size()) {
-            nextNode = getPanelNode(index + 1);
-        }
-        if (nextNode != null) {
-            panelNode.setNextArrow(panelNode.getDefaultNextArrow());
-            ServiceAnimation.transformArrowPanelNode(
-                    getRootScreen().viewAction,
-                    panelNode.nextArrow,
-                    new int[] {
-                            panelNode.nextArrow[0],
-                            panelNode.nextArrow[1],
-                            nextNode.getX(),
-                            nextNode.getY() + nextNode.getHeightPanel()/2
-                    },
-                    10,
-                    period - 10
-            );
-            ServiceAnimation.transitionColor(
-                    panelNode.panels[2],
-                    panelNode.panels[2].getBackgroundColor(),
-                    Config.COLOR_GREEN,
-                    10, period - 10
-            );
-            ServiceAnimation.transitionBorderColor1(
-                    nextNode,
-                    getRootScreen(),
-                    nextNode.getBorderColor(),
-                    Config.COLOR_GREEN,
-                    10, period - 10
-            );
-        }
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new Entry(key=%d, value=%d) to PriorityQueue.",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -231,35 +190,6 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
                     },
                     10,
                     period - 10 + 1 - 1
-            );
-        }
-        if (nextNode != null) {
-            ServiceAnimation.transformArrowPanelNode(
-                    getRootScreen().viewAction,
-                    panelNode.nextArrow,
-                    new int[] {
-                            panelNode.nextArrow[0],
-                            ViewUnsortedLinkedPriorityQueueAction.INITIAL_Y
-                                    + panelNode.panels[2].getY()
-                                    + panelNode.panels[2].getHeightPanel()/2,
-                            panelNode.nextArrow[2],
-                            panelNode.nextArrow[3]
-                    },
-                    10,
-                    period - 10
-            );
-            ServiceAnimation.transitionColor(
-                    panelNode.panels[2],
-                    panelNode.panels[2].getBackgroundColor(),
-                    Config.COLOR_BLUE,
-                    10, period - 10
-            );
-            ServiceAnimation.transitionBorderColor1(
-                    nextNode,
-                    getRootScreen(),
-                    nextNode.getBorderColor(),
-                    Config.COLOR_BLUE,
-                    10, period - 10
             );
         }
     }

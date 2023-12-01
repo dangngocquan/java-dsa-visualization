@@ -51,6 +51,11 @@ public class LinkedQueueActionDequeue extends AbstractLinkedQueueAnimation {
 
     public void checkNode() {
         AbstractPanelQueueNode node0 = getRootScreen().queue.first();
+        getRootScreen().setDescription(
+                String.format(
+                        "[DEQUEUE] Dequeue element %d from queue", node0.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -120,10 +125,19 @@ public class LinkedQueueActionDequeue extends AbstractLinkedQueueAnimation {
     public void createArrowFromPrevToNext() {
         if (nextNode != null) {
             node.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] node.next := null"
+            );
+            getRootScreen().viewAction.repaint();
         }
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return element %d from queue.", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

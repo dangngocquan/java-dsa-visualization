@@ -32,6 +32,7 @@ public class AVLTreeActionDelete extends TreeActionDelete {
             if (i < panels.length) {
                 checkNode();
             } else {
+                getRootScreen().setDescription("[DELETE] Finished.");
                 end();
                 getRootScreen().tree.delete(panelRemove);
                 getViewAction().resetPanelsClone();
@@ -43,6 +44,7 @@ public class AVLTreeActionDelete extends TreeActionDelete {
             getRootScreen().repaint();
             balance();
         } else {
+            getRootScreen().setDescription("[DELETE] Finished.");
             end();
             getRootScreen().tree.delete(panelRemove);
             getViewAction().resetPanelsClone();
@@ -168,6 +170,7 @@ public class AVLTreeActionDelete extends TreeActionDelete {
         if (stepBalance == 0) {
             if (indexCheckBalance > -1) {
                 i = indexCheckBalance;
+                getRootScreen().setDescription("[BALANCE] Check sub tree with root " + panels[i].getValue());
                 yellowFlag();
                 stepBalance = 1;
                 return;
@@ -198,16 +201,20 @@ public class AVLTreeActionDelete extends TreeActionDelete {
                 stepBalance = 0;
             }
         } else if(stepBalance == 2) {
+            getRootScreen().setDescription("[BALANCE] Sub left tree - rotate left");
             rotateLeft(2 * i + 1);
             stepBalance = 3;
         } else if (stepBalance == 3) {
+            getRootScreen().setDescription("[BALANCE] Current tree - rotate right");
             rotateRight(i);
             indexCheckBalance = i == 0? -1 : (i - 1) / 2;
             stepBalance = 0;
         }else if (stepBalance == 4) {
+            getRootScreen().setDescription("[BALANCE] Sub right tree - rotate right");
             rotateRight(2 * i + 2);
             stepBalance = 5;
         } else if (stepBalance == 5) {
+            getRootScreen().setDescription("[BALANCE] Current tree - rotate left");
             rotateLeft(i);
             indexCheckBalance = i == 0? -1 : (i - 1) / 2;
             stepBalance = 0;

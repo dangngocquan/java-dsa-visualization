@@ -1,7 +1,6 @@
 package src.components.components.algorithms.search;
 
 import src.Config;
-import src.components.base.Panel;
 import src.components.components.algorithms.AbstractViewAlgorithmAction;
 import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
@@ -10,7 +9,6 @@ import java.awt.*;
 
 
 public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
-    public static int HEIGHT_DESCRIPTION = 40;
     public static int gapWidth = 2;
     public static int barWidth = 10;
     public static int initialX = 10;
@@ -48,8 +46,8 @@ public class ViewSearchAlgorithmAction extends AbstractViewAlgorithmAction {
         gapWidth = 4;
         barWidth = (getWidthPanel() - 2 * initialX - gapWidth * (n-1)) / n;
         initialY = 0;
-        initialY0 = initialY + (height - initialY - HEIGHT_DESCRIPTION) / 2;
-        initialY1 = initialY0 + (height - initialY - HEIGHT_DESCRIPTION) / 2;
+        initialY0 = initialY + (height - initialY - Config.HEIGHT_DESCRIPTION) / 2;
+        initialY1 = initialY0 + (height - initialY - Config.HEIGHT_DESCRIPTION) / 2;
         xBars = new int[n];
         for (int i = 0; i < n; i++) xBars[i] = initialX + i * (barWidth + gapWidth);
     }

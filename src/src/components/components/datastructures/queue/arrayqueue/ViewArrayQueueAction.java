@@ -15,15 +15,18 @@ public class ViewArrayQueueAction extends AbstractViewQueueAction {
     public Panel panelFirst;
     public static final int INITIAL_X = 200;
     public static final int INITIAL_Y = 150;
-    public static final int GAP_X = 40;
+    public static final int GAP_X = 20;
     public static final int GAP_Y = 200;
-    public static final int SIZE_PER_NODE = (Config.WIDTH - 2 * INITIAL_X - 9 * GAP_X) / 8;
+    public static final int SIZE_PER_NODE =
+            (Config.WIDTH - 2 * INITIAL_X - (Config.MAX_NODE_TYPE_1 + 1) * GAP_X)
+                    / Config.MAX_NODE_TYPE_1;
 
     public ViewArrayQueueAction(AbstractQueueScreen rootScreen) {
         super(rootScreen);
         drawTitle();
         drawElements();
         drawData();
+        addDescriptionPanel();
         repaint();
     }
 
@@ -69,7 +72,7 @@ public class ViewArrayQueueAction extends AbstractViewQueueAction {
                 0
         );
         panelFirst.setBorderWidth(2);
-        panelFirst.setFont(Config.MONOSPACED_BOLD_14);
+        panelFirst.setFont(Config.MONOSPACED_BOLD_10);
         add(panelData);
         add(panelFirst);
     }

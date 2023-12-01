@@ -68,6 +68,11 @@ public class DoubleLinkedListActionAdd2 extends AbstractDoubleLinkedListAnimatio
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -164,6 +169,9 @@ public class DoubleLinkedListActionAdd2 extends AbstractDoubleLinkedListAnimatio
             prevNode = (DoubleLinkedListPanelNode) getRootScreen().list.get(index-1);
         }
         if (prevNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := node"
+            );
             if (prevNode.nextArrow == null) prevNode.setNextArrow(prevNode.getDefaultNextArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -215,6 +223,9 @@ public class DoubleLinkedListActionAdd2 extends AbstractDoubleLinkedListAnimatio
             nextNode = (DoubleLinkedListPanelNode) getRootScreen().list.get(index + 1);
         }
         if (nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] node.next = nextNode"
+            );
             panelNode.setNextArrow(panelNode.getDefaultNextArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -248,6 +259,9 @@ public class DoubleLinkedListActionAdd2 extends AbstractDoubleLinkedListAnimatio
 
     public void createArrowFromNextNode() {
         if (nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] nextNode.prev := node"
+            );
             ServiceAnimation.transitionColor(
                     panelNode.panels[2],
                     panelNode.panels[2].getBackgroundColor(),
@@ -329,6 +343,11 @@ public class DoubleLinkedListActionAdd2 extends AbstractDoubleLinkedListAnimatio
         }
 
         if (prevNode != null) {
+            getRootScreen().setDescription(
+                    String.format(
+                            "[UPDATE] node.prev := prevNode"
+                    )
+            );
             panelNode.setPrevArrow(panelNode.getDefaultPrevArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -361,6 +380,11 @@ public class DoubleLinkedListActionAdd2 extends AbstractDoubleLinkedListAnimatio
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new element %d to index %d" , value, index
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

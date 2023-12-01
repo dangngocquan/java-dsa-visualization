@@ -46,6 +46,9 @@ public class UnsortedArrayPriorityQueueActionEnlarge extends AbstractUnsortedArr
     }
 
     public void createNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Create new array data b with b.length = 2 * a.length"
+        );
         int dataLength = ((UnsortedArrayPriorityQueue<?, ?>) (getRootScreen().queue)).getSizeData() * 2;
         title1 = new Panel(
                 0,
@@ -61,8 +64,8 @@ public class UnsortedArrayPriorityQueueActionEnlarge extends AbstractUnsortedArr
                 ViewUnsortedArrayPriorityQueueAction.INITIAL_Y + 20 + ViewUnsortedArrayPriorityQueueAction.SIZE_PER_NODE + ViewUnsortedArrayPriorityQueueAction.GAP_Y,
                 (dataLength + 1) * ViewUnsortedArrayPriorityQueueAction.GAP_X + dataLength * ViewUnsortedArrayPriorityQueueAction.SIZE_PER_NODE,
                 20 + ViewUnsortedArrayPriorityQueueAction.SIZE_PER_NODE,
-                Config.COLOR_BAR_PLAIN,
-                null, "", 1 + 2 - 3
+                Config.COLOR_WHITE,
+                null, "", 0
         );
         newPanelData.setBorderWidth(2 + 1 - 1);
 
@@ -100,6 +103,9 @@ public class UnsortedArrayPriorityQueueActionEnlarge extends AbstractUnsortedArr
     }
 
     public void movePanelNodeToNewData(int index) {
+        getRootScreen().setDescription(
+                "[ENLARGE] Copy elements to new array data."
+        );
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         while (index-- > 0) iterator.next();
@@ -115,6 +121,9 @@ public class UnsortedArrayPriorityQueueActionEnlarge extends AbstractUnsortedArr
     }
 
     public void replaceDataByNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Update array data of PriorityQueue a := b"
+        );
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator = getRootScreen().queue.iterator();
         while (iterator.hasNext()) {
             AbstractPanelDataStructureNode panel = iterator.next().getValue();

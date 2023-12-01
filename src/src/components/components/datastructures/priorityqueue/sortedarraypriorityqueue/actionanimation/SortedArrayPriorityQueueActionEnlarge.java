@@ -46,6 +46,9 @@ public class SortedArrayPriorityQueueActionEnlarge extends AbstractSortedArrayPr
     }
 
     public void createNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Create new array data b with b.length = 2 * a.length"
+        );
         int dataLength = ((SortedArrayPriorityQueue<?, ?>) (getRootScreen().queue)).getSizeData() * 2;
         title1 = new Panel(
                 0,
@@ -100,6 +103,9 @@ public class SortedArrayPriorityQueueActionEnlarge extends AbstractSortedArrayPr
     }
 
     public void movePanelNodeToNewData(int index) {
+        getRootScreen().setDescription(
+                "[ENLARGE] Copy elements to new array data."
+        );
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         while (index-- > 0) iterator.next();
@@ -115,6 +121,9 @@ public class SortedArrayPriorityQueueActionEnlarge extends AbstractSortedArrayPr
     }
 
     public void replaceDataByNewData() {
+        getRootScreen().setDescription(
+                "[ENLARGE] Update array data of PriorityQueue a := b"
+        );
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator = getRootScreen().queue.iterator();
         while (iterator.hasNext()) {
             AbstractPanelDataStructureNode panel = iterator.next().getValue();

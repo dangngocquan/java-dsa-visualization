@@ -65,6 +65,7 @@ public abstract class AbstractViewTreeAction extends AbstractViewDataStructureAc
             panel.setBackgroundColor(Config.COLOR_WHITE);
             add(panel);
         }
+        addDescriptionPanel();
         repaint();
     }
 

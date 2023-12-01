@@ -48,7 +48,7 @@ public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimatio
             createArrowFromPrevNode();
             animationStep++;
         } else if (animationStep == 2) {
-            createArrowFromPrevNodeToNewNode();
+            createArrowFromNodeToPrevNode();
             animationStep++;
         } else if (animationStep == 3) {
             addToDataOfArrayList();
@@ -63,6 +63,11 @@ public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimatio
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -84,6 +89,9 @@ public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimatio
         getRootScreen().list.add(panelNode);
         panelNode.setVisible(false);
         if (index > 0) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := node"
+            );
             prevPanelNode = (DoubleLinkedListPanelNode) getRootScreen().list.get(index-1);
             prevPanelNode.setNextArrow(prevPanelNode.getDefaultNextArrow());
             ServiceAnimation.transformArrowPanelNode(
@@ -109,8 +117,11 @@ public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimatio
         }
     }
 
-    public void createArrowFromPrevNodeToNewNode() {
+    public void createArrowFromNodeToPrevNode() {
         if (index > 0) {
+            getRootScreen().setDescription(
+                    "[UPDATE] node.prev := prevNode"
+            );
             panelNode.setPrevArrow(panelNode.getDefaultPrevArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -155,6 +166,11 @@ public class DoubleLinkedListActionAdd1 extends AbstractDoubleLinkedListAnimatio
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new element %d", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

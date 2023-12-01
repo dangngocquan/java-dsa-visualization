@@ -60,6 +60,11 @@ public class LinkedQueueActionEnqueue extends AbstractLinkedQueueAnimation {
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -85,6 +90,9 @@ public class LinkedQueueActionEnqueue extends AbstractLinkedQueueAnimation {
             prevPanelNode = (LinkedQueuePanelNode) getRootScreen().queue.last();
             getRootScreen().queue.enqueue(panelNode);
             panelNode.setVisible(false);
+            getRootScreen().setDescription(
+                    "[UPDATE] last.next := node; last := node"
+            );
             int[] startData = prevPanelNode.getDefaultNextArrow();
             int[] endData = new int[] {
                     startData[0],
@@ -110,6 +118,11 @@ public class LinkedQueueActionEnqueue extends AbstractLinkedQueueAnimation {
     }
 
     public void addToDataOfArrayQueue() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[ENQUEUE] Inserted element %d to queue", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

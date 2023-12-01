@@ -69,6 +69,11 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
 
     public void checkNode(int i) {
         DoubleLinkedListPanelNode node0 = (DoubleLinkedListPanelNode) getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Check node(%d) with index = %d", node0.getValue(), i
+                )
+        );
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -112,6 +117,9 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
 
     public void pickUpElement(int i) {
         node = (DoubleLinkedListPanelNode) getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                "[CHECK] Remove this node."
+        );
         if (i-1 >= 0) {
             prevNode = (DoubleLinkedListPanelNode) getRootScreen().list.get(i-1);
         }
@@ -208,6 +216,9 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
 
     public void createArrowFromPrevToNext() {
         if (prevNode != null && nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := nextNode"
+            );
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
                     prevNode.nextArrow,
@@ -241,13 +252,24 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
             );
         } else if (prevNode != null) {
             prevNode.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] prevNode.next := null"
+            );
+            getRootScreen().viewAction.repaint();
         } else if (nextNode != null) {
             node.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] node.next := null"
+            );
+            getRootScreen().viewAction.repaint();
         }
     }
 
     public void createArrowFromNextNodeToPrevNode() {
         if (prevNode != null && nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] nextNode.prev := prevNode"
+            );
             ServiceAnimation.transitionColor(
                     prevNode.panels[2],
                     Config.COLOR_GREEN,
@@ -295,13 +317,26 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
                     period - 10
             );
         } else if (prevNode != null) {
-            prevNode.nextArrow = null;
+            node.prevArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] node.prev := null"
+            );
+            getRootScreen().viewAction.repaint();
         } else if (nextNode != null) {
-            node.nextArrow = null;
+            nextNode.prevArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] nextNode.prev := null"
+            );
+            getRootScreen().viewAction.repaint();
         }
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return removed element %d", value
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

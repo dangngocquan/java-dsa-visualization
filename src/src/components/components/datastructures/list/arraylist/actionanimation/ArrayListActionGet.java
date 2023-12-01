@@ -11,7 +11,7 @@ import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
 public class ArrayListActionGet extends AbstractArrayListAnimation {
-    private int index;
+    private final int index;
     private AbstractPanelListNode node;
 
     public ArrayListActionGet(
@@ -32,7 +32,7 @@ public class ArrayListActionGet extends AbstractArrayListAnimation {
             pickUpElement(index);
             animationStep++;
         } else if (animationStep == 1) {
-            returnElement(index);
+            returnElement();
             animationStep++;
         } else if (animationStep == 2) {
             solveEnd();
@@ -45,6 +45,11 @@ public class ArrayListActionGet extends AbstractArrayListAnimation {
 
     public void pickUpElement(int index) {
         AbstractPanelListNode node0 = getRootScreen().list.get(index);
+        getRootScreen().setDescription(
+                String.format(
+                        "[GET] Get a[%d] = %d", index, node0.getValue()
+                )
+        );
         node = new ArrayListPanelNode(node0.getIndex(), node0.getValue());
         getRootScreen().viewAction.add(node);
         ServiceAnimation.transitionColor(
@@ -63,7 +68,12 @@ public class ArrayListActionGet extends AbstractArrayListAnimation {
         );
     }
 
-    public void returnElement(int index) {
+    public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return a[%d] = %d", index, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

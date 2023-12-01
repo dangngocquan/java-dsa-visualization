@@ -56,6 +56,11 @@ public class ArrayListActionAdd2 extends AbstractArrayListAnimation {
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] New element %d", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -68,6 +73,11 @@ public class ArrayListActionAdd2 extends AbstractArrayListAnimation {
 
     public void movePanelNodeToRight(int i) {
         AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[UPDATE] a[%d] := a[%d] = %d", i + 1, i, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
@@ -79,6 +89,11 @@ public class ArrayListActionAdd2 extends AbstractArrayListAnimation {
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] a[%d] := %d", index, value
+                )
+        );
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         ServiceAnimation.translate(
                 panelNode,

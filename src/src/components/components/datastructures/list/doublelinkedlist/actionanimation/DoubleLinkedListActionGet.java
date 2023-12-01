@@ -52,6 +52,11 @@ public class DoubleLinkedListActionGet extends AbstractDoubleLinkedListAnimation
 
     public void checkNode(int i) {
         AbstractPanelListNode node0 = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[CHECK] Check node(%d) with index = %d", node0.getValue(), i
+                )
+        );
         ServiceAnimation.transitionColor(
                 node0,
                 Config.COLOR_WHITE,
@@ -90,6 +95,11 @@ public class DoubleLinkedListActionGet extends AbstractDoubleLinkedListAnimation
 
     public void pickUpElement(int i) {
         AbstractPanelListNode node0 = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[GET] Get node(%d) with index = %d", node0.getValue(), i
+                )
+        );
         uncheckNode(i);
         node = new DoubleLinkedListPanelNode(node0.getIndex(), node0.getValue());
         getRootScreen().viewAction.add(node);
@@ -110,6 +120,11 @@ public class DoubleLinkedListActionGet extends AbstractDoubleLinkedListAnimation
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return element %d", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

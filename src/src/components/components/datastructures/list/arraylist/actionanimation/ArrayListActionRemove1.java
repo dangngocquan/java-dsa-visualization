@@ -46,6 +46,11 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
 
     public void pickUpElement(int index) {
         node = getRootScreen().list.get(index);
+        getRootScreen().setDescription(
+                String.format(
+                        "[GET] a[%d] = %d is element which we will remove", index, node.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_PLAIN,
@@ -64,6 +69,11 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
 
     public void movePanelNodeToLeft(int i) {
         AbstractPanelDataStructureNode node = getRootScreen().list.get(i);
+        getRootScreen().setDescription(
+                String.format(
+                        "[UPDATE] a[%d] := a[%d] = %d", i-1, i, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
@@ -75,6 +85,11 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return removed element %d", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

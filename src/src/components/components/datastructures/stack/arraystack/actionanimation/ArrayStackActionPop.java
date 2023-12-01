@@ -10,14 +10,13 @@ import src.services.ServiceAnimation;
 import src.services.serviceanimations.Location;
 
 public class ArrayStackActionPop extends AbstractArrayStackAnimation {
-    private final int index;
     private AbstractPanelDataStructureNode node;
 
     public ArrayStackActionPop(
             AbstractStackScreen rootScreen,
             AbstractStackAnimation nextAnimation) {
         super(rootScreen, nextAnimation);
-        this.index = getRootScreen().stack.size()-1;
+        int index = getRootScreen().stack.size() - 1;
     }
 
     public ArrayStackScreen getRootScreen() {
@@ -29,15 +28,12 @@ public class ArrayStackActionPop extends AbstractArrayStackAnimation {
         if (animationStep == 0) {
             pickUpElement();
             animationStep++;
-        } else if (animationStep <= getRootScreen().stack.size() - 1 - index) {
-            movePanelNodeToLeft();
-            animationStep++;
-        } else if (animationStep == getRootScreen().stack.size() - index) {
+        } else if (animationStep == 1) {
             returnElement();
             animationStep++;
-        } else if (animationStep == getRootScreen().stack.size() - index + 1) {
+        } else if (animationStep == 2) {
             solveEnd();
-            animationStep = 100000;
+            animationStep++;
         } else {
             animationStep = 0;
             end();
@@ -46,6 +42,11 @@ public class ArrayStackActionPop extends AbstractArrayStackAnimation {
 
     public void pickUpElement() {
         node = getRootScreen().stack.top();
+        getRootScreen().setDescription(
+                String.format(
+                        "[POP] Pop element %d from stack", node.getValue()
+                )
+        );
         ServiceAnimation.transitionColor(
                 node,
                 Config.COLOR_BAR_PLAIN,
@@ -61,20 +62,12 @@ public class ArrayStackActionPop extends AbstractArrayStackAnimation {
                 10, period - 10
         );
     }
-
-    public void movePanelNodeToLeft() {
-        AbstractPanelDataStructureNode node = getRootScreen().stack.top();
-        ServiceAnimation.translate(
-                node,
-                new Location(node.getX(), node.getY()),
-                -ViewArrayStackAction.SIZE_PER_NODE - ViewArrayStackAction.GAP_X,
-                0,
-                10,
-                period - 10
-        );
-    }
-
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[RETURN] Return piped element %d", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

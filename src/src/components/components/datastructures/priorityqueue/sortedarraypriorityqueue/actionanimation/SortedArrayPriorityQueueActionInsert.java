@@ -73,6 +73,12 @@ public class SortedArrayPriorityQueueActionInsert extends AbstractSortedArrayPri
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create new Entry(key=%d, value=%d)",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -84,10 +90,17 @@ public class SortedArrayPriorityQueueActionInsert extends AbstractSortedArrayPri
     }
 
     public void movePanelNodeToRight(int i) {
+        int i1 = i;
         Iterator<EntryInterface<Integer, AbstractPanelPriorityQueueNode>> iterator
                 = getRootScreen().queue.iterator();
         while (i-- > 0) iterator.next();
-        AbstractPanelDataStructureNode node = iterator.next().getValue();
+        AbstractPanelPriorityQueueNode node = iterator.next().getValue();
+        getRootScreen().setDescription(
+                String.format(
+                        "[UPDATE] a[%d] := a[%d] = Entry(key=%d, value=%d)",
+                        i1 + 1, i1, node.key, node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),
@@ -99,6 +112,12 @@ public class SortedArrayPriorityQueueActionInsert extends AbstractSortedArrayPri
     }
 
     public void addToDataOfSortedArrayPriorityQueue() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new Entry(key=%d, value=%d).",
+                        key, value
+                )
+        );
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         ServiceAnimation.translate(
                 panelNode,

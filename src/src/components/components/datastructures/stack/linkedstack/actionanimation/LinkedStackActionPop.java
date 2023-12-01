@@ -49,6 +49,9 @@ public class LinkedStackActionPop extends AbstractLinkedStackAnimation {
 
     public void pickUpElement() {
         node = (LinkedStackPanelNode) getRootScreen().stack.top();
+        getRootScreen().setDescription(
+                "[POP] Pop this node"
+        );
         if (1 < getRootScreen().stack.size()) {
             node = (LinkedStackPanelNode) getRootScreen().stack.pop();
             nextNode = (LinkedStackPanelNode) getRootScreen().stack.pop();
@@ -99,10 +102,19 @@ public class LinkedStackActionPop extends AbstractLinkedStackAnimation {
     public void createArrowFromPrevToNext() {
         if (nextNode != null) {
             node.nextArrow = null;
+            getRootScreen().setDescription(
+                    "[UPDATE] head := node.next; node.next := null"
+            );
+            getRootScreen().viewAction.repaint();
         }
     }
 
     public void returnElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[POP] Piped element %d from stack", node.getValue()
+                )
+        );
         ServiceAnimation.translate(
                 node,
                 new Location(node.getX(), node.getY()),

@@ -78,6 +78,12 @@ public class SortedLinkedPriorityQueueActionInsert extends AbstractSortedLinkedP
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create new Entry(key=%d, value=%d)",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -142,6 +148,9 @@ public class SortedLinkedPriorityQueueActionInsert extends AbstractSortedLinkedP
         }
         if (prevNode == null) return;
         if (prevNode.nextArrow == null) prevNode.setNextArrow(prevNode.getDefaultNextArrow());
+        getRootScreen().setDescription(
+                "[UPDATE] prevNode.next := node"
+        );
         ServiceAnimation.transformArrowPanelNode(
                 getRootScreen().viewAction,
                 prevNode.nextArrow,
@@ -192,6 +201,9 @@ public class SortedLinkedPriorityQueueActionInsert extends AbstractSortedLinkedP
             nextNode = getPanelNode(index + 1);
         }
         if (nextNode != null) {
+            getRootScreen().setDescription(
+                    "[UPDATE] node.next := nextNode"
+            );
             panelNode.setNextArrow(panelNode.getDefaultNextArrow());
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -222,6 +234,12 @@ public class SortedLinkedPriorityQueueActionInsert extends AbstractSortedLinkedP
     }
 
     public void addToDataOfArrayList() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[INSERT] Inserted new Entry(key=%d, value=%d)",
+                        key, value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),

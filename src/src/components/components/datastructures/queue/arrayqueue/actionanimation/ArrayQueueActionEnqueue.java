@@ -66,6 +66,11 @@ public class ArrayQueueActionEnqueue extends AbstractArrayQueueAnimation {
     }
 
     public void createNewElement() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[CREATE] Create Node node = new Node(%d)", value
+                )
+        );
         ServiceAnimation.translate(
                 panelNode,
                 new Location(panelNode.getX(), panelNode.getY()),
@@ -77,6 +82,11 @@ public class ArrayQueueActionEnqueue extends AbstractArrayQueueAnimation {
     }
 
     public void addToDataOfArrayQueue() {
+        getRootScreen().setDescription(
+                String.format(
+                        "[ENQUEUE] Enqueue new element %d to queue", value
+                )
+        );
         rootScreen.viewAction.setComponentZOrder(panelNode, 0);
         getRootScreen().queue.enqueue(panelNode);
         ServiceAnimation.translate(
