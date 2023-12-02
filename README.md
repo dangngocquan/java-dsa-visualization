@@ -87,3 +87,50 @@ Data Structures will have 3 features:
     ![Screenshot (424)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/248df529-28ba-4648-b1fd-e1cb1d01f6d7)
 
 - `Run Action`: Run animation with selected method. When you started animation, you can't pause it.
+
+
+## Demo
+
+### 1. Sort Algorithm: Bubble Sort
+
+### 2. Sort Algorithm: Selection Sort
+
+### 3. Sort Algorithm: Insertion Sort
+
+### 4. Sort Algorithm: Quick Sort
+
+### 5. Sort Algorithm: Merge Sort
+
+### 6. Sort Algorithm: Heap Sort
+
+### 7. Search Algorithm: Sequential Search
+
+### 8. Search Algorithm: Binary Search
+
+### 9. Data Structures: List - Array List
+
+### 10. Data Structures: List - Singly Linked List
+
+### 11. Data Structures: List - Double Linked List
+
+### 12. Data Structures: Stack - Array Stack
+
+### 13. Data Structures: Stack - Linked Stack
+
+### 14. Data Structures: Queue - Array Queue
+
+### 15. Data Structures: Queue - Linked Queue
+
+### 16. Data Structures: Priority Queue - Unsorted Array Priority Queue
+
+### 17. Data Structures: Priority Queue - Sorted Array Priority Queue
+
+### 18. Data Structures: Priority Queue - Unsorted Linked Priority Queue
+
+### 19. Data Structures: Priority Queue - Sorted Linked Priority Queue
+
+### 20. Data Structures: Priority Queue - Min Heap Priority Queue
+
+### 21. Data Structures: Tree - Binary Search Tree
+
+### 22. Data Structures: Tree - AVL Tree
