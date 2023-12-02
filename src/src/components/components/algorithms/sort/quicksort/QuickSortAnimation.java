@@ -187,7 +187,6 @@ public class QuickSortAnimation extends AbstractSortAlgorithmAnimation {
                 } else if (l < pivotIndex - 1) {
                     ranges.add(new int[] {l, pivotIndex - 1});
                 }
-
                 animationStep++;
             } else if (animationStep == 3) {
                 if (subAnimationStep == 0) {
@@ -198,6 +197,7 @@ public class QuickSortAnimation extends AbstractSortAlgorithmAnimation {
                                 ViewSortAlgorithmAction.initialY0
                         );
                     }
+                    subAnimationStep = 1;
                 } else if (subAnimationStep == 1) {
                     subAnimationStep = 0;
                     if (ranges.isEmpty()) {
@@ -211,9 +211,6 @@ public class QuickSortAnimation extends AbstractSortAlgorithmAnimation {
                     }
                     animationStep = 0;
                 }
-
-
-
             }
         }
     }
