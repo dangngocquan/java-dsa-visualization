@@ -93,19 +93,35 @@ Data Structures will have 3 features:
 
 ### 1. Sort Algorithm: Bubble Sort
 
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/c8d53ca7-8d10-4ea2-af04-a19d6af96339
+
 ### 2. Sort Algorithm: Selection Sort
+
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/b74e24d5-f76b-4f07-bb03-53aa4355ea46
 
 ### 3. Sort Algorithm: Insertion Sort
 
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/68aea0a2-7069-400b-b297-10046247ef91
+
 ### 4. Sort Algorithm: Quick Sort
+
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/00333228-3933-4621-96c0-b1e7e878b4ad
 
 ### 5. Sort Algorithm: Merge Sort
 
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/df9f5c78-9b8f-4976-8bc6-07670d41653f
+
 ### 6. Sort Algorithm: Heap Sort
+
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/338baa23-8376-41bb-bfee-581f38649c90
 
 ### 7. Search Algorithm: Sequential Search
 
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/9d0d01c6-94e7-4d92-b6b7-81075ebb9e8a
+
 ### 8. Search Algorithm: Binary Search
+
+https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/9679052a-a8d9-4b7a-a008-929767679164
 
 ### 9. Data Structures: List - Array List
 
