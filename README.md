@@ -127,125 +127,182 @@ https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/967905
 
 #### 9.1. Method `add(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/3723c9ef-f08f-41fc-aa98-c6c9f258a84e
 
 #### 9.2. Method `add(index, value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/afe77a6e-61a1-4b2b-9b88-523e8675d39b
 
 #### 9.3. Method `get(index)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/febc53e7-ada1-4053-9826-5e93b91f5f2b
 
 #### 9.4. Method `remove(index)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/3c36f27d-f670-48b8-a142-d980997d15c1
 
 #### 9.5. Method `remove(value)`
 
-
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/1c05ad2c-0481-4420-8690-a72c1c20ce5d
 
 ### 10. Data Structures: List - Singly Linked List
 
 #### 10.1. Method `add(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/4a32cf77-19c2-4c82-b592-5bd5ebe5b66e
 
 #### 10.2. Method `add(index, value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/cb6be5b3-b12e-4daf-8f86-6f945df14c48
 
 #### 10.3. Method `get(index)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/0a8ec2a9-40e6-4dc0-a89a-614c5c7a1342
 
 #### 10.4. Method `remove(index)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/ccc1166c-0c06-418b-9ec8-72c8e7de2b86
 
 #### 10.5. Method `remove(value)`
 
-
-
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/2328593a-c1a7-47bf-b1ad-85e679b5ef13
 
 ### 11. Data Structures: List - Double Linked List
 
-
 #### 11.1. `add(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/aa4a19a5-fb51-46ee-bac5-1cd51f99b669
 
 #### 11.2. `add(index, value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/d97ac1ca-e56a-4015-9afc-222c1cfb6ac1
 
 #### 11.3. `get(index)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/a4fb5db3-226e-42fe-934d-a92154e0af70
 
 #### 11.4. `remove(index)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/28c722e8-c7e0-4774-9793-96c8d1380a85
 
 #### 11.5. `remove(value)`
 
-
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/ea6547fe-1d6c-4356-b259-fa31b16b3d89
 
 ### 12. Data Structures: Stack - Array Stack
 
 #### 12.1. `push(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/bd9ff96d-d424-450c-8d4c-11c8669b8d08
+
 #### 12.2. `pop()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/24d877c7-d735-48e3-bcae-94fb02bf6da3
 
 ### 13. Data Structures: Stack - Linked Stack
 
 #### 13.1. `push(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/3c34fd00-197a-47e7-aa4e-9861b23480cb
+
 #### 13.2. `pop()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/318d6896-fc1b-470f-87d0-56b1ed8da20c
 
 ### 14. Data Structures: Queue - Array Queue
 
 #### 14.1. `enqueue(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/8180ff80-f45e-499c-b55b-1d889c7f0388
+
 #### 14.2. `dequeue()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/e07956de-9132-4cb6-9bae-6dc960b5aa95
 
 ### 15. Data Structures: Queue - Linked Queue
 
 #### 15.1. `enqueue(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/bc68354a-6e77-408b-8f29-3397df843f86
+
 #### 15.2. `dequeue()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/c55784eb-8a4c-44a1-af9a-bee7c3d037b0
 
 ### 16. Data Structures: Priority Queue - Unsorted Array Priority Queue
 
 #### 16.1. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/8adb74b2-6d98-445e-919b-c6d16383256b
+
 #### 16.2. `removeMin()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/da8b59a6-68a3-47b0-b54a-cf8ef7d5a380
 
 ### 17. Data Structures: Priority Queue - Sorted Array Priority Queue
 
-
 #### 17.1. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/97772259-454f-4e93-b80f-f78c5e8f941a
+
 #### 17.2. `removeMin()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/1079bdae-2972-4164-918b-431555d8e1ac
 
 ### 18. Data Structures: Priority Queue - Unsorted Linked Priority Queue
 
 #### 18.1. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/6d6d6737-5867-41b5-b53d-e1f57b78e255
+
 #### 18.2. `removeMin()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/cfc65097-7d3f-41b4-b3ac-50b251462013
 
 ### 19. Data Structures: Priority Queue - Sorted Linked Priority Queue
 
 #### 19.1. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/d0a3269e-7843-40ce-81a8-23da11a703ea
+
 #### 19.2. `removeMin()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/6aff27f6-e849-40ee-bd74-308328725f47
 
 ### 20. Data Structures: Priority Queue - Min Heap Priority Queue
 
 #### 20.1. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/a4ec6f90-d352-40ca-b900-99275f9e63d1
+
 #### 20.2. `removeMin()`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/4fc130e5-6cf6-409b-97ba-6e6419e47be6
 
 ### 21. Data Structures: Tree - Binary Search Tree
 
 #### 21.1. `traversals`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/98e5b273-be29-477b-a012-d8848337240f
+
 #### 21.2. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/756dc752-831b-4b26-ae9d-91c9098a951d
+
 #### 21.2. `delete(value)`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/ef691bb5-1eb8-42b0-a2ee-09fcf6da32d4
 
 ### 22. Data Structures: Tree - AVL Tree
 
 #### 22.1. `traversals`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/7e9c14be-2b14-4e07-9b74-2e83c768eb2d
+
 #### 22.2. `insert(value)`
 
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/27664636-85e8-42e9-bf92-713221cb3ddb
+
 #### 22.2. `delete(value)`
+
+https://github.com/dangngocquan/java-dsa-visualization/assets/95365566/16eb1e4d-e2c6-49bf-8f2f-a19bf534a9f7
