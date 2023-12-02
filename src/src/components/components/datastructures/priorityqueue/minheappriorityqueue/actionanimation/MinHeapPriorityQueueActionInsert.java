@@ -27,8 +27,8 @@ public class MinHeapPriorityQueueActionInsert extends AbstractMinHeapPriorityQue
         data = ((ViewMinHeapPriorityQueueAction) getRootScreen().getViewAction()).dataClone;
         i = getRootScreen().queue.size();
         data[i] = new MinHeapPriorityQueuePanelNode(
-                MinHeapPriorityQueueScreen.indexRows[i],
-                MinHeapPriorityQueueScreen.indexColumns[i],
+                MinHeapPriorityQueueScreen.INDEX_ROWS[i],
+                MinHeapPriorityQueueScreen.INDEX_COLUMNS[i],
                 key, value
         );
         data[i].setX(data[i].getX() + 1500);

@@ -17,7 +17,9 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
     public static final int INITIAL_Y = 30;
     public static final int GAP_X = 30;
     public static final int GAP_Y = 60;
-    public static final int SIZE_PER_NODE = (Config.WIDTH - 2 * INITIAL_X - 16 * GAP_X) / 15;
+    public static final int SIZE_PER_NODE =
+            (Config.WIDTH - 2 * INITIAL_X - (MinHeapPriorityQueueScreen.INDEX_COLUMNS.length + 1) * GAP_X)
+                    / MinHeapPriorityQueueScreen.INDEX_COLUMNS.length ;
     public MinHeapPriorityQueuePanelNode[] dataClone;
 
     public ViewMinHeapPriorityQueueAction(AbstractPriorityQueueScreen rootScreen) {
@@ -80,14 +82,14 @@ public class ViewMinHeapPriorityQueueAction extends AbstractViewPriorityQueueAct
 
     public int getDefaultX(int i) {
         return ViewMinHeapPriorityQueueAction.INITIAL_X
-                + ViewMinHeapPriorityQueueAction.GAP_X * (MinHeapPriorityQueueScreen.indexColumns[i] + 1)
-                + ViewMinHeapPriorityQueueAction.SIZE_PER_NODE * MinHeapPriorityQueueScreen.indexColumns[i];
+                + ViewMinHeapPriorityQueueAction.GAP_X * (MinHeapPriorityQueueScreen.INDEX_COLUMNS[i] + 1)
+                + ViewMinHeapPriorityQueueAction.SIZE_PER_NODE * MinHeapPriorityQueueScreen.INDEX_COLUMNS[i];
     }
 
     public int getDefaultY(int i) {
         return ViewMinHeapPriorityQueueAction.INITIAL_Y
-                + ViewMinHeapPriorityQueueAction.GAP_Y * (MinHeapPriorityQueueScreen.indexRows[i] + 1)
-                + ViewMinHeapPriorityQueueAction.SIZE_PER_NODE * MinHeapPriorityQueueScreen.indexRows[i];
+                + ViewMinHeapPriorityQueueAction.GAP_Y * (MinHeapPriorityQueueScreen.INDEX_ROWS[i] + 1)
+                + ViewMinHeapPriorityQueueAction.SIZE_PER_NODE * MinHeapPriorityQueueScreen.INDEX_ROWS[i];
     }
 
     @Override

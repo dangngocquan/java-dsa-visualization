@@ -6,6 +6,8 @@ import src.components.base.Dialog;
 import src.components.components.AbstractScreen;
 import src.components.components.datastructures.AbstractViewDataStructureController;
 import src.components.components.datastructures.priorityqueue.minheappriorityqueue.MinHeapPriorityQueueScreen;
+import src.components.components.datastructures.priorityqueue.sortedarraypriorityqueue.SortedArrayPriorityQueueScreen;
+import src.components.components.datastructures.priorityqueue.unsortedarraypriorityqueue.UnsortedArrayPriorityQueueScreen;
 
 public class ViewPriorityQueueController extends AbstractViewDataStructureController {
     private int tempIndexActionSelecting;
@@ -90,7 +92,10 @@ public class ViewPriorityQueueController extends AbstractViewDataStructureContro
 
             boolean[] enableButtons = new boolean[] {
                     getRootScreen().queue.size() < (
-                            (getRootScreen() instanceof MinHeapPriorityQueueScreen)? 15 : 8
+                            (getRootScreen() instanceof MinHeapPriorityQueueScreen)? 15 :
+                                    (getRootScreen() instanceof UnsortedArrayPriorityQueueScreen
+                                    || getRootScreen() instanceof SortedArrayPriorityQueueScreen)? Config.MAX_NODE_TYPE_1
+                                            : Config.MAX_NODE_TYPE_2
                     ),
                     !getRootScreen().queue.isEmpty(),
             };
