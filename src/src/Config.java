@@ -37,7 +37,7 @@ public class Config {
 
     public static int DEFAULT_ANIMATION_SPEED = 500;
     public static int MIN_ALGORITHM_ANIMATION_SPEED = 10;
-    public static int MIN_DATASTRUCTURES_ANIMATION_SPEED = 200;
+    public static int MIN_DATASTRUCTURES_ANIMATION_SPEED = 500;
     public static int MAX_NODE_TYPE_1 = 16;
     public static int MAX_NODE_TYPE_2 = 8;
 
