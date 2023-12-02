@@ -151,7 +151,7 @@ public class SinglyLinkedListActionRemove2 extends AbstractSinglyLinkedListAnima
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewSinglyLinkedListAction.GAP_Y,
+                ViewSinglyLinkedListAction.HEIGHT_NODE + ViewSinglyLinkedListAction.GAP_Y,
                 10, period - 10
         );
         // Move arrow
@@ -163,7 +163,7 @@ public class SinglyLinkedListActionRemove2 extends AbstractSinglyLinkedListAnima
                             prevNode.nextArrow[0],
                             prevNode.nextArrow[1],
                             prevNode.nextArrow[2],
-                            prevNode.nextArrow[3] + ViewSinglyLinkedListAction.GAP_Y
+                            prevNode.nextArrow[3] + ViewSinglyLinkedListAction.HEIGHT_NODE + ViewSinglyLinkedListAction.GAP_Y
                     },
                     10,
                     period - 10
@@ -176,7 +176,7 @@ public class SinglyLinkedListActionRemove2 extends AbstractSinglyLinkedListAnima
                     node.nextArrow,
                     new int[] {
                             node.nextArrow[0],
-                            node.nextArrow[1] + ViewSinglyLinkedListAction.GAP_Y,
+                            node.nextArrow[1] + ViewSinglyLinkedListAction.HEIGHT_NODE + ViewSinglyLinkedListAction.GAP_Y,
                             node.nextArrow[2],
                             node.nextArrow[3]
                     },

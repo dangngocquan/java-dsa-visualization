@@ -6,7 +6,6 @@ import src.components.base.Button;
 import src.components.base.Dialog;
 import src.components.base.Panel;
 import src.components.base.TextField;
-import src.components.components.algorithms.search.ViewSearchAlgorithmController;
 import src.services.ServiceComponent;
 
 import java.awt.*;
@@ -34,9 +33,8 @@ public abstract class AbstractViewDataStructureController extends Panel {
         int numberButtonPerRow = 5;
         int buttonWidth = 250;
         int buttonHeight = 50;
-        int gapHeight = 40;
         int gapWidth = 40;
-        int totalHeight = buttonHeight * numberButtonPerColumn + (numberButtonPerColumn - 1) * gapHeight;
+        int totalHeight = buttonHeight * numberButtonPerColumn;
         int totalWidth = buttonWidth * numberButtonPerRow + (numberButtonPerRow - 1) * gapWidth;
         int initialY = (getHeightPanel() - totalHeight) / 2;
         int initialX = (getWidthPanel() - totalWidth) / 2;
@@ -44,7 +42,7 @@ public abstract class AbstractViewDataStructureController extends Panel {
         buttons = new src.components.base.Button[4];
         buttons[0] = new src.components.base.Button(
                 initialX ,
-                initialY + (gapHeight + buttonHeight) * (numberButtonPerColumn - 1),
+                initialY,
                 buttonWidth, buttonHeight,
                 "Back"
         );
@@ -69,15 +67,17 @@ public abstract class AbstractViewDataStructureController extends Panel {
         );
 
         buttons[2].setEnabledButton(false);
-        buttons[3].addActionListener(e -> {
+        buttons[3].addActionListener(e ->
             new DialogSetAnimationSpeed(
                     (Config.WIDTH - Config.WIDTH/4) / 2,
                     (Config.HEIGHT - Config.HEIGHT/3) / 2,
                     Config.WIDTH/4,
                     Config.HEIGHT/3,
-                    "Set animation speed in range [50 - 10000] milliseconds"
-            );
-        });
+                    String.format(
+                            "Set animation speed in range [%d - 10000] milliseconds",
+                            Config.MIN_DATASTRUCTURES_ANIMATION_SPEED)
+            )
+        );
 
         add(buttons[0]);
         add(buttons[1]);
@@ -115,12 +115,13 @@ public abstract class AbstractViewDataStructureController extends Panel {
                     try {
                         inputAnimationPeriod = Integer.parseInt(data);
                     } catch (Exception exception) {
-                        inputAnimationPeriod = 200;
+                        inputAnimationPeriod = Config.DEFAULT_ANIMATION_SPEED;
                     }
-                    if (inputAnimationPeriod < 50) inputAnimationPeriod = 50;
+                    if (inputAnimationPeriod < Config.MIN_DATASTRUCTURES_ANIMATION_SPEED)
+                        inputAnimationPeriod = Config.MIN_DATASTRUCTURES_ANIMATION_SPEED;
                     if (inputAnimationPeriod > 10000) inputAnimationPeriod = 10000;
                 } else {
-                    inputAnimationPeriod = 200;
+                    inputAnimationPeriod = Config.DEFAULT_ANIMATION_SPEED;
                 }
                 dialog.dispose();
                 if (inputAnimationPeriod != getPeriod()) {

@@ -101,7 +101,7 @@ public class DoubleLinkedListActionGet extends AbstractDoubleLinkedListAnimation
                 )
         );
         uncheckNode(i);
-        node = new DoubleLinkedListPanelNode(node0.getIndex(), node0.getValue());
+        node = new DoubleLinkedListPanelNode(i, node0.getValue());
         getRootScreen().viewAction.add(node);
         ServiceAnimation.transitionColor(
                 node,

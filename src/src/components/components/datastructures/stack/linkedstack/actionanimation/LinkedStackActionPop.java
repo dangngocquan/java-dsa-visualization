@@ -78,7 +78,7 @@ public class LinkedStackActionPop extends AbstractLinkedStackAnimation {
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewLinkedStackAction.GAP_Y,
+                ViewLinkedStackAction.GAP_Y +ViewLinkedStackAction.HEIGHT_NODE,
                 10, period - 10
         );
         // Move arrow
@@ -88,7 +88,7 @@ public class LinkedStackActionPop extends AbstractLinkedStackAnimation {
                     node.nextArrow,
                     new int[] {
                             node.nextArrow[0],
-                            node.nextArrow[1] + ViewLinkedStackAction.GAP_Y,
+                            node.nextArrow[1] + ViewLinkedStackAction.GAP_Y +ViewLinkedStackAction.HEIGHT_NODE,
                             node.nextArrow[2],
                             node.nextArrow[3]
                     },

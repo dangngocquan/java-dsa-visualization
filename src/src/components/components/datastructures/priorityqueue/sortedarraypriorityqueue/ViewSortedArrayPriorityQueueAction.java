@@ -17,10 +17,10 @@ public class ViewSortedArrayPriorityQueueAction extends AbstractViewPriorityQueu
     public Panel panelData;
     public static final int INITIAL_X = 200;
     public static final int INITIAL_Y = 150;
-    public static final int GAP_X = 40;
+    public static final int GAP_X = 20;
     public static final int GAP_Y = 200;
     public static final int SIZE_PER_NODE =
-            (Config.WIDTH - 2 * INITIAL_X - (Config.MAX_NODE_TYPE_1) * GAP_X)
+            (Config.WIDTH - 2 * INITIAL_X - (Config.MAX_NODE_TYPE_1 + 1) * GAP_X)
                     / Config.MAX_NODE_TYPE_1;
 
     public ViewSortedArrayPriorityQueueAction(AbstractPriorityQueueScreen rootScreen) {
@@ -57,7 +57,7 @@ public class ViewSortedArrayPriorityQueueAction extends AbstractViewPriorityQueu
                 INITIAL_Y,
                 SIZE_PER_NODE * 4 + 5 * GAP_X,
                 SIZE_PER_NODE + 20,
-                Config.COLOR_BAR_PLAIN,
+                Config.COLOR_WHITE,
                 null,
                 "",
                 0

@@ -178,6 +178,13 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
                 10,
                 period - 10
         );
+        ServiceAnimation.transitionBorderColor1(
+                panelNode,
+                getRootScreen(),
+                panelNode.getBorderColor(),
+                Config.COLOR_BLUE,
+                10, period - 10
+        );
         if (prevNode != null) {
             ServiceAnimation.transformArrowPanelNode(
                     getRootScreen().viewAction,
@@ -190,6 +197,12 @@ public class UnsortedLinkedPriorityQueueActionInsert extends AbstractUnsortedLin
                     },
                     10,
                     period - 10 + 1 - 1
+            );
+            ServiceAnimation.transitionColor(
+                    prevNode.panels[2],
+                    prevNode.panels[2].getBackgroundColor(),
+                    Config.COLOR_BLUE,
+                    10, period - 10
             );
         }
     }

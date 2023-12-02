@@ -144,7 +144,7 @@ public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsorted
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewUnsortedLinkedPriorityQueueAction.GAP_Y,
+                ViewUnsortedLinkedPriorityQueueAction.GAP_Y + ViewUnsortedLinkedPriorityQueueAction.HEIGHT_NODE,
                 10, period - 10
         );
         // Move arrow
@@ -156,7 +156,7 @@ public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsorted
                             prevNode.nextArrow[0],
                             prevNode.nextArrow[1],
                             prevNode.nextArrow[2],
-                            prevNode.nextArrow[3] + ViewUnsortedLinkedPriorityQueueAction.GAP_Y
+                            prevNode.nextArrow[3] + ViewUnsortedLinkedPriorityQueueAction.GAP_Y + ViewUnsortedLinkedPriorityQueueAction.HEIGHT_NODE
                     },
                     10,
                     period - 10
@@ -169,7 +169,7 @@ public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsorted
                     node.nextArrow,
                     new int[] {
                             node.nextArrow[0],
-                            node.nextArrow[1] + ViewUnsortedLinkedPriorityQueueAction.GAP_Y,
+                            node.nextArrow[1] + ViewUnsortedLinkedPriorityQueueAction.GAP_Y + ViewUnsortedLinkedPriorityQueueAction.HEIGHT_NODE,
                             node.nextArrow[2],
                             node.nextArrow[3]
                     },
@@ -194,7 +194,7 @@ public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsorted
                             prevNode.nextArrow[2]
                                     + ViewUnsortedLinkedPriorityQueueAction.GAP_X
                                     + ViewUnsortedLinkedPriorityQueueAction.WIDTH_NODE,
-                            prevNode.nextArrow[3] - ViewUnsortedLinkedPriorityQueueAction.GAP_Y
+                            prevNode.nextArrow[3] - (ViewUnsortedLinkedPriorityQueueAction.GAP_Y + ViewUnsortedLinkedPriorityQueueAction.HEIGHT_NODE)
                     },
                     10,
                     period - 10
@@ -217,9 +217,7 @@ public class UnsortedLinkedPriorityQueueActionRemoveMin extends AbstractUnsorted
         } else if (prevNode != null) {
             prevNode.nextArrow = null;
             getRootScreen().setDescription(
-                    String.format(
-                            "[UPDATE] prevNode.next := null"
-                    )
+                    "[UPDATE] prevNode.next := null"
             );
             getRootScreen().viewAction.repaint();
         } else if (nextNode != null) {

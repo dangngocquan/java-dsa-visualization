@@ -132,7 +132,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewSortedLinkedPriorityQueueAction.GAP_Y,
+                ViewSortedLinkedPriorityQueueAction.GAP_Y + ViewSortedLinkedPriorityQueueAction.HEIGHT_NODE,
                 10, period - 10
         );
         // Move arrow
@@ -144,7 +144,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                             prevNode.nextArrow[0],
                             prevNode.nextArrow[1],
                             prevNode.nextArrow[2],
-                            prevNode.nextArrow[3] + ViewSortedLinkedPriorityQueueAction.GAP_Y
+                            prevNode.nextArrow[3] + ViewSortedLinkedPriorityQueueAction.GAP_Y + ViewSortedLinkedPriorityQueueAction.HEIGHT_NODE
                     },
                     10,
                     period - 10
@@ -157,7 +157,7 @@ public class SortedLinkedPriorityQueueActionRemoveMin extends AbstractSortedLink
                     node.nextArrow,
                     new int[] {
                             node.nextArrow[0],
-                            node.nextArrow[1] + ViewSortedLinkedPriorityQueueAction.GAP_Y,
+                            node.nextArrow[1] + ViewSortedLinkedPriorityQueueAction.GAP_Y + ViewSortedLinkedPriorityQueueAction.HEIGHT_NODE,
                             node.nextArrow[2],
                             node.nextArrow[3]
                     },

@@ -50,7 +50,7 @@ public class ArrayListActionGet extends AbstractArrayListAnimation {
                         "[GET] Get a[%d] = %d", index, node0.getValue()
                 )
         );
-        node = new ArrayListPanelNode(node0.getIndex(), node0.getValue());
+        node = new ArrayListPanelNode(index, node0.getValue());
         getRootScreen().viewAction.add(node);
         ServiceAnimation.transitionColor(
                 node,

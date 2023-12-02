@@ -96,7 +96,7 @@ public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation
     public void pickUpElement(int i) {
         AbstractPanelListNode node0 = getRootScreen().list.get(i);
         uncheckNode(i);
-        node = new SinglyLinkedListPanelNode(node0.getIndex(), node0.getValue());
+        node = new SinglyLinkedListPanelNode(i, node0.getValue());
         getRootScreen().setDescription(
                 String.format(
                         "[GET] Get node(%d) with index = %d", node.getValue(), index
@@ -114,7 +114,7 @@ public class SinglyLinkedListActionGet extends AbstractSinglyLinkedListAnimation
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewSinglyLinkedListAction.GAP_Y + 20,
+                ViewSinglyLinkedListAction.HEIGHT_NODE + ViewSinglyLinkedListAction.GAP_Y,
                 10, period - 10
         );
     }

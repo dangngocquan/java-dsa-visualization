@@ -24,9 +24,9 @@ public abstract class AbstractPanelDataStructureNode
     public abstract int createX();
     public abstract int createY();
 
-    public int getIndex() {
-        return index;
-    }
+//    public int getIndex() {
+//        return index;
+//    }
 
     public void setIndex(int index) {
         this.index = index;

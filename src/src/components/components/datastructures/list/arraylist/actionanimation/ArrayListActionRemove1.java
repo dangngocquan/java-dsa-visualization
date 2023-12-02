@@ -53,8 +53,8 @@ public class ArrayListActionRemove1 extends AbstractArrayListAnimation {
         );
         ServiceAnimation.transitionColor(
                 node,
-                Config.COLOR_BAR_PLAIN,
-                Config.COLOR_BAR_FLAG,
+                Config.COLOR_WHITE,
+                Config.COLOR_RED,
                 10,
                 period - 10
         );

@@ -23,6 +23,7 @@ public class ViewSortedLinkedPriorityQueueAction extends AbstractViewPriorityQue
     public ViewSortedLinkedPriorityQueueAction(AbstractPriorityQueueScreen rootScreen) {
         super(rootScreen);
         drawElements();
+        addDescriptionPanel();
         repaint();
     }
 

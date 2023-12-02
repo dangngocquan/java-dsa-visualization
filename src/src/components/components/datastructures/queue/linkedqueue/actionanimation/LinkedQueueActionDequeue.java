@@ -101,7 +101,7 @@ public class LinkedQueueActionDequeue extends AbstractLinkedQueueAnimation {
                 node,
                 new Location(node.getX(), node.getY()),
                 0,
-                ViewLinkedQueueAction.GAP_Y,
+                ViewLinkedQueueAction.GAP_Y + ViewLinkedQueueAction.HEIGHT_NODE,
                 10, period - 10
         );
 
@@ -111,7 +111,7 @@ public class LinkedQueueActionDequeue extends AbstractLinkedQueueAnimation {
                     node.nextArrow,
                     new int[] {
                             node.nextArrow[0],
-                            node.nextArrow[1] + ViewLinkedQueueAction.GAP_Y,
+                            node.nextArrow[1] + ViewLinkedQueueAction.GAP_Y + ViewLinkedQueueAction.HEIGHT_NODE,
                             node.nextArrow[2],
                             node.nextArrow[3]
                     },
