@@ -33,6 +33,8 @@
 
 #### 1.1. Sort algorithms 
 
+![Screenshot (417)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/f87843ce-6975-4232-917c-642ddea90ba5)
+
 Sort Algorithms will be executed on an array with 6 features:
 
 - `Shuffle`: Shuffle position of elements in current array.
@@ -43,6 +45,8 @@ Sort Algorithms will be executed on an array with 6 features:
 - `Start sort | Pause sort | Continue sort`: You can start the sort animation, pause it or continue if you want.
 
 #### 1.2. Search Algorithms 
+
+![Screenshot (418)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/2e3f5398-3a52-4b07-a49c-3d1043b20e92)
 
 Sort Algorithms will be executed on an array with 7 features:
 
@@ -56,13 +60,30 @@ Sort Algorithms will be executed on an array with 7 features:
 
 #### 1.3. Data Structures
 
+![Screenshot (419)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/0efd2edb-3bfd-4fc6-9770-9c5d8035c59a)
+
 Data Structures will have 3 features:
 
 - `Animation Speed`: Period of each animation step. You can set animation speed with min value is 500 (ms) (this is the fastest case).
 - `Choose Action`: You can choose a method of current data structure which you want to see visualization
   - List: Have 5 actions `add(value)`, `add(index, value)`, `get(index)`, `remove(index)`, `remove(value)`
+    
+    ![Screenshot (420)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/ec0d2e5d-82c5-4429-bc82-ed99ea273cbe)
+    
   - Stack: Have 2 actions `push(value)`, `pop()`
+    
+    ![Screenshot (421)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/b3f66804-553c-4496-a6d0-e0448b1376d5)
+
   - Queue: Have 2 actions `enqueue(value)`, `dequeue()`
+    
+    ![Screenshot (422)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/787e4eaf-6e83-4a8a-87c3-9d6e444957ea)
+
   - Priority Queue: Have 2 actions `insert(key, value)`, `removeMin()`
+    
+    ![Screenshot (423)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/1535bef6-4305-4082-a7fa-9f7f5fbff6e1)
+
   - Tree: Have 8 actions includes `6 traversal methods`, `insert(value)`, `delete(value)`
+    
+    ![Screenshot (424)](https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/248df529-28ba-4648-b1fd-e1cb1d01f6d7)
+
 - `Run Action`: Run animation with selected method. When you started animation, you can't pause it.
