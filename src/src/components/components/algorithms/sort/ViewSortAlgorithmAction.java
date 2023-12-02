@@ -164,7 +164,7 @@ public class ViewSortAlgorithmAction extends AbstractViewAlgorithmAction {
     public void runEndAnimation() {
         quickAnimationSetColor(
                 0, bars.length - 1,
-                Config.COLOR_BAR_DONE
+                Config.COLOR_GREEN
         );
     }
 
