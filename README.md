@@ -125,28 +125,127 @@ https://github.com/dangngocquan/java-algorithm-visualizer/assets/95365566/967905
 
 ### 9. Data Structures: List - Array List
 
+#### 9.1. Method `add(value)`
+
+
+#### 9.2. Method `add(index, value)`
+
+
+#### 9.3. Method `get(index)`
+
+
+#### 9.4. Method `remove(index)`
+
+
+#### 9.5. Method `remove(value)`
+
+
+
 ### 10. Data Structures: List - Singly Linked List
+
+#### 10.1. Method `add(value)`
+
+
+#### 10.2. Method `add(index, value)`
+
+
+#### 10.3. Method `get(index)`
+
+
+#### 10.4. Method `remove(index)`
+
+
+#### 10.5. Method `remove(value)`
+
+
+
 
 ### 11. Data Structures: List - Double Linked List
 
+
+#### 11.1. `add(value)`
+
+
+#### 11.2. `add(index, value)`
+
+
+#### 11.3. `get(index)`
+
+
+#### 11.4. `remove(index)`
+
+
+#### 11.5. `remove(value)`
+
+
+
 ### 12. Data Structures: Stack - Array Stack
+
+#### 12.1. `push(value)`
+
+#### 12.2. `pop()`
 
 ### 13. Data Structures: Stack - Linked Stack
 
+#### 13.1. `push(value)`
+
+#### 13.2. `pop()`
+
 ### 14. Data Structures: Queue - Array Queue
+
+#### 14.1. `enqueue(value)`
+
+#### 14.2. `dequeue()`
 
 ### 15. Data Structures: Queue - Linked Queue
 
+#### 15.1. `enqueue(value)`
+
+#### 15.2. `dequeue()`
+
 ### 16. Data Structures: Priority Queue - Unsorted Array Priority Queue
+
+#### 16.1. `insert(value)`
+
+#### 16.2. `removeMin()`
 
 ### 17. Data Structures: Priority Queue - Sorted Array Priority Queue
 
+
+#### 17.1. `insert(value)`
+
+#### 17.2. `removeMin()`
+
 ### 18. Data Structures: Priority Queue - Unsorted Linked Priority Queue
+
+#### 18.1. `insert(value)`
+
+#### 18.2. `removeMin()`
 
 ### 19. Data Structures: Priority Queue - Sorted Linked Priority Queue
 
+#### 19.1. `insert(value)`
+
+#### 19.2. `removeMin()`
+
 ### 20. Data Structures: Priority Queue - Min Heap Priority Queue
+
+#### 20.1. `insert(value)`
+
+#### 20.2. `removeMin()`
 
 ### 21. Data Structures: Tree - Binary Search Tree
 
+#### 21.1. `traversals`
+
+#### 21.2. `insert(value)`
+
+#### 21.2. `delete(value)`
+
 ### 22. Data Structures: Tree - AVL Tree
+
+#### 22.1. `traversals`
+
+#### 22.2. `insert(value)`
+
+#### 22.2. `delete(value)`

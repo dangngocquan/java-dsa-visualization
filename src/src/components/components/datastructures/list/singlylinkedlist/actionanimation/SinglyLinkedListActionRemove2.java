@@ -201,7 +201,7 @@ public class SinglyLinkedListActionRemove2 extends AbstractSinglyLinkedListAnima
                             prevNode.nextArrow[2]
                                     + ViewSinglyLinkedListAction.GAP_X
                                     + ViewSinglyLinkedListAction.WIDTH_NODE,
-                            prevNode.nextArrow[3] - ViewSinglyLinkedListAction.GAP_Y
+                            prevNode.nextArrow[3] - ViewSinglyLinkedListAction.GAP_Y - ViewSinglyLinkedListAction.HEIGHT_NODE
                     },
                     10,
                     period - 10
