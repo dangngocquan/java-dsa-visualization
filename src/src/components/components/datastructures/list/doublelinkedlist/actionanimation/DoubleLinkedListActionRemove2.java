@@ -302,7 +302,7 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
                     period - 10
             );
             ServiceAnimation.transitionColor(
-                    nextNode.panels[2],
+                    nextNode.panels[0],
                     Config.COLOR_BLUE,
                     Config.COLOR_GREEN,
                     10,
@@ -396,7 +396,7 @@ public class DoubleLinkedListActionRemove2 extends AbstractDoubleLinkedListAnima
         }
         if (prevNode != null && nextNode != null) {
             ServiceAnimation.transitionColor(
-                    nextNode.panels[2],
+                    nextNode.panels[0],
                     Config.COLOR_GREEN,
                     Config.COLOR_BLUE,
                     10,
