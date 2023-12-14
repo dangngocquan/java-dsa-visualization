@@ -35,9 +35,9 @@ public class Config {
     public static Color COLOR_BAR_FLAG = new Color(255, 110, 110);
     public static Color COLOR_PINK = new Color(255, 210, 210);
 
-    public static int DEFAULT_ANIMATION_SPEED = 1000;
+    public static int DEFAULT_ANIMATION_SPEED = 500;
     public static int MIN_ALGORITHM_ANIMATION_SPEED = 10;
-    public static int MIN_DATASTRUCTURES_ANIMATION_SPEED = 1000;
+    public static int MIN_DATASTRUCTURES_ANIMATION_SPEED = 10;
     public static int MAX_NODE_TYPE_1 = 16;
     public static int MAX_NODE_TYPE_2 = 8;
 

@@ -105,7 +105,7 @@ public class TreeActionInsert extends AbstractTreeAnimation {
                     "[CHECK] Insert value duplicated!"
             );
             animationStep = 2;
-            i = -1;
+            i = -10;
         } else if (compare < 0) {
             getRootScreen().setDescription(
                     String.format(

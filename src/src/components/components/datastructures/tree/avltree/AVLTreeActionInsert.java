@@ -56,7 +56,7 @@ public class AVLTreeActionInsert extends TreeActionInsert {
             );
             end();
             getRootScreen().tree.insert(panelInsert);
-            if (panelInsert == null) new ViewTreeController.DialogNotifyMaxHeight();
+            if (panelInsert == null && i != -10) new ViewTreeController.DialogNotifyMaxHeight();
             getViewAction().resetPanelsClone();
         }
     }
